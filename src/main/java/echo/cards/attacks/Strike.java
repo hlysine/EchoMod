@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import echo.EchoMod;
 import echo.cards.AbstractBaseCard;
+import echo.mechanics.CloningModule;
 
 public class Strike extends AbstractBaseCard {
 
@@ -24,5 +25,16 @@ public class Strike extends AbstractBaseCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (CloningModule.isCloning()) {
+                    CloningModule.stopCloning();
+                } else {
+                    CloningModule.startCloning(AbstractPlayer.PlayerClass.IRONCLAD);
+                }
+                isDone = true;
+            }
+        });
     }
 }
