@@ -1,0 +1,9 @@
+{
+  "echo:PlaceholderRelic": {
+    "NAME": "PlaceholderRelic",
+    "FLAVOR": "Some cool text here.",
+    "DESCRIPTIONS": [
+      "This relic does nothing."
+    ]
+  }
+}

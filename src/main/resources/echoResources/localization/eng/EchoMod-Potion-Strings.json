@@ -1,0 +1,10 @@
+{
+  "echo:ButterflyInAJar": {
+    "NAME": "Butterfly In A Jar",
+    "DESCRIPTIONS": [
+      "Put a #yMetamorphosis into your hand. It costs 0 this turn.",
+      "Put ",
+      " #yMetamorphosis into your hand. They cost 0 this turn."
+    ]
+  }
+}

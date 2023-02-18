@@ -1,0 +1,11 @@
+{
+  "echo:TimeEater": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "Time Eater",
+    "DIALOG": [
+      "~What...~ NL ~...are~ ~you...~"
+    ]
+  }
+}

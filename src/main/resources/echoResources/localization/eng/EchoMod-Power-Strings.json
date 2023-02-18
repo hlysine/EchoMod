@@ -1,0 +1,10 @@
+{
+  "echo:TimedDeathPower": {
+    "NAME": "Timed Death",
+    "DESCRIPTIONS": [
+      "Die in #b",
+      " turns. There is no escape.",
+      "Die next turn. There is no escape."
+    ]
+  }
+}

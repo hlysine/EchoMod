@@ -1,0 +1,20 @@
+{
+  "echo:Strike": {
+    "RARITY": "BASIC",
+    "TYPE": "ATTACK",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "strike.png",
+    "COST": 1,
+    "D": 6,
+    "+D": 3
+  },
+  "echo:Defend": {
+    "RARITY": "BASIC",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "defend.png",
+    "COST": 1,
+    "B": 5,
+    "+B": 3
+  }
+}

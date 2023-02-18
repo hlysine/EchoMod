@@ -1,0 +1,16 @@
+[
+  {
+    "NAMES": [
+      "example"
+    ],
+    "DESCRIPTION": "Placeholder description."
+  },
+  {
+    "PROPER_NAME": "Example Two",
+    "NAMES": [
+      "Example Two",
+      "example_two"
+    ],
+    "DESCRIPTION": "Placeholder description."
+  }
+]

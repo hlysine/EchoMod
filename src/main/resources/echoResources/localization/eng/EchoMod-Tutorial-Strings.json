@@ -1,0 +1,10 @@
+{
+  "echo:SomeComplexAction": {
+    "TEXT": [
+      "Placeholder explanation of the action."
+    ],
+    "LABEL": [
+      "Complex Action"
+    ]
+  }
+}

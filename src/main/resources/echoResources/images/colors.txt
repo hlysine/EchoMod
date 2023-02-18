@@ -1,0 +1,6 @@
+Purple card background
+    bottom: 41 16 100
+    top: 51 60 98
+Green card background
+    bottom: 100 76 112
+    top: 75 158 132

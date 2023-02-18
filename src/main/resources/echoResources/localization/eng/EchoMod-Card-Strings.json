@@ -1,0 +1,15 @@
+{
+  "echo:Strike": {
+    "NAME": "Strike",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "echo:Defend": {
+    "NAME": "Defend",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "echo:AbstractBaseCard": {
+    "NAME": "Abstract Echo Card",
+    "DESCRIPTION": "",
+    "EXTENDED_DESCRIPTION": []
+  }
+}
