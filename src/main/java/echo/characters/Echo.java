@@ -63,7 +63,6 @@ public class Echo extends CustomPlayer {
     public static final int STARTING_GOLD = 99;
     public static final int CARD_DRAW = 5;
     public static final int ORB_SLOTS = 0;
-    public static final int MAX_MINIONS = 5;
 
     // =============== /BASE STATS/ =================
 
