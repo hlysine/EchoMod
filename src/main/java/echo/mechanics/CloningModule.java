@@ -1,22 +1,27 @@
 package echo.mechanics;
 
 import basemod.ReflectionHacks;
+import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.SlaversCollar;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CloningModule {
     public static AbstractPlayer originalPlayer;
+    public static int originalEnergy;
     public static List<AbstractRelic> tempRelics;
 
     public static boolean isCloning() {
@@ -25,6 +30,7 @@ public class CloningModule {
 
     public static void startCloning(AbstractPlayer.PlayerClass playerClass) {
         originalPlayer = AbstractDungeon.player;
+        originalEnergy = EnergyPanel.totalCount;
 
         AbstractPlayer newPlayer = CardCrawlGame.characterManager.recreateCharacter(playerClass);
 
@@ -37,15 +43,15 @@ public class CloningModule {
         newPlayer.maxHealth = newPlayer.maxHealth / 4;
         newPlayer.currentHealth = newPlayer.maxHealth;
         newPlayer.currentBlock = originalPlayer.currentBlock;
+        TempHPField.tempHp.set(newPlayer, TempHPField.tempHp.get(originalPlayer));
 
         newPlayer.startingMaxHP = newPlayer.startingMaxHP / 4;
         tempRelics = new ArrayList<>(newPlayer.relics);
         newPlayer.relics.addAll(originalPlayer.relics);
-        originalPlayer.reorganizeRelics();
+        newPlayer.reorganizeRelics();
         newPlayer.blights = originalPlayer.blights;
         newPlayer.potionSlots = originalPlayer.potionSlots;
         newPlayer.potions = originalPlayer.potions;
-        newPlayer.energy.energy = originalPlayer.energy.energy;
         newPlayer.damagedThisCombat = originalPlayer.damagedThisCombat;
         //noinspection deprecation
         newPlayer.cardsPlayedThisTurn = originalPlayer.cardsPlayedThisTurn;
@@ -54,11 +60,30 @@ public class CloningModule {
 
         changePlayerInstance(originalPlayer, newPlayer);
 
-        newPlayer.preBattlePrep();
+        newPlayer.isBloodied = (newPlayer.currentHealth <= newPlayer.maxHealth / 2);
+
+        newPlayer.endTurnQueued = false;
+        newPlayer.gameHandSize = newPlayer.masterHandSize;
+        newPlayer.drawPile.initializeDeck(newPlayer.masterDeck);
+        newPlayer.hand.clear();
+        newPlayer.discardPile.clear();
+        newPlayer.exhaustPile.clear();
+        newPlayer.limbo.clear();
+
+        if (newPlayer.hasRelic("SlaversCollar")) {
+            ((SlaversCollar) newPlayer.getRelic("SlaversCollar")).beforeEnergyPrep();
+        }
+
+        newPlayer.isEndingTurn = false;
+
+        newPlayer.applyPreCombatLogic();
         newPlayer.applyStartOfCombatPreDrawLogic();
         newPlayer.applyStartOfCombatLogic();
         newPlayer.applyStartOfTurnRelics();
         newPlayer.applyStartOfTurnPreDrawCards();
+
+        newPlayer.energy.energy = newPlayer.energy.energyMaster;
+        EnergyPanel.totalCount = Math.max(EnergyPanel.totalCount, newPlayer.energy.energy);
 
         AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
             @Override
@@ -73,11 +98,13 @@ public class CloningModule {
         });
 
         newPlayer.healthBarUpdatedEvent();
+        newPlayer.showHealthBar();
     }
 
     public static void stopCloning() {
         AbstractPlayer newPlayer = AbstractDungeon.player;
         AbstractDungeon.player = originalPlayer;
+        EnergyPanel.totalCount = originalEnergy;
 
         originalPlayer.powers = newPlayer.powers;
         originalPlayer.gold = newPlayer.gold;
@@ -85,6 +112,7 @@ public class CloningModule {
         originalPlayer.flipHorizontal = newPlayer.flipHorizontal;
         originalPlayer.flipVertical = newPlayer.flipVertical;
         originalPlayer.currentBlock = newPlayer.currentBlock;
+        TempHPField.tempHp.set(originalPlayer, TempHPField.tempHp.get(newPlayer));
 
         originalPlayer.relics = newPlayer.relics;
         originalPlayer.relics.removeAll(tempRelics);
@@ -104,6 +132,22 @@ public class CloningModule {
     }
 
     private static void transferAnimationStates(AbstractPlayer originalPlayer, AbstractPlayer newPlayer) {
+        ReflectionHacks.setPrivate(newPlayer, AbstractCreature.class, "blockAnimTimer",
+                ReflectionHacks.getPrivate(originalPlayer, AbstractCreature.class, "blockAnimTimer"));
+        ReflectionHacks.setPrivate(newPlayer, AbstractCreature.class, "blockOffset",
+                ReflectionHacks.getPrivate(originalPlayer, AbstractCreature.class, "blockOffset"));
+        ReflectionHacks.setPrivate(newPlayer, AbstractCreature.class, "blockScale",
+                ReflectionHacks.getPrivate(originalPlayer, AbstractCreature.class, "blockScale"));
+        ReflectionHacks.setPrivate(newPlayer, AbstractCreature.class, "blockColor",
+                ReflectionHacks.getPrivate(originalPlayer, AbstractCreature.class, "blockColor"));
+        ReflectionHacks.setPrivate(newPlayer, AbstractCreature.class, "blockOutlineColor",
+                ReflectionHacks.getPrivate(originalPlayer, AbstractCreature.class, "blockOutlineColor"));
+        ReflectionHacks.setPrivate(newPlayer, AbstractCreature.class, "blockTextColor",
+                ReflectionHacks.getPrivate(originalPlayer, AbstractCreature.class, "blockTextColor"));
+
+
+        ReflectionHacks.setPrivate(AbstractDungeon.overlayMenu.energyPanel, EnergyPanel.class, "gainEnergyImg",
+                newPlayer.getEnergyImage());
         ReflectionHacks.setPrivate(newPlayer, AbstractPlayer.class, "isHoveringCard",
                 ReflectionHacks.getPrivate(originalPlayer, AbstractPlayer.class, "isHoveringCard"));
         newPlayer.isHoveringDropZone = originalPlayer.isHoveringDropZone;
@@ -134,6 +178,7 @@ public class CloningModule {
 
     private static void changePlayerInstance(AbstractPlayer oldPlayer, AbstractPlayer newPlayer) {
         AbstractDungeon.player = newPlayer;
+        changePlayerInstance(AbstractDungeon.overlayMenu, oldPlayer, newPlayer);
 
         changePlayerInstance(newPlayer.hoveredCard, oldPlayer, newPlayer);
         changePlayerInstance(newPlayer.toHover, oldPlayer, newPlayer);
@@ -174,13 +219,21 @@ public class CloningModule {
         for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
             changePlayerInstance(monster, oldPlayer, newPlayer);
         }
+        for (AbstractGameAction action : AbstractDungeon.actionManager.actions) {
+            changePlayerInstance(action, oldPlayer, newPlayer);
+        }
         // this is to support minions indirectly
         ObjectFieldIterator.iterate(newPlayer, field -> {
             if (field.get(newPlayer) instanceof List) {
                 List<?> list = (List<?>) field.get(newPlayer);
                 for (Object object : list) {
-                    if (object instanceof AbstractMonster)
-                        changePlayerInstance(object, oldPlayer, newPlayer);
+                    if (object instanceof AbstractMonster) {
+                        AbstractMonster monster = (AbstractMonster) object;
+                        changePlayerInstance(monster, oldPlayer, newPlayer);
+                        for (AbstractPower power : monster.powers) {
+                            changePlayerInstance(power, oldPlayer, newPlayer);
+                        }
+                    }
                 }
             }
         });
