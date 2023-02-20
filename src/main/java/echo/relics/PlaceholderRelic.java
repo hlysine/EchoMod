@@ -10,6 +10,7 @@ public class PlaceholderRelic extends AbstractBaseRelic {
 
     public PlaceholderRelic() {
         super(ID, LANDING_SOUND);
+        grayscale = true;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package echo.mechanics;
+package echo.mechanics.duplicate;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

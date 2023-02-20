@@ -4,10 +4,11 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import echo.EchoMod;
 import echo.cards.AbstractBaseCard;
-import echo.mechanics.CloningModule;
+import echo.mechanics.duplicate.CloningModule;
 
 public class Strike extends AbstractBaseCard {
 
@@ -31,7 +32,8 @@ public class Strike extends AbstractBaseCard {
                 if (CloningModule.isCloning()) {
                     CloningModule.stopCloning();
                 } else {
-                    CloningModule.startCloning(AbstractPlayer.PlayerClass.IRONCLAD);
+                    AbstractPlayer.PlayerClass[] classes = AbstractPlayer.PlayerClass.values();
+                    CloningModule.startCloning(classes[AbstractDungeon.cardRandomRng.random(classes.length - 1)]);
                 }
                 isDone = true;
             }

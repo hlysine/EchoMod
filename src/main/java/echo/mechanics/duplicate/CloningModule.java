@@ -1,34 +1,148 @@
-package echo.mechanics;
+package echo.mechanics.duplicate;
 
 import basemod.ReflectionHacks;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.FrameBuffer;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.MonsterQueueItem;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.SlaversCollar;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import echo.EchoMod;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CloningModule {
+    private static final Logger logger = LogManager.getLogger(CloningModule.class);
     public static AbstractPlayer originalPlayer;
     public static int originalEnergy;
-    public static List<AbstractRelic> tempRelics;
+    public static final List<AbstractRelic> tempRelics = new ArrayList<>();
+    public static float cloneVfxTimer = 0.0f;
+
+    public static FrameBuffer fbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false, false);
+    public static TextureRegion fboRegion = new TextureRegion(fbo.getColorBufferTexture());
+    private static final ShaderProgram gridShader;
+
+    static {
+        fboRegion.flip(false, true);
+
+        gridShader = new ShaderProgram(
+                Gdx.files.internal(EchoMod.makeShaderPath("grid/grid.vert")).readString(),
+                Gdx.files.internal(EchoMod.makeShaderPath("grid/grid.frag")).readString()
+        );
+
+        if (gridShader.getLog().length() != 0) {
+            logger.log(gridShader.isCompiled() ? Level.WARN : Level.ERROR, gridShader.getLog());
+        }
+    }
+
+    public static void playerPreRender(AbstractPlayer player, SpriteBatch sb) {
+        if (isCloning()) {
+            boolean isBlendingEnabled = sb.isBlendingEnabled();
+            int blendSrcFunc = sb.getBlendSrcFunc();
+            int blendDstFunc = sb.getBlendDstFunc();
+            Color color = sb.getColor();
+            ShaderProgram shader = sb.getShader();
+            sb.end();
+            fbo.begin();
+            Gdx.gl.glClearColor(0, 0, 0, 0);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | GL20.GL_STENCIL_BUFFER_BIT);
+            sb.begin();
+            if (isBlendingEnabled) {
+                sb.enableBlending();
+                sb.setBlendFunction(blendSrcFunc, blendDstFunc);
+            } else {
+                sb.disableBlending();
+            }
+            sb.setColor(color);
+            sb.setShader(shader);
+        }
+    }
+
+    public static void playerPostRender(AbstractPlayer player, SpriteBatch sb) {
+        if (isCloning()) {
+            sb.end();
+            fbo.end();
+            sb.begin();
+            sb.setColor(0.44f, 0.33f, 0.86f, 1f);
+            sb.enableBlending();
+            sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+
+            gridShader.begin();
+            gridShader.setUniformf("res_x", Gdx.graphics.getWidth());
+            gridShader.setUniformf("res_y", Gdx.graphics.getHeight());
+            cloneVfxTimer += Gdx.graphics.getDeltaTime();
+            gridShader.setUniformf("time", cloneVfxTimer);
+            gridShader.setUniformf("period", 5.0f);
+            gridShader.setUniformi("grayscale", 0);
+            gridShader.end();
+
+            ShaderProgram oldShader = sb.getShader();
+            sb.setShader(gridShader);
+            sb.draw(fboRegion, -Settings.VERT_LETTERBOX_AMT, -Settings.HORIZ_LETTERBOX_AMT);
+            sb.setShader(oldShader);
+        }
+    }
+
+    public static void relicPreRender(AbstractRelic relic, SpriteBatch sb) {
+        if (tempRelics.contains(relic)) {
+            gridShader.begin();
+            gridShader.setUniformf("res_x", 128);
+            gridShader.setUniformf("res_y", 128);
+            gridShader.setUniformf("time", cloneVfxTimer);
+            gridShader.setUniformf("period", 5.0f);
+            gridShader.setUniformi("grayscale", relic.grayscale ? 1 : 0);
+            gridShader.end();
+
+            sb.setShader(gridShader);
+        }
+    }
+
+    public static void relicPostRender(AbstractRelic relic, SpriteBatch sb) {
+        if (tempRelics.contains(relic)) {
+            sb.setShader(null);
+        }
+    }
+
+    public static void reset() {
+        originalPlayer = null;
+        originalEnergy = 0;
+        tempRelics.clear();
+        cloneVfxTimer = 0.0f;
+    }
+
 
     public static boolean isCloning() {
         return originalPlayer != null;
     }
 
     public static void startCloning(AbstractPlayer.PlayerClass playerClass) {
+        if (isCloning()) {
+            throw new RuntimeException("Already cloning");
+        }
+
         originalPlayer = AbstractDungeon.player;
         originalEnergy = EnergyPanel.totalCount;
 
@@ -38,6 +152,11 @@ public class CloningModule {
         newPlayer.powers = originalPlayer.powers;
         newPlayer.gold = originalPlayer.gold;
         newPlayer.displayGold = originalPlayer.displayGold;
+        newPlayer.isDying = originalPlayer.isDying;
+        newPlayer.isDead = originalPlayer.isDead;
+        newPlayer.halfDead = originalPlayer.halfDead;
+        newPlayer.escapeTimer = originalPlayer.escapeTimer;
+        newPlayer.isEscaping = originalPlayer.isEscaping;
         newPlayer.flipHorizontal = originalPlayer.flipHorizontal;
         newPlayer.flipVertical = originalPlayer.flipVertical;
         newPlayer.maxHealth = newPlayer.maxHealth / 4;
@@ -46,7 +165,7 @@ public class CloningModule {
         TempHPField.tempHp.set(newPlayer, TempHPField.tempHp.get(originalPlayer));
 
         newPlayer.startingMaxHP = newPlayer.startingMaxHP / 4;
-        tempRelics = new ArrayList<>(newPlayer.relics);
+        tempRelics.addAll(newPlayer.relics);
         newPlayer.relics.addAll(originalPlayer.relics);
         newPlayer.reorganizeRelics();
         newPlayer.blights = originalPlayer.blights;
@@ -56,13 +175,21 @@ public class CloningModule {
         //noinspection deprecation
         newPlayer.cardsPlayedThisTurn = originalPlayer.cardsPlayedThisTurn;
 
+        newPlayer.isEndingTurn = originalPlayer.isEndingTurn;
+        newPlayer.viewingRelics = originalPlayer.viewingRelics;
+        newPlayer.inspectMode = originalPlayer.inspectMode;
+        newPlayer.endTurnQueued = originalPlayer.endTurnQueued;
+
         transferAnimationStates(originalPlayer, newPlayer);
 
         changePlayerInstance(originalPlayer, newPlayer);
 
+        newPlayer.maxOrbs = 0;
+        newPlayer.orbs.clear();
+        newPlayer.increaseMaxOrbSlots(newPlayer.masterMaxOrbs, false);
+
         newPlayer.isBloodied = (newPlayer.currentHealth <= newPlayer.maxHealth / 2);
 
-        newPlayer.endTurnQueued = false;
         newPlayer.gameHandSize = newPlayer.masterHandSize;
         newPlayer.drawPile.initializeDeck(newPlayer.masterDeck);
         newPlayer.hand.clear();
@@ -102,6 +229,10 @@ public class CloningModule {
     }
 
     public static void stopCloning() {
+        if (!isCloning()) {
+            return;
+        }
+
         AbstractPlayer newPlayer = AbstractDungeon.player;
         AbstractDungeon.player = originalPlayer;
         EnergyPanel.totalCount = originalEnergy;
@@ -109,6 +240,11 @@ public class CloningModule {
         originalPlayer.powers = newPlayer.powers;
         originalPlayer.gold = newPlayer.gold;
         originalPlayer.displayGold = newPlayer.displayGold;
+        originalPlayer.isDying = newPlayer.isDying;
+        originalPlayer.isDead = newPlayer.isDead;
+        originalPlayer.halfDead = newPlayer.halfDead;
+        originalPlayer.escapeTimer = newPlayer.escapeTimer;
+        originalPlayer.isEscaping = newPlayer.isEscaping;
         originalPlayer.flipHorizontal = newPlayer.flipHorizontal;
         originalPlayer.flipVertical = newPlayer.flipVertical;
         originalPlayer.currentBlock = newPlayer.currentBlock;
@@ -125,10 +261,15 @@ public class CloningModule {
         //noinspection deprecation
         originalPlayer.cardsPlayedThisTurn = newPlayer.cardsPlayedThisTurn;
 
+        originalPlayer.isEndingTurn = newPlayer.isEndingTurn;
+        originalPlayer.viewingRelics = newPlayer.viewingRelics;
+        originalPlayer.inspectMode = newPlayer.inspectMode;
+        originalPlayer.endTurnQueued = newPlayer.endTurnQueued;
+
         transferAnimationStates(newPlayer, originalPlayer);
 
         changePlayerInstance(newPlayer, originalPlayer);
-        originalPlayer = null;
+        reset();
     }
 
     private static void transferAnimationStates(AbstractPlayer originalPlayer, AbstractPlayer newPlayer) {
@@ -222,6 +363,19 @@ public class CloningModule {
         for (AbstractGameAction action : AbstractDungeon.actionManager.actions) {
             changePlayerInstance(action, oldPlayer, newPlayer);
         }
+        for (AbstractGameAction action : AbstractDungeon.actionManager.preTurnActions) {
+            changePlayerInstance(action, oldPlayer, newPlayer);
+        }
+        for (CardQueueItem item : AbstractDungeon.actionManager.cardQueue) {
+            changePlayerInstance(item, oldPlayer, newPlayer);
+        }
+        for (MonsterQueueItem item : AbstractDungeon.actionManager.monsterQueue) {
+            changePlayerInstance(item, oldPlayer, newPlayer);
+        }
+        changePlayerInstance(AbstractDungeon.actionManager.currentAction, oldPlayer, newPlayer);
+        changePlayerInstance(AbstractDungeon.actionManager.previousAction, oldPlayer, newPlayer);
+        changePlayerInstance(AbstractDungeon.actionManager.turnStartCurrentAction, oldPlayer, newPlayer);
+
         // this is to support minions indirectly
         ObjectFieldIterator.iterate(newPlayer, field -> {
             if (field.get(newPlayer) instanceof List) {
