@@ -62,6 +62,9 @@ public class SelectCardsForDuplicateAction extends AbstractGameAction {
             int count = 0;
             for (AbstractCard card : choices.group) {
                 count++;
+                if (card.type != AbstractCard.CardType.CURSE && card.type != AbstractCard.CardType.STATUS && AbstractDungeon.player.hasPower("MasterRealityPower")) {
+                    card.upgrade();
+                }
                 shuffleFromCurrentPosition(card, count > 11);
             }
             AbstractDungeon.player.drawPile.shuffle();
