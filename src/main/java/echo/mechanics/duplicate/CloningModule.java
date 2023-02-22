@@ -294,7 +294,7 @@ public class CloningModule {
         newPlayer.energy.energy = newPlayer.energy.energyMaster;
         EnergyPanel.totalCount = Math.max(EnergyPanel.totalCount, newPlayer.energy.energy);
 
-        AbstractDungeon.actionManager.addToBottom(new SelectCardsForDuplicateAction());
+        AbstractDungeon.actionManager.addToBottom(new SelectCardsForDuplicateAction(true));
         AbstractDungeon.actionManager.addToBottom(new RunnableAction(() -> {
             newPlayer.applyStartOfTurnCards();
             newPlayer.applyStartOfTurnPowers();

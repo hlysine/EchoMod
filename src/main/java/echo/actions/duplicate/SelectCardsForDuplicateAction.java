@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import echo.EchoMod;
 import echo.actions.SelectCardsAction;
+import echo.mechanics.duplicate.CloningModule;
 
 import java.util.ArrayList;
 
@@ -22,8 +23,19 @@ public class SelectCardsForDuplicateAction extends AbstractGameAction {
     private static final TutorialStrings tutorialStrings = CardCrawlGame.languagePack.getTutorialString(EchoMod.makeID(SelectCardsForDuplicateAction.class.getSimpleName()));
     private static final String[] TEXT = tutorialStrings.TEXT;
 
+    private final boolean editMasterDeck;
+
+    public SelectCardsForDuplicateAction(boolean editMasterDeck) {
+        this.editMasterDeck = editMasterDeck;
+    }
+
     @Override
     public void update() {
+        if (!CloningModule.isCloning()) {
+            this.isDone = true;
+            return;
+        }
+
         CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         int cardCount = AbstractDungeon.player.getLoadout().cardDraw;
 
@@ -52,6 +64,8 @@ public class SelectCardsForDuplicateAction extends AbstractGameAction {
 
         for (AbstractCard c : choices.group) {
             UnlockTracker.markCardAsSeen(c.cardID);
+            if (editMasterDeck)
+                AbstractDungeon.player.masterDeck.addToTop(c.makeSameInstanceOf());
         }
 
         addToTop(new SelectCardsAction(choices.group, cardCount, TEXT[0] + cardCount + TEXT[1], false, c -> true, list -> {
