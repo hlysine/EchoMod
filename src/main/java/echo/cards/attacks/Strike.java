@@ -4,15 +4,14 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import echo.EchoMod;
+import echo.actions.duplicate.DuplicateRandomPlayerAction;
 import echo.cards.AbstractBaseCard;
-import echo.mechanics.duplicate.CloningModule;
+import echo.characters.Echo;
+import echo.subscribers.AfterCardUseSubscriber;
 
-import java.util.Arrays;
-
-public class Strike extends AbstractBaseCard {
+public class Strike extends AbstractBaseCard implements AfterCardUseSubscriber {
 
     public static final String ID = EchoMod.makeID(Strike.class.getSimpleName());
 
@@ -28,20 +27,10 @@ public class Strike extends AbstractBaseCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                if (CloningModule.isCloning()) {
-                    CloningModule.stopCloning();
-                } else {
-                    AbstractPlayer.PlayerClass[] classes = Arrays.stream(AbstractPlayer.PlayerClass.values())
-                            .filter(c -> c != AbstractDungeon.player.chosenClass)
-                            .toArray(AbstractPlayer.PlayerClass[]::new);
-                    CloningModule.startCloning(classes[AbstractDungeon.cardRandomRng.random(classes.length - 1)]);
-                }
-                //AbstractDungeon.topLevelEffectsQueue.add(new DuplicateEffect());
-                isDone = true;
-            }
-        });
+    }
+
+    @Override
+    public void afterUse() {
+        addToBot(new DuplicateRandomPlayerAction(Echo.Enums.ECHO));
     }
 }
