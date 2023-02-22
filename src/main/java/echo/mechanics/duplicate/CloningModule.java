@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -28,8 +29,10 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.SlaversCollar;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import echo.EchoMod;
 import echo.actions.duplicate.SelectCardsForDuplicateAction;
+import echo.util.RunnableAction;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -151,10 +154,29 @@ public class CloningModule {
         return originalPlayer != null;
     }
 
+    public static void preCloneSetup() {
+        for (CardQueueItem i : AbstractDungeon.actionManager.cardQueue) {
+            if (i.autoplayCard) {
+                i.card.dontTriggerOnUseCard = true;
+                AbstractDungeon.actionManager.addToBottom(new UseCardAction(i.card));
+            }
+        }
+        AbstractDungeon.actionManager.cardQueue.clear();
+        for (AbstractCard c : AbstractDungeon.player.limbo.group) {
+            AbstractDungeon.effectList.add(new ExhaustCardEffect(c));
+        }
+        AbstractDungeon.player.limbo.group.clear();
+        AbstractDungeon.player.releaseCard();
+    }
+
     public static void startCloning(AbstractPlayer.PlayerClass playerClass) {
         if (isCloning()) {
             throw new RuntimeException("Already cloning");
         }
+
+        AbstractDungeon.actionManager.cardQueue.clear();
+        AbstractDungeon.player.limbo.group.clear();
+        AbstractDungeon.player.releaseCard();
 
         originalPlayer = AbstractDungeon.player;
         originalEnergy = EnergyPanel.totalCount;
@@ -273,17 +295,13 @@ public class CloningModule {
         EnergyPanel.totalCount = Math.max(EnergyPanel.totalCount, newPlayer.energy.energy);
 
         AbstractDungeon.actionManager.addToBottom(new SelectCardsForDuplicateAction());
-        AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
-            @Override
-            public void update() {
-                newPlayer.applyStartOfTurnCards();
-                newPlayer.applyStartOfTurnPowers();
-                newPlayer.applyStartOfTurnOrbs();
-                newPlayer.applyStartOfTurnPostDrawRelics();
-                newPlayer.applyStartOfTurnPostDrawPowers();
-                isDone = true;
-            }
-        });
+        AbstractDungeon.actionManager.addToBottom(new RunnableAction(() -> {
+            newPlayer.applyStartOfTurnCards();
+            newPlayer.applyStartOfTurnPowers();
+            newPlayer.applyStartOfTurnOrbs();
+            newPlayer.applyStartOfTurnPostDrawRelics();
+            newPlayer.applyStartOfTurnPostDrawPowers();
+        }));
 
         newPlayer.healthBarUpdatedEvent();
         newPlayer.showHealthBar();
@@ -293,6 +311,10 @@ public class CloningModule {
         if (!isCloning()) {
             return;
         }
+
+        AbstractDungeon.actionManager.cardQueue.clear();
+        AbstractDungeon.player.limbo.group.clear();
+        AbstractDungeon.player.releaseCard();
 
         AbstractPlayer newPlayer = AbstractDungeon.player;
         AbstractDungeon.player = originalPlayer;

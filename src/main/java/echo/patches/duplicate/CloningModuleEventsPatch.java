@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import echo.mechanics.duplicate.CloningModule;
+import echo.util.RunnableAction;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 
@@ -25,7 +26,8 @@ public class CloningModuleEventsPatch {
                 locator = Locator.class
         )
         public static void Insert() {
-            CloningModule.stopCloning();
+            CloningModule.preCloneSetup();
+            AbstractDungeon.actionManager.addToBottom(new RunnableAction(CloningModule::stopCloning));
         }
 
         public static class Locator extends SpireInsertLocator {

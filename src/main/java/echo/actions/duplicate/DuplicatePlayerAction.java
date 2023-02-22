@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import echo.mechanics.duplicate.CloningModule;
+import echo.util.RunnableAction;
 
 public class DuplicatePlayerAction extends AbstractGameAction {
     private final AbstractPlayer.PlayerClass playerClass;
@@ -20,7 +21,8 @@ public class DuplicatePlayerAction extends AbstractGameAction {
     @Override
     public void update() {
         if (!AbstractDungeon.getCurrRoom().isBattleEnding()) {
-            CloningModule.startCloning(this.playerClass);
+            CloningModule.preCloneSetup();
+            addToBot(new RunnableAction(() -> CloningModule.startCloning(DuplicatePlayerAction.this.playerClass)));
         }
         this.isDone = true;
     }
