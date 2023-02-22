@@ -1,10 +1,11 @@
 {
-  "echo:SomeComplexAction": {
+  "echo:SelectCardsForDuplicateAction": {
     "TEXT": [
-      "Placeholder explanation of the action."
+      "Choose ",
+      " cards to put into your hand."
     ],
     "LABEL": [
-      "Complex Action"
+      "Select cards"
     ]
   }
 }

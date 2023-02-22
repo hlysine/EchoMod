@@ -13,12 +13,14 @@ import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPF
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterQueueItem;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -27,6 +29,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.SlaversCollar;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import echo.EchoMod;
+import echo.actions.duplicate.SelectCardsForDuplicateAction;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,6 +41,23 @@ public class CloningModule {
     private static final Logger logger = LogManager.getLogger(CloningModule.class);
     public static AbstractPlayer originalPlayer;
     public static int originalEnergy;
+    public static ArrayList<String> potionPool;
+    public static CardGroup commonCardPool;
+    public static CardGroup uncommonCardPool;
+    public static CardGroup rareCardPool;
+    public static CardGroup colorlessCardPool;
+    public static CardGroup curseCardPool;
+    public static CardGroup srcCommonCardPool;
+    public static CardGroup srcUncommonCardPool;
+    public static CardGroup srcRareCardPool;
+    public static CardGroup srcColorlessCardPool;
+    public static CardGroup srcCurseCardPool;
+    public static ArrayList<String> commonRelicPool;
+    public static ArrayList<String> uncommonRelicPool;
+    public static ArrayList<String> rareRelicPool;
+    public static ArrayList<String> shopRelicPool;
+    public static ArrayList<String> bossRelicPool;
+    public static ArrayList<String> relicsToRemoveOnStart;
     public static final List<AbstractRelic> tempRelics = new ArrayList<>();
     public static float cloneVfxTimer = 0.0f;
 
@@ -49,8 +69,8 @@ public class CloningModule {
         fboRegion.flip(false, true);
 
         gridShader = new ShaderProgram(
-                Gdx.files.internal(EchoMod.makeShaderPath("grid/grid.vert")).readString(),
-                Gdx.files.internal(EchoMod.makeShaderPath("grid/grid.frag")).readString()
+                Gdx.files.internal(EchoMod.makeShaderPath("grid_texture/grid_texture.vert")).readString(),
+                Gdx.files.internal(EchoMod.makeShaderPath("grid_texture/grid_texture.frag")).readString()
         );
 
         if (gridShader.getLog().length() != 0) {
@@ -126,13 +146,6 @@ public class CloningModule {
         }
     }
 
-    public static void reset() {
-        originalPlayer = null;
-        originalEnergy = 0;
-        tempRelics.clear();
-        cloneVfxTimer = 0.0f;
-    }
-
 
     public static boolean isCloning() {
         return originalPlayer != null;
@@ -145,6 +158,40 @@ public class CloningModule {
 
         originalPlayer = AbstractDungeon.player;
         originalEnergy = EnergyPanel.totalCount;
+        potionPool = PotionHelper.potions;
+        PotionHelper.potions = new ArrayList<>();
+        commonCardPool = AbstractDungeon.commonCardPool;
+        AbstractDungeon.commonCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+        uncommonCardPool = AbstractDungeon.uncommonCardPool;
+        AbstractDungeon.uncommonCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+        rareCardPool = AbstractDungeon.rareCardPool;
+        AbstractDungeon.rareCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+        colorlessCardPool = AbstractDungeon.colorlessCardPool;
+        AbstractDungeon.colorlessCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+        curseCardPool = AbstractDungeon.curseCardPool;
+        AbstractDungeon.curseCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+        srcCommonCardPool = AbstractDungeon.srcCommonCardPool;
+        AbstractDungeon.srcCommonCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+        srcUncommonCardPool = AbstractDungeon.srcUncommonCardPool;
+        AbstractDungeon.srcUncommonCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+        srcRareCardPool = AbstractDungeon.srcRareCardPool;
+        AbstractDungeon.srcRareCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+        srcColorlessCardPool = AbstractDungeon.srcColorlessCardPool;
+        AbstractDungeon.srcColorlessCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+        srcCurseCardPool = AbstractDungeon.srcCurseCardPool;
+        AbstractDungeon.srcCurseCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+        commonRelicPool = AbstractDungeon.commonRelicPool;
+        AbstractDungeon.commonRelicPool = new ArrayList<>();
+        uncommonRelicPool = AbstractDungeon.uncommonRelicPool;
+        AbstractDungeon.uncommonRelicPool = new ArrayList<>();
+        rareRelicPool = AbstractDungeon.rareRelicPool;
+        AbstractDungeon.rareRelicPool = new ArrayList<>();
+        shopRelicPool = AbstractDungeon.shopRelicPool;
+        AbstractDungeon.shopRelicPool = new ArrayList<>();
+        bossRelicPool = AbstractDungeon.bossRelicPool;
+        AbstractDungeon.bossRelicPool = new ArrayList<>();
+        relicsToRemoveOnStart = AbstractDungeon.relicsToRemoveOnStart;
+        AbstractDungeon.relicsToRemoveOnStart = new ArrayList<>();
 
         AbstractPlayer newPlayer = CardCrawlGame.characterManager.recreateCharacter(playerClass);
 
@@ -175,6 +222,19 @@ public class CloningModule {
         //noinspection deprecation
         newPlayer.cardsPlayedThisTurn = originalPlayer.cardsPlayedThisTurn;
 
+        newPlayer.stance = originalPlayer.stance;
+        newPlayer.orbs = originalPlayer.orbs;
+        newPlayer.maxOrbs = originalPlayer.maxOrbs;
+        int newMaxOrbs = newPlayer.masterMaxOrbs + originalPlayer.maxOrbs - originalPlayer.masterMaxOrbs;
+        newMaxOrbs = Math.min(10, newMaxOrbs);
+        while (newPlayer.maxOrbs != newMaxOrbs) {
+            if (newPlayer.maxOrbs < newMaxOrbs) {
+                newPlayer.increaseMaxOrbSlots(1, false);
+            } else {
+                newPlayer.decreaseMaxOrbSlots(1);
+            }
+        }
+
         newPlayer.isEndingTurn = originalPlayer.isEndingTurn;
         newPlayer.viewingRelics = originalPlayer.viewingRelics;
         newPlayer.inspectMode = originalPlayer.inspectMode;
@@ -184,9 +244,9 @@ public class CloningModule {
 
         changePlayerInstance(originalPlayer, newPlayer);
 
-        newPlayer.maxOrbs = 0;
-        newPlayer.orbs.clear();
-        newPlayer.increaseMaxOrbSlots(newPlayer.masterMaxOrbs, false);
+        CardCrawlGame.dungeon.initializePotions();
+        CardCrawlGame.dungeon.initializeCardPools();
+        ReflectionHacks.privateMethod(AbstractDungeon.class, "initializeRelicList").invoke(CardCrawlGame.dungeon);
 
         newPlayer.isBloodied = (newPlayer.currentHealth <= newPlayer.maxHealth / 2);
 
@@ -212,6 +272,7 @@ public class CloningModule {
         newPlayer.energy.energy = newPlayer.energy.energyMaster;
         EnergyPanel.totalCount = Math.max(EnergyPanel.totalCount, newPlayer.energy.energy);
 
+        AbstractDungeon.actionManager.addToBottom(new SelectCardsForDuplicateAction());
         AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
             @Override
             public void update() {
@@ -236,6 +297,23 @@ public class CloningModule {
         AbstractPlayer newPlayer = AbstractDungeon.player;
         AbstractDungeon.player = originalPlayer;
         EnergyPanel.totalCount = originalEnergy;
+        PotionHelper.potions = potionPool;
+        AbstractDungeon.commonCardPool = commonCardPool;
+        AbstractDungeon.uncommonCardPool = uncommonCardPool;
+        AbstractDungeon.rareCardPool = rareCardPool;
+        AbstractDungeon.colorlessCardPool = colorlessCardPool;
+        AbstractDungeon.curseCardPool = curseCardPool;
+        AbstractDungeon.srcCommonCardPool = srcCommonCardPool;
+        AbstractDungeon.srcUncommonCardPool = srcUncommonCardPool;
+        AbstractDungeon.srcRareCardPool = srcRareCardPool;
+        AbstractDungeon.srcColorlessCardPool = srcColorlessCardPool;
+        AbstractDungeon.srcCurseCardPool = srcCurseCardPool;
+        AbstractDungeon.commonRelicPool = commonRelicPool;
+        AbstractDungeon.uncommonRelicPool = uncommonRelicPool;
+        AbstractDungeon.rareRelicPool = rareRelicPool;
+        AbstractDungeon.shopRelicPool = shopRelicPool;
+        AbstractDungeon.bossRelicPool = bossRelicPool;
+        AbstractDungeon.relicsToRemoveOnStart = relicsToRemoveOnStart;
 
         originalPlayer.powers = newPlayer.powers;
         originalPlayer.gold = newPlayer.gold;
@@ -261,6 +339,19 @@ public class CloningModule {
         //noinspection deprecation
         originalPlayer.cardsPlayedThisTurn = newPlayer.cardsPlayedThisTurn;
 
+        originalPlayer.stance = newPlayer.stance;
+        originalPlayer.orbs = newPlayer.orbs;
+        originalPlayer.maxOrbs = newPlayer.maxOrbs;
+        int newMaxOrbs = originalPlayer.masterMaxOrbs + newPlayer.maxOrbs - newPlayer.masterMaxOrbs;
+        newMaxOrbs = Math.min(10, newMaxOrbs);
+        while (originalPlayer.maxOrbs != newMaxOrbs) {
+            if (originalPlayer.maxOrbs < newMaxOrbs) {
+                originalPlayer.increaseMaxOrbSlots(1, false);
+            } else {
+                originalPlayer.decreaseMaxOrbSlots(1);
+            }
+        }
+
         originalPlayer.isEndingTurn = newPlayer.isEndingTurn;
         originalPlayer.viewingRelics = newPlayer.viewingRelics;
         originalPlayer.inspectMode = newPlayer.inspectMode;
@@ -269,7 +360,11 @@ public class CloningModule {
         transferAnimationStates(newPlayer, originalPlayer);
 
         changePlayerInstance(newPlayer, originalPlayer);
-        reset();
+
+        originalPlayer = null;
+        originalEnergy = 0;
+        tempRelics.clear();
+        cloneVfxTimer = 0.0f;
     }
 
     private static void transferAnimationStates(AbstractPlayer originalPlayer, AbstractPlayer newPlayer) {

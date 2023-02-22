@@ -125,7 +125,7 @@ public class Echo extends CustomPlayer {
                 ECHO_SHOULDER_2, // campfire pose
                 ECHO_SHOULDER_1, // another campfire pose
                 ECHO_CORPSE, // dead corpse
-                getLoadout(), 0f, 0f, 180f, 300f, new EnergyManager(ENERGY_PER_TURN)); // energy manager
+                getLoadout(), 0f, 0f, 250f, 300f, new EnergyManager(ENERGY_PER_TURN)); // energy manager
 
         // =============== /TEXTURES, ENERGY, LOADOUT/ =================
 

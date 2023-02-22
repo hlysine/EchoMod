@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.DiscardAtEndOfTurnAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import echo.mechanics.duplicate.CloningModule;
@@ -51,7 +52,17 @@ public class CloningModuleEventsPatch {
     )
     public static class ClearPatch {
         public static void Postfix() {
-            CloningModule.reset();
+            CloningModule.stopCloning();
+        }
+    }
+
+    @SpirePatch(
+            clz = AbstractDungeon.class,
+            method = "resetPlayer"
+    )
+    public static class ResetPlayerPatch {
+        public static void Prefix() {
+            CloningModule.stopCloning();
         }
     }
 

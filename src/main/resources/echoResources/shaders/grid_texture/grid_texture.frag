@@ -15,21 +15,23 @@ uniform sampler2D u_texture;
 uniform float res_x;
 uniform float res_y;
 
-uniform float time = 0.0f;
-uniform float period = 5.0f;
+uniform float time = 0.0;
+uniform float period = 5.0;
 
-uniform vec4 gradient_color1 = vec4(0.31f, 0.27f, 0.82f, 0.5f);
-uniform vec4 gradient_color2 = vec4(0.27f, 0.21f, 0.78f, 0.5f);
+uniform vec4 gradient_color1 = vec4(0.31, 0.27, 0.82, 0.5);
+uniform vec4 gradient_color2 = vec4(0.27, 0.21, 0.78, 0.5);
 
-uniform float grid_radius = 1.0f;
-uniform float grid_border = 3.0f;
-uniform float grid_margin = 1.0f;
-uniform vec4 grid_color = vec4(1.0f, 1.0f, 1.0f, 0.5f);
+uniform float grid_radius = 1.0;
+uniform float grid_border = 3.0;
+uniform float grid_margin = 1.0;
+uniform vec4 grid_color = vec4(0.17, 0.87, 1.0, 0.75);
+
+uniform float contrast = 2;
 
 uniform bool grayscale = false;
 
 float sineWave(float offset, float period) {
-    return (sin((time / period + offset) * 2.0f * 3.1415926f) + 1.0f) / 2.0f;
+    return (sin((time / period + offset) * 2.0 * 3.1415926) + 1.0) / 2.0;
 }
 
 float random(vec2 st) {
@@ -40,17 +42,17 @@ vec4 grid(vec2 tc, vec2 texSize) {
     vec4 returnColor;
 
     float halfSize = grid_radius + grid_border + grid_margin;
-    vec2 gridOffset = vec2(abs(mod(tc.x, halfSize * 2.0f) - halfSize), abs(mod(tc.y, halfSize * 2.0f) - halfSize));
+    vec2 gridOffset = vec2(abs(mod(tc.x, halfSize * 2.0) - halfSize), abs(mod(tc.y, halfSize * 2.0) - halfSize));
     if (gridOffset.x < grid_radius && gridOffset.y < grid_radius) {
         returnColor = grid_color;
     } else if (gridOffset.x < grid_radius + grid_border && gridOffset.y < grid_radius + grid_border) {
         returnColor = vec4(grid_color.rgb, grid_color.a * max(0, 1 - length(vec2(max(0, gridOffset.x - grid_radius), max(0, gridOffset.y - grid_radius))) / grid_border));
     } else {
-        returnColor = vec4(0.0f, 0.0f, 0.0f, 0.0f);
+        returnColor = vec4(0.0, 0.0, 0.0, 0.0);
     }
 
-    float rnd = random(vec2(floor(tc.x / (halfSize * 2.0f)), floor(tc.y / (halfSize * 2.0f))));
-    return vec4(returnColor.rgb, returnColor.a * pow(sineWave(rnd, period * (0.5f + rnd)), 1.5f));
+    float rnd = random(vec2(floor(tc.x / (halfSize * 2.0)), floor(tc.y / (halfSize * 2.0))));
+    return vec4(returnColor.rgb, returnColor.a * pow(sineWave(rnd, period * (0.5 + rnd)), 1.5));
 }
 
 vec4 gradient(vec2 tc, vec2 texSize) {
@@ -67,7 +69,7 @@ void main()
 {
     vec4 texColor = texture2D(u_texture, v_texCoords);
     vec4 finalColor;
-    if (texColor.a < 0.01f) {
+    if (texColor.a < 0.01) {
         finalColor = v_color * texColor;
     } else {
         vec2 texSize = vec2(res_x, res_y);
@@ -77,7 +79,9 @@ void main()
         vec4 gridColor = grid(tc, texSize);
 
         vec4 tint = gradientColor * (1 - gridColor.a) + gridColor * gridColor.a;
-        finalColor = v_color * vec4((tint * (1.0f - tint.a / 2.0f + tint.a * length(texColor.rgb))).rgb, texColor.a);
+        float contrastValue = length(texColor.rgb);
+        contrastValue = (contrastValue - 0.5) * contrast + 0.5;
+        finalColor = v_color * vec4((tint * (1.0 - tint.a * 0.25 + tint.a * contrastValue)).rgb, texColor.a);
     }
 
     if (grayscale) {

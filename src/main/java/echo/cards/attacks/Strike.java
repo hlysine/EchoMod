@@ -10,6 +10,8 @@ import echo.EchoMod;
 import echo.cards.AbstractBaseCard;
 import echo.mechanics.duplicate.CloningModule;
 
+import java.util.Arrays;
+
 public class Strike extends AbstractBaseCard {
 
     public static final String ID = EchoMod.makeID(Strike.class.getSimpleName());
@@ -32,9 +34,12 @@ public class Strike extends AbstractBaseCard {
                 if (CloningModule.isCloning()) {
                     CloningModule.stopCloning();
                 } else {
-                    AbstractPlayer.PlayerClass[] classes = AbstractPlayer.PlayerClass.values();
+                    AbstractPlayer.PlayerClass[] classes = Arrays.stream(AbstractPlayer.PlayerClass.values())
+                            .filter(c -> c != AbstractDungeon.player.chosenClass)
+                            .toArray(AbstractPlayer.PlayerClass[]::new);
                     CloningModule.startCloning(classes[AbstractDungeon.cardRandomRng.random(classes.length - 1)]);
                 }
+                //AbstractDungeon.topLevelEffectsQueue.add(new DuplicateEffect());
                 isDone = true;
             }
         });
