@@ -4,62 +4,87 @@
 precision mediump float;
 #endif
 
+uniform float foreground_time;
+uniform float background_time;
+uniform vec2 mouse;
 uniform vec2 resolution;
-
-uniform float time;
-uniform float period = 5.0;
-
+uniform float period = 2.0;
+uniform float speed = 0.4;
+uniform float duration = 2.0;
 uniform float alpha = 1.0;
 
-uniform vec4 gradient_color1 = vec4(0.21, 0.67, 0.82, 1);
-uniform vec4 gradient_color2 = vec4(0.17, 0.87, 1.0, 1);
+uniform vec4 background_inner_color = vec4(0.39, 0.69, 1.0, 1.0);
+uniform vec4 background_outer_color = vec4(0.36, 0.09, 0.77, 1.0);
 
-uniform float grid_radius = 150.0;
-uniform float grid_border = 150.0;
-uniform float grid_margin = 30.0;
-uniform vec4 grid_color = vec4(0.27, 0.21, 0.78, 0.75);
+uniform float grid_radius = 100.0;
+uniform float grid_border = 50.0;
+uniform float grid_margin = 10.0;
+uniform vec4 grid_color1 = vec4(0.27, 0.18, 0.99, 1.0);
+uniform vec4 grid_color2 = vec4(0.4, 0.36, 1.0, 0.3);
 
 float sineWave(float offset, float p) {
-    return (sin((time / p + offset) * 2.0 * 3.1415926) + 1.0) / 2.0;
+    return (sin((background_time / p + offset) * 2.0 * 3.1415926) + 1.0) / 2.0;
 }
 
 float random(vec2 st) {
     return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.865);
 }
 
-vec4 grid(vec2 tc, vec2 texSize) {
+vec4 grid(vec2 tc) {
     vec4 returnColor;
 
     float halfSize = grid_radius + grid_border + grid_margin;
-    vec2 gridOffset = vec2(abs(mod(tc.x - texSize.x / 2.0, halfSize * 2.0) - halfSize), abs(mod(tc.y - texSize.y / 2.0, halfSize * 2.0) - halfSize));
+    float rnd = random(vec2(abs(floor((tc.x - resolution.x / 2.0) / (halfSize * 2.0))), abs(floor((tc.y - resolution.y / 2.0) / (halfSize * 2.0)))));
+
+    vec2 gridOffset = vec2(abs(mod(tc.x - resolution.x / 2.0, halfSize * 2.0) - halfSize), abs(mod(tc.y - resolution.y / 2.0, halfSize * 2.0) - halfSize));
+    vec4 gridColor = grid_color1 * rnd + grid_color2 * (1.0 - rnd);
     if (gridOffset.x < grid_radius && gridOffset.y < grid_radius) {
-        returnColor = grid_color;
+        returnColor = gridColor;
     } else if (gridOffset.x < grid_radius + grid_border && gridOffset.y < grid_radius + grid_border) {
-        returnColor = vec4(grid_color.rgb, grid_color.a * max(0.0, 1.0 - length(vec2(max(0.0, gridOffset.x - grid_radius), max(0.0, gridOffset.y - grid_radius))) / grid_border));
+        returnColor = vec4(gridColor.rgb, gridColor.a * max(0.0, 1.0 - length(vec2(max(0.0, gridOffset.x - grid_radius), max(0.0, gridOffset.y - grid_radius))) / grid_border));
     } else {
         returnColor = vec4(0.0, 0.0, 0.0, 0.0);
     }
 
-    float rnd = random(vec2(abs(floor((tc.x - texSize.x / 2.0) / (halfSize * 2.0))), abs(floor((tc.y - texSize.y / 2.0) / (halfSize * 2.0)))));
-    return vec4(returnColor.rgb, returnColor.a * pow(0.3 + 0.7 * sineWave(rnd, period * (0.5 + rnd)), 1.5));
+    return returnColor;
 }
 
-vec4 gradient(vec2 tc, vec2 texSize) {
-    float dist1 = length(tc - vec2(0.0, 0.0));
-    float dist2 = length(tc - texSize);
+vec4 background(vec2 tc) {
+    float color_dist = background_time * min(resolution.x, resolution.y) / 2.0;
+    float color_width = 300.0;
+    float corner_dist = length(resolution) / 2.0;
 
-    vec4 color1 = gradient_color1 * sineWave(0.0, period) + gradient_color2 * (1.0 - sineWave(0.0, period));
-    vec4 color2 = gradient_color1 * sineWave(0.25, period) + gradient_color2 * (1.0 - sineWave(0.25, period));
+    float dist = length(tc - resolution / 2.0);
 
-    return color1 * (dist2 / (dist1 + dist2)) + color2 * (dist1 / (dist1 + dist2));
+    vec4 color;
+    if (dist < color_dist) {
+        color = background_inner_color;
+    } else if (dist > color_dist + color_width) {
+        color = background_outer_color;
+    } else {
+        color = background_outer_color * (dist - color_dist) / color_width + background_inner_color * (color_dist + color_width - dist) / color_width;
+    }
+
+    if (dist > color_dist) {
+        return color;
+    } else {
+        return vec4(color.rgb, color.a * (dist - color_dist + color_width) / color_width);
+    }
 }
-
 
 void main(void) {
-    vec2 tc = gl_FragCoord.xy;
+    float t = mod(foreground_time, duration / speed) * speed;
 
-    vec4 gradientColor = gradient(tc, resolution);
-    vec4 gridColor = grid(tc, resolution);
+    vec2 tc = gl_FragCoord.xy / resolution;
+    vec2 tc_circular = vec2(gl_FragCoord.x - (resolution.x - resolution.y) / 2.0, gl_FragCoord.y) / vec2(resolution.y, resolution.y);
+    vec2 wavePos = -0.7 + 1.4 * tc_circular;
+    float waveOffset = length(wavePos);
 
-    gl_FragColor = vec4((gradientColor * (1.0 - gridColor.a) + gridColor * gridColor.a).rgb, alpha);
+    float offset = cos(min(3.1415926 * 2.0, pow(waveOffset / t, 2.0) * t * 10.0)) * t * 2.0;
+    vec2 uv = tc - wavePos * offset;
+
+    vec4 background = background(gl_FragCoord.xy);
+    vec4 foreground = grid(uv * resolution);
+
+    gl_FragColor = vec4((background * (1 - foreground.a) + foreground * foreground.a).rgb, background.a * alpha);
 }

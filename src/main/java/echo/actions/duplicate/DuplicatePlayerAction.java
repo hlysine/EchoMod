@@ -1,10 +1,11 @@
 package echo.actions.duplicate;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import echo.effects.DuplicateEffect;
 import echo.mechanics.duplicate.CloningModule;
-import echo.util.RunnableAction;
 
 public class DuplicatePlayerAction extends AbstractGameAction {
     private final AbstractPlayer.PlayerClass playerClass;
@@ -22,7 +23,9 @@ public class DuplicatePlayerAction extends AbstractGameAction {
     public void update() {
         if (!AbstractDungeon.getCurrRoom().isBattleEnding()) {
             CloningModule.preCloneSetup();
-            addToBot(new RunnableAction(() -> CloningModule.startCloning(DuplicatePlayerAction.this.playerClass)));
+            addToBot(new VFXAction(AbstractDungeon.player, new DuplicateEffect(() -> {
+                CloningModule.startCloning(DuplicatePlayerAction.this.playerClass);
+            }), DuplicateEffect.DURATION, true));
         }
         this.isDone = true;
     }
