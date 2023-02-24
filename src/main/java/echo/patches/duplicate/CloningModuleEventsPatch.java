@@ -51,6 +51,7 @@ public class CloningModuleEventsPatch {
     public static class OnVictoryPatch {
         public static void Postfix() {
             CloningModule.stopCloning();
+            AbstractDungeon.topLevelEffects.add(new DuplicateEffect(null));
         }
     }
 
