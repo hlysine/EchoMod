@@ -7,16 +7,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Interpolation;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import echo.EchoMod;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class DuplicateEffect extends AbstractGameEffect {
-    public static final float DURATION = 1f;
-    private static final Logger logger = LogManager.getLogger(DuplicateEffect.class);
+public class PostDuplicateEffect extends AbstractGameEffect {
+    public static final float DURATION = 0.5f;
+    private static final Logger logger = LogManager.getLogger(PostDuplicateEffect.class);
     private static final ShaderProgram gridShader;
 
     static {
@@ -31,11 +30,8 @@ public class DuplicateEffect extends AbstractGameEffect {
     }
 
     private final FrameBuffer frameBuffer;
-    private Runnable action;
-    private PostDuplicateEffect effect;
 
-    public DuplicateEffect(Runnable action) {
-        this.action = action;
+    public PostDuplicateEffect() {
         this.duration = this.startingDuration = DURATION;
         this.frameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false, false);
     }
@@ -43,14 +39,6 @@ public class DuplicateEffect extends AbstractGameEffect {
     @Override
     public void update() {
         this.duration -= Gdx.graphics.getDeltaTime();
-        if (this.duration < startingDuration / 2f && this.action != null) {
-            this.action.run();
-            this.action = null;
-        }
-        if (this.duration < startingDuration * 0.1f && this.effect == null) {
-            this.effect = new PostDuplicateEffect();
-            AbstractDungeon.topLevelEffectsQueue.add(this.effect);
-        }
         if (this.duration < 0.0F) {
             this.isDone = true;
         }
@@ -68,34 +56,14 @@ public class DuplicateEffect extends AbstractGameEffect {
         gridShader.begin();
         float progress = 1 - Math.abs(duration - startingDuration / 2f) / (startingDuration / 2f);
         gridShader.setUniformf("resolution", Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        if (duration > startingDuration / 2f) {
-            gridShader.setUniformf("foreground_time", Interpolation.pow2Out.apply(progress) * startingDuration / 2);
-        } else {
-            gridShader.setUniformf("foreground_time", Interpolation.pow5.apply(progress) * startingDuration / 2);
-        }
-        if (duration > startingDuration * 0.9f) {
-            gridShader.setUniformf("alpha", Interpolation.sine.apply(1 - (duration - startingDuration * 0.9f) / (startingDuration * 0.1f)));
-        } else if (duration < startingDuration * 0.1f) {
-            gridShader.setUniformf("alpha", Interpolation.sine.apply(duration / startingDuration / 0.1f));
-        } else {
-            gridShader.setUniformf("alpha", 1);
-        }
-        if (duration > startingDuration * 0.8f) {
-            gridShader.setUniformf("background_time", Interpolation.pow3Out.apply(1 - (duration - startingDuration * 0.8f) / (startingDuration * 0.2f)) * 0.8f);
-        } else {
-            gridShader.setUniformf("background_time", 0.8f + Interpolation.pow3.apply(1 - duration / startingDuration / 0.8f) * 0.2f);
-        }
+        gridShader.setUniformf("foreground_time", 0);
+        gridShader.setUniformf("alpha", Interpolation.pow3Out.apply(progress) * 0.75f);
+        gridShader.setUniformf("background_time", 1f);
         gridShader.setUniformf("duration", startingDuration);
         gridShader.setUniformf("speed", 1f);
-        if (duration > startingDuration / 2f) {
-            gridShader.setUniformf("grid_radius", 200.0f);
-            gridShader.setUniformf("grid_border", 50.0f);
-            gridShader.setUniformf("grid_margin", 50.0f);
-        } else {
-            gridShader.setUniformf("grid_radius", (float) (10f * Math.pow(20f, progress)));
-            gridShader.setUniformf("grid_border", (float) (2.5f * Math.pow(20f, progress)));
-            gridShader.setUniformf("grid_margin", (float) (2.5f * Math.pow(20f, progress)));
-        }
+        gridShader.setUniformf("grid_radius", 50.0f);
+        gridShader.setUniformf("grid_border", 10.0f);
+        gridShader.setUniformf("grid_margin", 10.0f);
         gridShader.end();
 
         ShaderProgram oldShader = sb.getShader();
