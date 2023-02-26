@@ -58,7 +58,7 @@ public class PostDuplicateEffect extends AbstractGameEffect {
         gridShader.setUniformf("resolution", Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         gridShader.setUniformf("foreground_time", 0);
         gridShader.setUniformf("alpha", Interpolation.pow3Out.apply(progress) * 0.65f);
-        gridShader.setUniformf("background_time", 1f);
+        gridShader.setUniformf("background_time", 1f + Interpolation.pow2Out.apply(1 - duration / startingDuration));
         gridShader.setUniformf("duration", startingDuration);
         gridShader.setUniformf("speed", 1f);
         gridShader.setUniformf("grid_radius", 30.0f);
