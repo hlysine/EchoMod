@@ -14,7 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class PostDuplicateEffect extends AbstractGameEffect {
-    public static final float DURATION = 0.5f;
+    public static final float DURATION = 0.4f;
     private static final Logger logger = LogManager.getLogger(PostDuplicateEffect.class);
     private static final ShaderProgram gridShader;
 
@@ -57,13 +57,15 @@ public class PostDuplicateEffect extends AbstractGameEffect {
         float progress = 1 - Math.abs(duration - startingDuration / 2f) / (startingDuration / 2f);
         gridShader.setUniformf("resolution", Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         gridShader.setUniformf("foreground_time", 0);
-        gridShader.setUniformf("alpha", Interpolation.pow3Out.apply(progress) * 0.75f);
+        gridShader.setUniformf("alpha", Interpolation.pow3Out.apply(progress) * 0.65f);
         gridShader.setUniformf("background_time", 1f);
         gridShader.setUniformf("duration", startingDuration);
         gridShader.setUniformf("speed", 1f);
-        gridShader.setUniformf("grid_radius", 50.0f);
-        gridShader.setUniformf("grid_border", 10.0f);
-        gridShader.setUniformf("grid_margin", 10.0f);
+        gridShader.setUniformf("grid_radius", 30.0f);
+        gridShader.setUniformf("grid_border", 35.0f);
+        gridShader.setUniformf("grid_margin", 5.0f);
+        gridShader.setUniformf("background_inner_color", 0.24f, 1f, 1f, 1f);
+        gridShader.setUniformf("background_outer_color", 0.24f, 1f, 1f, 1f);
         gridShader.end();
 
         ShaderProgram oldShader = sb.getShader();

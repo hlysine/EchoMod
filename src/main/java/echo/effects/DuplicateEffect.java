@@ -68,11 +68,8 @@ public class DuplicateEffect extends AbstractGameEffect {
         gridShader.begin();
         float progress = 1 - Math.abs(duration - startingDuration / 2f) / (startingDuration / 2f);
         gridShader.setUniformf("resolution", Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        if (duration > startingDuration / 2f) {
-            gridShader.setUniformf("foreground_time", Interpolation.pow2Out.apply(progress) * startingDuration / 2);
-        } else {
-            gridShader.setUniformf("foreground_time", Interpolation.pow5.apply(progress) * startingDuration / 2);
-        }
+        gridShader.setUniformf("foreground_time", Interpolation.sine.apply(1 - duration / startingDuration) * startingDuration);
+        gridShader.setUniformf("amplitude", Interpolation.sine.apply(duration / startingDuration));
         if (duration > startingDuration * 0.9f) {
             gridShader.setUniformf("alpha", Interpolation.sine.apply(1 - (duration - startingDuration * 0.9f) / (startingDuration * 0.1f)));
         } else if (duration < startingDuration * 0.1f) {
@@ -80,17 +77,13 @@ public class DuplicateEffect extends AbstractGameEffect {
         } else {
             gridShader.setUniformf("alpha", 1);
         }
-        if (duration > startingDuration * 0.8f) {
-            gridShader.setUniformf("background_time", Interpolation.pow3Out.apply(1 - (duration - startingDuration * 0.8f) / (startingDuration * 0.2f)) * 0.8f);
-        } else {
-            gridShader.setUniformf("background_time", 0.8f + Interpolation.pow3.apply(1 - duration / startingDuration / 0.8f) * 0.2f);
-        }
-        gridShader.setUniformf("duration", startingDuration);
-        gridShader.setUniformf("speed", 1f);
+        gridShader.setUniformf("background_time", Interpolation.sine.apply(1 - duration / startingDuration));
+        gridShader.setUniformf("duration", startingDuration * 2f);
+        gridShader.setUniformf("speed", 2f);
         if (duration > startingDuration / 2f) {
-            gridShader.setUniformf("grid_radius", 200.0f);
-            gridShader.setUniformf("grid_border", 50.0f);
-            gridShader.setUniformf("grid_margin", 50.0f);
+            gridShader.setUniformf("grid_radius", 120.0f);
+            gridShader.setUniformf("grid_border", 60.0f);
+            gridShader.setUniformf("grid_margin", 20.0f);
         } else {
             gridShader.setUniformf("grid_radius", (float) (10f * Math.pow(20f, progress)));
             gridShader.setUniformf("grid_border", (float) (2.5f * Math.pow(20f, progress)));

@@ -12,8 +12,9 @@ uniform float period = 2.0;
 uniform float speed = 0.4;
 uniform float duration = 2.0;
 uniform float alpha = 1.0;
+uniform float amplitude = 1.0;
 
-uniform vec4 background_inner_color = vec4(0.39, 0.69, 1.0, 1.0);
+uniform vec4 background_inner_color = vec4(0.59, 0.89, 1.0, 1.0);
 uniform vec4 background_outer_color = vec4(0.36, 0.09, 0.77, 1.0);
 
 uniform float grid_radius = 100.0;
@@ -80,7 +81,7 @@ void main(void) {
     vec2 wavePos = -0.7 + 1.4 * tc_circular;
     float waveOffset = length(wavePos);
 
-    float offset = cos(min(3.1415926 * 2.0, pow(waveOffset / t, 2.0) * t * 10.0)) * t * 2.0;
+    float offset = cos(min(3.1415926 * 2.0, pow(waveOffset / t, 2.0) * t * 10.0)) * t * amplitude * 2.0;
     vec2 uv = tc - wavePos * offset;
 
     vec4 background = background(gl_FragCoord.xy);
