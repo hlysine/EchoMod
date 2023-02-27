@@ -170,50 +170,51 @@ public class CloningModule {
     }
 
     public static void startCloning(AbstractPlayer.PlayerClass playerClass) {
-        if (isCloning()) {
-            throw new RuntimeException("Already cloning");
-        }
 
         AbstractDungeon.actionManager.cardQueue.clear();
         AbstractDungeon.player.limbo.group.clear();
         AbstractDungeon.player.releaseCard();
 
-        originalPlayer = AbstractDungeon.player;
-        originalEnergy = EnergyPanel.totalCount;
-        potionPool = PotionHelper.potions;
-        PotionHelper.potions = new ArrayList<>();
-        commonCardPool = AbstractDungeon.commonCardPool;
-        AbstractDungeon.commonCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-        uncommonCardPool = AbstractDungeon.uncommonCardPool;
-        AbstractDungeon.uncommonCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-        rareCardPool = AbstractDungeon.rareCardPool;
-        AbstractDungeon.rareCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-        colorlessCardPool = AbstractDungeon.colorlessCardPool;
-        AbstractDungeon.colorlessCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-        curseCardPool = AbstractDungeon.curseCardPool;
-        AbstractDungeon.curseCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-        srcCommonCardPool = AbstractDungeon.srcCommonCardPool;
-        AbstractDungeon.srcCommonCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-        srcUncommonCardPool = AbstractDungeon.srcUncommonCardPool;
-        AbstractDungeon.srcUncommonCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-        srcRareCardPool = AbstractDungeon.srcRareCardPool;
-        AbstractDungeon.srcRareCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-        srcColorlessCardPool = AbstractDungeon.srcColorlessCardPool;
-        AbstractDungeon.srcColorlessCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-        srcCurseCardPool = AbstractDungeon.srcCurseCardPool;
-        AbstractDungeon.srcCurseCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-        commonRelicPool = AbstractDungeon.commonRelicPool;
-        AbstractDungeon.commonRelicPool = new ArrayList<>();
-        uncommonRelicPool = AbstractDungeon.uncommonRelicPool;
-        AbstractDungeon.uncommonRelicPool = new ArrayList<>();
-        rareRelicPool = AbstractDungeon.rareRelicPool;
-        AbstractDungeon.rareRelicPool = new ArrayList<>();
-        shopRelicPool = AbstractDungeon.shopRelicPool;
-        AbstractDungeon.shopRelicPool = new ArrayList<>();
-        bossRelicPool = AbstractDungeon.bossRelicPool;
-        AbstractDungeon.bossRelicPool = new ArrayList<>();
-        relicsToRemoveOnStart = AbstractDungeon.relicsToRemoveOnStart;
-        AbstractDungeon.relicsToRemoveOnStart = new ArrayList<>();
+        AbstractPlayer originalPlayer = AbstractDungeon.player;
+
+        if (!isCloning()) {
+            CloningModule.originalPlayer = AbstractDungeon.player;
+            originalEnergy = EnergyPanel.totalCount;
+            potionPool = PotionHelper.potions;
+            PotionHelper.potions = new ArrayList<>();
+            commonCardPool = AbstractDungeon.commonCardPool;
+            AbstractDungeon.commonCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+            uncommonCardPool = AbstractDungeon.uncommonCardPool;
+            AbstractDungeon.uncommonCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+            rareCardPool = AbstractDungeon.rareCardPool;
+            AbstractDungeon.rareCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+            colorlessCardPool = AbstractDungeon.colorlessCardPool;
+            AbstractDungeon.colorlessCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+            curseCardPool = AbstractDungeon.curseCardPool;
+            AbstractDungeon.curseCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+            srcCommonCardPool = AbstractDungeon.srcCommonCardPool;
+            AbstractDungeon.srcCommonCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+            srcUncommonCardPool = AbstractDungeon.srcUncommonCardPool;
+            AbstractDungeon.srcUncommonCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+            srcRareCardPool = AbstractDungeon.srcRareCardPool;
+            AbstractDungeon.srcRareCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+            srcColorlessCardPool = AbstractDungeon.srcColorlessCardPool;
+            AbstractDungeon.srcColorlessCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+            srcCurseCardPool = AbstractDungeon.srcCurseCardPool;
+            AbstractDungeon.srcCurseCardPool = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+            commonRelicPool = AbstractDungeon.commonRelicPool;
+            AbstractDungeon.commonRelicPool = new ArrayList<>();
+            uncommonRelicPool = AbstractDungeon.uncommonRelicPool;
+            AbstractDungeon.uncommonRelicPool = new ArrayList<>();
+            rareRelicPool = AbstractDungeon.rareRelicPool;
+            AbstractDungeon.rareRelicPool = new ArrayList<>();
+            shopRelicPool = AbstractDungeon.shopRelicPool;
+            AbstractDungeon.shopRelicPool = new ArrayList<>();
+            bossRelicPool = AbstractDungeon.bossRelicPool;
+            AbstractDungeon.bossRelicPool = new ArrayList<>();
+            relicsToRemoveOnStart = AbstractDungeon.relicsToRemoveOnStart;
+            AbstractDungeon.relicsToRemoveOnStart = new ArrayList<>();
+        }
 
         AbstractPlayer newPlayer = CardCrawlGame.characterManager.recreateCharacter(playerClass);
 
@@ -234,6 +235,8 @@ public class CloningModule {
         TempHPField.tempHp.set(newPlayer, TempHPField.tempHp.get(originalPlayer));
 
         newPlayer.startingMaxHP = newPlayer.startingMaxHP / 4;
+        originalPlayer.relics.removeAll(tempRelics);
+        tempRelics.clear();
         tempRelics.addAll(newPlayer.relics);
         newPlayer.relics.addAll(originalPlayer.relics);
         newPlayer.reorganizeRelics();
