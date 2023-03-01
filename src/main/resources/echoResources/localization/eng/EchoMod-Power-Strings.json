@@ -6,5 +6,12 @@
       " turns. There is no escape.",
       "Die next turn. There is no escape."
     ]
+  },
+  "echo:StickyBombPower": {
+    "NAME": "Sticky Bomb",
+    "DESCRIPTIONS": [
+      "At the end of this round, explode one by one dealing damage equal to the number of #ySticky #yBombs remaining. (Deals #b",
+      " damage in total.)"
+    ]
   }
 }
