@@ -13,5 +13,13 @@
       "At the end of this round, explode one by one dealing damage equal to the number of #ySticky #yBombs remaining. (Deals #b",
       " damage in total.)"
     ]
+  },
+  "echo:FlightPower": {
+    "NAME": "Flight",
+    "DESCRIPTIONS": [
+      "For #b",
+      " round, reduce all damage taken by 50%. Reduce Flight by 1 whenever you take unblocked damage.",
+      " rounds, reduce all damage taken by 50%. Reduce Flight by 1 whenever you take unblocked damage."
+    ]
   }
 }
