@@ -16,5 +16,22 @@
     "COST": 1,
     "B": 5,
     "+B": 3
+  },
+  "echo:EchoCeption": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "echo_ception.png",
+    "COST": 2,
+    "+COST": 1,
+    "M/Ultimate Charge": 2
+  },
+  "echo:EchoWho": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "echo_who.png",
+    "COST": 2,
+    "+COST": 1
   }
 }

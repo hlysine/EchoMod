@@ -7,5 +7,13 @@
     "LABEL": [
       "Select cards"
     ]
+  },
+  "echo:DuplicatePlayerAction": {
+    "TEXT": [
+      "I need more #rUltimate #rCharge."
+    ],
+    "LABEL": [
+      "Duplicate"
+    ]
   }
 }

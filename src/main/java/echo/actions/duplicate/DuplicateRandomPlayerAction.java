@@ -10,25 +10,29 @@ import java.util.Arrays;
 public class DuplicateRandomPlayerAction extends AbstractGameAction {
     private final AbstractPlayer.PlayerClass classToExclude;
     private final Random rng;
+    private final boolean requiresUltimateCharge;
 
     /**
      * Duplicate a random player class.
      *
-     * @param classToExclude The player class that cannot be duplicated.
-     * @param rng            The random number generator to use.
+     * @param classToExclude         The player class that cannot be duplicated.
+     * @param rng                    The random number generator to use.
+     * @param requiresUltimateCharge Whether Ultimate Charge is required and consumed for this duplication.
      */
-    public DuplicateRandomPlayerAction(AbstractPlayer.PlayerClass classToExclude, Random rng) {
+    public DuplicateRandomPlayerAction(AbstractPlayer.PlayerClass classToExclude, Random rng, boolean requiresUltimateCharge) {
         this.classToExclude = classToExclude;
         this.rng = rng;
+        this.requiresUltimateCharge = requiresUltimateCharge;
     }
 
     /**
      * Duplicate a random player class using the card random RNG.
      *
-     * @param classToExclude The player class that cannot be duplicated.
+     * @param classToExclude         The player class that cannot be duplicated.
+     * @param requiresUltimateCharge Whether Ultimate Charge is required and consumed for this duplication.
      */
-    public DuplicateRandomPlayerAction(AbstractPlayer.PlayerClass classToExclude) {
-        this(classToExclude, AbstractDungeon.cardRandomRng);
+    public DuplicateRandomPlayerAction(AbstractPlayer.PlayerClass classToExclude, boolean requiresUltimateCharge) {
+        this(classToExclude, AbstractDungeon.cardRandomRng, requiresUltimateCharge);
     }
 
     @Override
@@ -37,7 +41,7 @@ public class DuplicateRandomPlayerAction extends AbstractGameAction {
                 .filter(c -> c != classToExclude)
                 .toArray(AbstractPlayer.PlayerClass[]::new);
         Random finalRng = rng == null ? new Random() : rng;
-        addToTop(new DuplicatePlayerAction(classes[finalRng.random(classes.length - 1)]));
+        addToTop(new DuplicatePlayerAction(classes[finalRng.random(classes.length - 1)], requiresUltimateCharge));
         isDone = true;
     }
 }

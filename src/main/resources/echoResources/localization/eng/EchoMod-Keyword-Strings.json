@@ -1,16 +1,22 @@
 [
   {
     "NAMES": [
-      "example"
+      "charged"
     ],
-    "DESCRIPTION": "Placeholder description."
+    "DESCRIPTION": "Effective when you have 10 #yUltimate #yCharge."
   },
   {
-    "PROPER_NAME": "Example Two",
+    "PROPER_NAME": "Ultimate Charge",
     "NAMES": [
-      "Example Two",
-      "example_two"
+      "Ultimate Charge",
+      "ultimate_charge"
     ],
-    "DESCRIPTION": "Placeholder description."
+    "DESCRIPTION": "You can #yDuplicate when you have #b10 #yUltimate #yCharge."
+  },
+  {
+    "NAMES": [
+      "duplicate"
+    ],
+    "DESCRIPTION": "Immediately restart your turn as another character. Gain starter relics and a hand of cards of your choice. Lasts until end of turn."
   }
 ]

@@ -18,8 +18,14 @@
     "NAME": "Flight",
     "DESCRIPTIONS": [
       "For #b",
-      " round, reduce all damage taken by 50%. Reduce Flight by 1 whenever you take unblocked damage.",
-      " rounds, reduce all damage taken by 50%. Reduce Flight by 1 whenever you take unblocked damage."
+      " round, reduce all damage taken by 50%. Reduce #yFlight by 1 whenever you take unblocked damage.",
+      " rounds, reduce all damage taken by 50%. Reduce #yFlight by 1 whenever you take unblocked damage."
+    ]
+  },
+  "echo:UltimateChargePower": {
+    "NAME": "Ultimate Charge",
+    "DESCRIPTIONS": [
+      "You can #yDuplicate when you have #b10 #yUltimate #yCharge."
     ]
   }
 }
