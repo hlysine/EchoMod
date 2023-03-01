@@ -27,13 +27,15 @@ public class CloningModuleEventsPatch {
                 locator = Locator.class
         )
         public static void Insert() {
-            CloningModule.preCloneSetup();
-            AbstractDungeon.actionManager.addToBottom(new VFXAction(
-                    AbstractDungeon.player,
-                    new DuplicateEffect(CloningModule::stopCloning),
-                    DuplicateEffect.DURATION,
-                    true
-            ));
+            if (CloningModule.isCloning()) {
+                CloningModule.preCloneSetup();
+                AbstractDungeon.actionManager.addToBottom(new VFXAction(
+                        AbstractDungeon.player,
+                        new DuplicateEffect(CloningModule::stopCloning),
+                        DuplicateEffect.DURATION,
+                        true
+                ));
+            }
         }
 
         public static class Locator extends SpireInsertLocator {
@@ -50,8 +52,10 @@ public class CloningModuleEventsPatch {
     )
     public static class OnVictoryPatch {
         public static void Postfix() {
-            CloningModule.stopCloning();
-            AbstractDungeon.topLevelEffects.add(new DuplicateEffect(null));
+            if (CloningModule.isCloning()) {
+                CloningModule.stopCloning();
+                AbstractDungeon.topLevelEffects.add(new DuplicateEffect(null));
+            }
         }
     }
 
