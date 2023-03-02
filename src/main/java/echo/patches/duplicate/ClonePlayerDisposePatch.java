@@ -11,7 +11,7 @@ import echo.mechanics.duplicate.CloningModule;
 )
 public class ClonePlayerDisposePatch {
     public static SpireReturn<Void> Prefix(AbstractPlayer __instance) {
-        if (__instance == CloningModule.originalPlayer) {
+        if (CloningModule.isCloning() && __instance == CloningModule.playerData.originalPlayer) {
             return SpireReturn.Return();
         }
         return SpireReturn.Continue();
