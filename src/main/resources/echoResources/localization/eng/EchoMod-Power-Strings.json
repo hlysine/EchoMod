@@ -27,5 +27,11 @@
     "DESCRIPTIONS": [
       "You can #yDuplicate when you have #b10 #yUltimate #yCharge."
     ]
+  },
+  "echo:DuplicatePower": {
+    "NAME": "Duplicate",
+    "DESCRIPTIONS": [
+      "Return to Echo when you die or when you end your turn."
+    ]
   }
 }

@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.relics.SlaversCollar;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import echo.actions.duplicate.SelectCardsForDuplicateAction;
+import echo.powers.DuplicatePower;
 import echo.util.RunnableAction;
 
 import java.util.ArrayList;
@@ -66,6 +67,9 @@ public class CloningModule {
 
         newPlayer.id = originalPlayer.id;
         newPlayer.powers = originalPlayer.powers;
+        if (newPlayer.powers.stream().noneMatch(p -> p instanceof DuplicatePower)) {
+            newPlayer.powers.add(0, new DuplicatePower(newPlayer));
+        }
         newPlayer.gold = originalPlayer.gold;
         newPlayer.displayGold = originalPlayer.displayGold;
         newPlayer.isDying = originalPlayer.isDying;
@@ -75,12 +79,12 @@ public class CloningModule {
         newPlayer.isEscaping = originalPlayer.isEscaping;
         newPlayer.flipHorizontal = originalPlayer.flipHorizontal;
         newPlayer.flipVertical = originalPlayer.flipVertical;
-        newPlayer.maxHealth = newPlayer.maxHealth / 4;
+        newPlayer.maxHealth = newPlayer.maxHealth / 8;
         newPlayer.currentHealth = newPlayer.maxHealth;
         newPlayer.currentBlock = originalPlayer.currentBlock;
         TempHPField.tempHp.set(newPlayer, TempHPField.tempHp.get(originalPlayer));
 
-        newPlayer.startingMaxHP = newPlayer.startingMaxHP / 4;
+        newPlayer.startingMaxHP = newPlayer.startingMaxHP / 8;
         originalPlayer.relics.removeAll(tempRelics);
         tempRelics.clear();
         tempRelics.addAll(newPlayer.relics);
@@ -172,6 +176,7 @@ public class CloningModule {
         playerData.restoreData();
 
         originalPlayer.powers = newPlayer.powers;
+        originalPlayer.powers.removeIf(p -> p instanceof DuplicatePower);
         originalPlayer.gold = newPlayer.gold;
         originalPlayer.displayGold = newPlayer.displayGold;
         originalPlayer.isDying = newPlayer.isDying;

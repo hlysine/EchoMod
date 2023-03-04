@@ -3,11 +3,11 @@ package echo.patches.duplicate;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DiscardAtEndOfTurnAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import echo.actions.duplicate.StopDuplicateAction;
 import echo.effects.DuplicateEffect;
 import echo.mechanics.duplicate.CloningModule;
 import javassist.CannotCompileException;
@@ -26,13 +26,7 @@ public class CloningModuleEventsPatch {
         )
         public static void Insert() {
             if (CloningModule.isCloning()) {
-                CloningModule.preCloneSetup();
-                AbstractDungeon.actionManager.addToBottom(new VFXAction(
-                        AbstractDungeon.player,
-                        new DuplicateEffect(CloningModule::stopCloning),
-                        DuplicateEffect.DURATION,
-                        true
-                ));
+                new StopDuplicateAction().update();
             }
         }
 
