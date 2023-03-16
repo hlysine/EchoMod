@@ -168,7 +168,8 @@ public class CloningModule {
         newPlayer.applyStartOfTurnRelics();
         newPlayer.applyStartOfTurnPreDrawCards();
 
-        newPlayer.energy.energy = newPlayer.energy.energyMaster;
+        newPlayer.energy.energyMaster = originalPlayer.energy.energyMaster;
+        newPlayer.energy.energy = originalPlayer.energy.energy;
         EnergyPanel.totalCount = Math.max(EnergyPanel.totalCount, newPlayer.energy.energy);
 
         AbstractDungeon.actionManager.addToBottom(new SelectCardsForDuplicateAction(true));
@@ -216,6 +217,9 @@ public class CloningModule {
                 originalPlayer.decreaseMaxOrbSlots(1);
             }
         }
+
+        originalPlayer.energy.energyMaster = newPlayer.energy.energyMaster;
+        originalPlayer.energy.energy = newPlayer.energy.energy;
 
         updateExternalFields(newPlayer, originalPlayer);
 
