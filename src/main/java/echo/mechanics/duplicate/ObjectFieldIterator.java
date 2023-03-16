@@ -11,13 +11,15 @@ public class ObjectFieldIterator {
     private static final Map<Class<?>, List<Field>> fieldCache = new HashMap<>();
 
     public static <T> void iterate(T object, FieldCallback callback) {
-        iterate(object, callback, Object.class);
-    }
-
-    public static <T> void iterate(T object, FieldCallback callback, Class<?> stopClass) {
         if (object == null)
             return;
-        Class<?> clazz = object.getClass();
+        iterate(object, callback, object.getClass(), Object.class);
+    }
+
+    public static <T> void iterate(T object, FieldCallback callback, Class<?> startClass, Class<?> stopClass) {
+        if (object == null)
+            return;
+        Class<?> clazz = startClass;
         while (clazz != null && clazz != stopClass) {
             List<Field> fields = fieldCache.get(clazz);
             if (fields == null) {

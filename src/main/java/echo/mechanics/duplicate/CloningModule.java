@@ -1,7 +1,6 @@
 package echo.mechanics.duplicate;
 
 import basemod.ReflectionHacks;
-import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
@@ -25,12 +24,51 @@ import echo.actions.duplicate.SelectCardsForDuplicateAction;
 import echo.powers.DuplicatePower;
 import echo.util.RunnableAction;
 
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CloningModule {
     public static PlayerData playerData;
     public static final List<AbstractRelic> tempRelics = new ArrayList<>();
+
+    // fields that should not be copied over from one player instance to another when cloning
+    private static final List<String> ignoredPlayerFields = Arrays.asList(
+            "power",
+            "hb",
+            "tips",
+            "healthHb",
+            "hb_x",
+            "hb_y",
+            "hb_w",
+            "hb_h",
+            "atlas",
+            "skeleton",
+            "state",
+            "stateData",
+            "chosenClass",
+            "gameHandSize",
+            "masterHandSize",
+            "startingMaxHP",
+            "currentHealth",
+            "maxHealth",
+            "masterDeck",
+            "drawPile",
+            "hand",
+            "discardPile",
+            "exhaustPile",
+            "limbo",
+            "relics",
+            "energy",
+            "orbs",
+            "masterMaxOrbs",
+            "maxOrbs",
+            "img",
+            "shoulderImg",
+            "shoulder2Img",
+            "corpseImg"
+    );
 
 
     public static boolean isCloning() {
@@ -65,39 +103,24 @@ public class CloningModule {
 
         AbstractPlayer newPlayer = CardCrawlGame.characterManager.recreateCharacter(playerClass);
 
-        newPlayer.id = originalPlayer.id;
+        copyPlayerFields(originalPlayer, newPlayer);
+        ReflectionHacks.privateMethod(AbstractCreature.class, "refreshHitboxLocation").invoke(newPlayer);
+
         newPlayer.powers = originalPlayer.powers;
         if (newPlayer.powers.stream().noneMatch(p -> p instanceof DuplicatePower)) {
             newPlayer.powers.add(0, new DuplicatePower(newPlayer));
         }
-        newPlayer.gold = originalPlayer.gold;
-        newPlayer.displayGold = originalPlayer.displayGold;
-        newPlayer.isDying = originalPlayer.isDying;
-        newPlayer.isDead = originalPlayer.isDead;
-        newPlayer.halfDead = originalPlayer.halfDead;
-        newPlayer.escapeTimer = originalPlayer.escapeTimer;
-        newPlayer.isEscaping = originalPlayer.isEscaping;
-        newPlayer.flipHorizontal = originalPlayer.flipHorizontal;
-        newPlayer.flipVertical = originalPlayer.flipVertical;
+        newPlayer.startingMaxHP = newPlayer.startingMaxHP / 8;
         newPlayer.maxHealth = newPlayer.maxHealth / 8;
         newPlayer.currentHealth = newPlayer.maxHealth;
-        newPlayer.currentBlock = originalPlayer.currentBlock;
-        TempHPField.tempHp.set(newPlayer, TempHPField.tempHp.get(originalPlayer));
 
-        newPlayer.startingMaxHP = newPlayer.startingMaxHP / 8;
         originalPlayer.relics.removeAll(tempRelics);
         tempRelics.clear();
         tempRelics.addAll(newPlayer.relics);
         newPlayer.relics.addAll(originalPlayer.relics);
         newPlayer.reorganizeRelics();
-        newPlayer.blights = originalPlayer.blights;
-        newPlayer.potionSlots = originalPlayer.potionSlots;
-        newPlayer.potions = originalPlayer.potions;
-        newPlayer.damagedThisCombat = originalPlayer.damagedThisCombat;
-        //noinspection deprecation
-        newPlayer.cardsPlayedThisTurn = originalPlayer.cardsPlayedThisTurn;
+        newPlayer.adjustPotionPositions();
 
-        newPlayer.stance = originalPlayer.stance;
         newPlayer.orbs = originalPlayer.orbs;
         newPlayer.maxOrbs = originalPlayer.maxOrbs;
         int newMaxOrbs = newPlayer.masterMaxOrbs + originalPlayer.maxOrbs - originalPlayer.masterMaxOrbs;
@@ -110,10 +133,7 @@ public class CloningModule {
             }
         }
 
-        newPlayer.isEndingTurn = originalPlayer.isEndingTurn;
-        newPlayer.endTurnQueued = originalPlayer.endTurnQueued;
-
-        transferVisualStates(originalPlayer, newPlayer);
+        updateExternalFields(originalPlayer, newPlayer);
 
         changePlayerReferences(originalPlayer, newPlayer);
 
@@ -175,32 +195,16 @@ public class CloningModule {
         AbstractPlayer originalPlayer = playerData.originalPlayer;
         playerData.restoreData();
 
+        copyPlayerFields(newPlayer, originalPlayer);
+
         originalPlayer.powers = newPlayer.powers;
         originalPlayer.powers.removeIf(p -> p instanceof DuplicatePower);
-        originalPlayer.gold = newPlayer.gold;
-        originalPlayer.displayGold = newPlayer.displayGold;
-        originalPlayer.isDying = newPlayer.isDying;
-        originalPlayer.isDead = newPlayer.isDead;
-        originalPlayer.halfDead = newPlayer.halfDead;
-        originalPlayer.escapeTimer = newPlayer.escapeTimer;
-        originalPlayer.isEscaping = newPlayer.isEscaping;
-        originalPlayer.flipHorizontal = newPlayer.flipHorizontal;
-        originalPlayer.flipVertical = newPlayer.flipVertical;
-        originalPlayer.currentBlock = newPlayer.currentBlock;
-        TempHPField.tempHp.set(originalPlayer, TempHPField.tempHp.get(newPlayer));
 
         originalPlayer.relics = newPlayer.relics;
         originalPlayer.relics.removeAll(tempRelics);
         originalPlayer.reorganizeRelics();
-        originalPlayer.blights = newPlayer.blights;
-        originalPlayer.potionSlots = newPlayer.potionSlots;
-        originalPlayer.potions = newPlayer.potions;
         originalPlayer.adjustPotionPositions();
-        originalPlayer.damagedThisCombat = newPlayer.damagedThisCombat;
-        //noinspection deprecation
-        originalPlayer.cardsPlayedThisTurn = newPlayer.cardsPlayedThisTurn;
 
-        originalPlayer.stance = newPlayer.stance;
         originalPlayer.orbs = newPlayer.orbs;
         originalPlayer.maxOrbs = newPlayer.maxOrbs;
         int newMaxOrbs = originalPlayer.masterMaxOrbs + newPlayer.maxOrbs - newPlayer.masterMaxOrbs;
@@ -213,10 +217,7 @@ public class CloningModule {
             }
         }
 
-        originalPlayer.isEndingTurn = newPlayer.isEndingTurn;
-        originalPlayer.endTurnQueued = newPlayer.endTurnQueued;
-
-        transferVisualStates(newPlayer, originalPlayer);
+        updateExternalFields(newPlayer, originalPlayer);
 
         changePlayerReferences(newPlayer, originalPlayer);
 
@@ -251,51 +252,9 @@ public class CloningModule {
         AbstractDungeon.relicsToRemoveOnStart = new ArrayList<>();
     }
 
-    private static void transferVisualStates(AbstractPlayer originalPlayer, AbstractPlayer newPlayer) {
-        ReflectionHacks.setPrivate(newPlayer, AbstractCreature.class, "blockAnimTimer",
-                ReflectionHacks.getPrivate(originalPlayer, AbstractCreature.class, "blockAnimTimer"));
-        ReflectionHacks.setPrivate(newPlayer, AbstractCreature.class, "blockOffset",
-                ReflectionHacks.getPrivate(originalPlayer, AbstractCreature.class, "blockOffset"));
-        ReflectionHacks.setPrivate(newPlayer, AbstractCreature.class, "blockScale",
-                ReflectionHacks.getPrivate(originalPlayer, AbstractCreature.class, "blockScale"));
-        ReflectionHacks.setPrivate(newPlayer, AbstractCreature.class, "blockColor",
-                ReflectionHacks.getPrivate(originalPlayer, AbstractCreature.class, "blockColor"));
-        ReflectionHacks.setPrivate(newPlayer, AbstractCreature.class, "blockOutlineColor",
-                ReflectionHacks.getPrivate(originalPlayer, AbstractCreature.class, "blockOutlineColor"));
-        ReflectionHacks.setPrivate(newPlayer, AbstractCreature.class, "blockTextColor",
-                ReflectionHacks.getPrivate(originalPlayer, AbstractCreature.class, "blockTextColor"));
-
-
+    private static void updateExternalFields(AbstractPlayer originalPlayer, AbstractPlayer newPlayer) {
         ReflectionHacks.setPrivate(AbstractDungeon.overlayMenu.energyPanel, EnergyPanel.class, "gainEnergyImg",
                 newPlayer.getEnergyImage());
-        ReflectionHacks.setPrivate(newPlayer, AbstractPlayer.class, "isHoveringCard",
-                ReflectionHacks.getPrivate(originalPlayer, AbstractPlayer.class, "isHoveringCard"));
-        newPlayer.isHoveringDropZone = originalPlayer.isHoveringDropZone;
-        ReflectionHacks.setPrivate(newPlayer, AbstractPlayer.class, "hoverStartLine",
-                ReflectionHacks.getPrivate(originalPlayer, AbstractPlayer.class, "hoverStartLine"));
-        ReflectionHacks.setPrivate(newPlayer, AbstractPlayer.class, "passedHesitationLine",
-                ReflectionHacks.getPrivate(originalPlayer, AbstractPlayer.class, "passedHesitationLine"));
-        newPlayer.hoveredCard = originalPlayer.hoveredCard;
-        newPlayer.toHover = originalPlayer.toHover;
-        newPlayer.cardInUse = originalPlayer.cardInUse;
-        newPlayer.isDraggingCard = originalPlayer.isDraggingCard;
-        ReflectionHacks.setPrivate(newPlayer, AbstractPlayer.class, "isUsingClickDragControl",
-                ReflectionHacks.getPrivate(originalPlayer, AbstractPlayer.class, "isUsingClickDragControl"));
-        ReflectionHacks.setPrivate(newPlayer, AbstractPlayer.class, "clickDragTimer",
-                ReflectionHacks.getPrivate(originalPlayer, AbstractPlayer.class, "clickDragTimer"));
-        newPlayer.inSingleTargetMode = originalPlayer.inSingleTargetMode;
-        ReflectionHacks.setPrivate(newPlayer, AbstractPlayer.class, "hoveredMonster",
-                ReflectionHacks.getPrivate(originalPlayer, AbstractPlayer.class, "hoveredMonster"));
-        newPlayer.hoverEnemyWaitTimer = originalPlayer.hoverEnemyWaitTimer;
-        newPlayer.isInKeyboardMode = originalPlayer.isInKeyboardMode;
-        ReflectionHacks.setPrivate(newPlayer, AbstractPlayer.class, "skipMouseModeOnce",
-                ReflectionHacks.getPrivate(originalPlayer, AbstractPlayer.class, "skipMouseModeOnce"));
-        ReflectionHacks.setPrivate(newPlayer, AbstractPlayer.class, "keyboardCardIndex",
-                ReflectionHacks.getPrivate(originalPlayer, AbstractPlayer.class, "keyboardCardIndex"));
-        ReflectionHacks.setPrivate(newPlayer, AbstractPlayer.class, "touchscreenInspectCount",
-                ReflectionHacks.getPrivate(originalPlayer, AbstractPlayer.class, "touchscreenInspectCount"));
-        newPlayer.viewingRelics = originalPlayer.viewingRelics;
-        newPlayer.inspectMode = originalPlayer.inspectMode;
     }
 
     private static void changePlayerReferences(AbstractPlayer oldPlayer, AbstractPlayer newPlayer) {
@@ -372,6 +331,14 @@ public class CloningModule {
                 }
             }
         });
+    }
+
+    private static void copyPlayerFields(AbstractPlayer originalPlayer, AbstractPlayer newPlayer) {
+        ObjectFieldIterator.iterate(originalPlayer, field -> {
+            if (!Modifier.isFinal(field.getModifiers()) && !ignoredPlayerFields.contains(field.getName())) {
+                field.set(newPlayer, field.get(originalPlayer));
+            }
+        }, AbstractPlayer.class, Object.class);
     }
 
     private static void changePlayerReferences(Object object, AbstractPlayer oldPlayer, AbstractPlayer newPlayer) {
