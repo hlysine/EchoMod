@@ -49,13 +49,13 @@ public class CardTransformer {
             }
 
             if (cache.containsKey(card.uuid)) {
-                newCards.add(cache.get(card.uuid).makeSameInstanceOf());
+                newCards.add(transformCard(card, cache.get(card.uuid).makeSameInstanceOf()));
                 continue;
             }
 
             List<AbstractCard> rawChoices = cardPool.stream()
                     .sorted(Comparator.comparingInt(c -> rateSimilarity(card, (AbstractCard) c)).reversed())
-                    .limit(5)
+                    .limit(3)
                     .collect(Collectors.toList());
             List<AbstractCard> choices = new ArrayList<>(5);
             choices.add(rawChoices.remove(0));
@@ -68,10 +68,24 @@ public class CardTransformer {
             }
 
             AbstractCard replacement = choices.get(rng.random(choices.size() - 1)).makeStatEquivalentCopy();
-            newCards.add(replacement);
-            cache.put(card.uuid, replacement.makeSameInstanceOf());
+            newCards.add(transformCard(card, replacement.makeSameInstanceOf()));
+            cache.put(card.uuid, replacement);
         }
         return newCards;
+    }
+
+    private static AbstractCard transformCard(AbstractCard fromCard, AbstractCard toCard) {
+        toCard.current_x = fromCard.current_x;
+        toCard.current_y = fromCard.current_y;
+        toCard.target_x = fromCard.target_x;
+        toCard.target_y = fromCard.target_y;
+        toCard.angle = fromCard.angle;
+        toCard.drawScale = fromCard.drawScale;
+        toCard.targetDrawScale = fromCard.targetDrawScale;
+        for (int i = 0; i < fromCard.timesUpgraded; i++) {
+            toCard.upgrade();
+        }
+        return toCard;
     }
 
     private static int rateSimilarity(AbstractCard card1, AbstractCard card2) {
