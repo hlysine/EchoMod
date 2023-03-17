@@ -27,11 +27,13 @@ import echo.util.RunnableAction;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CloningModule {
     public static PlayerData playerData;
-    public static final List<AbstractRelic> tempRelics = new ArrayList<>();
+    public static RelicTransformer relicTransformer;
 
     // fields that should not be copied over from one player instance to another when cloning
     private static final List<String> ignoredPlayerFields = Arrays.asList(
@@ -114,10 +116,14 @@ public class CloningModule {
         newPlayer.maxHealth = newPlayer.maxHealth / 8;
         newPlayer.currentHealth = newPlayer.maxHealth;
 
-        originalPlayer.relics.removeAll(tempRelics);
-        tempRelics.clear();
-        tempRelics.addAll(newPlayer.relics);
-        newPlayer.relics.addAll(originalPlayer.relics);
+        if (relicTransformer != null)
+            originalPlayer.relics = relicTransformer.originalRelics;
+        relicTransformer = new RelicTransformer(AbstractDungeon.cardRandomRng, originalPlayer.chosenClass, newPlayer.chosenClass);
+        ArrayList<AbstractRelic> newRelics = relicTransformer.transform(originalPlayer.relics);
+        if (originalPlayer.relics.stream().noneMatch(r -> r.tier == AbstractRelic.RelicTier.STARTER))
+            newPlayer.relics.clear();
+        newRelics.removeIf(r -> r.tier == AbstractRelic.RelicTier.STARTER);
+        newPlayer.relics.addAll(newRelics);
         newPlayer.reorganizeRelics();
         newPlayer.adjustPotionPositions();
 
@@ -156,13 +162,16 @@ public class CloningModule {
         newPlayer.isEndingTurn = false;
 
         // only trigger start of combat events for the new relics from the duplicated player
-        for (AbstractRelic relic : tempRelics) {
+        Collection<AbstractRelic> transformedRelics = newPlayer.relics.stream()
+                .filter(r -> !relicTransformer.originalRelics.contains(r))
+                .collect(Collectors.toList());
+        for (AbstractRelic relic : transformedRelics) {
             relic.atPreBattle();
         }
-        for (AbstractRelic relic : tempRelics) {
+        for (AbstractRelic relic : transformedRelics) {
             relic.atBattleStartPreDraw();
         }
-        for (AbstractRelic relic : tempRelics) {
+        for (AbstractRelic relic : transformedRelics) {
             relic.atBattleStart();
         }
         newPlayer.applyStartOfTurnRelics();
@@ -201,8 +210,7 @@ public class CloningModule {
         originalPlayer.powers = newPlayer.powers;
         originalPlayer.powers.removeIf(p -> p instanceof DuplicatePower);
 
-        originalPlayer.relics = newPlayer.relics;
-        originalPlayer.relics.removeAll(tempRelics);
+        originalPlayer.relics = relicTransformer.originalRelics;
         originalPlayer.reorganizeRelics();
         originalPlayer.adjustPotionPositions();
 
@@ -226,7 +234,7 @@ public class CloningModule {
         changePlayerReferences(newPlayer, originalPlayer);
 
         playerData = null;
-        tempRelics.clear();
+        relicTransformer = null;
         CloneVfx.cloneVfxTimer = 0.0f;
     }
 

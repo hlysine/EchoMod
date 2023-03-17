@@ -85,7 +85,7 @@ public class CloneVfx {
     }
 
     public static void relicPreRender(AbstractRelic relic, SpriteBatch sb) {
-        if (CloningModule.tempRelics.contains(relic)) {
+        if (CloningModule.relicTransformer != null && !CloningModule.relicTransformer.originalRelics.contains(relic)) {
             gridShader.begin();
             gridShader.setUniformf("res_x", 128);
             gridShader.setUniformf("res_y", 128);
@@ -99,7 +99,7 @@ public class CloneVfx {
     }
 
     public static void relicPostRender(AbstractRelic relic, SpriteBatch sb) {
-        if (CloningModule.tempRelics.contains(relic)) {
+        if (CloningModule.relicTransformer != null && !CloningModule.relicTransformer.originalRelics.contains(relic)) {
             sb.setShader(null);
         }
     }
