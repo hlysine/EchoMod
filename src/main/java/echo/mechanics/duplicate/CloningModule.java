@@ -92,7 +92,7 @@ public class CloningModule {
         AbstractDungeon.player.releaseCard();
     }
 
-    public static void startCloning(AbstractPlayer.PlayerClass playerClass) {
+    public static void startCloning(AbstractPlayer.PlayerClass playerClass, CardTransformer.Decks cardDecks) {
 
         clearCardQueues();
 
@@ -149,8 +149,11 @@ public class CloningModule {
 
         newPlayer.isBloodied = (newPlayer.currentHealth <= newPlayer.maxHealth / 2);
         newPlayer.gameHandSize = newPlayer.masterHandSize;
-        CardTransformer cardTransformer = new CardTransformer(AbstractDungeon.cardRandomRng, originalPlayer.chosenClass, newPlayer.chosenClass);
-        cardTransformer.transform(CardTransformer.Decks.extractFromPlayer(originalPlayer)).applyToPlayer(newPlayer);
+        if (cardDecks == null) {
+            CardTransformer cardTransformer = new CardTransformer(AbstractDungeon.cardRandomRng, originalPlayer.chosenClass, newPlayer.chosenClass);
+            cardDecks = cardTransformer.transform(CardTransformer.Decks.extractFromPlayer(originalPlayer));
+        }
+        cardDecks.applyToPlayer(newPlayer);
         newPlayer.drawPile.initializeDeck(newPlayer.masterDeck);
 
         if (newPlayer.hasRelic("SlaversCollar")) {
@@ -179,7 +182,6 @@ public class CloningModule {
         newPlayer.energy.energy = originalPlayer.energy.energy;
         EnergyPanel.totalCount = Math.max(EnergyPanel.totalCount, newPlayer.energy.energy);
 
-        // AbstractDungeon.actionManager.addToBottom(new SelectCardsForDuplicateAction(true));
         AbstractDungeon.actionManager.addToTurnStart(new DrawCardAction(newPlayer, newPlayer.gameHandSize - newPlayer.hand.size()));
         AbstractDungeon.actionManager.addToTurnStart(new RunnableAction(() -> {
             newPlayer.applyStartOfTurnCards();

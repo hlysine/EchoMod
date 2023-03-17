@@ -35,7 +35,7 @@ public class EchoCeption extends AbstractBaseCard implements AfterCardUseSubscri
     @Override
     public void afterUse() {
         if (this.isCharged) {
-            addToBot(new DuplicatePlayerAction(Echo.Enums.ECHO, true));
+            addToBot(new DuplicatePlayerAction(Echo.Enums.ECHO, null, true));
         }
     }
 

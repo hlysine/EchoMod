@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import echo.EchoMod;
 import echo.actions.duplicate.DuplicateRandomPlayerAction;
 import echo.cards.AbstractBaseCard;
+import echo.characters.Echo;
 import echo.mechanics.duplicate.ChargedChecker;
 import echo.subscribers.AfterCardUseSubscriber;
 
@@ -34,7 +35,7 @@ public class EchoWho extends AbstractBaseCard implements AfterCardUseSubscriber 
     @Override
     public void afterUse() {
         if (this.isCharged) {
-            addToBot(new DuplicateRandomPlayerAction(AbstractDungeon.player.chosenClass, true));
+            addToBot(new DuplicateRandomPlayerAction(new AbstractPlayer.PlayerClass[]{AbstractDungeon.player.chosenClass, Echo.Enums.ECHO}, true));
         }
     }
 

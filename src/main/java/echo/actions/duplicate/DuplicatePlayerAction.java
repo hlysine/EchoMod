@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import echo.EchoMod;
 import echo.effects.DuplicateEffect;
+import echo.mechanics.duplicate.CardTransformer;
 import echo.mechanics.duplicate.CloningModule;
 import echo.powers.UltimateChargePower;
 
@@ -18,16 +19,19 @@ public class DuplicatePlayerAction extends AbstractGameAction {
     private static final TutorialStrings tutorialStrings = CardCrawlGame.languagePack.getTutorialString(EchoMod.makeID(DuplicatePlayerAction.class.getSimpleName()));
 
     private final AbstractPlayer.PlayerClass playerClass;
+    private final CardTransformer.Decks duplicateDeck;
     private final boolean requiresUltimateCharge;
 
     /**
      * Duplicate a player class, causing the player to become that class, affecting energy, cards, relics and more.
      *
      * @param playerClass            The player class to duplicate.
+     * @param duplicateDeck          The deck to use when duplicating, can be null.
      * @param requiresUltimateCharge Whether Ultimate Charge is required and consumed for this duplication.
      */
-    public DuplicatePlayerAction(AbstractPlayer.PlayerClass playerClass, boolean requiresUltimateCharge) {
+    public DuplicatePlayerAction(AbstractPlayer.PlayerClass playerClass, CardTransformer.Decks duplicateDeck, boolean requiresUltimateCharge) {
         this.playerClass = playerClass;
+        this.duplicateDeck = duplicateDeck;
         this.requiresUltimateCharge = requiresUltimateCharge;
     }
 
@@ -46,7 +50,7 @@ public class DuplicatePlayerAction extends AbstractGameAction {
             }
             CloningModule.preCloneSetup();
             addToBot(new VFXAction(AbstractDungeon.player, new DuplicateEffect(() -> {
-                CloningModule.startCloning(DuplicatePlayerAction.this.playerClass);
+                CloningModule.startCloning(DuplicatePlayerAction.this.playerClass, this.duplicateDeck);
             }), DuplicateEffect.DURATION, true));
         }
         this.isDone = true;

@@ -15,5 +15,13 @@
     "LABEL": [
       "Duplicate"
     ]
+  },
+  "echo:DuplicateRandomPlayerAction": {
+    "TEXT": [
+      "Choose a Character"
+    ],
+    "LABEL": [
+      "Duplicate"
+    ]
   }
 }
