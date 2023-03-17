@@ -2,6 +2,7 @@ package echo.mechanics.duplicate;
 
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -20,7 +21,6 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.SlaversCollar;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
-import echo.actions.duplicate.SelectCardsForDuplicateAction;
 import echo.powers.DuplicatePower;
 import echo.util.RunnableAction;
 
@@ -149,11 +149,9 @@ public class CloningModule {
 
         newPlayer.isBloodied = (newPlayer.currentHealth <= newPlayer.maxHealth / 2);
         newPlayer.gameHandSize = newPlayer.masterHandSize;
+        CardTransformer cardTransformer = new CardTransformer(AbstractDungeon.cardRandomRng, originalPlayer.chosenClass, newPlayer.chosenClass);
+        cardTransformer.transform(CardTransformer.Decks.extractFromPlayer(originalPlayer)).applyToPlayer(newPlayer);
         newPlayer.drawPile.initializeDeck(newPlayer.masterDeck);
-        newPlayer.hand.clear();
-        newPlayer.discardPile.clear();
-        newPlayer.exhaustPile.clear();
-        newPlayer.limbo.clear();
 
         if (newPlayer.hasRelic("SlaversCollar")) {
             ((SlaversCollar) newPlayer.getRelic("SlaversCollar")).beforeEnergyPrep();
@@ -181,8 +179,9 @@ public class CloningModule {
         newPlayer.energy.energy = originalPlayer.energy.energy;
         EnergyPanel.totalCount = Math.max(EnergyPanel.totalCount, newPlayer.energy.energy);
 
-        AbstractDungeon.actionManager.addToBottom(new SelectCardsForDuplicateAction(true));
-        AbstractDungeon.actionManager.addToBottom(new RunnableAction(() -> {
+        // AbstractDungeon.actionManager.addToBottom(new SelectCardsForDuplicateAction(true));
+        AbstractDungeon.actionManager.addToTurnStart(new DrawCardAction(newPlayer, newPlayer.gameHandSize - newPlayer.hand.size()));
+        AbstractDungeon.actionManager.addToTurnStart(new RunnableAction(() -> {
             newPlayer.applyStartOfTurnCards();
             newPlayer.applyStartOfTurnPowers();
             newPlayer.applyStartOfTurnOrbs();
