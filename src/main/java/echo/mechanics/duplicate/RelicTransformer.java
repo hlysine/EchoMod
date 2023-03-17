@@ -33,8 +33,8 @@ public class RelicTransformer {
         originalRelics = new ArrayList<>(relics);
 
         ArrayList<AbstractRelic> newRelics = new ArrayList<>();
-        List<AbstractRelic> oldPool = getRelicPool(fromClass);
-        List<AbstractRelic> newPool = getRelicPool(toClass);
+        List<AbstractRelic> oldPool = getRelicPool(fromClass, true);
+        List<AbstractRelic> newPool = getRelicPool(toClass, false);
         HashMap<String, AbstractRelic> sharedRelics = ReflectionHacks.getPrivateStatic(RelicLibrary.class, "sharedRelics");
         List<AbstractRelic> sharedPool = new ArrayList<>(sharedRelics.values());
 
@@ -64,10 +64,11 @@ public class RelicTransformer {
     /**
      * Get a list of obtainable relics for a character. Both base game and modded characters are supported.
      *
-     * @param chosenClass The character class to get relics for.
+     * @param chosenClass   The character class to get relics for.
+     * @param includeLocked Whether to include locked relics.
      * @return A list of relics that can be obtained.
      */
-    public static List<AbstractRelic> getRelicPool(AbstractPlayer.PlayerClass chosenClass) {
+    public static List<AbstractRelic> getRelicPool(AbstractPlayer.PlayerClass chosenClass, boolean includeLocked) {
         // get the relic pool
         List<AbstractRelic> relicPool;
         if (BaseMod.isBaseGameCharacter(chosenClass)) {
@@ -112,9 +113,8 @@ public class RelicTransformer {
         relicPool.removeIf(r -> relicsToRemove.contains(r.relicId));
 
         // remove locked relics
-        if (!Settings.treatEverythingAsUnlocked()) {
+        if (!Settings.treatEverythingAsUnlocked() && !includeLocked)
             relicPool.removeIf(r -> UnlockTracker.isRelicLocked(r.relicId));
-        }
 
         return relicPool;
     }
