@@ -235,6 +235,9 @@ public class CloningModule {
         playerData = null;
         relicTransformer = null;
         CloneVfx.cloneVfxTimer = 0.0f;
+
+        originalPlayer.healthBarUpdatedEvent();
+        originalPlayer.showHealthBar();
     }
 
     private static void clearCardQueues() {
