@@ -245,7 +245,8 @@ public class CloningModule {
     private static void clearCardQueues() {
         AbstractDungeon.actionManager.cardQueue.clear();
         AbstractDungeon.player.limbo.group.clear();
-        AbstractDungeon.player.releaseCard();
+        if (AbstractDungeon.currMapNode != null)
+            AbstractDungeon.player.releaseCard();
     }
 
     private static void clearPools() {
@@ -313,9 +314,10 @@ public class CloningModule {
         for (AbstractCard card : newPlayer.limbo.group) {
             changePlayerReferences(card, oldPlayer, newPlayer);
         }
-        for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-            changePlayerReferences(monster, oldPlayer, newPlayer);
-        }
+        if (AbstractDungeon.currMapNode != null)
+            for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+                changePlayerReferences(monster, oldPlayer, newPlayer);
+            }
         for (AbstractGameAction action : AbstractDungeon.actionManager.actions) {
             changePlayerReferences(action, oldPlayer, newPlayer);
         }
