@@ -112,8 +112,8 @@ public class CloningModule {
         if (newPlayer.powers.stream().noneMatch(p -> p instanceof DuplicatePower)) {
             newPlayer.powers.add(0, new DuplicatePower(newPlayer));
         }
-        newPlayer.startingMaxHP = newPlayer.startingMaxHP / 8;
-        newPlayer.maxHealth = newPlayer.maxHealth / 8;
+        newPlayer.startingMaxHP = newPlayer.startingMaxHP / 5;
+        newPlayer.maxHealth = newPlayer.maxHealth / 5;
         newPlayer.currentHealth = newPlayer.maxHealth;
 
         if (relicTransformer != null)
