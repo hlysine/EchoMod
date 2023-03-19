@@ -85,24 +85,28 @@ public class DuplicateRandomPlayerAction extends AbstractGameAction {
         public static CharacterChoice constructChoice(AbstractPlayer.PlayerClass chosenClass, Random rng) {
             CardTransformer cardTransformer = new CardTransformer(rng, AbstractDungeon.player.chosenClass, chosenClass);
             CardTransformer.Decks decks = cardTransformer.transform(CardTransformer.Decks.extractFromPlayer(AbstractDungeon.player));
-            AbstractCard cardToPreview = decks.hand.stream().max(Comparator.comparingInt(c -> getRarityScore(c.rarity))).orElse(null);
+            AbstractCard cardToPreview = decks.hand.stream().max(Comparator.comparingInt(CharacterChoice::getImportance)).orElse(null);
             return new CharacterChoice(chosenClass, decks, cardToPreview);
         }
 
-        private static int getRarityScore(AbstractCard.CardRarity rarity) {
-            switch (rarity) {
+        private static int getImportance(AbstractCard card) {
+            int score = 0;
+            switch (card.rarity) {
                 case BASIC:
-                    return 0;
+                    score += 0;
                 case COMMON:
-                    return 1;
+                    score += 1;
                 case UNCOMMON:
                 case SPECIAL:
-                    return 2;
+                    score += 2;
                 case RARE:
-                    return 3;
+                    score += 3;
                 default:
-                    return -1;
+                    score += -1;
             }
+            if (card.type == AbstractCard.CardType.STATUS || card.type == AbstractCard.CardType.CURSE)
+                score -= 10;
+            return score;
         }
     }
 }
