@@ -1,5 +1,6 @@
 package echo.actions.duplicate;
 
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -7,8 +8,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.TutorialStrings;
 import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.screens.custom.CustomModeCharacterButton;
 import echo.EchoMod;
-import echo.actions.DiscoveryChooseCardAction;
+import echo.actions.DiscoveryChooseCharacterAction;
 import echo.mechanics.duplicate.CardTransformer;
 
 import java.util.*;
@@ -62,7 +64,7 @@ public class DuplicateRandomPlayerAction extends AbstractGameAction {
             choiceMap.put(characterChoice.cardToPreview, characterChoice);
         }
 
-        addToTop(new DiscoveryChooseCardAction(new ArrayList<>(choiceMap.keySet()), tutorialStrings.TEXT[0], card -> {
+        addToTop(new DiscoveryChooseCharacterAction(new ArrayList<>(choiceMap.values()), tutorialStrings.TEXT[0], tutorialStrings.TEXT[1], card -> {
             card.unhover();
             CharacterChoice finalChoice = choiceMap.get(card);
             addToTop(new DuplicatePlayerAction(finalChoice.chosenClass, finalChoice.decks, requiresUltimateCharge));
@@ -72,9 +74,10 @@ public class DuplicateRandomPlayerAction extends AbstractGameAction {
     }
 
     public static class CharacterChoice {
-        private final AbstractPlayer.PlayerClass chosenClass;
-        private final CardTransformer.Decks decks;
-        private final AbstractCard cardToPreview;
+        public final AbstractPlayer.PlayerClass chosenClass;
+        public final CardTransformer.Decks decks;
+        public final AbstractCard cardToPreview;
+        public CustomModeCharacterButton button;
 
         private CharacterChoice(AbstractPlayer.PlayerClass chosenClass, CardTransformer.Decks decks, AbstractCard cardToPreview) {
             this.chosenClass = chosenClass;
@@ -86,7 +89,10 @@ public class DuplicateRandomPlayerAction extends AbstractGameAction {
             CardTransformer cardTransformer = new CardTransformer(rng, AbstractDungeon.player.chosenClass, chosenClass);
             CardTransformer.Decks decks = cardTransformer.transform(CardTransformer.Decks.extractFromPlayer(AbstractDungeon.player));
             AbstractCard cardToPreview = decks.hand.stream().max(Comparator.comparingInt(CharacterChoice::getImportance)).orElse(null);
-            return new CharacterChoice(chosenClass, decks, cardToPreview);
+
+            CharacterChoice choice = new CharacterChoice(chosenClass, decks, cardToPreview);
+            choice.button = new CustomModeCharacterButton(BaseMod.findCharacter(chosenClass), false);
+            return choice;
         }
 
         private static int getImportance(AbstractCard card) {
@@ -94,15 +100,20 @@ public class DuplicateRandomPlayerAction extends AbstractGameAction {
             switch (card.rarity) {
                 case BASIC:
                     score += 0;
+                    break;
                 case COMMON:
                     score += 1;
+                    break;
                 case UNCOMMON:
                 case SPECIAL:
                     score += 2;
+                    break;
                 case RARE:
                     score += 3;
+                    break;
                 default:
                     score += -1;
+                    break;
             }
             if (card.type == AbstractCard.CardType.STATUS || card.type == AbstractCard.CardType.CURSE)
                 score -= 10;

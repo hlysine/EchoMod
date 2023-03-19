@@ -18,7 +18,8 @@
   },
   "echo:DuplicateRandomPlayerAction": {
     "TEXT": [
-      "Choose a Character"
+      "Choose a Character",
+      "You will get the corresponding card in hand when you choose a character"
     ],
     "LABEL": [
       "Duplicate"
