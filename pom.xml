@@ -13,7 +13,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <SlayTheSpire.version>12-18-2022</SlayTheSpire.version>
-        <ModTheSpire.version>3.30.2</ModTheSpire.version>
+        <ModTheSpire.version>3.30.3</ModTheSpire.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <Dependencies.path>D:\Games\SteamLibrary\steamapps\workshop\content\646570</Dependencies.path>
         <Game.path>D:\Games\SteamLibrary\steamapps\common\SlayTheSpire</Game.path>
@@ -37,24 +37,32 @@
         <dependency>
             <groupId>basemod</groupId>
             <artifactId>basemod</artifactId>
-            <version>5.48.0</version>
+            <version>5.51.1</version>
             <scope>system</scope>
             <systemPath>${Dependencies.path}\1605833019\BaseMod.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.evacipated.cardcrawl.mod</groupId>
             <artifactId>StSLib</artifactId>
-            <version>2.7.0</version>
+            <version>2.9.0</version>
             <scope>system</scope>
             <systemPath>${Dependencies.path}\1609158507\StSLib.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>spiretogether</groupId>
             <artifactId>SpireTogether</artifactId>
-            <version>3.0.11</version>
+            <version>4.0.8</version>
             <scope>system</scope>
             <optional>true</optional>
             <systemPath>${Dependencies.path}\2384072973\TogetherInSpire.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>mod-group-name</groupId>
+            <artifactId>downfall</artifactId>
+            <version>4.2.08</version>
+            <scope>system</scope>
+            <optional>true</optional>
+            <systemPath>${Dependencies.path}\1610056683\downfall.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>hlysine</groupId>
