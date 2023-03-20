@@ -166,6 +166,25 @@ public class CardTransformer {
             player.exhaustPile.group.addAll(exhaustPile);
             player.limbo.group.clear();
             player.limbo.group.addAll(limbo);
+
+            for (AbstractCard card : player.masterDeck.group) {
+                UnlockTracker.markCardAsSeen(card.cardID);
+            }
+            for (AbstractCard card : player.drawPile.group) {
+                UnlockTracker.markCardAsSeen(card.cardID);
+            }
+            for (AbstractCard card : player.hand.group) {
+                UnlockTracker.markCardAsSeen(card.cardID);
+            }
+            for (AbstractCard card : player.discardPile.group) {
+                UnlockTracker.markCardAsSeen(card.cardID);
+            }
+            for (AbstractCard card : player.exhaustPile.group) {
+                UnlockTracker.markCardAsSeen(card.cardID);
+            }
+            for (AbstractCard card : player.limbo.group) {
+                UnlockTracker.markCardAsSeen(card.cardID);
+            }
         }
     }
 }
