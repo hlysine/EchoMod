@@ -19,7 +19,7 @@ public class CardRewardScreenPatch {
     )
     public static class Fields {
         public static SpireField<List<CustomModeCharacterButton>> characterButtons = new SpireField<>(() -> null);
-        public static SpireField<String> tipMsg = new SpireField<String>(() -> null);
+        public static SpireField<String> tipMsg = new SpireField<>(() -> null);
     }
 
     @SpirePatch(
@@ -92,7 +92,7 @@ public class CardRewardScreenPatch {
     public static class RenderPatch {
         public static void Postfix(CardRewardScreen __instance, SpriteBatch sb) {
             List<CustomModeCharacterButton> characterButtons = Fields.characterButtons.get(__instance);
-            if (characterButtons != null) {
+            if (characterButtons != null && !PeekButton.isPeeking) {
                 for (CustomModeCharacterButton button : characterButtons) {
                     button.render(sb);
                 }
