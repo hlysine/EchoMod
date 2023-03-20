@@ -1,4 +1,4 @@
-package echo.patches;
+package echo.patches.cards;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;

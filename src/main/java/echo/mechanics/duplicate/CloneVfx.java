@@ -1,5 +1,7 @@
 package echo.mechanics.duplicate;
 
+import basemod.BaseMod;
+import basemod.interfaces.PreDungeonUpdateSubscriber;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -8,17 +10,20 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import echo.EchoMod;
+import echo.characters.Echo;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class CloneVfx {
+public class CloneVfx implements PreDungeonUpdateSubscriber {
     private static final Logger logger = LogManager.getLogger(CloneVfx.class);
     private static final ShaderProgram gridShader;
+    private static final ShaderProgram cardShader;
     public static float cloneVfxTimer = 0.0f;
     public static FrameBuffer fbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false, false);
     public static TextureRegion fboRegion = new TextureRegion(fbo.getColorBufferTexture());
@@ -34,7 +39,20 @@ public class CloneVfx {
         if (gridShader.getLog().length() != 0) {
             logger.log(CloneVfx.gridShader.isCompiled() ? Level.WARN : Level.ERROR, CloneVfx.gridShader.getLog());
         }
+
+        cardShader = new ShaderProgram(
+                Gdx.files.internal(EchoMod.makeShaderPath("grid_card/grid_card.vert")).readString(),
+                Gdx.files.internal(EchoMod.makeShaderPath("grid_card/grid_card.frag")).readString()
+        );
+
+        if (cardShader.getLog().length() != 0) {
+            logger.log(CloneVfx.cardShader.isCompiled() ? Level.WARN : Level.ERROR, CloneVfx.cardShader.getLog());
+        }
+
+        BaseMod.subscribe(new CloneVfx());
     }
+
+    private static ShaderProgram prevShader;
 
     public static void playerPreRender(AbstractPlayer player, SpriteBatch sb) {
         if (CloningModule.isCloning()) {
@@ -71,7 +89,6 @@ public class CloneVfx {
             gridShader.begin();
             gridShader.setUniformf("res_x", Gdx.graphics.getWidth());
             gridShader.setUniformf("res_y", Gdx.graphics.getHeight());
-            cloneVfxTimer += Gdx.graphics.getDeltaTime();
             gridShader.setUniformf("time", cloneVfxTimer);
             gridShader.setUniformf("period", 5.0f);
             gridShader.setUniformi("grayscale", 0);
@@ -94,13 +111,39 @@ public class CloneVfx {
             gridShader.setUniformi("grayscale", relic.grayscale ? 1 : 0);
             gridShader.end();
 
+            prevShader = sb.getShader();
             sb.setShader(gridShader);
         }
     }
 
     public static void relicPostRender(AbstractRelic relic, SpriteBatch sb) {
         if (CloningModule.relicTransformer != null && !CloningModule.relicTransformer.originalRelics.contains(relic)) {
-            sb.setShader(null);
+            sb.setShader(prevShader);
         }
+    }
+
+    public static void cardPreRender(AbstractCard card, SpriteBatch sb, float imgSize) {
+        if (card.color == Echo.Enums.CARD_COLOR) {
+            cardShader.begin();
+            cardShader.setUniformf("res_x", imgSize);
+            cardShader.setUniformf("res_y", imgSize);
+            cardShader.setUniformf("time", cloneVfxTimer);
+            cardShader.setUniformf("period", 5.0f);
+            cardShader.end();
+
+            prevShader = sb.getShader();
+            sb.setShader(cardShader);
+        }
+    }
+
+    public static void cardPostRender(AbstractCard card, SpriteBatch sb) {
+        if (card.color == Echo.Enums.CARD_COLOR) {
+            sb.setShader(prevShader);
+        }
+    }
+
+    @Override
+    public void receivePreDungeonUpdate() {
+        cloneVfxTimer += Gdx.graphics.getDeltaTime();
     }
 }

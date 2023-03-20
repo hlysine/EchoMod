@@ -56,17 +56,17 @@ public class EchoMod implements
     public static final Color ECHO_COLOR = CardHelper.getColor(100, 76, 112);
 
     // Card backgrounds - The actual rectangular card.
-    private static final String CARD_BG_ATTACK = "echoResources/images/cardui/bg_attack_512_green.png";
-    private static final String CARD_BG_SKILL = "echoResources/images/cardui/bg_skill_512_green.png";
-    private static final String CARD_BG_POWER = "echoResources/images/cardui/bg_power_512_green.png";
+    private static final String CARD_BG_ATTACK = "echoResources/images/cardui/bg_attack_512_blue.png";
+    private static final String CARD_BG_SKILL = "echoResources/images/cardui/bg_skill_512_blue.png";
+    private static final String CARD_BG_POWER = "echoResources/images/cardui/bg_power_512_blue.png";
 
-    private static final String ENERGY_ORB_SMALL = "echoResources/images/cardui/small_energy_icon_green.png";
-    private static final String ENERGY_ORB_CARD_CORNER = "echoResources/images/cardui/card_corner_energy_green.png";
-    private static final String ENERGY_ORB_LARGE = "echoResources/images/cardui/large_energy_icon_green.png";
+    private static final String ENERGY_ORB_SMALL = "echoResources/images/cardui/small_energy_icon_blue.png";
+    private static final String ENERGY_ORB_CARD_CORNER = "echoResources/images/cardui/card_corner_energy_blue.png";
+    private static final String ENERGY_ORB_LARGE = "echoResources/images/cardui/large_energy_icon_blue.png";
 
-    private static final String CARD_BG_ATTACK_LARGE = "echoResources/images/cardui/bg_attack_1024_green.png";
-    private static final String CARD_BG_SKILL_LARGE = "echoResources/images/cardui/bg_skill_1024_green.png";
-    private static final String CARD_BG_POWER_LARGE = "echoResources/images/cardui/bg_power_1024_green.png";
+    private static final String CARD_BG_ATTACK_LARGE = "echoResources/images/cardui/bg_attack_1024_blue.png";
+    private static final String CARD_BG_SKILL_LARGE = "echoResources/images/cardui/bg_skill_1024_blue.png";
+    private static final String CARD_BG_POWER_LARGE = "echoResources/images/cardui/bg_power_1024_blue.png";
 
     // Character assets
     private static final String ECHO_BUTTON = "echoResources/images/characterSelect/button.png";
