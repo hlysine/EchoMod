@@ -28,7 +28,7 @@ public class CardShaderPatch {
     )
     public static class PortraitGridCardBackground {
         public static void Prefix(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard ___card) {
-            CloneVfx.cardPreRender(___card, sb); // todo: buggy white region, background dim is gone
+            CloneVfx.cardPreRender(___card, sb);
         }
 
         public static void Postfix(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard ___card) {
