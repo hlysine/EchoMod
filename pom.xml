@@ -65,6 +65,14 @@
             <systemPath>${Dependencies.path}\1610056683\downfall.jar</systemPath>
         </dependency>
         <dependency>
+            <groupId>STS-Discord-Modding-Technical</groupId>
+            <artifactId>ThePackmaster</artifactId>
+            <version>1.6.0</version>
+            <scope>system</scope>
+            <optional>true</optional>
+            <systemPath>${Dependencies.path}\2920075378\ThePackmaster.jar</systemPath>
+        </dependency>
+        <dependency>
             <groupId>hlysine</groupId>
             <artifactId>STSItemInfo</artifactId>
             <version>0.2.0</version>

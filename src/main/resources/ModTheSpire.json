@@ -4,7 +4,7 @@
   "author_list": [
     "Lysine"
   ],
-  "credits": "Basemod, ModTheSpire, #modding",
+  "credits": "Basemod, ModTheSpire, #modding-technical, #modding-gameplay",
   "description": "Echo is a custom Slay The Spire character currently in development.",
   "version": "${project.version}",
   "sts_version": "${SlayTheSpire.version}",
@@ -12,6 +12,11 @@
   "dependencies": [
     "basemod",
     "stslib"
+  ],
+  "optional_dependencies": [
+    "downfall",
+    "spireTogether",
+    "anniv5"
   ],
   "update_json": "https://api.github.com/repos/hlysine/EchoMod/releases/latest"
 }

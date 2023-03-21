@@ -1,5 +1,6 @@
 package echo.mechanics.duplicate;
 
+import basemod.BaseMod;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
@@ -23,6 +24,8 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import echo.powers.DuplicatePower;
 import echo.util.RunnableAction;
+import thePackmaster.SpireAnniversary5Mod;
+import thePackmaster.ThePackmaster;
 
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -144,7 +147,7 @@ public class CloningModule {
         changePlayerReferences(originalPlayer, newPlayer);
 
         CardCrawlGame.dungeon.initializePotions();
-        CardCrawlGame.dungeon.initializeCardPools();
+        initializeCardPools();
         ReflectionHacks.privateMethod(AbstractDungeon.class, "initializeRelicList").invoke(CardCrawlGame.dungeon);
 
         newPlayer.isBloodied = (newPlayer.currentHealth <= newPlayer.maxHealth / 2);
@@ -363,5 +366,15 @@ public class CloningModule {
             if (field.get(object) == oldPlayer)
                 field.set(object, newPlayer);
         });
+    }
+
+    private static void initializeCardPools() {
+        if (BaseMod.hasModID("anniv5")) {
+            if (AbstractDungeon.player.chosenClass == ThePackmaster.Enums.THE_PACKMASTER) {
+                SpireAnniversary5Mod.currentPoolPacks.clear();
+                SpireAnniversary5Mod.currentPoolPacks.addAll(SpireAnniversary5Mod.allPacks);
+            }
+        }
+        CardCrawlGame.dungeon.initializeCardPools();
     }
 }
