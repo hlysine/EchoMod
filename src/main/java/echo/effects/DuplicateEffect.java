@@ -47,7 +47,7 @@ public class DuplicateEffect extends AbstractGameEffect {
             this.action.run();
             this.action = null;
         }
-        if (this.duration < startingDuration * 0.1f && this.effect == null) {
+        if ((this.duration < startingDuration * 0.1f || EchoMod.reducedFullscreenEffects) && this.effect == null) {
             this.effect = new PostDuplicateEffect();
             AbstractDungeon.topLevelEffectsQueue.add(this.effect);
         }
@@ -58,6 +58,8 @@ public class DuplicateEffect extends AbstractGameEffect {
 
     @Override
     public void render(SpriteBatch sb) {
+        if (EchoMod.reducedFullscreenEffects) return;
+
         sb.end();
         this.frameBuffer.begin();
         Gdx.gl.glClearColor(0, 0, 0, 0);

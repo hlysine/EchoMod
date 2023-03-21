@@ -2,6 +2,8 @@ package echo;
 
 import basemod.AutoAdd;
 import basemod.BaseMod;
+import basemod.ModLabeledToggleButton;
+import basemod.ModPanel;
 import basemod.abstracts.CustomRelic;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
@@ -9,9 +11,13 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import echo.cards.AbstractBaseCard;
@@ -27,12 +33,14 @@ import hlysine.STSItemInfo.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 @SpireInitializer
@@ -51,6 +59,11 @@ public class EchoMod implements
     private static final String MOD_NAME = "Echo";
     private static final String AUTHOR = "Lysine";
     private static final String DESCRIPTION = "A character mod for Echo.";
+
+    // Mod-settings settings. This is if you want an on/off savable button
+    public static Properties defaultSettings = new Properties();
+    public static final String REDUCED_FULLSCREEN_EFFECTS_SETTING = "reducedFullscreenEffects";
+    public static boolean reducedFullscreenEffects = false;
 
     // Character Color
     public static final Color ECHO_COLOR = CardHelper.getColor(100, 76, 112);
@@ -121,6 +134,10 @@ public class EchoMod implements
         return getModID() + "Resources/shaders/" + resourcePath;
     }
 
+    public static SpireConfig getConfig() throws IOException {
+        return new SpireConfig(modID, modID + "Config", defaultSettings);
+    }
+
     public EchoMod() {
         logger.info("Subscribe to BaseMod hooks");
 
@@ -151,6 +168,18 @@ public class EchoMod implements
                 ENERGY_ORB_SMALL);
 
         logger.info("Done creating the color");
+
+        logger.info("Adding mod settings");
+        // This loads the mod settings.
+        defaultSettings.setProperty(REDUCED_FULLSCREEN_EFFECTS_SETTING, "FALSE");
+        try {
+            SpireConfig config = getConfig();
+            config.load();
+            reducedFullscreenEffects = config.getBool(REDUCED_FULLSCREEN_EFFECTS_SETTING);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        logger.info("Done adding mod settings");
     }
 
     public static void setModID(String ID) {
@@ -213,7 +242,32 @@ public class EchoMod implements
 
         Texture badgeTexture = TextureLoader.getTexture(BADGE_IMAGE);
 
-        BaseMod.registerModBadge(badgeTexture, MOD_NAME, AUTHOR, DESCRIPTION, null);
+        // Create the Mod Menu
+        ModPanel settingsPanel = new ModPanel();
+
+        UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("SettingsPanel"));
+
+        // Create the on/off button:
+        ModLabeledToggleButton enableNormalsButton = new ModLabeledToggleButton(uiStrings.TEXT[0],
+                350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                reducedFullscreenEffects,
+                settingsPanel,
+                (label) -> {
+                },
+                (button) -> { // on click
+                    reducedFullscreenEffects = button.enabled;
+                    try {
+                        SpireConfig config = getConfig();
+                        config.setBool(REDUCED_FULLSCREEN_EFFECTS_SETTING, reducedFullscreenEffects);
+                        config.save();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+
+        settingsPanel.addUIElement(enableNormalsButton);
+
+        BaseMod.registerModBadge(badgeTexture, MOD_NAME, AUTHOR, DESCRIPTION, settingsPanel);
 
         BaseMod.addSaveField(EchoMod.makeID(DevCommandsMetricPatch.DevCommandsMetricSavable.class.getSimpleName()), new DevCommandsMetricPatch.DevCommandsMetricSavable());
 
@@ -316,6 +370,9 @@ public class EchoMod implements
 
         BaseMod.loadCustomStringsFile(MonsterStrings.class,
                 getModID() + "Resources/localization/eng/EchoMod-Monster-Strings.json");
+
+        BaseMod.loadCustomStringsFile(UIStrings.class,
+                getModID() + "Resources/localization/eng/EchoMod-UI-Strings.json");
 
         logger.info("Done editing strings");
     }
