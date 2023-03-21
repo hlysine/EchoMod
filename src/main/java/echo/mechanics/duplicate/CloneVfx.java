@@ -122,11 +122,11 @@ public class CloneVfx implements PreDungeonUpdateSubscriber {
         }
     }
 
-    public static void cardPreRender(AbstractCard card, SpriteBatch sb, float imgSize) {
+    public static void cardPreRender(AbstractCard card, SpriteBatch sb) {
         if (card.color == Echo.Enums.CARD_COLOR) {
             cardShader.begin();
-            cardShader.setUniformf("res_x", imgSize);
-            cardShader.setUniformf("res_y", imgSize);
+            cardShader.setUniformf("res_x", 512);
+            cardShader.setUniformf("res_y", 512);
             cardShader.setUniformf("time", cloneVfxTimer);
             cardShader.setUniformf("period", 5.0f);
             cardShader.end();
