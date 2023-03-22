@@ -1,6 +1,8 @@
 package echo.characters;
 
+import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
@@ -85,28 +87,37 @@ public class Echo extends CustomPlayer {
     // =============== TEXTURES OF BIG ENERGY ORB ===============
 
     public static final String[] orbTextures = {
-            "echoResources/images/energyOrb/layer1_green.png",
-            "echoResources/images/energyOrb/layer2_green.png",
-            "echoResources/images/energyOrb/layer3_green.png",
-            "echoResources/images/energyOrb/layer4_green.png",
-            "echoResources/images/energyOrb/layer5_green.png",
+            "echoResources/images/energyOrb/layer1.png",
+            "echoResources/images/energyOrb/layer2.png",
+            "echoResources/images/energyOrb/layer3.png",
+            "echoResources/images/energyOrb/layer4.png",
+            "echoResources/images/energyOrb/layer5.png",
             "echoResources/images/energyOrb/layer6.png",
+            "echoResources/images/energyOrb/layer7.png",
+            "echoResources/images/energyOrb/layer8.png",
+            "echoResources/images/energyOrb/layer9.png",
+            "echoResources/images/energyOrb/layer10.png",
             "echoResources/images/energyOrb/layer1d.png",
             "echoResources/images/energyOrb/layer2d.png",
             "echoResources/images/energyOrb/layer3d.png",
             "echoResources/images/energyOrb/layer4d.png",
-            "echoResources/images/energyOrb/layer5d.png",};
+            "echoResources/images/energyOrb/layer5d.png",
+            "echoResources/images/energyOrb/layer6d.png",
+            "echoResources/images/energyOrb/layer7d.png",
+            "echoResources/images/energyOrb/layer8d.png",
+            "echoResources/images/energyOrb/layer9d.png",};
 
     // =============== /TEXTURES OF BIG ENERGY ORB/ ===============
 
     // =============== CHARACTER CLASS START =================
 
     public Echo(String name, PlayerClass setClass) {
-        super(name, setClass, orbTextures,
-                "echoResources/images/energyOrb/vfx_green.png",
-                new float[]{
-                        -35.0F, 35.0F, -20.0F, 20.0F, 0
-                },
+        super(name, setClass,
+                new EchoEnergyOrb(orbTextures,
+                        "echoResources/images/energyOrb/vfx.png",
+                        new float[]{
+                                0, 0, -15f, 0, 6f, -12f, 14f, 0, 10f
+                        }),
                 new NoAnimation());
 
 
@@ -295,6 +306,19 @@ public class Echo extends CustomPlayer {
     @Override
     public String getVampireText() {
         return TEXT[2];
+    }
+
+    public static class EchoEnergyOrb extends CustomEnergyOrb {
+        public EchoEnergyOrb(String[] orbTexturePaths, String orbVfxPath, float[] layerSpeeds) {
+            super(orbTexturePaths, orbVfxPath, layerSpeeds);
+        }
+
+        @Override
+        public void updateOrb(int energyCount) {
+            for (int i = 0; i < angles.length; i++) {
+                angles[i] += Gdx.graphics.getDeltaTime() * layerSpeeds[i] / (energyCount == 0 ? 4f : 1f);
+            }
+        }
     }
 
 }
