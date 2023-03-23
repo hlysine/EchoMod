@@ -16,8 +16,8 @@ import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class SendMetricsPatch {
-    // public static final String UPLOAD_URL = "http://127.0.0.1:3001/api/metrics";
-    public static final String UPLOAD_URL = "https://echo.vercel.app/api/metrics";
+    public static final String UPLOAD_URL = "http://127.0.0.1:3000/api/metrics";
+//    public static final String UPLOAD_URL = "https://sts-echo.vercel.app/api/metrics";
 
     private static final Logger logger = LogManager.getLogger(SendMetricsPatch.class.getName());
 
