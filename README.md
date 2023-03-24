@@ -5,7 +5,7 @@ Echo is a custom Slay The Spire character currently in development.
 | **[Download Mod](https://github.com/hlysine/EchoMod/releases/latest/)** |
 |-------------------------------------------------------------------------|
 | [View Changelog](CHANGELOG.md)                                          |
-| [Preview Cards](https://echo.vercel.app/cards)                          |
+| [Preview Cards](https://sts-echo.vercel.app/cards)                      |
 
 ## Content
 
