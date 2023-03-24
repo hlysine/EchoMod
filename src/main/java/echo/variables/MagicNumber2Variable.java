@@ -9,7 +9,7 @@ public class MagicNumber2Variable extends CustomVariable {
 
     @Override
     public String key() {
-        return makeID("MagicNumber2");
+        return makeID("M2");
     }
 
     @Override
