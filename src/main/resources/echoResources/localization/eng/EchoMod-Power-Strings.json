@@ -22,6 +22,14 @@
       " rounds, reduce all damage taken by #b50%. Reduce #yFlight by 1 whenever you take unblocked damage."
     ]
   },
+  "echo:GroundedPower": {
+    "NAME": "Grounded",
+    "DESCRIPTIONS": [
+      "You cannot gain #yFlight for #b",
+      " round.",
+      " rounds."
+    ]
+  },
   "echo:UltimateChargePower": {
     "NAME": "Ultimate Charge",
     "DESCRIPTIONS": [

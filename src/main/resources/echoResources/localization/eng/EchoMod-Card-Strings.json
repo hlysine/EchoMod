@@ -36,5 +36,10 @@
     "NAME": "Tri-Shot",
     "DESCRIPTION": "{@@}Deal !D! damage !M! times. NL Draw !echo:M2! card{!echo:M2!|>1=s|@=}. NL Exhaust.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:EchoDash": {
+    "NAME": "Echo Dash",
+    "DESCRIPTION": "Gain !M! echo:Flight. NL You can no longer gain echo:Flight in this combat. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

@@ -64,5 +64,15 @@
     "+D": 1,
     "M/Multi Hit": 3,
     "echo:M2/Card Draw": 1
+  },
+  "echo:EchoDash": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "echo_dash.png",
+    "COST": 1,
+    "M/Flight": 10,
+    "+M": 5,
+    "echo:M2/Grounded": 99
   }
 }
