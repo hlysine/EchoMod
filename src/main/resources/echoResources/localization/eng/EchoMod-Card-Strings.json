@@ -41,5 +41,10 @@
     "NAME": "Echo Dash",
     "DESCRIPTION": "Gain !M! echo:Flight. NL You can no longer gain echo:Flight in this combat. NL Exhaust.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:SatisfyingStick": {
+    "NAME": "Satisfying Stick",
+    "DESCRIPTION": "If the target has echo:Sticky_Bombs, apply !M! echo:Sticky_Bombs.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

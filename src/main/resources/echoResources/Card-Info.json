@@ -74,5 +74,14 @@
     "M/Flight": 10,
     "+M": 5,
     "echo:M2/Grounded": 99
+  },
+  "echo:SatisfyingStick": {
+    "RARITY": "COMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "satisfying_stick.png",
+    "COST": 1,
+    "+COST": 0,
+    "M/Sticky Bombs": 4
   }
 }
