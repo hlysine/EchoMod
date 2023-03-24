@@ -66,7 +66,7 @@ public class EchoMod implements
     public static boolean reducedFullscreenEffects = false;
 
     // Character Color
-    public static final Color ECHO_COLOR = CardHelper.getColor(100, 76, 112);
+    public static final Color ECHO_COLOR = CardHelper.getColor(106, 110, 247);
 
     // Card backgrounds - The actual rectangular card.
     private static final String CARD_BG_ATTACK = "echoResources/images/cardui/bg_attack_512_blue.png";
