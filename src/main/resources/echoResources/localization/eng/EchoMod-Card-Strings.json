@@ -12,14 +12,14 @@
     "DESCRIPTION": "",
     "EXTENDED_DESCRIPTION": []
   },
-  "echo:EchoCeption": {
-    "NAME": "Echo-ception",
-    "DESCRIPTION": "echo:Charged: echo:duplicate Echo. NL Otherwise, gain !M! echo:Ultimate_Charge.",
+  "echo:Copy": {
+    "NAME": "Copy",
+    "DESCRIPTION": "echo:Charged: echo:duplicate a character.",
     "EXTENDED_DESCRIPTION": []
   },
-  "echo:EchoWho": {
-    "NAME": "Echo-who",
-    "DESCRIPTION": "echo:Charged: echo:duplicate a random character. NL Otherwise, add a random colorless card into your hand.",
+  "echo:SwayingBeam": {
+    "NAME": "Swaying Beam",
+    "DESCRIPTION": "Apply !M! Vulnerable. echo:Focused: deal !D! damage.",
     "EXTENDED_DESCRIPTION": []
   }
 }

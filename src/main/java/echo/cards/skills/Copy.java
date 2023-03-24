@@ -1,6 +1,5 @@
 package echo.cards.skills;
 
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -12,30 +11,24 @@ import echo.characters.Echo;
 import echo.mechanics.duplicate.ChargedChecker;
 import echo.subscribers.AfterCardUseSubscriber;
 
-public class EchoWho extends AbstractBaseCard implements AfterCardUseSubscriber {
+public class Copy extends AbstractBaseCard implements AfterCardUseSubscriber {
 
-    public static final String ID = EchoMod.makeID(EchoWho.class.getSimpleName());
+    public static final String ID = EchoMod.makeID(Copy.class.getSimpleName());
 
     private static final CardTarget TARGET = CardTarget.SELF;
 
-    private boolean isCharged = false;
-
-    public EchoWho() {
+    public Copy() {
         super(ID, TARGET);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.isCharged = ChargedChecker.isCharged();
-        if (!this.isCharged) {
-            addToBot(new MakeTempCardInHandAction(AbstractDungeon.returnTrulyRandomColorlessCardInCombat()));
-        }
     }
 
     @Override
     public void afterUse() {
-        if (this.isCharged) {
-            addToBot(new DuplicateRandomPlayerAction(new AbstractPlayer.PlayerClass[]{AbstractDungeon.player.chosenClass, Echo.Enums.ECHO}, true));
+        if (ChargedChecker.isCharged()) {
+            addToBot(new DuplicateRandomPlayerAction(new AbstractPlayer.PlayerClass[]{Echo.Enums.ECHO, AbstractDungeon.player.chosenClass}, true));
         }
     }
 

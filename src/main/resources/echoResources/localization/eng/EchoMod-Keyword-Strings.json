@@ -6,6 +6,12 @@
     "DESCRIPTION": "Effective when you have 10 #yUltimate #yCharge."
   },
   {
+    "NAMES": [
+      "focused"
+    ],
+    "DESCRIPTION": "Effective when the target is below #b50% HP."
+  },
+  {
     "PROPER_NAME": "Ultimate Charge",
     "NAMES": [
       "Ultimate Charge",

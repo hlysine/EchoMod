@@ -17,21 +17,22 @@
     "B": 5,
     "+B": 3
   },
-  "echo:EchoCeption": {
-    "RARITY": "UNCOMMON",
+  "echo:Copy": {
+    "RARITY": "BASIC",
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
-    "IMG": "echo_ception.png",
-    "COST": 2,
-    "+COST": 1,
-    "M/Ultimate Charge": 2
+    "IMG": "copy.png",
+    "COST": 3,
+    "+COST": 2
   },
-  "echo:EchoWho": {
-    "RARITY": "UNCOMMON",
-    "TYPE": "SKILL",
+  "echo:SwayingBeam": {
+    "RARITY": "BASIC",
+    "TYPE": "ATTACK",
     "COLOR": "ECHO_BLUE",
-    "IMG": "echo_who.png",
-    "COST": 2,
-    "+COST": 1
+    "IMG": "swaying_beam.png",
+    "COST": 1,
+    "M/Vulnerable": 1,
+    "D": 9,
+    "+D": 3
   }
 }
