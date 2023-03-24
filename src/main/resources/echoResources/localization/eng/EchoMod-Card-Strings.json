@@ -19,17 +19,22 @@
   },
   "echo:SwayingBeam": {
     "NAME": "Swaying Beam",
-    "DESCRIPTION": "Apply !M! Vulnerable. echo:Focused: deal !D! damage.",
+    "DESCRIPTION": "Apply !M! Vulnerable. NL echo:Focused: deal !D! damage.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:ShortFlight": {
     "NAME": "Short Flight",
-    "DESCRIPTION": "Gain !B! Block and !M! echo:Flight.",
+    "DESCRIPTION": "Gain !B! Block NL and !M! echo:Flight.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:InaccurateStick": {
     "NAME": "Inaccurate Stick",
     "DESCRIPTION": "Apply !M! echo:Sticky_Bombs to ALL enemies.",
+    "EXTENDED_DESCRIPTION": []
+  },
+  "echo:TriShot": {
+    "NAME": "Tri-Shot",
+    "DESCRIPTION": "{@@}Deal !D! damage !M! times. NL Draw !echo:M2! card{!echo:M2!|>1=s|@=}. NL Exhaust.",
     "EXTENDED_DESCRIPTION": []
   }
 }

@@ -53,5 +53,16 @@
     "COST": 2,
     "M/Sticky Bombs": 2,
     "+M": 1
+  },
+  "echo:TriShot": {
+    "RARITY": "SPECIAL",
+    "TYPE": "ATTACK",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "tri_shot.png",
+    "COST": 0,
+    "D": 1,
+    "+D": 1,
+    "M/Multi Hit": 3,
+    "echo:M2/Card Draw": 1
   }
 }
