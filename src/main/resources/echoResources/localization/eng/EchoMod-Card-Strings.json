@@ -46,5 +46,10 @@
     "NAME": "Satisfying Stick",
     "DESCRIPTION": "If the target has echo:Sticky_Bombs, apply !M! echo:Sticky_Bombs.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:FocusingBeam": {
+    "NAME": "Focusing Beam",
+    "DESCRIPTION": "{@@}echo:Focused: deal !D! damage !M! time{!M!|>1=s|@=}.",
+    "EXTENDED_DESCRIPTION": []
   }
 }
