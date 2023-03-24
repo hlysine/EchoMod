@@ -44,5 +44,14 @@
     "M/Flight": 1,
     "+M": 1,
     "B": 3
+  },
+  "echo:InaccurateStick": {
+    "RARITY": "COMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "inaccurate_stick.png",
+    "COST": 2,
+    "M/Sticky Bombs": 2,
+    "+M": 1
   }
 }

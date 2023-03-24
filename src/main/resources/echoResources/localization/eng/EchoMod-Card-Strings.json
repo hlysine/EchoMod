@@ -26,5 +26,10 @@
     "NAME": "Short Flight",
     "DESCRIPTION": "Gain !B! Block and !M! echo:Flight.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:InaccurateStick": {
+    "NAME": "Inaccurate Stick",
+    "DESCRIPTION": "Apply !M! echo:Sticky_Bombs to ALL enemies.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

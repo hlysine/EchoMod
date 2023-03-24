@@ -18,6 +18,15 @@
     "DESCRIPTION": "Receives #b50% less damage. Reduced by 1 when taken unblocked damage."
   },
   {
+    "NAMES": [
+      "Sticky Bomb",
+      "Sticky Bombs",
+      "sticky_bomb",
+      "sticky_bombs"
+    ],
+    "DESCRIPTION": "At end of round, explode one by one dealing damage equal to the number of #ySticky #yBombs remaining."
+  },
+  {
     "PROPER_NAME": "Ultimate Charge",
     "NAMES": [
       "Ultimate Charge",
