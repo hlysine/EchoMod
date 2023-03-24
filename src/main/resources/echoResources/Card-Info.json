@@ -34,5 +34,15 @@
     "M/Vulnerable": 1,
     "D": 9,
     "+D": 3
+  },
+  "echo:ShortFlight": {
+    "RARITY": "COMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "short_flight.png",
+    "COST": 1,
+    "M/Flight": 1,
+    "+M": 1,
+    "B": 3
   }
 }

@@ -12,6 +12,12 @@
     "DESCRIPTION": "Effective when the target is below #b50% HP."
   },
   {
+    "NAMES": [
+      "flight"
+    ],
+    "DESCRIPTION": "Receives #b50% less damage. Reduced by 1 when taken unblocked damage."
+  },
+  {
     "PROPER_NAME": "Ultimate Charge",
     "NAMES": [
       "Ultimate Charge",

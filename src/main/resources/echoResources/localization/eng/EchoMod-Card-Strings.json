@@ -21,5 +21,10 @@
     "NAME": "Swaying Beam",
     "DESCRIPTION": "Apply !M! Vulnerable. echo:Focused: deal !D! damage.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:ShortFlight": {
+    "NAME": "Short Flight",
+    "DESCRIPTION": "Gain !B! Block and !M! echo:Flight.",
+    "EXTENDED_DESCRIPTION": []
   }
 }
