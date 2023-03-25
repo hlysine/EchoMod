@@ -93,5 +93,14 @@
     "D": 2,
     "M/Multi Hit": 7,
     "+M": 2
+  },
+  "echo:FinalBlow": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "POWER",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "final_blow.png",
+    "COST": 1,
+    "M/Ultimate Charge": 5,
+    "+M": 2
   }
 }

@@ -1,10 +1,9 @@
 {
-  "echo:TimedDeathPower": {
-    "NAME": "Timed Death",
+  "echo:FinalBlowPower": {
+    "NAME": "Final Blow",
     "DESCRIPTIONS": [
-      "Die in #b",
-      " turns. There is no escape.",
-      "Die next turn. There is no escape."
+      "When an enemy dies, gain #b",
+      " #yUltimate #yCharge."
     ]
   },
   "echo:StickyBombPower": {

@@ -51,5 +51,10 @@
     "NAME": "Focusing Beam",
     "DESCRIPTION": "{@@}echo:Focused: deal !D! damage !M! time{!M!|>1=s|@=}.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:FinalBlow": {
+    "NAME": "Final Blow",
+    "DESCRIPTION": "When an enemy dies, gain !M! echo:Ultimate_Charge.",
+    "EXTENDED_DESCRIPTION": []
   }
 }
