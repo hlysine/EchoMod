@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class FocusedChecker {
     public static boolean isFocused(AbstractMonster target) {
-        return target.currentHealth <= target.maxHealth / 2;
+        return !target.isDeadOrEscaped() && target.currentHealth <= target.maxHealth / 2;
     }
 
     public static boolean anyFocused() {
