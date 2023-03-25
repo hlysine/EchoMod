@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import echo.EchoMod;
+import echo.effects.StickyBombEffect;
 import echo.util.TextureLoader;
 
 public class StickyBombPower extends AbstractPower implements CloneablePowerInterface {
@@ -39,6 +40,21 @@ public class StickyBombPower extends AbstractPower implements CloneablePowerInte
         this.region48 = new TextureAtlas.AtlasRegion(tex32, 0, 0, 32, 32);
 
         updateDescription();
+    }
+
+    @Override
+    public void onInitialApplication() {
+        for (int i = 0; i < 10 && i < this.amount; i++) {
+            AbstractDungeon.effectList.add(new StickyBombEffect(this.owner, i * 0.2f));
+        }
+    }
+
+    @Override
+    public void stackPower(int stackAmount) {
+        super.stackPower(stackAmount);
+        for (int i = 0; i < 10 && i < stackAmount; i++) {
+            AbstractDungeon.effectList.add(new StickyBombEffect(this.owner, i * 0.2f));
+        }
     }
 
     @Override
