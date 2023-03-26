@@ -40,5 +40,17 @@
     "DESCRIPTIONS": [
       "Return to Echo when you die or when you end your turn."
     ]
+  },
+  "echo:MayhemFormPower": {
+    "NAME": "Mayhem Form",
+    "DESCRIPTIONS": [
+      "At the end of your turn, gain #b",
+      " #yFlight, #b",
+      " #yFlight, #b",
+      " #yUltimate #yCharge and apply #b",
+      " #yUltimate #yCharge and apply #b",
+      " #ySticky #yBomb to ALL enemies.",
+      " #ySticky #yBombs to ALL enemies."
+    ]
   }
 }

@@ -56,5 +56,10 @@
     "NAME": "Final Blow",
     "DESCRIPTION": "When an enemy dies, gain !M! echo:Ultimate_Charge.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:MayhemForm": {
+    "NAME": "Mayhem Form",
+    "DESCRIPTION": "{@@}At the end of your turn, gain !M! echo:Flight, !echo:M2! echo:Ultimate_Charge and apply !M! {!M!|>1=echo:Sticky_Bombs|@=echo:Sticky_Bomb} to ALL enemies.",
+    "EXTENDED_DESCRIPTION": []
   }
 }
