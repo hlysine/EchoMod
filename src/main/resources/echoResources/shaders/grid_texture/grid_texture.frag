@@ -30,6 +30,10 @@ uniform float contrast = 2;
 
 uniform bool grayscale = false;
 
+uniform float radius = 10000.0;
+uniform float border_width = 50.0;
+uniform vec2 center = vec2(0, 0);
+
 float sineWave(float offset, float period) {
     return (sin((time / period + offset) * 2.0 * 3.1415926) + 1.0) / 2.0;
 }
@@ -68,13 +72,13 @@ vec4 gradient(vec2 tc, vec2 texSize) {
 void main()
 {
     vec4 texColor = texture2D(u_texture, v_texCoords);
+    vec2 texSize = vec2(res_x, res_y);
+    vec2 tc = v_texCoords * texSize;
+
     vec4 finalColor;
     if (texColor.a < 0.01) {
         finalColor = v_color * texColor;
     } else {
-        vec2 texSize = vec2(res_x, res_y);
-        vec2 tc = v_texCoords * texSize;
-
         vec4 gradientColor = gradient(tc, texSize);
         vec4 gridColor = grid(tc, texSize);
 
@@ -87,6 +91,13 @@ void main()
     if (grayscale) {
         float gray = dot(finalColor.rgb, vec3(0.299, 0.587, 0.114));
         finalColor = vec4(gray, gray, gray, finalColor.a);
+    }
+
+    float dist_from_center = length(tc - center);
+    if (dist_from_center > radius) {
+        finalColor = finalColor * vec4(1.0, 1.0, 1.0, 0.0);
+    } else if (dist_from_center > radius - border_width) {
+        finalColor = finalColor * vec4(1.0, 1.0, 1.0, 1.0 - (dist_from_center - (radius - border_width)) / border_width);
     }
 
     gl_FragColor = finalColor;

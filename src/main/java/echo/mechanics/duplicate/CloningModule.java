@@ -196,6 +196,7 @@ public class CloningModule {
 
         newPlayer.healthBarUpdatedEvent();
         newPlayer.showHealthBar();
+        CloneVfx.visibleRadius = 0;
     }
 
     public static void stopCloning() {
@@ -242,6 +243,7 @@ public class CloningModule {
 
         originalPlayer.healthBarUpdatedEvent();
         originalPlayer.showHealthBar();
+        CloneVfx.visibleRadius = 0;
     }
 
     private static void clearCardQueues() {

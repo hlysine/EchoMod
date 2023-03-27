@@ -25,6 +25,7 @@ public class CloneVfx implements PreUpdateSubscriber {
     private static final ShaderProgram gridShader;
     private static final ShaderProgram cardShader;
     public static float cloneVfxTimer = 0.0f;
+    public static float visibleRadius = 0.0f;
     public static FrameBuffer fbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false, false);
     public static TextureRegion fboRegion = new TextureRegion(fbo.getColorBufferTexture());
 
@@ -96,6 +97,9 @@ public class CloneVfx implements PreUpdateSubscriber {
             gridShader.setUniformf("time", cloneVfxTimer);
             gridShader.setUniformf("period", 5.0f);
             gridShader.setUniformi("grayscale", 0);
+            gridShader.setUniformf("center", player.hb.cX, player.hb.cY);
+            gridShader.setUniformf("radius", visibleRadius);
+            visibleRadius = Math.min(10000f, visibleRadius + 5f);
             gridShader.end();
 
             ShaderProgram oldShader = sb.getShader();
@@ -115,6 +119,7 @@ public class CloneVfx implements PreUpdateSubscriber {
             gridShader.setUniformf("time", cloneVfxTimer);
             gridShader.setUniformf("period", 5.0f);
             gridShader.setUniformi("grayscale", relic.grayscale ? 1 : 0);
+            gridShader.setUniformf("radius", 10000f);
             gridShader.end();
 
             prevShader = sb.getShader();

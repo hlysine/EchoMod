@@ -43,7 +43,7 @@ public class DuplicateEffect extends AbstractGameEffect {
     @Override
     public void update() {
         this.duration -= Gdx.graphics.getDeltaTime();
-        if (this.duration < startingDuration / 2f && this.action != null) {
+        if ((this.duration < startingDuration / 2f || EchoMod.reducedFullscreenEffects) && this.action != null) {
             this.action.run();
             this.action = null;
         }
