@@ -171,5 +171,22 @@
     "COST": 1,
     "+COST": 0,
     "D": 99999
+  },
+  "echo:CassidyCopy": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "cassidy_copy.png",
+    "COST": 2
+  },
+  "echo:EchoHighNoon": {
+    "RARITY": "SPECIAL",
+    "TYPE": "ATTACK",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "echo_high_noon.png",
+    "COST": 2,
+    "D": 0,
+    "+D": 10,
+    "M/Damage scaling": 10
   }
 }

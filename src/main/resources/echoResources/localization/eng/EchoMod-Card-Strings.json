@@ -106,5 +106,15 @@
     "NAME": "This Ends Now...",
     "DESCRIPTION": "echo:Charged: deal !D! damage. NL Exhaust.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:CassidyCopy": {
+    "NAME": "Cassidy Copy",
+    "DESCRIPTION": "{@@}echo:Charged: add an *Echo-High *Noon{!Upgrades!|0=|@=+} to your hand. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": []
+  },
+  "echo:EchoHighNoon": {
+    "NAME": "Echo-High Noon",
+    "DESCRIPTION": "Retain. NL Deal !D! damage to ALL enemies. NL When Retained, increase damage by !M!. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": []
   }
 }
