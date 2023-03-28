@@ -61,5 +61,10 @@
     "NAME": "Mayhem Form",
     "DESCRIPTION": "{@@}At the end of your turn, gain !M! echo:Flight, !echo:M2! echo:Ultimate_Charge and apply !M! {!M!|>1=echo:Sticky_Bombs|@=echo:Sticky_Bomb} to ALL enemies.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:FlexibleCopy": {
+    "NAME": "Flexible Copy",
+    "DESCRIPTION": "{@@}echo:Charged: echo:duplicate a character. NL Otherwise, draw !M! card{!M!|>1=s|@=}.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

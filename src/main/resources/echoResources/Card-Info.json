@@ -113,5 +113,14 @@
     "+M": 1,
     "echo:M2/2 times M": 2,
     "+echo:M2": 2
+  },
+  "echo:FlexibleCopy": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "flexible_copy.png",
+    "COST": 2,
+    "M/Card draw": 3,
+    "+M": 1
   }
 }
