@@ -1,9 +1,15 @@
 [
   {
     "NAMES": [
+      "fatal"
+    ],
+    "DESCRIPTION": "Triggers whenever this card kills an enemy of any type."
+  },
+  {
+    "NAMES": [
       "charged"
     ],
-    "DESCRIPTION": "Effective when you have 10 #yUltimate #yCharge."
+    "DESCRIPTION": "When you have 10 #yUltimate #yCharge, lose all #yUltimate #yCharge and trigger this effect."
   },
   {
     "NAMES": [

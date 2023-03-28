@@ -81,5 +81,15 @@
     "NAME": "Evasive Copy",
     "DESCRIPTION": "{@@}echo:Charged: echo:duplicate a character. NL Gain !M! echo:Flight for each Skill you play while duplicating.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:GenjiCopy": {
+    "NAME": "Genji Copy",
+    "DESCRIPTION": "{@@}echo:Charged: add an *Echo-blade{!Upgrades!|0=|@=+} to your hand. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": []
+  },
+  "echo:EchoBlade": {
+    "NAME": "Echo-Blade",
+    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL If echo:Fatal, copy this card to your hand. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

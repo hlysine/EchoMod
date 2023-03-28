@@ -131,5 +131,21 @@
     "COST": 2,
     "M/Evasive copy power": 1,
     "+M": 1
+  },
+  "echo:GenjiCopy": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "genji_copy.png",
+    "COST": 2
+  },
+  "echo:EchoBlade": {
+    "RARITY": "SPECIAL",
+    "TYPE": "ATTACK",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "echo_blade.png",
+    "COST": 1,
+    "+COST": 0,
+    "D": 30
   }
 }
