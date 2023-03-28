@@ -1,4 +1,19 @@
 {
+  "echo:ChargedCard": {
+    "NAME": "Charged Card",
+    "DESCRIPTION": "",
+    "EXTENDED_DESCRIPTION": [
+      "I need more #rUltimate #rCharge."
+    ]
+  },
+  "echo:FocusedCard": {
+    "NAME": "Focused Card",
+    "DESCRIPTION": "",
+    "EXTENDED_DESCRIPTION": [
+      "I cannot #rFocus anyone.",
+      "I cannot #rFocus this target."
+    ]
+  },
   "echo:Strike": {
     "NAME": "Strike",
     "DESCRIPTION": "Deal !D! damage."
@@ -6,11 +21,6 @@
   "echo:Defend": {
     "NAME": "Defend",
     "DESCRIPTION": "Gain !B! Block."
-  },
-  "echo:AbstractBaseCard": {
-    "NAME": "Abstract Echo Card",
-    "DESCRIPTION": "",
-    "EXTENDED_DESCRIPTION": []
   },
   "echo:Copy": {
     "NAME": "Copy",

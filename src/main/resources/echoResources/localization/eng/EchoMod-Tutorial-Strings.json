@@ -8,7 +8,7 @@
       "Select cards"
     ]
   },
-  "echo:DuplicatePlayerAction": {
+  "echo:ChargedChecker": {
     "TEXT": [
       "I need more #rUltimate #rCharge."
     ],

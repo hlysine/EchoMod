@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.screens.custom.CustomModeCharacterButton;
 import echo.EchoMod;
 import echo.actions.DiscoveryChooseCharacterAction;
 import echo.mechanics.duplicate.CardTransformer;
+import echo.mechanics.duplicate.ChargedChecker;
 import echo.mechanics.duplicate.EnemyMapping;
 
 import java.util.*;
@@ -50,6 +51,15 @@ public class DuplicateRandomPlayerAction extends AbstractGameAction {
 
     @Override
     public void update() {
+        if (AbstractDungeon.getCurrRoom().isBattleEnding()) {
+            this.isDone = true;
+            return;
+        }
+        if (requiresUltimateCharge && !ChargedChecker.consumeCharge()) {
+            this.isDone = true;
+            return;
+        }
+
         List<AbstractPlayer.PlayerClass> classes = Arrays.stream(AbstractPlayer.PlayerClass.values())
                 .filter(c -> Arrays.stream(excludedClasses).noneMatch(e -> e == c))
                 .collect(Collectors.toList());
@@ -86,7 +96,7 @@ public class DuplicateRandomPlayerAction extends AbstractGameAction {
         addToTop(new DiscoveryChooseCharacterAction(new ArrayList<>(choiceMap.values()), tutorialStrings.TEXT[0], tutorialStrings.TEXT[1], card -> {
             card.unhover();
             CharacterChoice finalChoice = choiceMap.get(card);
-            addToTop(new DuplicatePlayerAction(finalChoice.chosenClass, finalChoice.decks, requiresUltimateCharge));
+            addToTop(new DuplicatePlayerAction(finalChoice.chosenClass, finalChoice.decks, false));
         }));
 
         isDone = true;
