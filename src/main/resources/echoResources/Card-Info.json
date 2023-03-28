@@ -144,9 +144,9 @@
     "TYPE": "ATTACK",
     "COLOR": "ECHO_BLUE",
     "IMG": "echo_blade.png",
-    "COST": 1,
-    "+COST": 0,
-    "D": 30
+    "COST": 0,
+    "D": 30,
+    "+D": 5
   },
   "echo:SojournCopy": {
     "RARITY": "UNCOMMON",
