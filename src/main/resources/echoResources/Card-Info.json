@@ -147,5 +147,29 @@
     "COST": 1,
     "+COST": 0,
     "D": 30
+  },
+  "echo:SojournCopy": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "sojourn_copy.png",
+    "COST": 2
+  },
+  "echo:EchoOverclock": {
+    "RARITY": "SPECIAL",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "echo_overclock.png",
+    "COST": 1,
+    "+COST": 0
+  },
+  "echo:ThisEndsNow": {
+    "RARITY": "SPECIAL",
+    "TYPE": "ATTACK",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "this_ends_now.png",
+    "COST": 1,
+    "+COST": 0,
+    "D": 99999
   }
 }

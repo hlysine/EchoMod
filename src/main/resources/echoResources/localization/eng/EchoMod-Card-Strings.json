@@ -91,5 +91,20 @@
     "NAME": "Echo-Blade",
     "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL If echo:Fatal, copy this card to your hand. NL Exhaust.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:SojournCopy": {
+    "NAME": "Sojourn Copy",
+    "DESCRIPTION": "{@@}echo:Charged: add an *Echo-Overclock{!Upgrades!|0=|@=+} to your hand. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": []
+  },
+  "echo:EchoOverclock": {
+    "NAME": "Echo-Overclock",
+    "DESCRIPTION": "{@@}echo:Charged: add a *This *Ends *Now{!Upgrades!|0=|@=+} to your hand. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": []
+  },
+  "echo:ThisEndsNow": {
+    "NAME": "This Ends Now...",
+    "DESCRIPTION": "echo:Charged: deal !D! damage. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

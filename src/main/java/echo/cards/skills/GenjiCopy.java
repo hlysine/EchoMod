@@ -19,7 +19,7 @@ public class GenjiCopy extends ChargedCard {
         super(ID, TARGET, true);
 
         this.exhaust = true;
-        this.cardsToPreview = new EchoBlade();
+        this.cardsToPreview = getCardsToPreview();
     }
 
     @Override
