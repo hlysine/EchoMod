@@ -76,5 +76,10 @@
     "NAME": "Flexible Copy",
     "DESCRIPTION": "{@@}echo:Charged: echo:duplicate a character. NL Otherwise, draw !M! card{!M!|>1=s|@=}.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:EvasiveCopy": {
+    "NAME": "Evasive Copy",
+    "DESCRIPTION": "{@@}echo:Charged: echo:duplicate a character. NL Gain !M! echo:Flight for each Skill you play while duplicating.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

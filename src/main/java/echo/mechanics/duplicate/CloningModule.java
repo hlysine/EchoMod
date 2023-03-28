@@ -23,6 +23,7 @@ import com.megacrit.cardcrawl.relics.SlaversCollar;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import echo.powers.DuplicatePower;
+import echo.subscribers.DuplicateSubscriber;
 import echo.util.RunnableAction;
 import thePackmaster.SpireAnniversary5Mod;
 import thePackmaster.ThePackmaster;
@@ -197,6 +198,19 @@ public class CloningModule {
         newPlayer.healthBarUpdatedEvent();
         newPlayer.showHealthBar();
         CloneVfx.visibleRadius = 0;
+
+        for (AbstractPower power : AbstractDungeon.player.powers) {
+            if (power instanceof DuplicateSubscriber) {
+                DuplicateSubscriber subscriber = (DuplicateSubscriber) power;
+                subscriber.afterDuplicateStart();
+            }
+        }
+        for (AbstractRelic relic : AbstractDungeon.player.relics) {
+            if (relic instanceof DuplicateSubscriber) {
+                DuplicateSubscriber subscriber = (DuplicateSubscriber) relic;
+                subscriber.afterDuplicateStart();
+            }
+        }
     }
 
     public static void stopCloning() {
@@ -244,6 +258,19 @@ public class CloningModule {
         originalPlayer.healthBarUpdatedEvent();
         originalPlayer.showHealthBar();
         CloneVfx.visibleRadius = 0;
+
+        for (AbstractPower power : AbstractDungeon.player.powers) {
+            if (power instanceof DuplicateSubscriber) {
+                DuplicateSubscriber subscriber = (DuplicateSubscriber) power;
+                subscriber.afterDuplicateEnd();
+            }
+        }
+        for (AbstractRelic relic : AbstractDungeon.player.relics) {
+            if (relic instanceof DuplicateSubscriber) {
+                DuplicateSubscriber subscriber = (DuplicateSubscriber) relic;
+                subscriber.afterDuplicateEnd();
+            }
+        }
     }
 
     private static void clearCardQueues() {

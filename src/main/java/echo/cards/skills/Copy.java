@@ -7,6 +7,7 @@ import echo.EchoMod;
 import echo.actions.duplicate.DuplicateRandomPlayerAction;
 import echo.cards.ChargedCard;
 import echo.characters.Echo;
+import echo.mechanics.duplicate.ChargedChecker;
 import echo.subscribers.AfterCardUseSubscriber;
 
 public class Copy extends ChargedCard implements AfterCardUseSubscriber {
@@ -25,6 +26,8 @@ public class Copy extends ChargedCard implements AfterCardUseSubscriber {
 
     @Override
     public void afterUse() {
-        addToBot(new DuplicateRandomPlayerAction(new AbstractPlayer.PlayerClass[]{Echo.Enums.ECHO, AbstractDungeon.player.chosenClass}, true));
+        if (ChargedChecker.isCharged()) {
+            addToBot(new DuplicateRandomPlayerAction(new AbstractPlayer.PlayerClass[]{Echo.Enums.ECHO, AbstractDungeon.player.chosenClass}, true));
+        }
     }
 }
