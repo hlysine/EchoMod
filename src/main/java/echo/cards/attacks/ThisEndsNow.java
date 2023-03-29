@@ -21,6 +21,7 @@ public class ThisEndsNow extends ChargedCard {
         super(ID, TARGET, true);
 
         this.exhaust = true;
+        this.isEthereal = true;
     }
 
     @Override
