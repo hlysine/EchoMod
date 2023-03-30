@@ -30,7 +30,7 @@ public class GroundedPower extends AbstractPower implements CloneablePowerInterf
         this.owner = owner;
         this.amount = amount;
 
-        type = PowerType.BUFF;
+        type = PowerType.DEBUFF;
         isTurnBased = true;
 
         this.region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, 84, 84);
