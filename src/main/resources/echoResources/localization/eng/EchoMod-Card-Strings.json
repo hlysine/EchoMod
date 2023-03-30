@@ -55,7 +55,10 @@
   "echo:SatisfyingStick": {
     "NAME": "Satisfying Stick",
     "DESCRIPTION": "If the target has echo:Sticky_Bombs, apply !M! echo:Sticky_Bombs.",
-    "EXTENDED_DESCRIPTION": []
+    "EXTENDED_DESCRIPTION": [
+      "No target has #rSticky #rBombs.",
+      "The target has no #rSticky #rBombs."
+    ]
   },
   "echo:FocusingBeam": {
     "NAME": "Focusing Beam",

@@ -30,6 +30,22 @@ public class SatisfyingStick extends AbstractBaseCard {
     }
 
     @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
+        boolean canUse = super.canUse(p, m);
+        if (!canUse) return false;
+        if (m == null) {
+            if (AbstractDungeon.getMonsters().monsters.stream().noneMatch(mo -> mo.powers.stream().anyMatch(pow -> pow instanceof StickyBombPower))) {
+                this.cantUseMessage = cardStrings.EXTENDED_DESCRIPTION[0];
+                return false;
+            }
+        } else if (m.powers.stream().noneMatch(pow -> pow instanceof StickyBombPower)) {
+            this.cantUseMessage = cardStrings.EXTENDED_DESCRIPTION[1];
+            return false;
+        }
+        return true;
+    }
+
+    @Override
     public void triggerOnGlowCheck() {
         if (AbstractDungeon.getMonsters().monsters.stream().anyMatch(m -> m.powers.stream().anyMatch(pow -> pow instanceof StickyBombPower))) {
             this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
