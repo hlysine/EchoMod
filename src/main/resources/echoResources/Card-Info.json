@@ -188,5 +188,22 @@
     "D": 0,
     "+D": 10,
     "M/Damage scaling": 10
+  },
+  "echo:HandReload": {
+    "RARITY": "COMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "hand_reload.png",
+    "COST": 2,
+    "M/Tri-shot count": 4
+  },
+  "echo:AutoReload": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "POWER",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "auto_reload.png",
+    "COST": 1,
+    "M/Tri-shot count": 1,
+    "+M": 1
   }
 }

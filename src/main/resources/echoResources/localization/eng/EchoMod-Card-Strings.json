@@ -119,5 +119,15 @@
     "NAME": "Echo-High Noon",
     "DESCRIPTION": "Retain. NL Deal !D! damage to ALL enemies. NL When Retained, increase damage by !M!. NL Exhaust.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:HandReload": {
+    "NAME": "Hand Reload",
+    "DESCRIPTION": "{@@}Shuffle !M! *Tri-Shot{!Upgrades!|0=|@=+} into your draw pile.",
+    "EXTENDED_DESCRIPTION": []
+  },
+  "echo:AutoReload": {
+    "NAME": "Auto Reload",
+    "DESCRIPTION": "{@@}At the start of your turn, shuffle {!M!|1=a|@=!M!} *Tri-Shot into your draw pile.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

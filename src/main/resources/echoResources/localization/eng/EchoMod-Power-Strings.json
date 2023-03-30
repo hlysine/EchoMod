@@ -60,5 +60,13 @@
       " #yFlight for each Skill you play while duplicating.",
       " #yFlight for each Skill you play while duplicating."
     ]
+  },
+  "echo:AutoReloadPower": {
+    "NAME": "Auto Reload",
+    "DESCRIPTIONS": [
+      "At the start of your turn, shuffle #b",
+      " #yTri-Shot into your draw pile.",
+      " #yTri-Shot into your draw pile."
+    ]
   }
 }
