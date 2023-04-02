@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import echo.EchoMod;
 import echo.mechanics.focused.FocusedChecker;
+import echo.patches.cards.CustomCardTags;
 
 public abstract class FocusedCard extends AbstractBaseCard {
 
@@ -16,6 +17,7 @@ public abstract class FocusedCard extends AbstractBaseCard {
     public FocusedCard(String id, CardTarget target, boolean enforcePlayability) {
         super(id, target);
         this.enforcePlayability = enforcePlayability;
+        this.tags.add(CustomCardTags.FOCUSED);
     }
 
     @Override

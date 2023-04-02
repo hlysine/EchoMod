@@ -134,5 +134,10 @@
     "NAME": "Efficient Copy",
     "DESCRIPTION": "{@@}Whenever you echo:Duplicate, gain [E] and draw !M! card{!M!|>1=s|@=}.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:Hyperfocus": {
+    "NAME": "Hyperfocus",
+    "DESCRIPTION": "echo:Focused: Move all echo:Focused cards from your discard pile to your hand.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

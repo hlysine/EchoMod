@@ -214,5 +214,13 @@
     "COST": 2,
     "+COST": 1,
     "M/Power amount": 1
+  },
+  "echo:Hyperfocus": {
+    "RARITY": "RARE",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "hyperfocus.png",
+    "COST": 1,
+    "+COST": 0
   }
 }

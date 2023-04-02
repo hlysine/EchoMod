@@ -6,4 +6,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 public class CustomCardTags {
     @SpireEnum
     public static AbstractCard.CardTags STICK;
+
+    @SpireEnum
+    public static AbstractCard.CardTags FOCUSED;
+
+    @SpireEnum
+    public static AbstractCard.CardTags CHARGED;
 }
