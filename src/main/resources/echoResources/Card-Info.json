@@ -205,5 +205,14 @@
     "COST": 1,
     "M/Tri-shot count": 1,
     "+M": 1
+  },
+  "echo:EfficientCopy": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "POWER",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "efficient_copy.png",
+    "COST": 1,
+    "+COST": 0,
+    "M/Power amount": 1
   }
 }

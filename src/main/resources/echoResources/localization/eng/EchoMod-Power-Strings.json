@@ -32,7 +32,7 @@
   "echo:UltimateChargePower": {
     "NAME": "Ultimate Charge",
     "DESCRIPTIONS": [
-      "You can #yDuplicate when you have #b10 #yUltimate #yCharge."
+      "You can #yDuplicate or play other #yCharged cards when you have #b10 #yUltimate #yCharge."
     ]
   },
   "echo:DuplicatePower": {
@@ -67,6 +67,14 @@
       "At the start of your turn, shuffle #b",
       " #yTri-Shot into your draw pile.",
       " #yTri-Shot into your draw pile."
+    ]
+  },
+  "echo:EfficientCopyPower": {
+    "NAME": "Efficient Copy",
+    "DESCRIPTIONS": [
+      "Whenever you #yDuplicate, draw #b",
+      " card.",
+      " cards."
     ]
   }
 }

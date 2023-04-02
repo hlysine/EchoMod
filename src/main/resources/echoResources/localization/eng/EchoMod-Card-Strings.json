@@ -129,5 +129,10 @@
     "NAME": "Auto Reload",
     "DESCRIPTION": "{@@}At the start of your turn, shuffle {!M!|1=a|@=!M!} *Tri-Shot into your draw pile.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:EfficientCopy": {
+    "NAME": "Efficient Copy",
+    "DESCRIPTION": "{@@}Whenever you echo:Duplicate, draw !M! card{!M!|>1=s|@=}.",
+    "EXTENDED_DESCRIPTION": []
   }
 }
