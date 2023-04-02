@@ -144,5 +144,12 @@
     "NAME": "Flash Beam",
     "DESCRIPTION": "echo:Focused: deal !D! damage.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:ComboBurst": {
+    "NAME": "Combo Burst",
+    "DESCRIPTION": "Deal damage equal to !M! times the number of *Tri-Shot in exhaust pile.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (Deals !D! damage.)"
+    ]
   }
 }

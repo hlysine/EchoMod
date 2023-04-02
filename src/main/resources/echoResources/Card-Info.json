@@ -231,5 +231,14 @@
     "COST": 0,
     "D": 12,
     "+D": 4
+  },
+  "echo:ComboBurst": {
+    "RARITY": "RARE",
+    "TYPE": "ATTACK",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "combo_burst.png",
+    "COST": 2,
+    "M": 3,
+    "+M": 3
   }
 }
