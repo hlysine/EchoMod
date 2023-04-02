@@ -222,5 +222,14 @@
     "IMG": "hyperfocus.png",
     "COST": 1,
     "+COST": 0
+  },
+  "echo:FlashBeam": {
+    "RARITY": "COMMON",
+    "TYPE": "ATTACK",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "flash_beam.png",
+    "COST": 0,
+    "D": 12,
+    "+D": 4
   }
 }

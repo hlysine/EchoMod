@@ -139,5 +139,10 @@
     "NAME": "Hyperfocus",
     "DESCRIPTION": "echo:Focused: Move all echo:Focused cards from your discard pile to your hand.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:FlashBeam": {
+    "NAME": "Flash Beam",
+    "DESCRIPTION": "echo:Focused: deal !D! damage.",
+    "EXTENDED_DESCRIPTION": []
   }
 }
