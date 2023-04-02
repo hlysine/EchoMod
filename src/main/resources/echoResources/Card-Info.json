@@ -211,8 +211,8 @@
     "TYPE": "POWER",
     "COLOR": "ECHO_BLUE",
     "IMG": "efficient_copy.png",
-    "COST": 1,
-    "+COST": 0,
+    "COST": 2,
+    "+COST": 1,
     "M/Power amount": 1
   }
 }

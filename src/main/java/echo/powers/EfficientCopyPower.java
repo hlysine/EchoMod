@@ -4,6 +4,7 @@ import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -42,12 +43,13 @@ public class EfficientCopyPower extends AbstractPower implements CloneablePowerI
     @Override
     public void afterDuplicateStart() {
         addToBot(new RunnableAction(this::flash));
+        addToBot(new GainEnergyAction(amount));
         addToBot(new DrawCardAction(amount));
     }
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + describeNumber(this.amount, 1);
+        description = DESCRIPTIONS[0] + describeNumber(this.amount, 1) + describeNumber(this.amount, 3);
     }
 
     private String describeNumber(int number, int singularIndex) {

@@ -72,7 +72,9 @@
   "echo:EfficientCopyPower": {
     "NAME": "Efficient Copy",
     "DESCRIPTIONS": [
-      "Whenever you #yDuplicate, draw #b",
+      "Whenever you #yDuplicate, gain #b",
+      " [E] and draw #b",
+      " [E] and draw #b",
       " card.",
       " cards."
     ]
