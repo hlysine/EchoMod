@@ -151,5 +151,12 @@
     "EXTENDED_DESCRIPTION": [
       " NL (Deals !D! damage.)"
     ]
+  },
+  "echo:HitAndRun": {
+    "NAME": "Hit and Run",
+    "DESCRIPTION": "Deal !D! damage. NL If the enemy intends to attack, gain !M! echo:Flight.",
+    "EXTENDED_DESCRIPTION": [
+      "That enemy does not intend to attack!"
+    ]
   }
 }
