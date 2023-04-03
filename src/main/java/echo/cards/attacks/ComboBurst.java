@@ -18,8 +18,6 @@ public class ComboBurst extends AbstractBaseCard {
 
     public ComboBurst() {
         super(ID, TARGET);
-
-        this.cardsToPreview = new TriShot();
     }
 
     @Override

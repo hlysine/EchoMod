@@ -137,7 +137,9 @@
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "genji_copy.png",
-    "COST": 2
+    "COST": 2,
+    "PREVIEW": "echo:EchoBlade",
+    "+PREVIEW": "+echo:EchoBlade"
   },
   "echo:EchoBlade": {
     "RARITY": "SPECIAL",
@@ -153,7 +155,9 @@
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "sojourn_copy.png",
-    "COST": 2
+    "COST": 2,
+    "PREVIEW": "echo:EchoOverclock",
+    "+PREVIEW": "+echo:EchoOverclock"
   },
   "echo:EchoOverclock": {
     "RARITY": "SPECIAL",
@@ -161,7 +165,9 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "echo_overclock.png",
     "COST": 1,
-    "+COST": 0
+    "+COST": 0,
+    "PREVIEW": "echo:ThisEndsNow",
+    "+PREVIEW": "+echo:ThisEndsNow"
   },
   "echo:ThisEndsNow": {
     "RARITY": "SPECIAL",
@@ -177,7 +183,9 @@
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "cassidy_copy.png",
-    "COST": 2
+    "COST": 2,
+    "PREVIEW": "echo:EchoHighNoon",
+    "+PREVIEW": "+echo:EchoHighNoon"
   },
   "echo:EchoHighNoon": {
     "RARITY": "SPECIAL",
@@ -195,6 +203,8 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "hand_reload.png",
     "COST": 2,
+    "PREVIEW": "echo:TriShot",
+    "+PREVIEW": "+echo:TriShot",
     "M/Tri-shot count": 4
   },
   "echo:AutoReload": {
@@ -203,6 +213,7 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "auto_reload.png",
     "COST": 1,
+    "PREVIEW": "echo:TriShot",
     "M/Tri-shot count": 1,
     "+M": 1
   },
@@ -238,6 +249,7 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "combo_burst.png",
     "COST": 2,
+    "PREVIEW": "echo:TriShot",
     "M": 3,
     "+M": 3
   }

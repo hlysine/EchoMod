@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import echo.EchoMod;
 import echo.cards.AbstractBaseCard;
-import echo.cards.attacks.TriShot;
 import echo.powers.AutoReloadPower;
 
 public class AutoReload extends AbstractBaseCard {
@@ -16,8 +15,6 @@ public class AutoReload extends AbstractBaseCard {
 
     public AutoReload() {
         super(ID, TARGET);
-
-        this.cardsToPreview = new TriShot();
     }
 
     @Override
