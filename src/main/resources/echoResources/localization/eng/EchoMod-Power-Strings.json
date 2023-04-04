@@ -78,5 +78,14 @@
       " card.",
       " cards."
     ]
+  },
+  "echo:FastGenerationPower": {
+    "NAME": "Fast Generation",
+    "DESCRIPTIONS": [
+      "When in #yDuplicate, gain #b",
+      " #yUltimate #yCharge for every #b",
+      " damage dealt. NL ( Deal #b",
+      " more damage for the next #yUltimate #yCharge. )"
+    ]
   }
 }

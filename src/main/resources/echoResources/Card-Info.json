@@ -271,5 +271,15 @@
     "COST": 2,
     "+COST": 1,
     "M/Intangible power": 1
+  },
+  "echo:FastGeneration": {
+    "RARITY": "RARE",
+    "TYPE": "POWER",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "fast_generation.png",
+    "COST": 1,
+    "M/Fast Generation power": 1,
+    "echo:M2/Damage per Ult Charge": 6,
+    "+echo:M2": -2
   }
 }

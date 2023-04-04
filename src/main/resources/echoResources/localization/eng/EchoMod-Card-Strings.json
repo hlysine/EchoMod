@@ -163,5 +163,10 @@
     "NAME": "Invulnerability Frame",
     "DESCRIPTION": "echo:Charged: gain !M! Intangible.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:FastGeneration": {
+    "NAME": "Fast Generation",
+    "DESCRIPTION": "When in echo:Duplicate, gain !M! echo:Ultimate_Charge for every !echo:M2! damage dealt.",
+    "EXTENDED_DESCRIPTION": []
   }
 }
