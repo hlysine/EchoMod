@@ -262,5 +262,14 @@
     "D": 5,
     "+D": 3,
     "M/Flight power": 2
+  },
+  "echo:InvulnerabilityFrame": {
+    "RARITY": "RARE",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "invulnerability_frame.png",
+    "COST": 2,
+    "+COST": 1,
+    "M/Intangible power": 1
   }
 }

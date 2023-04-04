@@ -158,5 +158,10 @@
     "EXTENDED_DESCRIPTION": [
       "That enemy does not intend to attack!"
     ]
+  },
+  "echo:InvulnerabilityFrame": {
+    "NAME": "Invulnerability Frame",
+    "DESCRIPTION": "echo:Charged: gain !M! Intangible.",
+    "EXTENDED_DESCRIPTION": []
   }
 }
