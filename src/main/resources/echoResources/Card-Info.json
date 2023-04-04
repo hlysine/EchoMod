@@ -281,5 +281,16 @@
     "M/Fast Generation power": 1,
     "echo:M2/Damage per Ult Charge": 6,
     "+echo:M2": -2
+  },
+  "echo:MeleeCombo": {
+    "RARITY": "COMMON",
+    "TYPE": "ATTACK",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "melee_combo.png",
+    "COST": 1,
+    "PREVIEW": "echo:TriShot",
+    "D": 7,
+    "+D": 3,
+    "M/Tri-shot count": 1
   }
 }
