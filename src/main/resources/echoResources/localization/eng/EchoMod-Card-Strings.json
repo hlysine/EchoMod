@@ -173,5 +173,12 @@
     "NAME": "Melee Combo",
     "DESCRIPTION": "{@@}Deal !D! damage. NL Shuffle {!M!|1=a|@=!M!} *Tri-Shot into your draw pile.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:GroundCover": {
+    "NAME": "Ground Cover",
+    "DESCRIPTION": "If you have no echo:Flight, NL gain !B! Block.",
+    "EXTENDED_DESCRIPTION": [
+      "I already have #rFlight."
+    ]
   }
 }
