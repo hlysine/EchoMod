@@ -180,5 +180,12 @@
     "EXTENDED_DESCRIPTION": [
       "I already have #rFlight."
     ]
+  },
+  "echo:AerialAgility": {
+    "NAME": "Aerial Agility",
+    "DESCRIPTION": "Gain !M! Block for every echo:Flight you have.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (Gains !B! Block.)"
+    ]
   }
 }

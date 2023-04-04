@@ -301,5 +301,14 @@
     "COST": 1,
     "B": 11,
     "+B": 3
+  },
+  "echo:AerialAgility": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "aerial_agility.png",
+    "COST": 2,
+    "M/Block per Flight": 2,
+    "+M": 1
   }
 }
