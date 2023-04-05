@@ -72,7 +72,7 @@
   },
   "echo:MayhemForm": {
     "NAME": "Mayhem Form",
-    "DESCRIPTION": "{@@}At the end of your turn, gain !M! echo:Flight, !echo:M2! echo:Ultimate_Charge and apply !M! {!M!|>1=echo:Sticky_Bombs|@=echo:Sticky_Bomb} to ALL enemies.",
+    "DESCRIPTION": "{@@}At the end of your turn, gain !M! echo:Flight, !echo:M2! echo:Ultimate_Charge and apply !M! echo:Sticky_Bomb{!M!|>1=s|@=} to ALL enemies.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:FlexibleCopy": {
@@ -186,6 +186,20 @@
     "DESCRIPTION": "Gain !M! Block for every echo:Flight you have.",
     "EXTENDED_DESCRIPTION": [
       " NL (Gains !B! Block.)"
+    ]
+  },
+  "echo:CombatInitiation": {
+    "NAME": "Combat Initiation",
+    "DESCRIPTION": "Apply echo:Sticky_Bombs until the target has at least !M!.",
+    "EXTENDED_DESCRIPTION": [
+      "Too many #rSticky #rBombs already."
+    ]
+  },
+  "echo:LongRangeTarget": {
+    "NAME": "Long Range Target",
+    "DESCRIPTION": "{@@}If you have echo:Flight, NL apply !M! echo:Sticky_Bomb{!M!|>1=s|@=}.",
+    "EXTENDED_DESCRIPTION": [
+      "I don't have #rFlight."
     ]
   }
 }

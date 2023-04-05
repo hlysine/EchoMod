@@ -310,5 +310,23 @@
     "COST": 2,
     "M/Block per Flight": 2,
     "+M": 1
+  },
+  "echo:CombatInitiation": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "combat_initiation.png",
+    "COST": 1,
+    "M/Max Sticky Bombs": 3,
+    "+M": 1
+  },
+  "echo:LongRangeTarget": {
+    "RARITY": "COMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "long_range_target.png",
+    "COST": 1,
+    "M/Sticky Bombs": 2,
+    "+M": 1
   }
 }

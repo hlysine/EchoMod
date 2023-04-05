@@ -74,4 +74,14 @@ public class StickyBombPower extends AbstractPower implements CloneablePowerInte
     public AbstractPower makeCopy() {
         return new StickyBombPower(owner, amount);
     }
+
+    public static int getAmount(AbstractCreature creature) {
+        int amount = 0;
+        for (AbstractPower power : creature.powers) {
+            if (power instanceof StickyBombPower) {
+                amount += power.amount;
+            }
+        }
+        return amount;
+    }
 }
