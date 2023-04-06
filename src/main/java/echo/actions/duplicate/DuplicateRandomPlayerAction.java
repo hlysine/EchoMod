@@ -117,7 +117,36 @@ public class DuplicateRandomPlayerAction extends AbstractGameAction {
         public static CharacterChoice constructChoice(AbstractPlayer.PlayerClass chosenClass, Random rng) {
             CardTransformer cardTransformer = new CardTransformer(rng, AbstractDungeon.player.chosenClass, chosenClass);
             CardTransformer.Decks decks = cardTransformer.transform(CardTransformer.Decks.extractFromPlayer(AbstractDungeon.player));
-            AbstractCard cardToPreview = decks.hand.stream().max(Comparator.comparingInt(CharacterChoice::getImportance)).orElse(null);
+            AbstractCard.CardColor targetCardColor = BaseMod.findCharacter(chosenClass).getCardColor();
+            AbstractCard cardToPreview = decks.hand.stream()
+                    .filter(card -> card.color == targetCardColor)
+                    .max(Comparator.comparingInt(CharacterChoice::getImportance))
+                    .orElse(null);
+
+            if (cardToPreview != null) {
+                cardToPreview.beginGlowing();
+            } else {
+                cardToPreview = decks.masterDeck.stream()
+                        .filter(card -> card.color == targetCardColor)
+                        .max(Comparator.comparingInt(CharacterChoice::getImportance))
+                        .orElse(null);
+                if (cardToPreview != null) {
+                    cardToPreview.stopGlowing();
+                } else {
+                    cardToPreview = decks.hand.stream()
+                            .max(Comparator.comparingInt(CharacterChoice::getImportance))
+                            .map(AbstractCard::makeSameInstanceOf)
+                            .orElse(null);
+                    if (cardToPreview != null) {
+                        cardToPreview.stopGlowing();
+                    } else {
+                        cardToPreview = decks.masterDeck.stream()
+                                .max(Comparator.comparingInt(CharacterChoice::getImportance))
+                                .map(AbstractCard::makeSameInstanceOf)
+                                .orElse(null);
+                    }
+                }
+            }
 
             CharacterChoice choice = new CharacterChoice(chosenClass, decks, cardToPreview);
             choice.button = new CustomModeCharacterButton(BaseMod.findCharacter(chosenClass), false);
