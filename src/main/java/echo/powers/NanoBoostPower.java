@@ -49,7 +49,7 @@ public class NanoBoostPower extends AbstractPower implements CloneablePowerInter
 
     @Override
     public void playApplyPowerSfx() {
-        SfxStore.NANO_BOOST_START.play(0.05f);
+        SfxStore.NANO_BOOST_APPLY.play(0.05f);
     }
 
     @Override
