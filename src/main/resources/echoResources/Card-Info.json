@@ -357,5 +357,14 @@
     "D": 4,
     "+D": 3,
     "M/Ult Charge": 2
+  },
+  "echo:NanoBoost": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "POWER",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "nano_boost.png",
+    "COST": 2,
+    "+COST": 1,
+    "M/Nano Boost power": 1
   }
 }

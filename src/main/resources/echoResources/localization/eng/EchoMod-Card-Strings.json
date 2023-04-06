@@ -216,5 +216,10 @@
     "NAME": "Generative Strike",
     "DESCRIPTION": "Deal !D! damage. NL Gain !M! echo:Ultimate_Charge.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:NanoBoost": {
+    "NAME": "Nano Boost",
+    "DESCRIPTION": "{@@}For !M! round{!M!|>1=s|@=}, NL deal 50% more damage and take 50% less damage.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

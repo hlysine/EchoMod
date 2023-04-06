@@ -95,5 +95,13 @@
       " round, enable #yFocused effects on targets with #ySticky #yBombs.",
       " rounds, enable #yFocused effects on targets with #ySticky #yBombs."
     ]
+  },
+  "echo:NanoBoostPower": {
+    "NAME": "Nano Boost",
+    "DESCRIPTIONS": [
+      "For #b",
+      " round, deal #b50% more damage and take #b50% less damage.",
+      " rounds, deal #b50% more damage and take #b50% less damage."
+    ]
   }
 }

@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import echo.cards.AbstractBaseCard;
 import echo.characters.Echo;
+import echo.effects.SfxStore;
 import echo.patches.metrics.DevCommandsMetricPatch;
 import echo.potions.ButterflyInAJar;
 import echo.relics.AbstractBaseRelic;
@@ -50,7 +51,8 @@ public class EchoMod implements
         EditStringsSubscriber,
         EditKeywordsSubscriber,
         EditCharactersSubscriber,
-        PostInitializeSubscriber {
+        PostInitializeSubscriber,
+        AddAudioSubscriber {
 
     public static final Logger logger = LogManager.getLogger(EchoMod.class.getName());
     private static String modID;
@@ -136,6 +138,10 @@ public class EchoMod implements
 
     public static String makeShaderPath(String resourcePath) {
         return getModID() + "Resources/shaders/" + resourcePath;
+    }
+
+    public static String makeSoundPath(String resourcePath) {
+        return getModID() + "Resources/sounds/" + resourcePath;
     }
 
     public static SpireConfig getConfig() throws IOException {
@@ -276,6 +282,11 @@ public class EchoMod implements
         BaseMod.addSaveField(EchoMod.makeID(DevCommandsMetricPatch.DevCommandsMetricSavable.class.getSimpleName()), new DevCommandsMetricPatch.DevCommandsMetricSavable());
 
         logger.info("Done loading badge image and mod options");
+    }
+
+    @Override
+    public void receiveAddAudio() {
+        SfxStore.initialize();
     }
 
     public void receiveEditPotions() {
