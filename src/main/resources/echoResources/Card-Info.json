@@ -338,5 +338,14 @@
     "D": 7,
     "+D": 3,
     "M/Stun monster": 1
+  },
+  "echo:StickyFlare": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "sticky_flare.png",
+    "COST": 1,
+    "+COST": 0,
+    "M/Sticky Flare power": 1
   }
 }

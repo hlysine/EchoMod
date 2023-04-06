@@ -87,5 +87,13 @@
       " damage dealt. NL ( Deal #b",
       " more damage for the next #yUltimate #yCharge. )"
     ]
+  },
+  "echo:StickyFlarePower": {
+    "NAME": "Sticky Flare",
+    "DESCRIPTIONS": [
+      "For #b",
+      " round, enable #yFocused effects on targets with #ySticky #yBombs.",
+      " rounds, enable #yFocused effects on targets with #ySticky #yBombs."
+    ]
   }
 }
