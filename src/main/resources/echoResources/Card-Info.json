@@ -366,5 +366,13 @@
     "COST": 2,
     "+COST": 1,
     "M/Nano Boost power": 1
+  },
+  "echo:MirroredFinisher": {
+    "RARITY": "RARE",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "mirrored_finisher.png",
+    "COST": 3,
+    "+COST": 2
   }
 }

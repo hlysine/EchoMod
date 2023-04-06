@@ -221,5 +221,10 @@
     "NAME": "Nano Boost",
     "DESCRIPTION": "{@@}For !M! round{!M!|>1=s|@=}, NL deal 50% more damage and take 50% less damage.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:MirroredFinisher": {
+    "NAME": "Mirrored Finisher",
+    "DESCRIPTION": "echo:Focused: echo:Duplicate a character without needing echo:Ultimate_Charge. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": []
   }
 }
