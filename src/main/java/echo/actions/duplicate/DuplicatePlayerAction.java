@@ -5,9 +5,11 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import echo.effects.DuplicateEffect;
+import echo.effects.SfxStore;
 import echo.mechanics.duplicate.CardTransformer;
 import echo.mechanics.duplicate.ChargedChecker;
 import echo.mechanics.duplicate.CloningModule;
+import echo.util.RunnableAction;
 
 public class DuplicatePlayerAction extends AbstractGameAction {
 
@@ -36,6 +38,9 @@ public class DuplicatePlayerAction extends AbstractGameAction {
                 return;
             }
             CloningModule.preCloneSetup();
+            addToBot(new RunnableAction(
+                    () -> SfxStore.DUPLICATE_START.play(0.05f)
+            ));
             addToBot(new VFXAction(AbstractDungeon.player, new DuplicateEffect(() -> {
                 CloningModule.startCloning(DuplicatePlayerAction.this.playerClass, this.duplicateDeck);
             }), DuplicateEffect.DURATION, true));

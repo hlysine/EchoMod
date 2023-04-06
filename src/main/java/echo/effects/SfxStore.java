@@ -5,7 +5,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import echo.EchoMod;
 
 public enum SfxStore {
-    NANO_BOOST_START("NANO_BOOST_START", "nano_boost_start.ogg");
+    NANO_BOOST_START("NANO_BOOST_START", "nano_boost_start.ogg"),
+    DUPLICATE_START("DUPLICATE_START", "duplicate_start.ogg"),
+    DUPLICATE_END("DUPLICATE_END", "duplicate_end.ogg");
 
     private final String key;
     private final String path;
