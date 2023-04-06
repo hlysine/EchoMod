@@ -211,5 +211,10 @@
     "NAME": "Sticky Flare",
     "DESCRIPTION": "{@@}For !M! round{!M!|>1=s|@=}, NL enable echo:Focused effects on targets with echo:Sticky_Bombs.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:GenerativeStrike": {
+    "NAME": "Generative Strike",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! echo:Ultimate_Charge.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

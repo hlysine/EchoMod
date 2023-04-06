@@ -347,5 +347,15 @@
     "COST": 1,
     "+COST": 0,
     "M/Sticky Flare power": 1
+  },
+  "echo:GenerativeStrike": {
+    "RARITY": "COMMON",
+    "TYPE": "ATTACK",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "generative_strike.png",
+    "COST": 0,
+    "D": 4,
+    "+D": 3,
+    "M/Ult Charge": 2
   }
 }
