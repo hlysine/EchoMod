@@ -374,5 +374,15 @@
     "IMG": "mirrored_finisher.png",
     "COST": 3,
     "+COST": 2
+  },
+  "echo:Fixation": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "ATTACK",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "fixation.png",
+    "COST": 1,
+    "D": 5,
+    "+D": 3,
+    "M/Fixated power": 1
   }
 }

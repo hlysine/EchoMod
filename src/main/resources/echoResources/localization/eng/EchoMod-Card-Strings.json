@@ -226,5 +226,10 @@
     "NAME": "Mirrored Finisher",
     "DESCRIPTION": "echo:Focused: echo:Duplicate a character without needing echo:Ultimate_Charge. NL Exhaust.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:Fixation": {
+    "NAME": "Fixation",
+    "DESCRIPTION": "{@@}Deal !D! damage. NL Enable echo:Focused effect on the next {!M!|1= |@=!M! }card{!M!|>1=s|@=} you play.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

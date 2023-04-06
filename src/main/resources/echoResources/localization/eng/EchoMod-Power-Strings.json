@@ -103,5 +103,13 @@
       " round, deal #b50% more damage and take #b50% less damage.",
       " rounds, deal #b50% more damage and take #b50% less damage."
     ]
+  },
+  "echo:FixatedPower": {
+    "NAME": "Fixated",
+    "DESCRIPTIONS": [
+      "Enable #yFocused effect on the next card you play.",
+      "Enable #yFocused effect on the next #b",
+      " cards you play."
+    ]
   }
 }
