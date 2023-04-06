@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import echo.EchoMod;
+import echo.effects.SfxStore;
 import echo.util.TextureLoader;
 
 public class FlightPower extends AbstractPower implements CloneablePowerInterface {
@@ -37,6 +38,11 @@ public class FlightPower extends AbstractPower implements CloneablePowerInterfac
         this.region48 = new TextureAtlas.AtlasRegion(tex32, 0, 0, 32, 32);
 
         updateDescription();
+    }
+
+    @Override
+    public void playApplyPowerSfx() {
+        SfxStore.FLIGHT_APPLY.play(0.05f);
     }
 
     private void consumeFlight() {
@@ -75,11 +81,6 @@ public class FlightPower extends AbstractPower implements CloneablePowerInterfac
         if (info.owner != null && damageAmount > 0) {
             consumeFlight();
         }
-    }
-
-    @Override
-    public void playApplyPowerSfx() {
-        CardCrawlGame.sound.play("POWER_FLIGHT", 0.05F);
     }
 
     @Override

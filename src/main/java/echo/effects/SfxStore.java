@@ -7,6 +7,7 @@ import echo.EchoMod;
 public enum SfxStore {
     NANO_BOOST_APPLY("NANO_BOOST_APPLY", "nano_boost_apply.ogg"),
     STICKY_BOMB_APPLY("STICKY_BOMB_APPLY", "sticky_bomb_apply.ogg"),
+    FLIGHT_APPLY("FLIGHT_APPLY", "flight_apply.ogg"),
     DUPLICATE_START("DUPLICATE_START", "duplicate_start.ogg"),
     DUPLICATE_END("DUPLICATE_END", "duplicate_end.ogg");
 
