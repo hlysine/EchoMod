@@ -134,7 +134,7 @@ public class CloningModule {
         newPlayer.orbs = originalPlayer.orbs;
         newPlayer.maxOrbs = originalPlayer.maxOrbs;
         int newMaxOrbs = newPlayer.masterMaxOrbs + originalPlayer.maxOrbs - originalPlayer.masterMaxOrbs;
-        newMaxOrbs = Math.min(10, newMaxOrbs);
+        newMaxOrbs = Math.max(0, Math.min(10, newMaxOrbs));
         while (newPlayer.maxOrbs != newMaxOrbs) {
             if (newPlayer.maxOrbs < newMaxOrbs) {
                 newPlayer.increaseMaxOrbSlots(1, false);
@@ -236,7 +236,7 @@ public class CloningModule {
         originalPlayer.orbs = newPlayer.orbs;
         originalPlayer.maxOrbs = newPlayer.maxOrbs;
         int newMaxOrbs = originalPlayer.masterMaxOrbs + newPlayer.maxOrbs - newPlayer.masterMaxOrbs;
-        newMaxOrbs = Math.min(10, newMaxOrbs);
+        newMaxOrbs = Math.max(0, Math.min(10, newMaxOrbs));
         while (originalPlayer.maxOrbs != newMaxOrbs) {
             if (originalPlayer.maxOrbs < newMaxOrbs) {
                 originalPlayer.increaseMaxOrbSlots(1, false);
