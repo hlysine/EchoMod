@@ -21,6 +21,11 @@ public abstract class ChargedCard extends AbstractBaseCard {
     }
 
     @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        ChargedChecker.consumeCharge();
+    }
+
+    @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         boolean canUse = super.canUse(p, m);
         if (!canUse) return false;

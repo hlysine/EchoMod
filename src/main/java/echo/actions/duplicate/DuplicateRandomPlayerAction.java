@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.screens.custom.CustomModeCharacterButton;
 import echo.EchoMod;
 import echo.actions.DiscoveryChooseCharacterAction;
 import echo.mechanics.duplicate.CardTransformer;
-import echo.mechanics.duplicate.ChargedChecker;
 import echo.mechanics.duplicate.EnemyMapping;
 
 import java.util.*;
@@ -24,38 +23,30 @@ public class DuplicateRandomPlayerAction extends AbstractGameAction {
     private static final int CHOICES = 3;
     private final AbstractPlayer.PlayerClass[] excludedClasses;
     private final Random rng;
-    private final boolean requiresUltimateCharge;
 
     /**
      * Duplicate a random player class.
      *
-     * @param excludedClasses        The player classes that cannot be duplicated.
-     * @param rng                    The random number generator to use.
-     * @param requiresUltimateCharge Whether Ultimate Charge is required and consumed for this duplication.
+     * @param excludedClasses The player classes that cannot be duplicated.
+     * @param rng             The random number generator to use.
      */
-    public DuplicateRandomPlayerAction(AbstractPlayer.PlayerClass[] excludedClasses, Random rng, boolean requiresUltimateCharge) {
+    public DuplicateRandomPlayerAction(AbstractPlayer.PlayerClass[] excludedClasses, Random rng) {
         this.excludedClasses = excludedClasses;
         this.rng = rng;
-        this.requiresUltimateCharge = requiresUltimateCharge;
     }
 
     /**
      * Duplicate a random player class using the card random RNG.
      *
      * @param excludedClasses        The player classes that cannot be duplicated.
-     * @param requiresUltimateCharge Whether Ultimate Charge is required and consumed for this duplication.
      */
-    public DuplicateRandomPlayerAction(AbstractPlayer.PlayerClass[] excludedClasses, boolean requiresUltimateCharge) {
-        this(excludedClasses, AbstractDungeon.cardRandomRng, requiresUltimateCharge);
+    public DuplicateRandomPlayerAction(AbstractPlayer.PlayerClass[] excludedClasses) {
+        this(excludedClasses, AbstractDungeon.cardRandomRng);
     }
 
     @Override
     public void update() {
         if (AbstractDungeon.getCurrRoom().isBattleEnding()) {
-            this.isDone = true;
-            return;
-        }
-        if (requiresUltimateCharge && !ChargedChecker.consumeCharge()) {
             this.isDone = true;
             return;
         }
@@ -96,7 +87,7 @@ public class DuplicateRandomPlayerAction extends AbstractGameAction {
         addToTop(new DiscoveryChooseCharacterAction(new ArrayList<>(choiceMap.values()), tutorialStrings.TEXT[0], tutorialStrings.TEXT[1], card -> {
             card.unhover();
             CharacterChoice finalChoice = choiceMap.get(card);
-            addToTop(new DuplicatePlayerAction(finalChoice.chosenClass, finalChoice.decks, false));
+            addToTop(new DuplicatePlayerAction(finalChoice.chosenClass, finalChoice.decks));
         }));
 
         isDone = true;

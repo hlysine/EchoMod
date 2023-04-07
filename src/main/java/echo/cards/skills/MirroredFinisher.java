@@ -7,7 +7,6 @@ import echo.EchoMod;
 import echo.actions.duplicate.DuplicateRandomPlayerAction;
 import echo.cards.FocusedCard;
 import echo.characters.Echo;
-import echo.mechanics.focused.FocusedChecker;
 import echo.subscribers.AfterCardUseSubscriber;
 
 public class MirroredFinisher extends FocusedCard implements AfterCardUseSubscriber {
@@ -28,8 +27,6 @@ public class MirroredFinisher extends FocusedCard implements AfterCardUseSubscri
 
     @Override
     public void afterUse() {
-        if (FocusedChecker.anyFocused()) {
-            addToBot(new DuplicateRandomPlayerAction(new AbstractPlayer.PlayerClass[]{Echo.Enums.ECHO, AbstractDungeon.player.chosenClass}, false));
-        }
+        addToBot(new DuplicateRandomPlayerAction(new AbstractPlayer.PlayerClass[]{Echo.Enums.ECHO, AbstractDungeon.player.chosenClass}));
     }
 }

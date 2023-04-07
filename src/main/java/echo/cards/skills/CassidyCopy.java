@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import echo.EchoMod;
 import echo.cards.ChargedCard;
-import echo.mechanics.duplicate.ChargedChecker;
 
 public class CassidyCopy extends ChargedCard {
 
@@ -21,8 +20,7 @@ public class CassidyCopy extends ChargedCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (ChargedChecker.consumeCharge()) {
-            addToBot(new MakeTempCardInHandAction(this.cardsToPreview));
-        }
+        super.use(p, m);
+        addToBot(new MakeTempCardInHandAction(this.cardsToPreview));
     }
 }

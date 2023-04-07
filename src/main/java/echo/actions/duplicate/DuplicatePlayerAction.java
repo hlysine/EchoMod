@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import echo.effects.DuplicateEffect;
 import echo.effects.SfxStore;
 import echo.mechanics.duplicate.CardTransformer;
-import echo.mechanics.duplicate.ChargedChecker;
 import echo.mechanics.duplicate.CloningModule;
 import echo.util.RunnableAction;
 
@@ -15,28 +14,21 @@ public class DuplicatePlayerAction extends AbstractGameAction {
 
     private final AbstractPlayer.PlayerClass playerClass;
     private final CardTransformer.Decks duplicateDeck;
-    private final boolean requiresUltimateCharge;
 
     /**
      * Duplicate a player class, causing the player to become that class, affecting energy, cards, relics and more.
      *
-     * @param playerClass            The player class to duplicate.
-     * @param duplicateDeck          The deck to use when duplicating, can be null.
-     * @param requiresUltimateCharge Whether Ultimate Charge is required and consumed for this duplication.
+     * @param playerClass   The player class to duplicate.
+     * @param duplicateDeck The deck to use when duplicating, can be null.
      */
-    public DuplicatePlayerAction(AbstractPlayer.PlayerClass playerClass, CardTransformer.Decks duplicateDeck, boolean requiresUltimateCharge) {
+    public DuplicatePlayerAction(AbstractPlayer.PlayerClass playerClass, CardTransformer.Decks duplicateDeck) {
         this.playerClass = playerClass;
         this.duplicateDeck = duplicateDeck;
-        this.requiresUltimateCharge = requiresUltimateCharge;
     }
 
     @Override
     public void update() {
         if (!AbstractDungeon.getCurrRoom().isBattleEnding()) {
-            if (this.requiresUltimateCharge && !ChargedChecker.consumeCharge()) {
-                this.isDone = true;
-                return;
-            }
             CloningModule.preCloneSetup();
             addToBot(new RunnableAction(
                     () -> SfxStore.DUPLICATE_START.play(0.05f)

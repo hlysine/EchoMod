@@ -17,18 +17,23 @@ public class FlexibleCopy extends ChargedCard implements AfterCardUseSubscriber 
 
     private static final CardTarget TARGET = CardTarget.SELF;
 
+    private boolean charged;
+
     public FlexibleCopy() {
         super(ID, TARGET, false);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        charged = ChargedChecker.isCharged();
+        if (charged)
+            super.use(p, m);
     }
 
     @Override
     public void afterUse() {
-        if (ChargedChecker.isCharged()) {
-            addToBot(new DuplicateRandomPlayerAction(new AbstractPlayer.PlayerClass[]{Echo.Enums.ECHO, AbstractDungeon.player.chosenClass}, true));
+        if (charged) {
+            addToBot(new DuplicateRandomPlayerAction(new AbstractPlayer.PlayerClass[]{Echo.Enums.ECHO, AbstractDungeon.player.chosenClass}));
         } else {
             addToBot(new DrawCardAction(magicNumber));
         }

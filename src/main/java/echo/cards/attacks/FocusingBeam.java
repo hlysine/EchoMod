@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import echo.EchoMod;
 import echo.cards.FocusedCard;
-import echo.mechanics.focused.FocusedChecker;
 
 public class FocusingBeam extends FocusedCard {
 
@@ -21,10 +20,8 @@ public class FocusingBeam extends FocusedCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (FocusedChecker.isFocused(m)) {
-            for (int i = 0; i < magicNumber; i++) {
-                addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SMASH, true));
-            }
+        for (int i = 0; i < magicNumber; i++) {
+            addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SMASH, true));
         }
     }
 }

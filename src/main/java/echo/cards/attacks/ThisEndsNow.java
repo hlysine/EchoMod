@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 import echo.EchoMod;
 import echo.cards.ChargedCard;
-import echo.mechanics.duplicate.ChargedChecker;
 
 public class ThisEndsNow extends ChargedCard {
 
@@ -26,9 +25,8 @@ public class ThisEndsNow extends ChargedCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (ChargedChecker.consumeCharge()) {
-            addToBot(new VFXAction(new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal)));
-            addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.NONE));
-        }
+        super.use(p, m);
+        addToBot(new VFXAction(new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal)));
+        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.NONE));
     }
 }
