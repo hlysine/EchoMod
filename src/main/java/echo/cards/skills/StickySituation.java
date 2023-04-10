@@ -10,7 +10,6 @@ import echo.EchoMod;
 import echo.cards.AbstractBaseCard;
 import echo.patches.cards.CustomCardTags;
 import echo.powers.StickyBombPower;
-import echo.util.RunnableAction;
 
 public class StickySituation extends AbstractBaseCard {
 
@@ -26,13 +25,11 @@ public class StickySituation extends AbstractBaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new RunnableAction(() -> {
-            int count = (int) m.powers.stream().filter(pow -> pow.type == AbstractPower.PowerType.DEBUFF).count();
-            if (count > 0) {
-                addToBot(new ApplyPowerAction(m, p, new StickyBombPower(m, count * magicNumber)));
-            } else {
-                AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, cardStrings.EXTENDED_DESCRIPTION[0], true));
-            }
-        }));
+        int count = (int) m.powers.stream().filter(pow -> pow.type == AbstractPower.PowerType.DEBUFF).count();
+        if (count > 0) {
+            addToBot(new ApplyPowerAction(m, p, new StickyBombPower(m, count * magicNumber)));
+        } else {
+            AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, cardStrings.EXTENDED_DESCRIPTION[0], true));
+        }
     }
 }
