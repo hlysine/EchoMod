@@ -384,5 +384,14 @@
     "D": 5,
     "+D": 3,
     "M/Fixated power": 1
+  },
+  "echo:StickySituation": {
+    "RARITY": "COMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "sticky_situation.png",
+    "COST": 1,
+    "+COST": 0,
+    "M/Sticky Bomb power": 1
   }
 }
