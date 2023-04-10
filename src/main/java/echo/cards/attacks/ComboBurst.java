@@ -35,6 +35,7 @@ public class ComboBurst extends AbstractBaseCard {
         addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
     }
 
+    @Override
     public void applyPowers() {
         int triShotCount = 0;
         for (AbstractCard card : AbstractDungeon.player.exhaustPile.group) {
@@ -51,11 +52,13 @@ public class ComboBurst extends AbstractBaseCard {
         }
     }
 
+    @Override
     public void onMoveToDiscard() {
         this.rawDescription = cardStrings.DESCRIPTION;
         initializeDescription();
     }
 
+    @Override
     public void calculateCardDamage(AbstractMonster mo) {
         super.calculateCardDamage(mo);
         this.rawDescription = cardStrings.DESCRIPTION;

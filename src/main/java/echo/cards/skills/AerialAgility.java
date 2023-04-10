@@ -35,6 +35,7 @@ public class AerialAgility extends AbstractBaseCard {
             addToBot(new GainBlockAction(p, block));
     }
 
+    @Override
     public void applyPowers() {
         int flightCount = 0;
         for (AbstractPower power : AbstractDungeon.player.powers) {
@@ -51,11 +52,13 @@ public class AerialAgility extends AbstractBaseCard {
         }
     }
 
+    @Override
     public void onMoveToDiscard() {
         this.rawDescription = cardStrings.DESCRIPTION;
         initializeDescription();
     }
 
+    @Override
     public void calculateCardDamage(AbstractMonster mo) {
         super.calculateCardDamage(mo);
         this.rawDescription = cardStrings.DESCRIPTION;
