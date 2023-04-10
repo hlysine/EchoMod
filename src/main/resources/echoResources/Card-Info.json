@@ -446,5 +446,12 @@
     "IMG": "reevaluation.png",
     "COST": 2,
     "M/Plated Armor power": 1
+  },
+  "echo:EchoedAggression": {
+    "RARITY": "RARE",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "echoed_aggression.png",
+    "COST": 0
   }
 }

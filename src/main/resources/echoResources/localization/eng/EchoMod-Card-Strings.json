@@ -272,5 +272,12 @@
     "EXTENDED_DESCRIPTION": [
       "I have no #runplayable #rcards."
     ]
+  },
+  "echo:EchoedAggression": {
+    "NAME": "Echoed Aggression",
+    "DESCRIPTION": "{@@}echo:Constant. NL If in echo:Duplicate, modify all Attacks to cost 0 until played.{!Upgrades!|0= NL Exhaust.|@=}",
+    "EXTENDED_DESCRIPTION": [
+      "I am not in #rDuplicate."
+    ]
   }
 }
