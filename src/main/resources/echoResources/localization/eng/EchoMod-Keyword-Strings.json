@@ -25,6 +25,12 @@
   },
   {
     "NAMES": [
+      "constant"
+    ],
+    "DESCRIPTION": "This card is not transformed when #yDuplicating."
+  },
+  {
+    "NAMES": [
       "Sticky Bomb",
       "Sticky Bombs",
       "sticky_bomb",

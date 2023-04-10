@@ -12,4 +12,7 @@ public class CustomCardTags {
 
     @SpireEnum
     public static AbstractCard.CardTags CHARGED;
+
+    @SpireEnum
+    public static AbstractCard.CardTags CONSTANT;
 }

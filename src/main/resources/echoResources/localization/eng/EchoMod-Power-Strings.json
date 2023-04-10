@@ -117,5 +117,12 @@
     "DESCRIPTIONS": [
       "Whenever you #yDuplicate, upgrade all duplicated cards."
     ]
+  },
+  "echo:VirtualizedShieldPower": {
+    "NAME": "Virtualized Shield",
+    "DESCRIPTIONS": [
+      "This round, gain #b",
+      " Block whenever you play a non-Echo card."
+    ]
   }
 }

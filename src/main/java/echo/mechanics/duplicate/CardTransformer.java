@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import echo.patches.cards.CustomCardTags;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -45,6 +46,12 @@ public class CardTransformer {
         for (AbstractCard card : cards) {
             if (card.color != fromColor) {
                 newCards.add(card.makeSameInstanceOf());
+                continue;
+            }
+            if (card.tags.contains(CustomCardTags.CONSTANT)) {
+                AbstractCard newCopy = card.makeSameInstanceOf();
+                newCards.add(newCopy);
+                newCopy.superFlash();
                 continue;
             }
 
