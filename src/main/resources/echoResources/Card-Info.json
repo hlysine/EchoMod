@@ -402,5 +402,13 @@
     "COST": 2,
     "M/Flight power": 1,
     "+M": 1
+  },
+  "echo:DeepLearning": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "POWER",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "deep_learning.png",
+    "COST": 2,
+    "+COST": 1
   }
 }

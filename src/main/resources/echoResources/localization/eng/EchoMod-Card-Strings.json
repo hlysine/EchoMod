@@ -245,5 +245,10 @@
     "EXTENDED_DESCRIPTION": [
       "I have no #rbuffs."
     ]
+  },
+  "echo:DeepLearning": {
+    "NAME": "Deep Learning",
+    "DESCRIPTION": "Whenever you echo:Duplicate, NL upgrade all duplicated cards.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

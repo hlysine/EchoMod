@@ -44,7 +44,7 @@ public class CardTransformer {
         ArrayList<AbstractCard> newCards = new ArrayList<>();
         for (AbstractCard card : cards) {
             if (card.color != fromColor) {
-                newCards.add(card);
+                newCards.add(card.makeSameInstanceOf());
                 continue;
             }
 

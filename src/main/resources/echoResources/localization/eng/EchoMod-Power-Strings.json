@@ -111,5 +111,11 @@
       "Enable #yFocused effect on the next #b",
       " cards you play."
     ]
+  },
+  "echo:DeepLearningPower": {
+    "NAME": "Deep Learning",
+    "DESCRIPTIONS": [
+      "Whenever you #yDuplicate, upgrade all duplicated cards."
+    ]
   }
 }
