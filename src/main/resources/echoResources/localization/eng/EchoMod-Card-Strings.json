@@ -255,5 +255,10 @@
     "NAME": "Virtualized Shield",
     "DESCRIPTION": "echo:Constant. NL This round, gain !M! Block whenever you play a non-Echo card.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:ChargeConversion": {
+    "NAME": "Charge Conversion",
+    "DESCRIPTION": "{@@}Lose !M! echo:Ultimate_Charge. NL Gain {!echo:M2!|1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!echo:M2! [E]}.",
+    "EXTENDED_DESCRIPTION": []
   }
 }
