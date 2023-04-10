@@ -429,5 +429,14 @@
     "M/Ult Charge lost": 2,
     "echo:M2/Energy gain": 2,
     "+echo:M2": 1
+  },
+  "echo:PassiveGeneration": {
+    "RARITY": "COMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "passive_generation.png",
+    "COST": 1,
+    "M/Energy gain": 1,
+    "echo:M2/Energy gain increase": 1
   }
 }
