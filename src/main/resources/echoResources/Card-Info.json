@@ -393,5 +393,14 @@
     "COST": 1,
     "+COST": 0,
     "M/Sticky Bomb power": 1
+  },
+  "echo:AdaptiveFlight": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "adaptive_flight.png",
+    "COST": 2,
+    "M/Flight power": 1,
+    "+M": 1
   }
 }
