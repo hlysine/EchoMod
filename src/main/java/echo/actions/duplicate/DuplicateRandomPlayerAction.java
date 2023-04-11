@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.screens.custom.CustomModeCharacterButton;
 import echo.EchoMod;
 import echo.actions.DiscoveryChooseCharacterAction;
 import echo.mechanics.duplicate.CardTransformer;
+import echo.mechanics.duplicate.DuplicatedDecks;
 import echo.mechanics.duplicate.EnemyMapping;
 
 import java.util.*;
@@ -95,11 +96,11 @@ public class DuplicateRandomPlayerAction extends AbstractGameAction {
 
     public static class CharacterChoice {
         public final AbstractPlayer.PlayerClass chosenClass;
-        public final CardTransformer.Decks decks;
+        public final DuplicatedDecks decks;
         public final AbstractCard cardToPreview;
         public CustomModeCharacterButton button;
 
-        private CharacterChoice(AbstractPlayer.PlayerClass chosenClass, CardTransformer.Decks decks, AbstractCard cardToPreview) {
+        private CharacterChoice(AbstractPlayer.PlayerClass chosenClass, DuplicatedDecks decks, AbstractCard cardToPreview) {
             this.chosenClass = chosenClass;
             this.decks = decks;
             this.cardToPreview = cardToPreview;
@@ -107,7 +108,7 @@ public class DuplicateRandomPlayerAction extends AbstractGameAction {
 
         public static CharacterChoice constructChoice(AbstractPlayer.PlayerClass chosenClass, Random rng) {
             CardTransformer cardTransformer = new CardTransformer(rng, AbstractDungeon.player.chosenClass, chosenClass);
-            CardTransformer.Decks decks = cardTransformer.transform(CardTransformer.Decks.extractFromPlayer(AbstractDungeon.player));
+            DuplicatedDecks decks = cardTransformer.transform(DuplicatedDecks.extractFromPlayer(AbstractDungeon.player));
             AbstractCard.CardColor targetCardColor = BaseMod.findCharacter(chosenClass).getCardColor();
             AbstractCard cardToPreview = decks.hand.stream()
                     .filter(card -> card.color == targetCardColor)

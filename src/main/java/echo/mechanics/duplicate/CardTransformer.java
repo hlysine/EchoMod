@@ -24,13 +24,13 @@ public class CardTransformer {
         this.toColor = BaseMod.findCharacter(toClass).getCardColor();
     }
 
-    public Decks transform(Decks decks) {
+    public DuplicatedDecks transform(DuplicatedDecks decks) {
         List<AbstractCard> cardPool = getCardPool(toColor, false);
         cardPool.addAll(getCardPool(AbstractCard.CardColor.COLORLESS, false));
         cardPool.addAll(getCardPool(AbstractCard.CardColor.CURSE, false));
         Map<UUID, AbstractCard> cache = new HashMap<>();
 
-        Decks newDecks = new Decks();
+        DuplicatedDecks newDecks = new DuplicatedDecks();
         newDecks.masterDeck = transform(decks.masterDeck, cache, cardPool);
         newDecks.drawPile = transform(decks.drawPile, cache, cardPool);
         newDecks.hand = transform(decks.hand, cache, cardPool);
@@ -44,14 +44,8 @@ public class CardTransformer {
     private ArrayList<AbstractCard> transform(ArrayList<AbstractCard> cards, Map<UUID, AbstractCard> cache, List<AbstractCard> cardPool) {
         ArrayList<AbstractCard> newCards = new ArrayList<>();
         for (AbstractCard card : cards) {
-            if (card.color != fromColor) {
-                newCards.add(card.makeSameInstanceOf());
-                continue;
-            }
-            if (card.tags.contains(CustomCardTags.CONSTANT)) {
-                AbstractCard newCopy = card.makeSameInstanceOf();
-                newCards.add(newCopy);
-                newCopy.superFlash();
+            if (card.color != fromColor || card.tags.contains(CustomCardTags.CONSTANT)) {
+                newCards.add(card);
                 continue;
             }
 
@@ -138,60 +132,4 @@ public class CardTransformer {
                 .collect(Collectors.toList());
     }
 
-    public static class Decks {
-        public ArrayList<AbstractCard> masterDeck;
-        public ArrayList<AbstractCard> drawPile;
-        public ArrayList<AbstractCard> hand;
-        public ArrayList<AbstractCard> discardPile;
-        public ArrayList<AbstractCard> exhaustPile;
-        public ArrayList<AbstractCard> limbo;
-
-        private Decks() {
-        }
-
-        public static Decks extractFromPlayer(AbstractPlayer player) {
-            Decks decks = new Decks();
-            decks.masterDeck = new ArrayList<>(player.masterDeck.group);
-            decks.drawPile = new ArrayList<>(player.drawPile.group);
-            decks.hand = new ArrayList<>(player.hand.group);
-            decks.discardPile = new ArrayList<>(player.discardPile.group);
-            decks.exhaustPile = new ArrayList<>(player.exhaustPile.group);
-            decks.limbo = new ArrayList<>(player.limbo.group);
-            return decks;
-        }
-
-        public void applyToPlayer(AbstractPlayer player) {
-            player.masterDeck.group.clear();
-            player.masterDeck.group.addAll(masterDeck);
-            player.drawPile.group.clear();
-            player.drawPile.group.addAll(drawPile);
-            player.hand.group.clear();
-            player.hand.group.addAll(hand);
-            player.discardPile.group.clear();
-            player.discardPile.group.addAll(discardPile);
-            player.exhaustPile.group.clear();
-            player.exhaustPile.group.addAll(exhaustPile);
-            player.limbo.group.clear();
-            player.limbo.group.addAll(limbo);
-
-            for (AbstractCard card : player.masterDeck.group) {
-                UnlockTracker.markCardAsSeen(card.cardID);
-            }
-            for (AbstractCard card : player.drawPile.group) {
-                UnlockTracker.markCardAsSeen(card.cardID);
-            }
-            for (AbstractCard card : player.hand.group) {
-                UnlockTracker.markCardAsSeen(card.cardID);
-            }
-            for (AbstractCard card : player.discardPile.group) {
-                UnlockTracker.markCardAsSeen(card.cardID);
-            }
-            for (AbstractCard card : player.exhaustPile.group) {
-                UnlockTracker.markCardAsSeen(card.cardID);
-            }
-            for (AbstractCard card : player.limbo.group) {
-                UnlockTracker.markCardAsSeen(card.cardID);
-            }
-        }
-    }
 }

@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
 public class CloningModule {
@@ -81,6 +82,10 @@ public class CloningModule {
         return playerData != null;
     }
 
+    public static boolean isCardTransformed(AbstractCard card) {
+        return isCloning() && findCardInDeck(playerData.originalPlayer, card) == CardGroup.CardGroupType.UNSPECIFIED;
+    }
+
     public static void preCloneSetup() {
         for (CardQueueItem i : AbstractDungeon.actionManager.cardQueue) {
             if (i.autoplayCard) {
@@ -96,7 +101,7 @@ public class CloningModule {
         AbstractDungeon.player.releaseCard();
     }
 
-    public static void startCloning(AbstractPlayer.PlayerClass playerClass, CardTransformer.Decks cardDecks) {
+    public static void startCloning(AbstractPlayer.PlayerClass playerClass, DuplicatedDecks cardDecks) {
 
         clearCardQueues();
 
@@ -155,7 +160,7 @@ public class CloningModule {
         newPlayer.gameHandSize = newPlayer.masterHandSize;
         if (cardDecks == null) {
             CardTransformer cardTransformer = new CardTransformer(AbstractDungeon.cardRandomRng, originalPlayer.chosenClass, newPlayer.chosenClass);
-            cardDecks = cardTransformer.transform(CardTransformer.Decks.extractFromPlayer(originalPlayer));
+            cardDecks = cardTransformer.transform(DuplicatedDecks.extractFromPlayer(originalPlayer));
         }
         cardDecks.applyToPlayer(newPlayer);
         newPlayer.drawPile.initializeDeck(newPlayer.masterDeck);
@@ -232,6 +237,8 @@ public class CloningModule {
         originalPlayer.relics = relicTransformer.originalRelics;
         originalPlayer.reorganizeRelics();
         originalPlayer.adjustPotionPositions();
+
+        syncDeckChanges(originalPlayer, newPlayer);
 
         originalPlayer.orbs = newPlayer.orbs;
         originalPlayer.maxOrbs = newPlayer.maxOrbs;
@@ -405,5 +412,67 @@ public class CloningModule {
             }
         }
         CardCrawlGame.dungeon.initializeCardPools();
+    }
+
+    /**
+     * For cards that appear in both decks, copy the position of those cards in source to destination.
+     *
+     * @param destination card positions to copy to
+     * @param source      card positions to copy from
+     */
+    private static void syncDeckChanges(AbstractPlayer destination, AbstractPlayer source) {
+        filterAllCards(destination, (card, location) -> {
+            DuplicatedDecks.resetCard(card);
+
+            CardGroup.CardGroupType newLocation = findCardInDeck(source, card);
+            if (newLocation == location || newLocation == CardGroup.CardGroupType.UNSPECIFIED) {
+                return true;
+            } else {
+                int idx = getCardGroup(source, newLocation).group.indexOf(card);
+                ArrayList<AbstractCard> group = getCardGroup(destination, newLocation).group;
+                group.add(Math.min(group.size(), Math.max(0, idx)), card);
+                return false;
+            }
+        });
+    }
+
+    private static void filterAllCards(AbstractPlayer player, BiFunction<AbstractCard, CardGroup.CardGroupType, Boolean> filter) {
+        player.hand.group.removeIf(card -> !filter.apply(card, CardGroup.CardGroupType.HAND));
+        player.drawPile.group.removeIf(card -> !filter.apply(card, CardGroup.CardGroupType.DRAW_PILE));
+        player.discardPile.group.removeIf(card -> !filter.apply(card, CardGroup.CardGroupType.DISCARD_PILE));
+        player.exhaustPile.group.removeIf(card -> !filter.apply(card, CardGroup.CardGroupType.EXHAUST_PILE));
+    }
+
+    private static CardGroup.CardGroupType findCardInDeck(AbstractPlayer player, AbstractCard card) {
+        if (player.hand.contains(card)) {
+            return CardGroup.CardGroupType.HAND;
+        }
+        if (player.drawPile.contains(card)) {
+            return CardGroup.CardGroupType.DRAW_PILE;
+        }
+        if (player.discardPile.contains(card)) {
+            return CardGroup.CardGroupType.DISCARD_PILE;
+        }
+        if (player.exhaustPile.contains(card)) {
+            return CardGroup.CardGroupType.EXHAUST_PILE;
+        }
+        return CardGroup.CardGroupType.UNSPECIFIED;
+    }
+
+    private static CardGroup getCardGroup(AbstractPlayer player, CardGroup.CardGroupType type) {
+        switch (type) {
+            case DRAW_PILE:
+                return player.drawPile;
+            case MASTER_DECK:
+                return player.masterDeck;
+            case HAND:
+                return player.hand;
+            case DISCARD_PILE:
+                return player.discardPile;
+            case EXHAUST_PILE:
+                return player.exhaustPile;
+            default:
+                throw new RuntimeException("Invalid card group type");
+        }
     }
 }

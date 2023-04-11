@@ -6,14 +6,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import echo.effects.DuplicateEffect;
 import echo.effects.SfxStore;
-import echo.mechanics.duplicate.CardTransformer;
 import echo.mechanics.duplicate.CloningModule;
+import echo.mechanics.duplicate.DuplicatedDecks;
 import echo.util.RunnableAction;
 
 public class DuplicatePlayerAction extends AbstractGameAction {
 
     private final AbstractPlayer.PlayerClass playerClass;
-    private final CardTransformer.Decks duplicateDeck;
+    private final DuplicatedDecks duplicateDeck;
 
     /**
      * Duplicate a player class, causing the player to become that class, affecting energy, cards, relics and more.
@@ -21,7 +21,7 @@ public class DuplicatePlayerAction extends AbstractGameAction {
      * @param playerClass   The player class to duplicate.
      * @param duplicateDeck The deck to use when duplicating, can be null.
      */
-    public DuplicatePlayerAction(AbstractPlayer.PlayerClass playerClass, CardTransformer.Decks duplicateDeck) {
+    public DuplicatePlayerAction(AbstractPlayer.PlayerClass playerClass, DuplicatedDecks duplicateDeck) {
         this.playerClass = playerClass;
         this.duplicateDeck = duplicateDeck;
     }
