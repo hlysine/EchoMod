@@ -3,12 +3,17 @@ package echo.powers;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.unique.ApotheosisAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import echo.EchoMod;
+import echo.mechanics.duplicate.CloningModule;
 import echo.subscribers.DuplicateSubscriber;
 import echo.util.RunnableAction;
 import echo.util.TextureLoader;
@@ -42,7 +47,30 @@ public class DeepLearningPower extends AbstractPower implements CloneablePowerIn
     @Override
     public void afterDuplicateStart() {
         addToBot(new RunnableAction(this::flash));
-        addToBot(new ApotheosisAction());
+        addToBot(new AbstractGameAction() {
+            public void update() {
+                AbstractPlayer p = AbstractDungeon.player;
+
+                processCardsInGroup(p.hand);
+                processCardsInGroup(p.drawPile);
+                processCardsInGroup(p.discardPile);
+                processCardsInGroup(p.exhaustPile);
+
+                this.isDone = true;
+            }
+
+            private void processCardsInGroup(CardGroup cardGroup) {
+                for (AbstractCard c : cardGroup.group) {
+                    if (CloningModule.isCardTransformed(c) && c.canUpgrade()) {
+                        if (cardGroup.type == CardGroup.CardGroupType.HAND) {
+                            c.superFlash();
+                        }
+                        c.upgrade();
+                        c.applyPowers();
+                    }
+                }
+            }
+        });
     }
 
     @Override
