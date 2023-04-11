@@ -1,23 +1,16 @@
-// (Read Only and specific to this vertex|pixel)
-attribute vec4 a_position;
-attribute vec4 a_color;
-attribute vec2 a_texCoord0;
-
-// Data sent from libgdx SpriteBatch
-//(Read Only and the same for all vertex|pixel)
 uniform mat4 u_projTrans;
 
-// Variable Data for storing data to pass to fragment Shader
+attribute vec4 a_position;
+attribute vec2 a_texCoord0;
+attribute vec4 a_color;
+
 varying vec4 v_color;
 varying vec2 v_texCoords;
 
-void main()
-{
-    // set our varying variables for use in frag shader
-    v_color = vec4(1, 1, 1, 1);
-    v_texCoords = a_texCoord0;
+uniform vec2 u_viewportInverse;
 
-    // gl_Position is a special output variable from
-    // openGL that must be set in the vertex shader
+void main() {
     gl_Position = u_projTrans * a_position;
+    v_texCoords = a_texCoord0;
+    v_color = a_color;
 }

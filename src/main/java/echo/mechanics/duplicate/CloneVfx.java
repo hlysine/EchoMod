@@ -129,6 +129,7 @@ public class CloneVfx implements PreUpdateSubscriber {
 
     public static void relicPostRender(AbstractRelic relic, SpriteBatch sb) {
         if (CloningModule.relicTransformer != null && !CloningModule.relicTransformer.originalRelics.contains(relic)) {
+            sb.flush();
             sb.setShader(prevShader);
         }
     }
@@ -151,6 +152,7 @@ public class CloneVfx implements PreUpdateSubscriber {
 
     public static void cardPostRender(AbstractCard card, SpriteBatch sb) {
         if (card.color == Echo.Enums.CARD_COLOR) {
+            sb.flush();
             sb.setShader(prevShader);
         }
     }

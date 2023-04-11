@@ -64,7 +64,7 @@ void main()
             vec4 gridColor = grid(tc, texSize);
             gridColor.a = gridColor.a * (1.0 - v_texCoords.y * 2.0);
 
-            finalColor = vec4((texColor * (1 - gridColor.a) + gridColor * gridColor.a).rgb, texColor.a);
+            finalColor = vec4((texColor * (1 - gridColor.a) + gridColor * gridColor.a).rgb, texColor.a) * v_color;
         }
     }
 
