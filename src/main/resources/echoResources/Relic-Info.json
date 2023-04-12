@@ -2,5 +2,9 @@
   "echo:PlaceholderRelic": {
     "IMG": "placeholder_relic.png",
     "RARITY": "STARTER"
+  },
+  "echo:PlaceholderBossRelic": {
+    "IMG": "placeholder_relic2.png",
+    "RARITY": "BOSS"
   }
 }

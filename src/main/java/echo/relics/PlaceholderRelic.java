@@ -1,6 +1,10 @@
 package echo.relics;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import echo.EchoMod;
+import echo.powers.UltimateChargePower;
 
 public class PlaceholderRelic extends AbstractBaseRelic {
 
@@ -10,7 +14,13 @@ public class PlaceholderRelic extends AbstractBaseRelic {
 
     public PlaceholderRelic() {
         super(ID, LANDING_SOUND);
-        grayscale = true;
+    }
+
+    @Override
+    public void onPlayerEndTurn() {
+        AbstractPlayer p = AbstractDungeon.player;
+        flash();
+        addToBot(new ApplyPowerAction(p, p, new UltimateChargePower(p, 2)));
     }
 
     @Override

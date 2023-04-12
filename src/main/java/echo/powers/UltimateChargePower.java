@@ -38,11 +38,8 @@ public class UltimateChargePower extends AbstractPower implements CloneablePower
 
     @Override
     public void stackPower(int stackAmount) {
-        if (this.amount >= 10) {
-            return;
-        }
         this.fontScale = 8.0F;
-        this.amount += stackAmount;
+        this.amount = Math.min(10, this.amount + stackAmount);
     }
 
     @Override
