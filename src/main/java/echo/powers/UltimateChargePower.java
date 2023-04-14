@@ -17,8 +17,17 @@ public class UltimateChargePower extends AbstractPower implements CloneablePower
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TextureLoader.getTexture("echoResources/images/powers/placeholder_power84.png");
-    private static final Texture tex32 = TextureLoader.getTexture("echoResources/images/powers/placeholder_power32.png");
+    private static final Texture[] tex84;
+    private static final Texture[] tex32;
+
+    static {
+        tex84 = new Texture[10];
+        tex32 = new Texture[10];
+        for (int i = 1; i <= 10; i++) {
+            tex84[i - 1] = TextureLoader.getTexture(EchoMod.makePowerPath("ultimate_charge84_" + i + ".png"));
+            tex32[i - 1] = TextureLoader.getTexture(EchoMod.makePowerPath("ultimate_charge32_" + i + ".png"));
+        }
+    }
 
     public UltimateChargePower(final AbstractCreature owner, final int amount) {
         name = NAME;
@@ -30,16 +39,27 @@ public class UltimateChargePower extends AbstractPower implements CloneablePower
         type = PowerType.BUFF;
         isTurnBased = false;
 
-        this.region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, 84, 84);
-        this.region48 = new TextureAtlas.AtlasRegion(tex32, 0, 0, 32, 32);
+        this.region128 = new TextureAtlas.AtlasRegion(getTex84(), 0, 0, 84, 84);
+        this.region48 = new TextureAtlas.AtlasRegion(getTex32(), 0, 0, 32, 32);
 
         updateDescription();
+    }
+
+    private Texture getTex84() {
+        return tex84[Math.min(tex84.length - 1, this.amount - 1)];
+    }
+
+    private Texture getTex32() {
+        return tex32[Math.min(tex32.length - 1, this.amount - 1)];
     }
 
     @Override
     public void stackPower(int stackAmount) {
         this.fontScale = 8.0F;
         this.amount = Math.min(10, this.amount + stackAmount);
+
+        this.region128 = new TextureAtlas.AtlasRegion(getTex84(), 0, 0, 84, 84);
+        this.region48 = new TextureAtlas.AtlasRegion(getTex32(), 0, 0, 32, 32);
     }
 
     @Override
