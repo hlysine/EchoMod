@@ -21,8 +21,8 @@ public class DuplicatePower extends AbstractPower implements CloneablePowerInter
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TextureLoader.getTexture("echoResources/images/powers/duplicate84.png");
-    private static final Texture tex32 = TextureLoader.getTexture("echoResources/images/powers/duplicate32.png");
+    private static final Texture tex84 = TextureLoader.getTexture(EchoMod.makePowerPath("duplicate84.png"));
+    private static final Texture tex32 = TextureLoader.getTexture(EchoMod.makePowerPath("duplicate32.png"));
 
     public DuplicatePower(final AbstractCreature owner) {
         name = NAME;

@@ -19,8 +19,8 @@ public class AutoReloadPower extends AbstractPower implements CloneablePowerInte
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TextureLoader.getTexture("echoResources/images/powers/auto_reload84.png");
-    private static final Texture tex32 = TextureLoader.getTexture("echoResources/images/powers/auto_reload32.png");
+    private static final Texture tex84 = TextureLoader.getTexture(EchoMod.makePowerPath("auto_reload84.png"));
+    private static final Texture tex32 = TextureLoader.getTexture(EchoMod.makePowerPath("auto_reload32.png"));
 
     public AutoReloadPower(final AbstractCreature owner, final int amount) {
         name = NAME;

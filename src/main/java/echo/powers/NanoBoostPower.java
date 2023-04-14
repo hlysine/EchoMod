@@ -25,8 +25,8 @@ public class NanoBoostPower extends AbstractPower implements CloneablePowerInter
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TextureLoader.getTexture("echoResources/images/powers/nano_boost84.png");
-    private static final Texture tex32 = TextureLoader.getTexture("echoResources/images/powers/nano_boost32.png");
+    private static final Texture tex84 = TextureLoader.getTexture(EchoMod.makePowerPath("nano_boost84.png"));
+    private static final Texture tex32 = TextureLoader.getTexture(EchoMod.makePowerPath("nano_boost32.png"));
 
     private float particleTimer;
     private float auraTimer;

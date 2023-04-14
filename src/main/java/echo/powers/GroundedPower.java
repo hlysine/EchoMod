@@ -20,8 +20,8 @@ public class GroundedPower extends AbstractPower implements CloneablePowerInterf
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TextureLoader.getTexture("echoResources/images/powers/grounded84.png");
-    private static final Texture tex32 = TextureLoader.getTexture("echoResources/images/powers/grounded32.png");
+    private static final Texture tex84 = TextureLoader.getTexture(EchoMod.makePowerPath("grounded84.png"));
+    private static final Texture tex32 = TextureLoader.getTexture(EchoMod.makePowerPath("grounded32.png"));
 
     public GroundedPower(final AbstractCreature owner, final int amount) {
         name = NAME;

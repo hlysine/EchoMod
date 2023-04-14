@@ -21,8 +21,8 @@ public class FlightPower extends AbstractPower implements CloneablePowerInterfac
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TextureLoader.getTexture("echoResources/images/powers/flight84.png");
-    private static final Texture tex32 = TextureLoader.getTexture("echoResources/images/powers/flight32.png");
+    private static final Texture tex84 = TextureLoader.getTexture(EchoMod.makePowerPath("flight84.png"));
+    private static final Texture tex32 = TextureLoader.getTexture(EchoMod.makePowerPath("flight32.png"));
 
     public FlightPower(final AbstractCreature owner, final int amount) {
         name = NAME;

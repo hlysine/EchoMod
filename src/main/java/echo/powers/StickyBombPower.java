@@ -24,8 +24,8 @@ public class StickyBombPower extends AbstractPower implements CloneablePowerInte
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TextureLoader.getTexture("echoResources/images/powers/sticky_bomb84.png");
-    private static final Texture tex32 = TextureLoader.getTexture("echoResources/images/powers/sticky_bomb32.png");
+    private static final Texture tex84 = TextureLoader.getTexture(EchoMod.makePowerPath("sticky_bomb84.png"));
+    private static final Texture tex32 = TextureLoader.getTexture(EchoMod.makePowerPath("sticky_bomb32.png"));
 
     public StickyBombPower(final AbstractCreature owner, final int amount) {
         name = NAME;
