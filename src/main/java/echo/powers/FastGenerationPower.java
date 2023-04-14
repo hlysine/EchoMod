@@ -23,11 +23,19 @@ public class FastGenerationPower extends AbstractPower implements NonStackablePo
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TextureLoader.getTexture(EchoMod.makePowerPath("placeholder_power84.png"));
-    private static final Texture tex32 = TextureLoader.getTexture(EchoMod.makePowerPath("placeholder_power32.png"));
+    private static final Texture tex84 = TextureLoader.getTexture(EchoMod.makePowerPath("fast_generation84.png"));
+    private static final Texture tex32 = TextureLoader.getTexture(EchoMod.makePowerPath("fast_generation32.png"));
 
     public int damageDealt;
     public final int damagePerCharge;
+
+    /**
+     * @deprecated This is for auto-instantiation by DevConsole only.
+     */
+    @Deprecated
+    public FastGenerationPower(final AbstractCreature owner, final int amount) {
+        this(owner, amount, 6);
+    }
 
     public FastGenerationPower(final AbstractCreature owner, final int amount, final int damagePerCharge) {
         name = NAME;

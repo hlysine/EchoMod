@@ -23,8 +23,8 @@ public class VirtualizedShieldPower extends AbstractPower implements CloneablePo
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TextureLoader.getTexture(EchoMod.makePowerPath("placeholder_power84.png"));
-    private static final Texture tex32 = TextureLoader.getTexture(EchoMod.makePowerPath("placeholder_power32.png"));
+    private static final Texture tex84 = TextureLoader.getTexture(EchoMod.makePowerPath("virtualized_shield84.png"));
+    private static final Texture tex32 = TextureLoader.getTexture(EchoMod.makePowerPath("virtualized_shield32.png"));
 
     public VirtualizedShieldPower(final AbstractCreature owner, final int amount) {
         name = NAME;

@@ -21,8 +21,8 @@ public class EfficientCopyPower extends AbstractPower implements CloneablePowerI
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TextureLoader.getTexture(EchoMod.makePowerPath("placeholder_power84.png"));
-    private static final Texture tex32 = TextureLoader.getTexture(EchoMod.makePowerPath("placeholder_power32.png"));
+    private static final Texture tex84 = TextureLoader.getTexture(EchoMod.makePowerPath("efficient_copy84.png"));
+    private static final Texture tex32 = TextureLoader.getTexture(EchoMod.makePowerPath("efficient_copy32.png"));
 
     public EfficientCopyPower(final AbstractCreature owner, final int amount) {
         name = NAME;

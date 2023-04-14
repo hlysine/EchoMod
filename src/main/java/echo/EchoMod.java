@@ -11,6 +11,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
@@ -19,18 +20,22 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import echo.cards.AbstractBaseCard;
 import echo.characters.Echo;
 import echo.effects.SfxStore;
 import echo.patches.metrics.DevCommandsMetricPatch;
 import echo.potions.ButterflyInAJar;
+import echo.powers.UltimateChargePower;
 import echo.relics.AbstractBaseRelic;
 import echo.util.ModIdCheck;
 import echo.util.TextureLoader;
 import echo.variables.CustomVariable;
 import echo.variables.MagicNumber2Variable;
 import hlysine.STSItemInfo.*;
+import javassist.ClassPool;
+import javassist.CtClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -38,10 +43,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Properties;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @SpireInitializer
@@ -323,6 +325,24 @@ public class EchoMod implements
                 });
 
         logger.info("Done adding relics!");
+
+        logger.info("Adding powers");
+
+        Collection<CtClass> classes = new AutoAdd("EchoMod")
+                .packageFilter(UltimateChargePower.class)
+                .findClasses(AbstractPower.class);
+        ClassPool classPool = Loader.getClassPool();
+        for (CtClass ctClass : classes) {
+            if (ctClass.hasAnnotation(AutoAdd.Ignore.class)) continue;
+            try {
+                Class<? extends AbstractPower> clazz = (Class<? extends AbstractPower>) classPool.getClassLoader().loadClass(ctClass.getName());
+                BaseMod.addPower(clazz, (String) clazz.getField("POWER_ID").get(null));
+            } catch (NoSuchFieldException | IllegalAccessException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        logger.info("Done adding powers!");
     }
 
     @Override

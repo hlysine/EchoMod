@@ -24,7 +24,7 @@ uniform vec4 gradient_color2 = vec4(0.27, 0.21, 0.78, 0.5);
 uniform float grid_radius = 1.0;
 uniform float grid_border = 3.0;
 uniform float grid_margin = 1.0;
-uniform vec4 grid_color = vec4(0.17, 0.87, 1.0, 0.75);
+uniform vec4 grid_color = vec4(0.17, 0.87, 1.0, 1.0);
 
 uniform float contrast = 2;
 

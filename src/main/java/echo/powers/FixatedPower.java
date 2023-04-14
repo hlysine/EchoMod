@@ -23,8 +23,8 @@ public class FixatedPower extends AbstractPower implements CloneablePowerInterfa
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TextureLoader.getTexture(EchoMod.makePowerPath("placeholder_power84.png"));
-    private static final Texture tex32 = TextureLoader.getTexture(EchoMod.makePowerPath("placeholder_power32.png"));
+    private static final Texture tex84 = TextureLoader.getTexture(EchoMod.makePowerPath("fixated84.png"));
+    private static final Texture tex32 = TextureLoader.getTexture(EchoMod.makePowerPath("fixated32.png"));
     private final AbstractCard sourceCard;
 
     public FixatedPower(final AbstractCreature owner, final int amount, final AbstractCard sourceCard) {
