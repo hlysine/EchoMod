@@ -23,7 +23,7 @@ import echo.cards.attacks.Strike;
 import echo.cards.attacks.SwayingBeam;
 import echo.cards.skills.Copy;
 import echo.cards.skills.Defend;
-import echo.relics.PlaceholderRelic;
+import echo.relics.CloningModule;
 import echo.util.NoAnimation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -200,11 +200,11 @@ public class Echo extends CustomPlayer {
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
 
-        retVal.add(PlaceholderRelic.ID);
+        retVal.add(CloningModule.ID);
 
         // Mark relics as seen - makes it visible in the compendium immediately
         // If you don't have this it won't be visible in the compendium until you see them in game
-        UnlockTracker.markRelicAsSeen(PlaceholderRelic.ID);
+        UnlockTracker.markRelicAsSeen(CloningModule.ID);
 
         return retVal;
     }

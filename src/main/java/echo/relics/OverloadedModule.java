@@ -4,13 +4,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import echo.EchoMod;
 import echo.subscribers.ChargedSubscriber;
 
-public class PlaceholderBossRelic extends AbstractBaseRelic implements ChargedSubscriber {
+public class OverloadedModule extends AbstractBaseRelic implements ChargedSubscriber {
 
-    public static final String ID = EchoMod.makeID(PlaceholderBossRelic.class.getSimpleName());
+    public static final String ID = EchoMod.makeID(OverloadedModule.class.getSimpleName());
 
-    private static final LandingSound LANDING_SOUND = LandingSound.MAGICAL;
+    private static final LandingSound LANDING_SOUND = LandingSound.SOLID;
 
-    public PlaceholderBossRelic() {
+    public OverloadedModule() {
         super(ID, LANDING_SOUND);
     }
 

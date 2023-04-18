@@ -6,13 +6,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import echo.EchoMod;
 import echo.powers.UltimateChargePower;
 
-public class PlaceholderRelic extends AbstractBaseRelic {
+public class CloningModule extends AbstractBaseRelic {
 
-    public static final String ID = EchoMod.makeID(PlaceholderRelic.class.getSimpleName());
+    public static final String ID = EchoMod.makeID(CloningModule.class.getSimpleName());
 
-    private static final LandingSound LANDING_SOUND = LandingSound.MAGICAL;
+    private static final LandingSound LANDING_SOUND = LandingSound.SOLID;
 
-    public PlaceholderRelic() {
+    public CloningModule() {
         super(ID, LANDING_SOUND);
     }
 

@@ -1,16 +1,23 @@
 {
-  "echo:PlaceholderRelic": {
-    "NAME": "Placeholder Relic",
+  "echo:CloningModule": {
+    "NAME": "Cloning Module",
     "FLAVOR": "Some cool text here.",
     "DESCRIPTIONS": [
       "At the end of your turn, gain #b2 #yecho:Ultimate_Charge."
     ]
   },
-  "echo:PlaceholderBossRelic": {
-    "NAME": "Placeholder Boss Relic",
+  "echo:OverloadedModule": {
+    "NAME": "Overloaded Module",
     "FLAVOR": "Some cool text here.",
     "DESCRIPTIONS": [
       "Replaces #yPlaceholder #yRelic. Stay #yecho:Charged regardless of #yecho:Ultimate_Charge. Permanently lose 1 [E] ."
+    ]
+  },
+  "echo:HolographicTop": {
+    "NAME": "Holographic Top",
+    "FLAVOR": "A near-perfect replica that occasionally stops spinning.",
+    "DESCRIPTIONS": [
+      "Transforms to #yecho:Unceasing_Top when you #yecho:Duplicate."
     ]
   }
 }

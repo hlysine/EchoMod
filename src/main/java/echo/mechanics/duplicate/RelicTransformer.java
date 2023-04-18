@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import echo.subscribers.RelicTransformSubscriber;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,18 +41,28 @@ public class RelicTransformer {
 
         for (AbstractRelic relic : relics) {
             // do not transform starter relics because they are replaced by special logic
-            if (relic.tier != AbstractRelic.RelicTier.STARTER && oldPool.stream().anyMatch(r -> r.relicId.equals(relic.relicId))) {
-                List<AbstractRelic> options = newPool.stream().filter(r -> r.tier == relic.tier).collect(Collectors.toList());
-                if (options.size() > 0) {
-                    AbstractRelic newRelic = options.get(rng.random(options.size() - 1));
-                    newRelics.add(newRelic.makeCopy());
-                    continue;
-                } else {
-                    options = sharedPool.stream().filter(r -> r.tier == relic.tier).collect(Collectors.toList());
+            if (relic.tier != AbstractRelic.RelicTier.STARTER) {
+                if (relic instanceof RelicTransformSubscriber) {
+                    RelicTransformSubscriber subscriber = (RelicTransformSubscriber) relic;
+                    List<AbstractRelic> list = subscriber.transform();
+                    if (list != null) {
+                        newRelics.addAll(list);
+                        continue;
+                    }
+                }
+                if (oldPool.stream().anyMatch(r -> r.relicId.equals(relic.relicId))) {
+                    List<AbstractRelic> options = newPool.stream().filter(r -> r.tier == relic.tier).collect(Collectors.toList());
                     if (options.size() > 0) {
                         AbstractRelic newRelic = options.get(rng.random(options.size() - 1));
                         newRelics.add(newRelic.makeCopy());
                         continue;
+                    } else {
+                        options = sharedPool.stream().filter(r -> r.tier == relic.tier).collect(Collectors.toList());
+                        if (options.size() > 0) {
+                            AbstractRelic newRelic = options.get(rng.random(options.size() - 1));
+                            newRelics.add(newRelic.makeCopy());
+                            continue;
+                        }
                     }
                 }
             }

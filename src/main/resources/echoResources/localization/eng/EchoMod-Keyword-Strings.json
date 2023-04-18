@@ -51,5 +51,13 @@
       "duplicate"
     ],
     "DESCRIPTION": "Immediately restart your turn as another character, transforming your relics and cards. Lasts until end of turn."
+  },
+  {
+    "PROPER_NAME": "Unceasing Top",
+    "NAMES": [
+      "Unceasing Top",
+      "unceasing_top"
+    ],
+    "DESCRIPTION": "A relic that draws a card whenever you have no cards in hand during your turn."
   }
 ]

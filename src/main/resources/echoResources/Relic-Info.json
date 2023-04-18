@@ -1,10 +1,14 @@
 {
-  "echo:PlaceholderRelic": {
+  "echo:CloningModule": {
     "IMG": "placeholder_relic.png",
     "RARITY": "STARTER"
   },
-  "echo:PlaceholderBossRelic": {
+  "echo:OverloadedModule": {
     "IMG": "placeholder_relic2.png",
     "RARITY": "BOSS"
+  },
+  "echo:HolographicTop": {
+    "IMG": "holographic_top.png",
+    "RARITY": "COMMON"
   }
 }
