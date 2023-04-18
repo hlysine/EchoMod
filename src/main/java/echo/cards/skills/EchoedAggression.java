@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import echo.EchoMod;
 import echo.cards.AbstractBaseCard;
-import echo.mechanics.duplicate.CloningModule;
+import echo.mechanics.duplicate.Duplicator;
 import echo.patches.cards.CustomCardTags;
 
 public class EchoedAggression extends AbstractBaseCard {
@@ -51,7 +51,7 @@ public class EchoedAggression extends AbstractBaseCard {
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         boolean canUse = super.canUse(p, m);
         if (!canUse) return false;
-        if (!CloningModule.isCloning()) {
+        if (!Duplicator.isDuplicating()) {
             this.cantUseMessage = cardStrings.EXTENDED_DESCRIPTION[0];
             return false;
         }
@@ -60,7 +60,7 @@ public class EchoedAggression extends AbstractBaseCard {
 
     @Override
     public void triggerOnGlowCheck() {
-        if (CloningModule.isCloning()) {
+        if (Duplicator.isDuplicating()) {
             this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
         } else {
             this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();

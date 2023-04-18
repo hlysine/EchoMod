@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import echo.EchoMod;
-import echo.mechanics.duplicate.CloningModule;
+import echo.mechanics.duplicate.Duplicator;
 import echo.subscribers.DuplicateSubscriber;
 import echo.util.RunnableAction;
 import echo.util.TextureLoader;
@@ -67,7 +67,7 @@ public class FastGenerationPower extends AbstractPower implements NonStackablePo
 
     @Override
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-        if (target != this.owner && damageAmount > 0 && CloningModule.isCloning()) {
+        if (target != this.owner && damageAmount > 0 && Duplicator.isDuplicating()) {
             flashWithoutSound();
             damageDealt += damageAmount;
             int powerAmount = Math.floorDiv(damageAmount, damagePerCharge) * amount;

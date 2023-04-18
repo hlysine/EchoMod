@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import echo.actions.duplicate.StopDuplicateAction;
 import echo.effects.DuplicateEffect;
-import echo.mechanics.duplicate.CloningModule;
+import echo.mechanics.duplicate.Duplicator;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 
@@ -25,7 +25,7 @@ public class CloningModuleEventsPatch {
                 locator = Locator.class
         )
         public static void Insert() {
-            if (CloningModule.isCloning()) {
+            if (Duplicator.isDuplicating()) {
                 new StopDuplicateAction().update();
             }
         }
@@ -44,8 +44,8 @@ public class CloningModuleEventsPatch {
     )
     public static class OnVictoryPatch {
         public static void Postfix() {
-            if (CloningModule.isCloning()) {
-                CloningModule.stopCloning();
+            if (Duplicator.isDuplicating()) {
+                Duplicator.stopDuplication();
                 AbstractDungeon.topLevelEffects.add(new DuplicateEffect(null));
             }
         }
@@ -57,7 +57,7 @@ public class CloningModuleEventsPatch {
     )
     public static class ClearPatch {
         public static void Postfix() {
-            CloningModule.stopCloning();
+            Duplicator.stopDuplication();
         }
     }
 
@@ -67,7 +67,7 @@ public class CloningModuleEventsPatch {
     )
     public static class ResetPlayerPatch {
         public static void Prefix() {
-            CloningModule.stopCloning();
+            Duplicator.stopDuplication();
         }
     }
 }

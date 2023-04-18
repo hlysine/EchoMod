@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import echo.EchoMod;
 import echo.actions.SelectCardsAction;
-import echo.mechanics.duplicate.CloningModule;
+import echo.mechanics.duplicate.Duplicator;
 
 import java.util.ArrayList;
 
@@ -31,7 +31,7 @@ public class SelectCardsForDuplicateAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        if (!CloningModule.isCloning()) {
+        if (!Duplicator.isDuplicating()) {
             this.isDone = true;
             return;
         }

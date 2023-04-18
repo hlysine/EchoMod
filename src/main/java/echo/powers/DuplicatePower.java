@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import echo.EchoMod;
 import echo.actions.duplicate.StopDuplicateAction;
-import echo.mechanics.duplicate.CloningModule;
+import echo.mechanics.duplicate.Duplicator;
 import echo.subscribers.DeathPreProtectionSubscriber;
 import echo.util.TextureLoader;
 
@@ -42,7 +42,7 @@ public class DuplicatePower extends AbstractPower implements CloneablePowerInter
 
     @Override
     public boolean onDeathPreProtection(DamageInfo damageInfo, DeathInfo deathInfo, boolean canDie) {
-        if (CloningModule.isCloning()) {
+        if (Duplicator.isDuplicating()) {
             addToBot(new StopDuplicateAction());
             return false;
         }

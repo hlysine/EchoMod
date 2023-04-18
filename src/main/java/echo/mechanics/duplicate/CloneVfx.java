@@ -56,7 +56,7 @@ public class CloneVfx implements PreUpdateSubscriber {
     private static ShaderProgram prevShader;
 
     public static void playerPreRender(AbstractPlayer player, SpriteBatch sb) {
-        if (CloningModule.isCloning()) {
+        if (Duplicator.isDuplicating()) {
             boolean isBlendingEnabled = sb.isBlendingEnabled();
             int blendSrcFunc = sb.getBlendSrcFunc();
             int blendDstFunc = sb.getBlendDstFunc();
@@ -81,7 +81,7 @@ public class CloneVfx implements PreUpdateSubscriber {
     }
 
     public static void playerPostRender(AbstractPlayer player, SpriteBatch sb) {
-        if (CloningModule.isCloning()) {
+        if (Duplicator.isDuplicating()) {
             sb.flush();
 
             sb.end();
@@ -110,7 +110,7 @@ public class CloneVfx implements PreUpdateSubscriber {
     }
 
     public static void relicPreRender(AbstractRelic relic, SpriteBatch sb) {
-        if (CloningModule.relicTransformer != null && !CloningModule.relicTransformer.originalRelics.contains(relic)) {
+        if (Duplicator.relicTransformer != null && !Duplicator.relicTransformer.originalRelics.contains(relic)) {
             sb.flush();
 
             gridShader.begin();
@@ -128,7 +128,7 @@ public class CloneVfx implements PreUpdateSubscriber {
     }
 
     public static void relicPostRender(AbstractRelic relic, SpriteBatch sb) {
-        if (CloningModule.relicTransformer != null && !CloningModule.relicTransformer.originalRelics.contains(relic)) {
+        if (Duplicator.relicTransformer != null && !Duplicator.relicTransformer.originalRelics.contains(relic)) {
             sb.flush();
             sb.setShader(prevShader);
         }

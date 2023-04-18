@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
-public class CloningModule {
+public class Duplicator {
     public static PlayerData playerData;
     public static RelicTransformer relicTransformer;
 
@@ -78,15 +78,15 @@ public class CloningModule {
     );
 
 
-    public static boolean isCloning() {
+    public static boolean isDuplicating() {
         return playerData != null;
     }
 
     public static boolean isCardTransformed(AbstractCard card) {
-        return isCloning() && findCardInDeck(playerData.originalPlayer, card) == CardGroup.CardGroupType.UNSPECIFIED;
+        return isDuplicating() && findCardInDeck(playerData.originalPlayer, card) == CardGroup.CardGroupType.UNSPECIFIED;
     }
 
-    public static void preCloneSetup() {
+    public static void preDuplicateSetup() {
         for (CardQueueItem i : AbstractDungeon.actionManager.cardQueue) {
             if (i.autoplayCard) {
                 i.card.dontTriggerOnUseCard = true;
@@ -101,13 +101,13 @@ public class CloningModule {
         AbstractDungeon.player.releaseCard();
     }
 
-    public static void startCloning(AbstractPlayer.PlayerClass playerClass, DuplicatedDecks cardDecks) {
+    public static void startDuplication(AbstractPlayer.PlayerClass playerClass, DuplicatedDecks cardDecks) {
 
         clearCardQueues();
 
         AbstractPlayer originalPlayer = AbstractDungeon.player;
 
-        if (!isCloning()) {
+        if (!isDuplicating()) {
             playerData = PlayerData.extractData();
         }
         clearPools();
@@ -218,8 +218,8 @@ public class CloningModule {
         }
     }
 
-    public static void stopCloning() {
-        if (!isCloning()) {
+    public static void stopDuplication() {
+        if (!isDuplicating()) {
             return;
         }
 

@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import echo.EchoMod;
-import echo.mechanics.duplicate.CloningModule;
+import echo.mechanics.duplicate.Duplicator;
 import echo.subscribers.DuplicateSubscriber;
 import echo.util.RunnableAction;
 import echo.util.TextureLoader;
@@ -61,7 +61,7 @@ public class DeepLearningPower extends AbstractPower implements CloneablePowerIn
 
             private void processCardsInGroup(CardGroup cardGroup) {
                 for (AbstractCard c : cardGroup.group) {
-                    if (CloningModule.isCardTransformed(c) && c.canUpgrade()) {
+                    if (Duplicator.isCardTransformed(c) && c.canUpgrade()) {
                         if (cardGroup.type == CardGroup.CardGroupType.HAND) {
                             c.superFlash();
                         }
