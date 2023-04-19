@@ -10,7 +10,7 @@
     "NAME": "Overloaded Module",
     "FLAVOR": "A new equilibrium between energy and charge.",
     "DESCRIPTIONS": [
-      "Replaces #yPlaceholder #yRelic. Stay #yecho:Charged regardless of #yecho:Ultimate_Charge. Permanently lose 1 [E] ."
+      "Replaces #yCloning #yModule. Stay #yecho:Charged regardless of #yecho:Ultimate_Charge. Permanently lose 1 [E] ."
     ]
   },
   "echo:HolographicTop": {
