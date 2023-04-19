@@ -50,7 +50,7 @@
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "inaccurate_stick.png",
-    "COST": 2,
+    "COST": 1,
     "M/Sticky Bombs": 2,
     "+M": 1
   },
