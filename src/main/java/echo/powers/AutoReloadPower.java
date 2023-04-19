@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import echo.EchoMod;
 import echo.cards.attacks.TriShot;
 import echo.util.TextureLoader;
@@ -40,6 +41,7 @@ public class AutoReloadPower extends AbstractPower implements CloneablePowerInte
 
     @Override
     public void atStartOfTurnPostDraw() {
+        UnlockTracker.markCardAsSeen(TriShot.ID);
         addToBot(new MakeTempCardInDrawPileAction(new TriShot(), amount, true, true));
     }
 
