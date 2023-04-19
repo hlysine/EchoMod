@@ -12,7 +12,7 @@
     "RARITY": "COMMON"
   },
   "echo:MiniProjector": {
-    "IMG": "placeholder_relic.png",
+    "IMG": "mini_projector.png",
     "RARITY": "UNCOMMON"
   }
 }
