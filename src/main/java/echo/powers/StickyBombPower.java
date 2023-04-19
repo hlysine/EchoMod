@@ -64,7 +64,7 @@ public class StickyBombPower extends AbstractPower implements CloneablePowerInte
     }
 
     @Override
-    public void atEndOfRound() {
+    public void atStartOfTurn() {
         for (int i = this.amount; i > 0; i--) {
             addToBot(new DamageAction(this.owner, new DamageInfo(AbstractDungeon.player, i, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.BLUNT_LIGHT, true));
             addToBot(new ReducePowerAction(this.owner, this.owner, ID, 1));

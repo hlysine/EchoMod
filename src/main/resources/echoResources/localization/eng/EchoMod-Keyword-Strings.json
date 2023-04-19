@@ -36,7 +36,7 @@
       "sticky_bomb",
       "sticky_bombs"
     ],
-    "DESCRIPTION": "At end of round, explode one by one dealing damage equal to the number of #ySticky #yBombs remaining."
+    "DESCRIPTION": "At the start of turn, explode one by one dealing damage equal to the number of #ySticky #yBombs remaining."
   },
   {
     "PROPER_NAME": "Ultimate Charge",
