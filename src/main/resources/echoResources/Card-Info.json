@@ -41,9 +41,9 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "short_flight.png",
     "COST": 1,
-    "M/Flight": 1,
-    "+M": 1,
-    "B": 3
+    "M/Flight": 2,
+    "B": 3,
+    "+B": 3
   },
   "echo:InaccurateStick": {
     "RARITY": "COMMON",
@@ -70,7 +70,7 @@
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "echo_dash.png",
-    "COST": 1,
+    "COST": 0,
     "M/Flight": 10,
     "+M": 5,
     "echo:M2/Grounded": 99
@@ -396,10 +396,11 @@
   },
   "echo:AdaptiveFlight": {
     "RARITY": "UNCOMMON",
+    `
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "adaptive_flight.png",
-    "COST": 2,
+    "COST": 1,
     "M/Flight power": 1,
     "+M": 1
   },
