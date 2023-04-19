@@ -2,20 +2,21 @@ package echo.potions;
 
 import basemod.abstracts.CustomPotion;
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.colorless.Metamorphosis;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import echo.EchoMod;
+import echo.powers.UltimateChargePower;
 
-public class ButterflyInAJar extends CustomPotion {
+public class ChargedBottle extends CustomPotion {
 
-    public static final String POTION_ID = EchoMod.makeID(ButterflyInAJar.class.getSimpleName());
+    public static final String POTION_ID = EchoMod.makeID(ChargedBottle.class.getSimpleName());
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
 
     public static final Color LIQUID_COLOR = CardHelper.getColor(135, 50, 200);
@@ -26,10 +27,10 @@ public class ButterflyInAJar extends CustomPotion {
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
 
     private static final PotionRarity RARITY = PotionRarity.UNCOMMON;
-    private static final PotionSize SIZE = PotionSize.JAR;
-    private static final PotionColor COLOR = PotionColor.FAIRY;
+    private static final PotionSize SIZE = PotionSize.SPHERE;
+    private static final PotionColor COLOR = PotionColor.ELIXIR;
 
-    public ButterflyInAJar() {
+    public ChargedBottle() {
         super(NAME, POTION_ID, RARITY, SIZE, COLOR);
 
         isThrown = false;
@@ -38,30 +39,25 @@ public class ButterflyInAJar extends CustomPotion {
 
     @Override
     public void use(AbstractCreature target) {
-        AbstractCard card = new Metamorphosis();
-        card.setCostForTurn(0);
-        addToBot(new MakeTempCardInHandAction(card, this.potency));
+        AbstractPlayer p = AbstractDungeon.player;
+        addToBot(new ApplyPowerAction(p, p, new UltimateChargePower(p, this.potency)));
     }
 
     @Override
     public void initializeData() {
         this.potency = getPotency();
-        if (this.potency == 1) {
-            this.description = potionStrings.DESCRIPTIONS[0];
-        } else {
-            this.description = potionStrings.DESCRIPTIONS[1] + this.potency + potionStrings.DESCRIPTIONS[2];
-        }
+        this.description = potionStrings.DESCRIPTIONS[0] + this.potency + potionStrings.DESCRIPTIONS[1];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
     }
 
     @Override
     public AbstractPotion makeCopy() {
-        return new ButterflyInAJar();
+        return new ChargedBottle();
     }
 
     @Override
     public int getPotency(final int ascensionLevel) {
-        return 1;
+        return 5;
     }
 }

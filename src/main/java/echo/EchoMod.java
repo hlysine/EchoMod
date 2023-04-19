@@ -26,7 +26,7 @@ import echo.cards.AbstractBaseCard;
 import echo.characters.Echo;
 import echo.effects.SfxStore;
 import echo.patches.metrics.DevCommandsMetricPatch;
-import echo.potions.ButterflyInAJar;
+import echo.potions.ChargedBottle;
 import echo.powers.UltimateChargePower;
 import echo.relics.AbstractBaseRelic;
 import echo.util.ModIdCheck;
@@ -294,11 +294,11 @@ public class EchoMod implements
     public void receiveEditPotions() {
         logger.info("Beginning to edit potions");
 
-        BaseMod.addPotion(ButterflyInAJar.class,
-                ButterflyInAJar.LIQUID_COLOR,
-                ButterflyInAJar.HYBRID_COLOR,
-                ButterflyInAJar.SPOTS_COLOR,
-                ButterflyInAJar.POTION_ID);
+        BaseMod.addPotion(ChargedBottle.class,
+                ChargedBottle.LIQUID_COLOR,
+                ChargedBottle.HYBRID_COLOR,
+                ChargedBottle.SPOTS_COLOR,
+                ChargedBottle.POTION_ID);
 
         logger.info("Done editing potions");
     }
