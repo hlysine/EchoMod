@@ -1,5 +1,7 @@
 package echo.effects;
 
+import basemod.BaseMod;
+import basemod.interfaces.PostDungeonUpdateSubscriber;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -14,7 +16,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class DuplicateEffect extends AbstractGameEffect {
+public class DuplicateEffect extends AbstractGameEffect implements PostDungeonUpdateSubscriber {
     public static final float DURATION = 1f;
     private static final Logger logger = LogManager.getLogger(DuplicateEffect.class);
     private static final ShaderProgram gridShader;
@@ -33,6 +35,7 @@ public class DuplicateEffect extends AbstractGameEffect {
     private final FrameBuffer frameBuffer;
     private Runnable action;
     private PostDuplicateEffect effect;
+    private boolean firstFrame = true;
 
     public DuplicateEffect(Runnable action) {
         this.action = action;
@@ -42,17 +45,26 @@ public class DuplicateEffect extends AbstractGameEffect {
 
     @Override
     public void update() {
-        this.duration -= Gdx.graphics.getDeltaTime();
-        if ((this.duration < startingDuration / 2f || EchoMod.reducedFullscreenEffects) && this.action != null) {
-            this.action.run();
-            this.action = null;
+        if (firstFrame) {
+            BaseMod.subscribe(this);
+            firstFrame = false;
         }
+        this.duration -= Gdx.graphics.getDeltaTime();
         if ((this.duration < startingDuration * 0.1f || EchoMod.reducedFullscreenEffects) && this.effect == null) {
             this.effect = new PostDuplicateEffect();
             AbstractDungeon.topLevelEffectsQueue.add(this.effect);
         }
         if (this.duration < 0.0F) {
             this.isDone = true;
+            BaseMod.unsubscribe(this);
+        }
+    }
+
+    @Override
+    public void receivePostDungeonUpdate() {
+        if ((this.duration < startingDuration / 2f || EchoMod.reducedFullscreenEffects) && this.action != null) {
+            this.action.run();
+            this.action = null;
         }
     }
 

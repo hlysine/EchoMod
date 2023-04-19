@@ -125,6 +125,10 @@ public class Duplicator {
         newPlayer.maxHealth = newPlayer.maxHealth / 5;
         newPlayer.currentHealth = newPlayer.maxHealth;
 
+        CardCrawlGame.dungeon.initializePotions();
+        initializeCardPools();
+        ReflectionHacks.privateMethod(AbstractDungeon.class, "initializeRelicList").invoke(CardCrawlGame.dungeon);
+
         if (relicTransformer != null)
             originalPlayer.relics = relicTransformer.originalRelics;
         relicTransformer = new RelicTransformer(AbstractDungeon.cardRandomRng, originalPlayer.chosenClass, newPlayer.chosenClass);
@@ -152,10 +156,6 @@ public class Duplicator {
 
         changePlayerReferences(originalPlayer, newPlayer);
 
-        CardCrawlGame.dungeon.initializePotions();
-        initializeCardPools();
-        ReflectionHacks.privateMethod(AbstractDungeon.class, "initializeRelicList").invoke(CardCrawlGame.dungeon);
-
         newPlayer.isBloodied = (newPlayer.currentHealth <= newPlayer.maxHealth / 2);
         newPlayer.gameHandSize = newPlayer.masterHandSize;
         if (cardDecks == null) {
@@ -175,6 +175,9 @@ public class Duplicator {
         Collection<AbstractRelic> transformedRelics = newPlayer.relics.stream()
                 .filter(r -> !relicTransformer.originalRelics.contains(r))
                 .collect(Collectors.toList());
+        for (AbstractRelic relic : transformedRelics) {
+            relic.onEquip();
+        }
         for (AbstractRelic relic : transformedRelics) {
             relic.atPreBattle();
         }
@@ -234,6 +237,13 @@ public class Duplicator {
         originalPlayer.powers = newPlayer.powers;
         originalPlayer.powers.removeIf(p -> p instanceof DuplicatePower);
 
+        // only trigger start of combat events for the new relics from the duplicated player
+        Collection<AbstractRelic> transformedRelics = newPlayer.relics.stream()
+                .filter(r -> !relicTransformer.originalRelics.contains(r))
+                .collect(Collectors.toList());
+        for (AbstractRelic relic : transformedRelics) {
+            relic.onUnequip();
+        }
         originalPlayer.relics = relicTransformer.originalRelics;
         originalPlayer.reorganizeRelics();
         originalPlayer.adjustPotionPositions();

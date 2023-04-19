@@ -69,6 +69,27 @@ public class RelicTransformer {
             newRelics.add(relic);
         }
 
+        int circletCount = 0;
+        int redCircletCount = 0;
+        for (AbstractRelic relic : newRelics) {
+            if (relic instanceof Circlet) {
+                circletCount += relic.counter;
+            } else if (relic instanceof RedCirclet) {
+                redCircletCount += relic.counter;
+            }
+        }
+        newRelics.removeIf(r -> r instanceof Circlet || r instanceof RedCirclet);
+        if (circletCount > 0) {
+            Circlet circlet = new Circlet();
+            circlet.counter = circletCount;
+            newRelics.add(circlet);
+        }
+        if (redCircletCount > 0) {
+            RedCirclet redCirclet = new RedCirclet();
+            redCirclet.counter = redCircletCount;
+            newRelics.add(redCirclet);
+        }
+
         return newRelics;
     }
 

@@ -19,5 +19,12 @@
     "DESCRIPTIONS": [
       "Transforms to #yecho:Unceasing_Top when you #yecho:Duplicate."
     ]
+  },
+  "echo:MiniProjector": {
+    "NAME": "Mini Projector",
+    "FLAVOR": "A magic ball that may or may not project the relics you need.",
+    "DESCRIPTIONS": [
+      "Whenever you #yecho:duplicate, transform into #b3 random temporary relics."
+    ]
   }
 }

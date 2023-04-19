@@ -10,5 +10,9 @@
   "echo:HolographicTop": {
     "IMG": "holographic_top.png",
     "RARITY": "COMMON"
+  },
+  "echo:MiniProjector": {
+    "IMG": "placeholder_relic.png",
+    "RARITY": "UNCOMMON"
   }
 }
