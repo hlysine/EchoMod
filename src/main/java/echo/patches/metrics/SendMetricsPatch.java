@@ -16,8 +16,8 @@ import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class SendMetricsPatch {
-    public static final String UPLOAD_URL = "http://127.0.0.1:3000/api/metrics";
-//    public static final String UPLOAD_URL = "https://sts-echo.vercel.app/api/metrics";
+    //    public static final String UPLOAD_URL = "http://127.0.0.1:3000/api/metrics";
+    public static final String UPLOAD_URL = "https://sts-echo.vercel.app/api/metrics";
 
     private static final Logger logger = LogManager.getLogger(SendMetricsPatch.class.getName());
 
@@ -42,6 +42,7 @@ public class SendMetricsPatch {
             logger.info("Gathering metrics data");
             ___params.put("installed_mods", Arrays.stream(Loader.MODINFOS).map(modInfo -> modInfo.ID).collect(Collectors.toList()));
             ___params.put("used_dev_commands", DevCommandsMetricPatch.usedDevCommands);
+            ___params.put("duplicate_choices", DuplicateChoicesMetricPatch.duplicateChoices);
             ___params.put("mod_version", EchoMod.class.getPackage().getSpecificationVersion());
         }
     }
