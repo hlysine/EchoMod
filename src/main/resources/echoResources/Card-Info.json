@@ -396,7 +396,6 @@
   },
   "echo:AdaptiveFlight": {
     "RARITY": "UNCOMMON",
-    `
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "adaptive_flight.png",
