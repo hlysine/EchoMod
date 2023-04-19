@@ -1,6 +1,8 @@
 # Echo
 
-Echo is a custom Slay The Spire character currently in development.
+Echo is a custom Slay The Spire character with many conditional cards and unique mechanics. Designing good decks that
+satisfy the card conditions will be challenging, but you can always duplicate another character to borrow some of their
+powers.
 
 | **[Download Mod](https://github.com/hlysine/EchoMod/releases/latest/)** |
 |-------------------------------------------------------------------------|
@@ -9,11 +11,9 @@ Echo is a custom Slay The Spire character currently in development.
 
 ## Content
 
-- WIP
-
-## Development Status
-
-- Drafting
+- 49 cards
+- 4 relics
+- 1 potion
 
 ## Data Collection
 
@@ -23,6 +23,7 @@ data sent is mostly the same as what you can find in the `runs` folder, but with
 - A list of mods you have enabled
 - The current version of Echo mod
 - Whether you have used basemod console commands in your run
+- Which character you have chosen when duplicating
 
 The data is used for debugging and balancing purposes. The generated statistics will be made public when there is enough
 data.

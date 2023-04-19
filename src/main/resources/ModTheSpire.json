@@ -4,8 +4,8 @@
   "author_list": [
     "Lysine"
   ],
-  "credits": "Basemod, ModTheSpire, #modding-technical, #modding-gameplay",
-  "description": "Echo is a custom Slay The Spire character currently in development.",
+  "credits": "Basemod, ModTheSpire, StsLib #modding-technical, #modding-gameplay",
+  "description": "Echo is a custom Slay The Spire character with many conditional cards and unique mechanics.",
   "version": "${project.version}",
   "sts_version": "${SlayTheSpire.version}",
   "mts_version": "${ModTheSpire.version}",
