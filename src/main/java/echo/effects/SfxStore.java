@@ -9,7 +9,8 @@ public enum SfxStore {
     STICKY_BOMB_APPLY("STICKY_BOMB_APPLY", "sticky_bomb_apply.ogg"),
     FLIGHT_APPLY("FLIGHT_APPLY", "flight_apply.ogg"),
     DUPLICATE_START("DUPLICATE_START", "duplicate_start.ogg"),
-    DUPLICATE_END("DUPLICATE_END", "duplicate_end.ogg");
+    DUPLICATE_END("DUPLICATE_END", "duplicate_end.ogg"),
+    TRI_SHOT("TRI_SHOT", "tri_shot.ogg");
 
     private final String key;
     private final String path;

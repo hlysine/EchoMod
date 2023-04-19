@@ -9,7 +9,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import echo.EchoMod;
 import echo.cards.AbstractBaseCard;
+import echo.effects.SfxStore;
 import echo.effects.TriShotEffect;
+import echo.util.RunnableAction;
 
 public class TriShot extends AbstractBaseCard {
 
@@ -26,6 +28,7 @@ public class TriShot extends AbstractBaseCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new VFXAction(new TriShotEffect()));
+        addToBot(new RunnableAction(() -> SfxStore.TRI_SHOT.play(0.1f)));
         for (int i = 0; i < magicNumber; i++) {
             addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT, true));
         }
