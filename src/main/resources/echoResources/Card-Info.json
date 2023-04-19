@@ -22,8 +22,8 @@
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "copy.png",
-    "COST": 3,
-    "+COST": 2
+    "COST": 2,
+    "+COST": 1
   },
   "echo:SwayingBeam": {
     "RARITY": "BASIC",
@@ -372,8 +372,8 @@
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "mirrored_finisher.png",
-    "COST": 3,
-    "+COST": 2
+    "COST": 2,
+    "+COST": 1
   },
   "echo:Fixation": {
     "RARITY": "UNCOMMON",
