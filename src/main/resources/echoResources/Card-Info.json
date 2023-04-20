@@ -100,8 +100,8 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "final_blow.png",
     "COST": 1,
-    "M/Ultimate Charge": 5,
-    "+M": 2
+    "M/Ultimate Charge": 7,
+    "+M": 3
   },
   "echo:MayhemForm": {
     "RARITY": "RARE",
