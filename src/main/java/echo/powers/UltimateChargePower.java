@@ -55,8 +55,7 @@ public class UltimateChargePower extends AbstractPower implements CloneablePower
 
     @Override
     public void stackPower(int stackAmount) {
-        this.fontScale = 8.0F;
-        this.amount = Math.min(10, this.amount + stackAmount);
+        super.stackPower(stackAmount);
 
         this.region128 = new TextureAtlas.AtlasRegion(getTex84(), 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(getTex32(), 0, 0, 32, 32);
