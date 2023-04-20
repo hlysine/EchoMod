@@ -62,6 +62,14 @@ public class UltimateChargePower extends AbstractPower implements CloneablePower
     }
 
     @Override
+    public void reducePower(int reduceAmount) {
+        super.reducePower(reduceAmount);
+
+        this.region128 = new TextureAtlas.AtlasRegion(getTex84(), 0, 0, 84, 84);
+        this.region48 = new TextureAtlas.AtlasRegion(getTex32(), 0, 0, 32, 32);
+    }
+
+    @Override
     public void updateDescription() {
         description = DESCRIPTIONS[0];
     }

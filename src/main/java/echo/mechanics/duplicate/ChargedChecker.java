@@ -1,6 +1,6 @@
 package echo.mechanics.duplicate;
 
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -59,6 +59,6 @@ public class ChargedChecker {
 
     public static void consumeCharge() {
         AbstractPlayer player = AbstractDungeon.player;
-        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(player, player, UltimateChargePower.POWER_ID));
+        AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(player, player, UltimateChargePower.POWER_ID, 10));
     }
 }
