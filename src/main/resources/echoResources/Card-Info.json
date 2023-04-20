@@ -358,7 +358,7 @@
     "COST": 0,
     "D": 4,
     "+D": 3,
-    "M/Ult Charge": 2
+    "M/Ult Charge": 3
   },
   "echo:NanoBoost": {
     "RARITY": "UNCOMMON",
