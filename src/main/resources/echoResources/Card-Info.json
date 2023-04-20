@@ -384,7 +384,7 @@
     "IMG": "fixation.png",
     "COST": 1,
     "D": 5,
-    "+D": 3,
+    "+D": 4,
     "M/Fixated power": 1
   },
   "echo:StickySituation": {
