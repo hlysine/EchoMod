@@ -466,5 +466,14 @@
     "COST": 1,
     "M/Card draw": 5,
     "+M": 1
+  },
+  "echo:Reconfiguration": {
+    "RARITY": "RARE",
+    "TYPE": "ATTACK",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "reconfiguration.png",
+    "COST": 2,
+    "D": 9,
+    "+D": 3
   }
 }
