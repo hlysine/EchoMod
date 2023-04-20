@@ -188,15 +188,15 @@
       " NL (Gains !B! Block.)"
     ]
   },
-  "echo:CombatInitiation": {
-    "NAME": "Combat Initiation",
+  "echo:InitiatingStick": {
+    "NAME": "Initiating Stick",
     "DESCRIPTION": "Apply echo:Sticky_Bombs until the target has at least !M!.",
     "EXTENDED_DESCRIPTION": [
       "Too many #rSticky #rBombs already."
     ]
   },
-  "echo:LongRangeTarget": {
-    "NAME": "Long Range Target",
+  "echo:LongRangeStick": {
+    "NAME": "Long Range Stick",
     "DESCRIPTION": "{@@}If you have echo:Flight, NL apply !M! echo:Sticky_Bomb{!M!|>1=s|@=}.",
     "EXTENDED_DESCRIPTION": [
       "I don't have #rFlight."

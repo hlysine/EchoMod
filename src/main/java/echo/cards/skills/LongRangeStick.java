@@ -8,16 +8,17 @@ import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import echo.EchoMod;
 import echo.cards.AbstractBaseCard;
 import echo.patches.cards.CustomCardTags;
+import echo.powers.FlightPower;
 import echo.powers.StickyBombPower;
 import echo.util.RunnableAction;
 
-public class CombatInitiation extends AbstractBaseCard {
+public class LongRangeStick extends AbstractBaseCard {
 
-    public static final String ID = EchoMod.makeID(CombatInitiation.class.getSimpleName());
+    public static final String ID = EchoMod.makeID(LongRangeStick.class.getSimpleName());
 
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
-    public CombatInitiation() {
+    public LongRangeStick() {
         super(ID, TARGET);
 
         this.tags.add(CustomCardTags.STICK);
@@ -26,9 +27,8 @@ public class CombatInitiation extends AbstractBaseCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new RunnableAction(() -> {
-            int powerAmount = StickyBombPower.getAmount(m);
-            if (powerAmount < magicNumber) {
-                addToBot(new ApplyPowerAction(m, p, new StickyBombPower(m, magicNumber - powerAmount)));
+            if (p.powers.stream().anyMatch(pow -> pow instanceof FlightPower)) {
+                addToBot(new ApplyPowerAction(m, p, new StickyBombPower(m, magicNumber)));
             } else {
                 AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, cardStrings.EXTENDED_DESCRIPTION[0], true));
             }
