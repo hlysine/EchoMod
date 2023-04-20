@@ -44,7 +44,7 @@ public class MayhemFormPower extends AbstractPower implements CloneablePowerInte
     public void atEndOfTurn(boolean isPlayer) {
         if (isPlayer) {
             addToBot(new ApplyPowerAction(owner, owner, new FlightPower(owner, amount)));
-            addToBot(new ApplyPowerAction(owner, owner, new UltimateChargePower(owner, amount * 2)));
+            addToBot(new ApplyPowerAction(owner, owner, new UltimateChargePower(owner, amount * 3)));
             for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
                 addToBot(new ApplyPowerAction(mo, owner, new StickyBombPower(mo, amount), amount, true, AbstractGameAction.AttackEffect.NONE));
             }
@@ -53,7 +53,7 @@ public class MayhemFormPower extends AbstractPower implements CloneablePowerInte
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + describeNumber(amount, 1) + describeNumber(amount * 2, 3) + describeNumber(amount, 5);
+        description = DESCRIPTIONS[0] + describeNumber(amount, 1) + describeNumber(amount * 3, 3) + describeNumber(amount, 5);
     }
 
     private String describeNumber(int number, int singularIndex) {

@@ -111,8 +111,8 @@
     "COST": 3,
     "M/Mayhem Form power": 1,
     "+M": 1,
-    "echo:M2/2 times M": 2,
-    "+echo:M2": 2
+    "echo:M2/3 times M": 3,
+    "+echo:M2": 3
   },
   "echo:FlexibleCopy": {
     "RARITY": "UNCOMMON",
