@@ -241,7 +241,7 @@
   },
   "echo:AdaptiveFlight": {
     "NAME": "Adaptive Flight",
-    "DESCRIPTION": "Gain !M! echo:Flight for each type of buff you have.",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! echo:Flight for each type of buff you have.",
     "EXTENDED_DESCRIPTION": [
       "I have no #rbuffs."
     ]

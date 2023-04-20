@@ -399,12 +399,13 @@
   },
   "echo:AdaptiveFlight": {
     "RARITY": "UNCOMMON",
-    "TYPE": "SKILL",
+    "TYPE": "ATTACK",
     "COLOR": "ECHO_BLUE",
     "IMG": "adaptive_flight.png",
     "COST": 1,
-    "M/Flight power": 1,
-    "+M": 1
+    "D": 5,
+    "+D": 4,
+    "M/Flight power": 1
   },
   "echo:DeepLearning": {
     "RARITY": "UNCOMMON",
