@@ -335,7 +335,7 @@ public class EchoMod implements
         for (CtClass ctClass : classes) {
             if (ctClass.hasAnnotation(AutoAdd.Ignore.class)) continue;
             try {
-                Class<? extends AbstractPower> clazz = (Class<? extends AbstractPower>) classPool.getClassLoader().loadClass(ctClass.getName());
+                @SuppressWarnings("unchecked") Class<? extends AbstractPower> clazz = (Class<? extends AbstractPower>) classPool.getClassLoader().loadClass(ctClass.getName());
                 BaseMod.addPower(clazz, (String) clazz.getField("POWER_ID").get(null));
             } catch (NoSuchFieldException | IllegalAccessException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
@@ -369,7 +369,7 @@ public class EchoMod implements
 
         new AutoAdd("EchoMod")
                 .packageFilter(AbstractBaseCard.class)
-                .setDefaultSeen(false)
+                .setDefaultSeen(true)
                 .cards();
 
         logger.info("Done adding cards!");
