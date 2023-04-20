@@ -475,5 +475,14 @@
     "COST": 2,
     "D": 9,
     "+D": 3
+  },
+  "echo:Calibration": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "POWER",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "calibration.png",
+    "COST": 2,
+    "+COST": 1,
+    "M/Calibrated power": 1
   }
 }

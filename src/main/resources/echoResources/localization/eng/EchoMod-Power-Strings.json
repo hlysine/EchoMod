@@ -124,5 +124,12 @@
       "This round, gain #b",
       " Block whenever you play a non-Echo card."
     ]
+  },
+  "echo:CalibratedPower": {
+    "NAME": "Calibrated",
+    "DESCRIPTIONS": [
+      "#yTri-shots deal #b",
+      " additional damage."
+    ]
   }
 }

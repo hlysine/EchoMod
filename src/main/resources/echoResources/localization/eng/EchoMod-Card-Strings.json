@@ -289,5 +289,10 @@
     "NAME": "Reconfiguration",
     "DESCRIPTION": "Deal !D! damage. NL Sort your draw pile by cost, with 0 cost on top.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:Calibration": {
+    "NAME": "Calibration",
+    "DESCRIPTION": "*Tri-Shots deal !M! additional damage.",
+    "EXTENDED_DESCRIPTION": []
   }
 }
