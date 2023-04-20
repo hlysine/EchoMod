@@ -1,6 +1,9 @@
-package echo.cards.skills;
+package echo.cards.attacks;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -25,6 +28,7 @@ public class StickySituation extends AbstractBaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         int count = (int) m.powers.stream().filter(pow -> pow.type == AbstractPower.PowerType.DEBUFF).count();
         if (count > 0) {
             addToBot(new ApplyPowerAction(m, p, new StickyBombPower(m, count * magicNumber)));

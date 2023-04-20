@@ -234,7 +234,7 @@
   },
   "echo:StickySituation": {
     "NAME": "Sticky Situation",
-    "DESCRIPTION": "{@@}Apply !M! echo:Sticky_Bomb{!M!|>1=s|@=} for each type of debuff the target has.",
+    "DESCRIPTION": "{@@}Deal !D! damage. NL Apply !M! echo:Sticky_Bomb{!M!|>1=s|@=} for each type of debuff the target has.",
     "EXTENDED_DESCRIPTION": [
       "The target has no #rdebuffs."
     ]

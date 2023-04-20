@@ -389,11 +389,12 @@
   },
   "echo:StickySituation": {
     "RARITY": "COMMON",
-    "TYPE": "SKILL",
+    "TYPE": "ATTACK",
     "COLOR": "ECHO_BLUE",
     "IMG": "sticky_situation.png",
     "COST": 1,
     "+COST": 0,
+    "D": 5,
     "M/Sticky Bomb power": 1
   },
   "echo:AdaptiveFlight": {
