@@ -11,7 +11,7 @@ powers.
 
 ## Content
 
-- 49 cards
+- 52 cards
 - 4 relics
 - 1 potion
 

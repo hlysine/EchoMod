@@ -5,6 +5,6 @@
 ### New content
 
 - Content for the first playtest
-    - 49 cards
-    - 1 potion
+  - 52 cards
+  - 1 potion
     - 4 relics
