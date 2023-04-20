@@ -453,5 +453,14 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "echoed_aggression.png",
     "COST": 0
+  },
+  "echo:BFS": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "bfs.png",
+    "COST": 1,
+    "M/Card draw": 5,
+    "+M": 1
   }
 }

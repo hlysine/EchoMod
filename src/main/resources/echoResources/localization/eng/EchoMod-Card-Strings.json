@@ -279,5 +279,10 @@
     "EXTENDED_DESCRIPTION": [
       "I am not in #rDuplicate."
     ]
+  },
+  "echo:BFS": {
+    "NAME": "BFS",
+    "DESCRIPTION": "Draw !M! cards. NL Discard all cards drawn this way that do not contain \"Stick\".",
+    "EXTENDED_DESCRIPTION": []
   }
 }
