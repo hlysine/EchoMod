@@ -82,7 +82,7 @@
     "IMG": "satisfying_stick.png",
     "COST": 1,
     "+COST": 0,
-    "M/Sticky Bombs": 4
+    "M/Sticky Bombs": 5
   },
   "echo:FocusingBeam": {
     "RARITY": "COMMON",
