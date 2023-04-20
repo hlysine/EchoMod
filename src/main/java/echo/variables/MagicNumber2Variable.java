@@ -24,7 +24,7 @@ public class MagicNumber2Variable extends CustomVariable {
     public void upgradeValue(AbstractCard card, int upgradeValue) {
         if (card instanceof AbstractBaseCard) {
             AbstractBaseCard rCard = (AbstractBaseCard) card;
-            rCard.upgradeTimelineCount(upgradeValue);
+            rCard.upgradeMagicNumber2(upgradeValue);
         }
     }
 

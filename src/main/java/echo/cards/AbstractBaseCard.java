@@ -48,7 +48,7 @@ public abstract class AbstractBaseCard extends CustomCard {
         }
     }
 
-    public void upgradeTimelineCount(int amount) {
+    public void upgradeMagicNumber2(int amount) {
         baseMagicNumber2 += amount;
         magicNumber2 = baseMagicNumber2;
         upgradedMagicNumber2 = true;
