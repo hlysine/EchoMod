@@ -7,4 +7,4 @@
 - Content for the first playtest
   - 52 cards
   - 1 potion
-    - 4 relics
+  - 4 relics
