@@ -322,10 +322,12 @@
   },
   "echo:LongRangeStick": {
     "RARITY": "COMMON",
-    "TYPE": "SKILL",
+    "TYPE": "ATTACK",
     "COLOR": "ECHO_BLUE",
     "IMG": "long_range_stick.png",
     "COST": 1,
+    "D": 6,
+    "+D": 2,
     "M/Sticky Bombs": 2,
     "+M": 1
   },

@@ -197,7 +197,7 @@
   },
   "echo:LongRangeStick": {
     "NAME": "Long Range Stick",
-    "DESCRIPTION": "{@@}If you have echo:Flight, NL apply !M! echo:Sticky_Bomb{!M!|>1=s|@=}.",
+    "DESCRIPTION": "{@@}Deal !D! damage. NL If you have echo:Flight, NL apply !M! echo:Sticky_Bomb{!M!|>1=s|@=}.",
     "EXTENDED_DESCRIPTION": [
       "I don't have #rFlight."
     ]
