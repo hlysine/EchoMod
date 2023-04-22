@@ -484,14 +484,5 @@
     "COST": 2,
     "+COST": 1,
     "M/Calibrated power": 1
-  },
-  "echo:Initialization": {
-    "RARITY": "COMMON",
-    "TYPE": "SKILL",
-    "COLOR": "ECHO_BLUE",
-    "IMG": "initialization.png",
-    "COST": 1,
-    "M/Ult Charge power": 5,
-    "+M": 2
   }
 }

@@ -294,10 +294,5 @@
     "NAME": "Calibration",
     "DESCRIPTION": "*Tri-Shots deal !M! additional damage.",
     "EXTENDED_DESCRIPTION": []
-  },
-  "echo:Initialization": {
-    "NAME": "Initialization",
-    "DESCRIPTION": "Gain !M! echo:Ultimate_Charge.",
-    "EXTENDED_DESCRIPTION": []
   }
 }
