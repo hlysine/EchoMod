@@ -117,7 +117,7 @@
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "flexible_copy.png",
-    "COST": 2,
+    "COST": 1,
     "M/Card draw": 3,
     "+M": 1
   },
