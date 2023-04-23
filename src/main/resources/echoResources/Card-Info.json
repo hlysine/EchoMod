@@ -189,9 +189,9 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "echo_high_noon.png",
     "COST": 2,
-    "D": 0,
-    "+D": 10,
-    "M/Damage scaling": 10
+    "D": 10,
+    "M/Damage scaling": 10,
+    "+M": 2
   },
   "echo:HandReload": {
     "RARITY": "COMMON",
