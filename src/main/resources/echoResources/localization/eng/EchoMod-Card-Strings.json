@@ -72,7 +72,7 @@
   },
   "echo:MayhemForm": {
     "NAME": "Mayhem Form",
-    "DESCRIPTION": "{@@}At the end of your turn, gain !M! echo:Flight, !echo:M2! echo:Ultimate_Charge and apply !M! echo:Sticky_Bomb{!M!|>1=s|@=} to ALL enemies.",
+    "DESCRIPTION": "{@@}{!Upgrades!|0=Ethereal. NL |@=}Whenever you play a card, apply 1 echo:Sticky_Bomb to {!M!|1=a random enemy|@=!M! random enemies}.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:FlexibleCopy": {

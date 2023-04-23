@@ -15,10 +15,20 @@ public class MayhemForm extends AbstractBaseCard {
 
     public MayhemForm() {
         super(ID, TARGET);
+
+        this.isEthereal = true;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new MayhemFormPower(p, magicNumber)));
+    }
+
+    @Override
+    public void upgrade() {
+        if (!upgraded) {
+            this.isEthereal = false;
+        }
+        super.upgrade();
     }
 }

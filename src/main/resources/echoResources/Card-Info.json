@@ -110,10 +110,7 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "mayhem_form.png",
     "COST": 3,
-    "M/Mayhem Form power": 1,
-    "+M": 1,
-    "echo:M2/3 times M": 3,
-    "+echo:M2": 3
+    "M/Mayhem Form power": 1
   },
   "echo:FlexibleCopy": {
     "RARITY": "UNCOMMON",

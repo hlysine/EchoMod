@@ -3,8 +3,9 @@ package echo.powers;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -41,19 +42,16 @@ public class MayhemFormPower extends AbstractPower implements CloneablePowerInte
     }
 
     @Override
-    public void atEndOfTurn(boolean isPlayer) {
-        if (isPlayer) {
-            addToBot(new ApplyPowerAction(owner, owner, new FlightPower(owner, amount)));
-            addToBot(new ApplyPowerAction(owner, owner, new UltimateChargePower(owner, amount * 3)));
-            for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
-                addToBot(new ApplyPowerAction(mo, owner, new StickyBombPower(mo, amount), amount, true, AbstractGameAction.AttackEffect.NONE));
-            }
+    public void onAfterUseCard(AbstractCard card, UseCardAction action) {
+        for (int i = 0; i < this.amount; i++) {
+            AbstractMonster m = AbstractDungeon.getRandomMonster();
+            addToBot(new ApplyPowerAction(m, this.owner, new StickyBombPower(m, 1)));
         }
     }
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + describeNumber(amount, 1) + describeNumber(amount * 3, 3) + describeNumber(amount, 5);
+        description = DESCRIPTIONS[0] + describeNumber(amount, 1);
     }
 
     private String describeNumber(int number, int singularIndex) {
