@@ -22,8 +22,9 @@
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "copy.png",
-    "COST": 2,
-    "+COST": 1
+    "COST": 1,
+    "M/Ultimate charge power": 4,
+    "+M": 2
   },
   "echo:SwayingBeam": {
     "RARITY": "BASIC",
