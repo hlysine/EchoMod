@@ -101,7 +101,7 @@ public class Duplicator {
         AbstractDungeon.player.releaseCard();
     }
 
-    public static void startDuplication(AbstractPlayer.PlayerClass playerClass, DuplicatedDecks cardDecks) {
+    public static void startDuplication(AbstractPlayer.PlayerClass playerClass, DuplicatedDecks cardDecks, AbstractGameAction followUpAction) {
 
         clearCardQueues();
 
@@ -193,6 +193,8 @@ public class Duplicator {
         newPlayer.energy.energy = originalPlayer.energy.energy;
         EnergyPanel.totalCount = Math.max(EnergyPanel.totalCount, newPlayer.energy.energy);
 
+        if (followUpAction != null)
+            AbstractDungeon.actionManager.addToTurnStart(followUpAction);
         AbstractDungeon.actionManager.addToTurnStart(new DrawCardAction(newPlayer, newPlayer.gameHandSize - newPlayer.hand.size()));
         AbstractDungeon.actionManager.addToTurnStart(new RunnableAction(() -> {
             newPlayer.applyStartOfTurnCards();

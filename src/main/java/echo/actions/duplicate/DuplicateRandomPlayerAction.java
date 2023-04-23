@@ -24,25 +24,38 @@ public class DuplicateRandomPlayerAction extends AbstractGameAction {
     private static final int CHOICES = 3;
     private final AbstractPlayer.PlayerClass[] excludedClasses;
     private final Random rng;
+    private final AbstractGameAction followUpAction;
 
     /**
      * Duplicate a random player class.
      *
      * @param excludedClasses The player classes that cannot be duplicated.
      * @param rng             The random number generator to use.
+     * @param followUpAction  The action to follow up with after duplicate starts, can be null.
      */
-    public DuplicateRandomPlayerAction(AbstractPlayer.PlayerClass[] excludedClasses, Random rng) {
+    public DuplicateRandomPlayerAction(AbstractPlayer.PlayerClass[] excludedClasses, Random rng, AbstractGameAction followUpAction) {
         this.excludedClasses = excludedClasses;
         this.rng = rng;
+        this.followUpAction = followUpAction;
     }
 
     /**
      * Duplicate a random player class using the card random RNG.
      *
-     * @param excludedClasses        The player classes that cannot be duplicated.
+     * @param excludedClasses The player classes that cannot be duplicated.
+     * @param followUpAction  The action to follow up with after duplicate starts, can be null.
+     */
+    public DuplicateRandomPlayerAction(AbstractPlayer.PlayerClass[] excludedClasses, AbstractGameAction followUpAction) {
+        this(excludedClasses, AbstractDungeon.cardRandomRng, followUpAction);
+    }
+
+    /**
+     * Duplicate a random player class using the card random RNG.
+     *
+     * @param excludedClasses The player classes that cannot be duplicated.
      */
     public DuplicateRandomPlayerAction(AbstractPlayer.PlayerClass[] excludedClasses) {
-        this(excludedClasses, AbstractDungeon.cardRandomRng);
+        this(excludedClasses, AbstractDungeon.cardRandomRng, null);
     }
 
     @Override
@@ -88,7 +101,7 @@ public class DuplicateRandomPlayerAction extends AbstractGameAction {
         addToTop(new DiscoveryChooseCharacterAction(new ArrayList<>(choiceMap.values()), tutorialStrings.TEXT[0], tutorialStrings.TEXT[1], card -> {
             card.unhover();
             CharacterChoice finalChoice = choiceMap.get(card);
-            addToTop(new DuplicatePlayerAction(finalChoice.chosenClass, finalChoice.decks));
+            addToTop(new DuplicatePlayerAction(finalChoice.chosenClass, finalChoice.decks, this.followUpAction));
         }));
 
         isDone = true;

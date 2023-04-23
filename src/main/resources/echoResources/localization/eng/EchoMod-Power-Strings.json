@@ -55,14 +55,6 @@
       " #ySticky #yBombs to ALL enemies."
     ]
   },
-  "echo:EvasiveCopyPower": {
-    "NAME": "Evasive Copy",
-    "DESCRIPTIONS": [
-      "Gain #b",
-      " #yFlight for each Skill you play while duplicating.",
-      " #yFlight for each Skill you play while duplicating."
-    ]
-  },
   "echo:AutoReloadPower": {
     "NAME": "Auto Reload",
     "DESCRIPTIONS": [

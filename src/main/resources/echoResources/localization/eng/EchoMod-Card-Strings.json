@@ -80,9 +80,9 @@
     "DESCRIPTION": "{@@}echo:Charged: echo:duplicate a character. NL Otherwise, draw !M! card{!M!|>1=s|@=}.",
     "EXTENDED_DESCRIPTION": []
   },
-  "echo:EvasiveCopy": {
-    "NAME": "Evasive Copy",
-    "DESCRIPTION": "{@@}echo:Charged: echo:duplicate a character. NL Gain !M! echo:Flight for each Skill you play while duplicating.",
+  "echo:RecursiveCopy": {
+    "NAME": "Recursive Copy",
+    "DESCRIPTION": "{@@}echo:Charged: echo:duplicate a character and copy this card to your hand{!Upgrades!|0=|@=, which costs 0 until played}.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:GenjiCopy": {

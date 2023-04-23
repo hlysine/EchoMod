@@ -121,14 +121,12 @@
     "M/Card draw": 3,
     "+M": 1
   },
-  "echo:EvasiveCopy": {
-    "RARITY": "UNCOMMON",
+  "echo:RecursiveCopy": {
+    "RARITY": "RARE",
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
-    "IMG": "evasive_copy.png",
-    "COST": 2,
-    "M/Evasive copy power": 1,
-    "+M": 1
+    "IMG": "recursive_copy.png",
+    "COST": 1
   },
   "echo:GenjiCopy": {
     "RARITY": "UNCOMMON",

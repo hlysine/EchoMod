@@ -14,16 +14,19 @@ public class DuplicatePlayerAction extends AbstractGameAction {
 
     private final AbstractPlayer.PlayerClass playerClass;
     private final DuplicatedDecks duplicateDeck;
+    private final AbstractGameAction followUpAction;
 
     /**
      * Duplicate a player class, causing the player to become that class, affecting energy, cards, relics and more.
      *
-     * @param playerClass   The player class to duplicate.
-     * @param duplicateDeck The deck to use when duplicating, can be null.
+     * @param playerClass    The player class to duplicate.
+     * @param duplicateDeck  The deck to use when duplicating, can be null.
+     * @param followUpAction The action to follow up with after duplicate starts, can be null.
      */
-    public DuplicatePlayerAction(AbstractPlayer.PlayerClass playerClass, DuplicatedDecks duplicateDeck) {
+    public DuplicatePlayerAction(AbstractPlayer.PlayerClass playerClass, DuplicatedDecks duplicateDeck, AbstractGameAction followUpAction) {
         this.playerClass = playerClass;
         this.duplicateDeck = duplicateDeck;
+        this.followUpAction = followUpAction;
     }
 
     @Override
@@ -34,7 +37,7 @@ public class DuplicatePlayerAction extends AbstractGameAction {
                     () -> SfxStore.DUPLICATE_START.play(0.05f)
             ));
             addToBot(new VFXAction(AbstractDungeon.player, new DuplicateEffect(() -> {
-                Duplicator.startDuplication(DuplicatePlayerAction.this.playerClass, this.duplicateDeck);
+                Duplicator.startDuplication(DuplicatePlayerAction.this.playerClass, this.duplicateDeck, this.followUpAction);
             }), DuplicateEffect.DURATION, true));
         }
         this.isDone = true;
