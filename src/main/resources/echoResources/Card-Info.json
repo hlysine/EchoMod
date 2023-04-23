@@ -27,14 +27,14 @@
     "+M": 2
   },
   "echo:SwayingBeam": {
-    "RARITY": "BASIC",
+    "RARITY": "UNCOMMON",
     "TYPE": "ATTACK",
     "COLOR": "ECHO_BLUE",
     "IMG": "swaying_beam.png",
     "COST": 1,
-    "M/Vulnerable": 1,
-    "D": 9,
-    "+D": 3
+    "M/Vulnerable": 2,
+    "D": 14,
+    "+D": 4
   },
   "echo:ShortFlight": {
     "RARITY": "COMMON",
