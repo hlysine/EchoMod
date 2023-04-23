@@ -92,7 +92,7 @@
   },
   "echo:EchoBlade": {
     "NAME": "Echo-Blade",
-    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL If echo:Fatal, copy this card to your hand. NL Exhaust.",
+    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL If echo:Lethal, copy this card to your hand. NL Exhaust.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:SojournCopy": {
