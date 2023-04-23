@@ -26,6 +26,14 @@ public enum SfxStore {
         }
     }
 
+    public String getKey() {
+        return key;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
     public void playA(float pitchAdjust) {
         CardCrawlGame.sound.playA(key, pitchAdjust);
     }

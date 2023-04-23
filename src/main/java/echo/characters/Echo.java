@@ -23,6 +23,7 @@ import echo.cards.attacks.Strike;
 import echo.cards.attacks.SwayingBeam;
 import echo.cards.skills.Copy;
 import echo.cards.skills.Defend;
+import echo.effects.SfxStore;
 import echo.relics.CloningModule;
 import echo.util.NoAnimation;
 import org.apache.logging.log4j.LogManager;
@@ -212,7 +213,7 @@ public class Echo extends CustomPlayer {
     // character Select screen effect
     @Override
     public void doCharSelectScreenSelectEffect() {
-        CardCrawlGame.sound.playA("ATTACK_DEFECT_BEAM", 1.25f); // Sound Effect
+        SfxStore.TRI_SHOT.playA(1f);
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.LOW, ScreenShake.ShakeDur.SHORT,
                 false); // Screen Effect
     }
@@ -220,7 +221,7 @@ public class Echo extends CustomPlayer {
     // character Select on-button-press sound effect
     @Override
     public String getCustomModeCharacterButtonSoundKey() {
-        return "ATTACK_DEFECT_BEAM";
+        return SfxStore.TRI_SHOT.getKey();
     }
 
     // Should return how much HP your maximum HP reduces by when starting a run at
@@ -246,7 +247,7 @@ public class Echo extends CustomPlayer {
     // energy is displayed from within the energy orb.
     @Override
     public BitmapFont getEnergyNumFont() {
-        return FontHelper.energyNumFontRed;
+        return FontHelper.energyNumFontBlue;
     }
 
     // Should return class name as it appears in run history screen.
@@ -258,7 +259,7 @@ public class Echo extends CustomPlayer {
     //Which card should be obtainable from the Match and Keep event?
     @Override
     public AbstractCard getStartCardForEvent() {
-        return new Defend();
+        return new Copy();
     }
 
     // The class name as it appears next to your player name in-game
@@ -276,14 +277,14 @@ public class Echo extends CustomPlayer {
     // Should return a Color object to be used to color the miniature card images in run history.
     @Override
     public Color getCardRenderColor() {
-        return EchoMod.ECHO_COLOR;
+        return EchoMod.ECHO_COLOR.cpy();
     }
 
     // Should return a Color object to be used as screen tint effect when your
     // character attacks the heart.
     @Override
     public Color getSlashAttackColor() {
-        return EchoMod.ECHO_COLOR;
+        return EchoMod.ECHO_COLOR.cpy();
     }
 
     // Should return an AttackEffect array of any size greater than 0. These effects
@@ -294,8 +295,8 @@ public class Echo extends CustomPlayer {
         return new AbstractGameAction.AttackEffect[]{
                 AbstractGameAction.AttackEffect.SMASH,
                 AbstractGameAction.AttackEffect.SMASH,
-                AbstractGameAction.AttackEffect.BLUNT_HEAVY,
-                AbstractGameAction.AttackEffect.BLUNT_HEAVY,
+                AbstractGameAction.AttackEffect.BLUNT_LIGHT,
+                AbstractGameAction.AttackEffect.BLUNT_LIGHT,
                 AbstractGameAction.AttackEffect.LIGHTNING};
     }
 
