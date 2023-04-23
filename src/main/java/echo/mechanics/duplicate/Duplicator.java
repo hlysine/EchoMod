@@ -118,9 +118,8 @@ public class Duplicator {
         ReflectionHacks.privateMethod(AbstractCreature.class, "refreshHitboxLocation").invoke(newPlayer);
 
         newPlayer.powers = originalPlayer.powers;
-        if (newPlayer.powers.stream().noneMatch(p -> p instanceof DuplicatePower)) {
-            newPlayer.powers.add(0, new DuplicatePower(newPlayer));
-        }
+        newPlayer.powers.removeIf(p -> p instanceof DuplicatePower);
+        newPlayer.powers.add(0, new DuplicatePower(newPlayer));
         newPlayer.startingMaxHP = newPlayer.startingMaxHP / 5;
         newPlayer.maxHealth = newPlayer.maxHealth / 5;
         newPlayer.currentHealth = newPlayer.maxHealth;
