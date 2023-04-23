@@ -28,12 +28,15 @@ public class StickyBombPower extends AbstractPower implements CloneablePowerInte
     private static final Texture tex84 = TextureLoader.getTexture(EchoMod.makePowerPath("sticky_bomb84.png"));
     private static final Texture tex32 = TextureLoader.getTexture(EchoMod.makePowerPath("sticky_bomb32.png"));
 
+    private int lastStack;
+
     public StickyBombPower(final AbstractCreature owner, final int amount) {
         name = NAME;
         ID = POWER_ID;
 
         this.owner = owner;
         this.amount = amount;
+        this.lastStack = amount;
 
         type = PowerType.DEBUFF;
         isTurnBased = true;
@@ -65,7 +68,11 @@ public class StickyBombPower extends AbstractPower implements CloneablePowerInte
 
     @Override
     public void playApplyPowerSfx() {
-        SfxStore.STICKY_BOMB_APPLY.play(0.05f);
+        if (this.lastStack > 2) {
+            SfxStore.STICKY_BOMB_APPLY.play(0.4f);
+        } else {
+            SfxStore.STICKY_BOMB_APPLY.playV(0.3f);
+        }
     }
 
     @Override
@@ -78,6 +85,7 @@ public class StickyBombPower extends AbstractPower implements CloneablePowerInte
     @Override
     public void stackPower(int stackAmount) {
         super.stackPower(stackAmount);
+        this.lastStack = stackAmount;
         for (int i = 0; i < 10 && i < stackAmount; i++) {
             AbstractDungeon.effectList.add(new StickyBombEffect(this.owner, i * 0.2f));
         }

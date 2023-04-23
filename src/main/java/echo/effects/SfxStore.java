@@ -45,4 +45,12 @@ public enum SfxStore {
     public void play(float pitchVariation) {
         CardCrawlGame.sound.play(key, pitchVariation);
     }
+
+    public void playV(float volumeMod) {
+        CardCrawlGame.sound.playV(key, volumeMod);
+    }
+
+    public void playAV(float pitchAdjust, float volumeMod) {
+        CardCrawlGame.sound.playAV(key, pitchAdjust, volumeMod);
+    }
 }
