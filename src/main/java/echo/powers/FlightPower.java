@@ -54,7 +54,7 @@ public class FlightPower extends AbstractPower implements CloneablePowerInterfac
     }
 
     private float calculateDamageTakenAmount(float damage, DamageInfo.DamageType type) {
-        return damage / 2f;
+        return damage * (1 - 0.3f);
     }
 
     @Override

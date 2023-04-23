@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import echo.EchoMod;
 import echo.effects.SfxStore;
 import echo.effects.StickyBombEffect;
+import echo.subscribers.StickyBombSubscriber;
 import echo.util.TextureLoader;
 
 public class StickyBombPower extends AbstractPower implements CloneablePowerInterface {
@@ -43,6 +44,25 @@ public class StickyBombPower extends AbstractPower implements CloneablePowerInte
         updateDescription();
     }
 
+    private int getBombsPerTurn() {
+        int bombs = 6;
+        if (!this.owner.isPlayer) {
+            for (AbstractPower power : AbstractDungeon.player.powers) {
+                if (power instanceof StickyBombSubscriber) {
+                    StickyBombSubscriber subscriber = (StickyBombSubscriber) power;
+                    bombs = subscriber.modifyBombsPerTurn(bombs);
+                }
+            }
+        }
+        for (AbstractPower power : this.owner.powers) {
+            if (power instanceof StickyBombSubscriber) {
+                StickyBombSubscriber subscriber = (StickyBombSubscriber) power;
+                bombs = subscriber.modifyBombsPerTurn(bombs);
+            }
+        }
+        return bombs;
+    }
+
     @Override
     public void playApplyPowerSfx() {
         SfxStore.STICKY_BOMB_APPLY.play(0.05f);
@@ -65,7 +85,8 @@ public class StickyBombPower extends AbstractPower implements CloneablePowerInte
 
     @Override
     public void atStartOfTurn() {
-        for (int i = this.amount; i > 0; i--) {
+        int bombs = getBombsPerTurn();
+        for (int i = this.amount; i > Math.max(0, this.amount - bombs); i--) {
             addToBot(new DamageAction(this.owner, new DamageInfo(AbstractDungeon.player, i, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.BLUNT_LIGHT, true));
             addToBot(new ReducePowerAction(this.owner, this.owner, ID, 1));
         }
@@ -73,7 +94,13 @@ public class StickyBombPower extends AbstractPower implements CloneablePowerInte
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + ((this.amount + 1) * this.amount / 2) + DESCRIPTIONS[1];
+        int bombs = getBombsPerTurn();
+        description = DESCRIPTIONS[0] + describeNumber(bombs, 1) + ((this.amount + Math.max(1, this.amount - bombs + 1)) * Math.min(this.amount, bombs) / 2) + DESCRIPTIONS[3];
+    }
+
+    private String describeNumber(int number, int singularIndex) {
+        if (number > 1) return number + DESCRIPTIONS[singularIndex + 1];
+        else return number + DESCRIPTIONS[singularIndex];
     }
 
     @Override
