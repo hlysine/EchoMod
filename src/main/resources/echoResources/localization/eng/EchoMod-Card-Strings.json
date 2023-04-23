@@ -142,7 +142,7 @@
   },
   "echo:FlashBeam": {
     "NAME": "Flash Beam",
-    "DESCRIPTION": "echo:Focused: deal !D! damage.",
+    "DESCRIPTION": "{@@}echo:Focused: deal !D! damage. NL Otherwise, draw !M! card{!M!|>1=s|@=}.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:ComboBurst": {
