@@ -37,13 +37,13 @@
     "+D": 4
   },
   "echo:ShortFlight": {
-    "RARITY": "COMMON",
+    "RARITY": "BASIC",
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "short_flight.png",
     "COST": 1,
     "M/Flight": 2,
-    "B": 3,
+    "B": 4,
     "+B": 3
   },
   "echo:InaccurateStick": {

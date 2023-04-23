@@ -20,9 +20,9 @@ import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import echo.EchoMod;
 import echo.cards.attacks.Strike;
-import echo.cards.attacks.SwayingBeam;
 import echo.cards.skills.Copy;
 import echo.cards.skills.Defend;
+import echo.cards.skills.ShortFlight;
 import echo.effects.SfxStore;
 import echo.relics.CloningModule;
 import echo.util.NoAnimation;
@@ -187,12 +187,12 @@ public class Echo extends CustomPlayer {
         retVal.add(Defend.ID);
 
         retVal.add(Copy.ID);
-        retVal.add(SwayingBeam.ID);
+        retVal.add(ShortFlight.ID);
 
         UnlockTracker.markCardAsSeen(Strike.ID);
         UnlockTracker.markCardAsSeen(Defend.ID);
         UnlockTracker.markCardAsSeen(Copy.ID);
-        UnlockTracker.markCardAsSeen(SwayingBeam.ID);
+        UnlockTracker.markCardAsSeen(ShortFlight.ID);
 
         return retVal;
     }
