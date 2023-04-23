@@ -77,13 +77,13 @@
     "echo:M2/Grounded": 99
   },
   "echo:SatisfyingStick": {
-    "RARITY": "COMMON",
+    "RARITY": "UNCOMMON",
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "satisfying_stick.png",
     "COST": 1,
-    "+COST": 0,
-    "M/Sticky Bombs": 5
+    "M/Sticky Bombs": 5,
+    "+M": 1
   },
   "echo:FocusingBeam": {
     "RARITY": "COMMON",
