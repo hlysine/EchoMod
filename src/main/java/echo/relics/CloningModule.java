@@ -20,7 +20,7 @@ public class CloningModule extends AbstractBaseRelic {
     public void onPlayerEndTurn() {
         AbstractPlayer p = AbstractDungeon.player;
         flash();
-        addToBot(new ApplyPowerAction(p, p, new UltimateChargePower(p, 2)));
+        addToBot(new ApplyPowerAction(p, p, new UltimateChargePower(p, 3)));
     }
 
     @Override

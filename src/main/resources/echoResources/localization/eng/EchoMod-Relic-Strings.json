@@ -3,7 +3,7 @@
     "NAME": "Cloning Module",
     "FLAVOR": "Echo's trade secret.",
     "DESCRIPTIONS": [
-      "At the end of your turn, gain #b2 #yecho:Ultimate_Charge."
+      "At the end of your turn, gain #b3 #yecho:Ultimate_Charge."
     ]
   },
   "echo:OverloadedModule": {
