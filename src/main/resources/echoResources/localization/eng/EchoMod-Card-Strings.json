@@ -44,7 +44,7 @@
   },
   "echo:TriShot": {
     "NAME": "Tri-Shot",
-    "DESCRIPTION": "{@@}Deal !D! damage !M! times. NL Draw !echo:M2! card{!echo:M2!|>1=s|@=}. NL Exhaust.",
+    "DESCRIPTION": "{@@}Deal !D! non-zero damage !M! times. NL Draw !echo:M2! card{!echo:M2!|>1=s|@=}. NL Exhaust.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:EchoDash": {

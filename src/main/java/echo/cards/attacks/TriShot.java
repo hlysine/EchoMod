@@ -26,6 +26,27 @@ public class TriShot extends AbstractBaseCard {
     }
 
     @Override
+    public void applyPowers() {
+        super.applyPowers();
+        ensureNonZeroDamage();
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster mo) {
+        super.calculateCardDamage(mo);
+        ensureNonZeroDamage();
+    }
+
+    private void ensureNonZeroDamage() {
+        this.damage = Math.max(1, this.damage);
+        if (this.multiDamage != null) {
+            for (int i = 0; i < this.multiDamage.length; i++) {
+                this.multiDamage[i] = Math.max(1, this.multiDamage[i]);
+            }
+        }
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new VFXAction(new TriShotEffect()));
         addToBot(new RunnableAction(() -> SfxStore.TRI_SHOT.play(0.1f)));
