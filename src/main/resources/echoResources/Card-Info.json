@@ -218,9 +218,9 @@
     "TYPE": "POWER",
     "COLOR": "ECHO_BLUE",
     "IMG": "efficient_copy.png",
-    "COST": 2,
-    "+COST": 1,
-    "M/Power amount": 1
+    "COST": 1,
+    "M/Power amount": 1,
+    "+M": 1
   },
   "echo:Hyperfocus": {
     "RARITY": "RARE",

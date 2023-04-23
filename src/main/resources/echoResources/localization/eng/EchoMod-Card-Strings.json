@@ -132,7 +132,7 @@
   },
   "echo:EfficientCopy": {
     "NAME": "Efficient Copy",
-    "DESCRIPTION": "{@@}Whenever you echo:Duplicate, gain [E] and draw !M! card{!M!|>1=s|@=}.",
+    "DESCRIPTION": "{@@}Whenever you echo:Duplicate, gain {!M!|1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]} and draw !M! card{!M!|>1=s|@=}.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:Hyperfocus": {
