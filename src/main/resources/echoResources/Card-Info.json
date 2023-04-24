@@ -467,11 +467,11 @@
     "+M": 1
   },
   "echo:Reconfiguration": {
-    "RARITY": "RARE",
+    "RARITY": "UNCOMMON",
     "TYPE": "ATTACK",
     "COLOR": "ECHO_BLUE",
     "IMG": "reconfiguration.png",
-    "COST": 2,
+    "COST": 1,
     "D": 9,
     "+D": 3
   },
