@@ -481,7 +481,7 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "calibration.png",
     "COST": 2,
-    "+COST": 1,
-    "M/Calibrated power": 1
+    "M/Calibrated power": 1,
+    "+M": 1
   }
 }
