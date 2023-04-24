@@ -17,6 +17,7 @@ public class VirtualizedShield extends AbstractBaseCard {
     public VirtualizedShield() {
         super(ID, TARGET);
 
+        this.selfRetain = true;
         this.tags.add(CustomCardTags.CONSTANT);
     }
 
