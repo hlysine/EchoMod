@@ -11,10 +11,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import echo.EchoMod;
+import echo.cards.powers.FastGeneration;
 import echo.mechanics.duplicate.Duplicator;
 import echo.subscribers.DuplicateSubscriber;
 import echo.util.RunnableAction;
 import echo.util.TextureLoader;
+import echo.variables.MagicNumber2Variable;
 
 public class FastGenerationPower extends AbstractPower implements NonStackablePower, CloneablePowerInterface, DuplicateSubscriber {
 
@@ -34,7 +36,8 @@ public class FastGenerationPower extends AbstractPower implements NonStackablePo
      */
     @Deprecated
     public FastGenerationPower(final AbstractCreature owner, final int amount) {
-        this(owner, amount, 6);
+        // instantiate with the base value of Fast Generation power card
+        this(owner, amount, EchoMod.getCardInfo(FastGeneration.ID).getBaseValue(MagicNumber2Variable.ID));
     }
 
     public FastGenerationPower(final AbstractCreature owner, final int amount, final int damagePerCharge) {

@@ -279,7 +279,7 @@
     "COST": 1,
     "M/Fast Generation power": 1,
     "echo:M2/Damage per Ult Charge": 5,
-    "+echo:M2": -2
+    "+echo:M2": -1
   },
   "echo:MeleeCombo": {
     "RARITY": "COMMON",

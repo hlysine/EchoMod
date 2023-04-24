@@ -7,9 +7,11 @@ import static echo.EchoMod.makeID;
 
 public class MagicNumber2Variable extends CustomVariable {
 
+    public static final String ID = makeID("M2");
+
     @Override
     public String key() {
-        return makeID("M2");
+        return ID;
     }
 
     @Override
