@@ -99,6 +99,9 @@ public class DuplicationVfx implements PreUpdateSubscriber {
             gridShader.setUniformi("grayscale", 0);
             gridShader.setUniformf("center", player.hb.cX, player.hb.cY);
             gridShader.setUniformf("radius", visibleRadius);
+            gridShader.setUniformf("grid_radius", 1f);
+            gridShader.setUniformf("grid_border", 2f);
+            gridShader.setUniformf("grid_margin", 0f);
             visibleRadius = Math.min(10000f, visibleRadius + 5f);
             gridShader.end();
 
@@ -120,6 +123,9 @@ public class DuplicationVfx implements PreUpdateSubscriber {
             gridShader.setUniformf("period", 5.0f);
             gridShader.setUniformi("grayscale", relic.grayscale ? 1 : 0);
             gridShader.setUniformf("radius", 10000f);
+            gridShader.setUniformf("grid_radius", 1f);
+            gridShader.setUniformf("grid_border", 3f);
+            gridShader.setUniformf("grid_margin", 1f);
             gridShader.end();
 
             prevShader = sb.getShader();
