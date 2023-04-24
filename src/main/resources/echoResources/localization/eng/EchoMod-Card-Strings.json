@@ -171,7 +171,7 @@
   },
   "echo:MeleeCombo": {
     "NAME": "Melee Combo",
-    "DESCRIPTION": "{@@}Deal !D! damage. NL Shuffle {!M!|1=a|@=!M!} *Tri-Shot into your draw pile.",
+    "DESCRIPTION": "{@@}Deal !D! damage. NL Shuffle {!M!|1=a|@=!M!} *Tri-Shot{!Upgrades!|0=|@=+} into your draw pile.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:GroundCover": {

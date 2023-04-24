@@ -288,6 +288,7 @@
     "IMG": "melee_combo.png",
     "COST": 1,
     "PREVIEW": "echo:TriShot",
+    "+PREVIEW": "+echo:TriShot",
     "D": 7,
     "+D": 3,
     "M/Tri-shot count": 1
