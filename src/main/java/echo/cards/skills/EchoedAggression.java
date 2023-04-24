@@ -20,7 +20,6 @@ public class EchoedAggression extends AbstractBaseCard {
         super(ID, TARGET);
 
         this.tags.add(CustomCardTags.CONSTANT);
-        this.exhaust = true;
     }
 
     @Override
@@ -70,7 +69,7 @@ public class EchoedAggression extends AbstractBaseCard {
     @Override
     public void upgrade() {
         if (!upgraded) {
-            this.exhaust = false;
+            this.selfRetain = true;
         }
         super.upgrade();
     }

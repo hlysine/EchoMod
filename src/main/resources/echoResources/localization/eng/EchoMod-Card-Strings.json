@@ -275,7 +275,7 @@
   },
   "echo:EchoedAggression": {
     "NAME": "Echoed Aggression",
-    "DESCRIPTION": "{@@}echo:Constant. NL If in echo:Duplicate, modify all Attacks to cost 0 until played.{!Upgrades!|0= NL Exhaust.|@=}",
+    "DESCRIPTION": "{@@}echo:Constant. NL {!Upgrades!|0=|@=Retain. NL }If in echo:Duplicate, modify all Attacks to cost 0 until played.",
     "EXTENDED_DESCRIPTION": [
       "I am not in #rDuplicate."
     ]
