@@ -317,7 +317,7 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "initiating_stick.png",
     "COST": 1,
-    "M/Max Sticky Bombs": 3,
+    "M/Max Sticky Bombs": 4,
     "+M": 1
   },
   "echo:LongRangeStick": {
