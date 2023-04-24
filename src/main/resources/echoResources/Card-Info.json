@@ -326,9 +326,9 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "long_range_stick.png",
     "COST": 1,
-    "D": 6,
-    "+D": 2,
-    "M/Sticky Bombs": 2,
+    "D": 9,
+    "+D": 3,
+    "M/Sticky Bombs": 3,
     "+M": 1
   },
   "echo:QuickAssassination": {
