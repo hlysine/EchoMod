@@ -12,8 +12,10 @@ import echo.subscribers.BeforeApplyPowerSubscriber;
         method = "update"
 )
 public class BeforeApplyPowerPatch {
-    public static SpireReturn Prefix(ApplyPowerAction __instance, @ByRef AbstractPower[] ___powerToApply) {
+    public static SpireReturn<Void> Prefix(ApplyPowerAction __instance, @ByRef AbstractPower[] ___powerToApply) {
         AbstractPower powerToApply = ___powerToApply[0];
+        if (__instance.target == null || __instance.target.powers == null)
+            return SpireReturn.Continue();
         for (AbstractPower power : __instance.target.powers) {
             if (power instanceof BeforeApplyPowerSubscriber) {
                 BeforeApplyPowerSubscriber subscriber = (BeforeApplyPowerSubscriber) power;
