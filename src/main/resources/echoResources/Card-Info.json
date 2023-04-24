@@ -393,9 +393,9 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "sticky_situation.png",
     "COST": 1,
-    "+COST": 0,
-    "D": 5,
-    "M/Sticky Bomb power": 1
+    "D": 9,
+    "+D": 4,
+    "M/Sticky Bomb power": 2
   },
   "echo:AdaptiveFlight": {
     "RARITY": "UNCOMMON",
