@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 import echo.EchoMod;
 import echo.cards.ChargedCard;
+import echo.effects.EchoOverclockEffect;
 
 public class ThisEndsNow extends ChargedCard {
 
@@ -26,7 +26,7 @@ public class ThisEndsNow extends ChargedCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         super.use(p, m);
-        addToBot(new VFXAction(new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal)));
+        addToBot(new VFXAction(new EchoOverclockEffect()));
         addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.NONE));
     }
 }
