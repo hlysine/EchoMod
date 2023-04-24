@@ -362,12 +362,12 @@
   },
   "echo:NanoBoost": {
     "RARITY": "UNCOMMON",
-    "TYPE": "POWER",
+    "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "nano_boost.png",
-    "COST": 2,
-    "+COST": 1,
-    "M/Nano Boost power": 1
+    "COST": 1,
+    "M/Nano Boost power": 1,
+    "+M": 1
   },
   "echo:MirroredFinisher": {
     "RARITY": "RARE",

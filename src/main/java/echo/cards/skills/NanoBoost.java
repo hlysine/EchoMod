@@ -1,4 +1,4 @@
-package echo.cards.powers;
+package echo.cards.skills;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -15,6 +15,8 @@ public class NanoBoost extends AbstractBaseCard {
 
     public NanoBoost() {
         super(ID, TARGET);
+
+        this.exhaust = true;
     }
 
     @Override
