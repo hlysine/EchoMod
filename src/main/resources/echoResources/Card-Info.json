@@ -412,8 +412,7 @@
     "TYPE": "POWER",
     "COLOR": "ECHO_BLUE",
     "IMG": "deep_learning.png",
-    "COST": 2,
-    "+COST": 1
+    "COST": 0
   },
   "echo:VirtualizedShield": {
     "RARITY": "UNCOMMON",

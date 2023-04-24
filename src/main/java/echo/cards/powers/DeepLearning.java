@@ -21,4 +21,12 @@ public class DeepLearning extends AbstractBaseCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new DeepLearningPower(p)));
     }
+
+    @Override
+    public void upgrade() {
+        if (!upgraded) {
+            this.isInnate = true;
+        }
+        super.upgrade();
+    }
 }

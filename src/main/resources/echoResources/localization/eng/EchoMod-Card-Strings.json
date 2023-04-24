@@ -248,7 +248,7 @@
   },
   "echo:DeepLearning": {
     "NAME": "Deep Learning",
-    "DESCRIPTION": "Whenever you echo:Duplicate, NL upgrade all duplicated cards.",
+    "DESCRIPTION": "{@@}{!Upgrades!|0=|@=Innate. NL }Whenever you echo:Duplicate, NL upgrade all duplicated cards.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:VirtualizedShield": {
