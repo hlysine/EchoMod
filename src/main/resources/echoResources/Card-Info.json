@@ -347,8 +347,8 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "sticky_flare.png",
     "COST": 1,
-    "+COST": 0,
-    "M/Sticky Flare power": 1
+    "M/Sticky Flare power": 2,
+    "+M": 1
   },
   "echo:GenerativeStrike": {
     "RARITY": "COMMON",
