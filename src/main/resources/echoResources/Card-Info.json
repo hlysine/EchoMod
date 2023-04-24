@@ -95,14 +95,16 @@
     "M/Multi Hit": 7,
     "+M": 2
   },
-  "echo:FinalBlow": {
+  "echo:VirtualizedOffense": {
     "RARITY": "UNCOMMON",
     "TYPE": "POWER",
     "COLOR": "ECHO_BLUE",
-    "IMG": "final_blow.png",
+    "IMG": "virtualized_offense.png",
     "COST": 1,
-    "M/Ultimate Charge": 7,
-    "+M": 3
+    "M/Virtualized Offense power": 2,
+    "+M": 1,
+    "echo:M2/VO power - 1": 1,
+    "+echo:M2": 1
   },
   "echo:MayhemForm": {
     "RARITY": "RARE",

@@ -5,20 +5,20 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import echo.EchoMod;
 import echo.cards.AbstractBaseCard;
-import echo.powers.FinalBlowPower;
+import echo.powers.VirtualizedOffensePower;
 
-public class FinalBlow extends AbstractBaseCard {
+public class VirtualizedOffense extends AbstractBaseCard {
 
-    public static final String ID = EchoMod.makeID(FinalBlow.class.getSimpleName());
+    public static final String ID = EchoMod.makeID(VirtualizedOffense.class.getSimpleName());
 
     private static final CardTarget TARGET = CardTarget.SELF;
 
-    public FinalBlow() {
+    public VirtualizedOffense() {
         super(ID, TARGET);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new FinalBlowPower(p, magicNumber)));
+        addToBot(new ApplyPowerAction(p, p, new VirtualizedOffensePower(p, magicNumber)));
     }
 }

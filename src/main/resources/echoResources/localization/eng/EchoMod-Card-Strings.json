@@ -65,9 +65,9 @@
     "DESCRIPTION": "{@@}echo:Focused: deal !D! damage !M! time{!M!|>1=s|@=}.",
     "EXTENDED_DESCRIPTION": []
   },
-  "echo:FinalBlow": {
-    "NAME": "Final Blow",
-    "DESCRIPTION": "When an enemy dies, gain !M! echo:Ultimate_Charge.",
+  "echo:VirtualizedOffense": {
+    "NAME": "Virtualized Offense",
+    "DESCRIPTION": "When echo:duplicate starts, gain !M! Strength. NL When echo:duplicate ends, lose !echo:M2! Strength.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:MayhemForm": {

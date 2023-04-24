@@ -1,9 +1,10 @@
 {
-  "echo:FinalBlowPower": {
-    "NAME": "Final Blow",
+  "echo:VirtualizedOffensePower": {
+    "NAME": "Virtualized Offense",
     "DESCRIPTIONS": [
-      "When an enemy dies, gain #b",
-      " #yUltimate #yCharge."
+      "When #yduplicate starts, gain #b",
+      " #yStrength. When #yduplicate ends, lose #b",
+      " #yStrength."
     ]
   },
   "echo:StickyBombPower": {
