@@ -12,4 +12,9 @@ public class EchoBladeEffect extends ChargedImageEffect {
     public void render(SpriteBatch sb) {
         drawImage(sb, IMG, IMG.getWidth(), IMG.getHeight(), 543, 273, 0.7f);
     }
+
+    @Override
+    protected void playSfx() {
+        SfxStore.GENJI_ULTIMATE_FIRE.play(0.1f);
+    }
 }

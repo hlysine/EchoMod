@@ -12,4 +12,9 @@ public class EchoOverclockEffect extends ChargedImageEffect {
     public void render(SpriteBatch sb) {
         drawImage(sb, IMG, IMG.getWidth(), IMG.getHeight(), 293, 402, 1.2f);
     }
+
+    @Override
+    protected void playSfx() {
+        SfxStore.SOJOURN_ULTIMATE_FIRE.play(0.1f);
+    }
 }

@@ -38,7 +38,11 @@ public abstract class ChargedImageEffect extends AbstractGameEffect {
             AbstractDungeon.player.tint.changeColor(AbstractDungeon.player.tint.color, this.startingDuration);
             AbstractDungeon.player.tint.color = new Color(1, 1, 1, 0);
             recordPositions();
+            playSfx();
         }
+    }
+
+    protected void playSfx() {
     }
 
     protected void recordPositions() {

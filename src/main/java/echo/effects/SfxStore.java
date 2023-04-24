@@ -10,6 +10,12 @@ public enum SfxStore {
     FLIGHT_APPLY("FLIGHT_APPLY", "flight_apply.ogg"),
     DUPLICATE_START("DUPLICATE_START", "duplicate_start.ogg"),
     DUPLICATE_END("DUPLICATE_END", "duplicate_end.ogg"),
+    GENJI_ULTIMATE_START("GENJI_ULTIMATE_START", "genji_ultimate_start.ogg"),
+    GENJI_ULTIMATE_FIRE("GENJI_ULTIMATE_FIRE", "genji_ultimate_fire.ogg"),
+    SOJOURN_ULTIMATE_START("SOJOURN_ULTIMATE_START", "sojourn_ultimate_start.ogg"),
+    SOJOURN_ULTIMATE_FIRE("SOJOURN_ULTIMATE_FIRE", "sojourn_ultimate_fire.ogg"),
+    CASSIDY_ULTIMATE_START("CASSIDY_ULTIMATE_START", "cassidy_ultimate_start.ogg"),
+    CASSIDY_ULTIMATE_FIRE("CASSIDY_ULTIMATE_FIRE", "cassidy_ultimate_fire.ogg"),
     TRI_SHOT("TRI_SHOT", "tri_shot.ogg");
 
     private final String key;

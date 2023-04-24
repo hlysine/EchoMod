@@ -12,4 +12,9 @@ public class EchoHighNoonEffect extends ChargedImageEffect {
     public void render(SpriteBatch sb) {
         drawImage(sb, IMG, IMG.getWidth(), IMG.getHeight(), 518, 303, 0.6f);
     }
+
+    @Override
+    protected void playSfx() {
+        SfxStore.CASSIDY_ULTIMATE_FIRE.play(0.1f);
+    }
 }
