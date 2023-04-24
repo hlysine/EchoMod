@@ -20,8 +20,8 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class CloneVfx implements PreUpdateSubscriber {
-    private static final Logger logger = LogManager.getLogger(CloneVfx.class);
+public class DuplicationVfx implements PreUpdateSubscriber {
+    private static final Logger logger = LogManager.getLogger(DuplicationVfx.class);
     private static final ShaderProgram gridShader;
     private static final ShaderProgram cardShader;
     public static float cloneVfxTimer = 0.0f;
@@ -38,7 +38,7 @@ public class CloneVfx implements PreUpdateSubscriber {
         );
 
         if (gridShader.getLog().length() != 0) {
-            logger.log(CloneVfx.gridShader.isCompiled() ? Level.WARN : Level.ERROR, CloneVfx.gridShader.getLog());
+            logger.log(DuplicationVfx.gridShader.isCompiled() ? Level.WARN : Level.ERROR, DuplicationVfx.gridShader.getLog());
         }
 
         cardShader = new ShaderProgram(
@@ -47,10 +47,10 @@ public class CloneVfx implements PreUpdateSubscriber {
         );
 
         if (cardShader.getLog().length() != 0) {
-            logger.log(CloneVfx.cardShader.isCompiled() ? Level.WARN : Level.ERROR, CloneVfx.cardShader.getLog());
+            logger.log(DuplicationVfx.cardShader.isCompiled() ? Level.WARN : Level.ERROR, DuplicationVfx.cardShader.getLog());
         }
 
-        BaseMod.subscribe(new CloneVfx());
+        BaseMod.subscribe(new DuplicationVfx());
     }
 
     private static ShaderProgram prevShader;

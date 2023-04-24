@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
-import echo.mechanics.duplicate.CloneVfx;
+import echo.mechanics.duplicate.DuplicationVfx;
 
 public class CardShaderPatch {
 
@@ -14,11 +14,11 @@ public class CardShaderPatch {
     )
     public static class GridCardBackground {
         public static void Prefix(AbstractCard __instance, SpriteBatch sb) {
-            CloneVfx.cardPreRender(__instance, sb);
+            DuplicationVfx.cardPreRender(__instance, sb);
         }
 
         public static void Postfix(AbstractCard __instance, SpriteBatch sb) {
-            CloneVfx.cardPostRender(__instance, sb);
+            DuplicationVfx.cardPostRender(__instance, sb);
         }
     }
 
@@ -28,11 +28,11 @@ public class CardShaderPatch {
     )
     public static class PortraitGridCardBackground {
         public static void Prefix(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard ___card) {
-            CloneVfx.cardPreRender(___card, sb);
+            DuplicationVfx.cardPreRender(___card, sb);
         }
 
         public static void Postfix(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard ___card) {
-            CloneVfx.cardPostRender(___card, sb);
+            DuplicationVfx.cardPostRender(___card, sb);
         }
     }
 }

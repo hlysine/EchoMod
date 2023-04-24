@@ -5,7 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import echo.mechanics.duplicate.CloneVfx;
+import echo.mechanics.duplicate.DuplicationVfx;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 
@@ -21,7 +21,7 @@ public class CloningVfxPatch {
                 locator = Locator.class
         )
         public static void Insert(AbstractPlayer __instance, SpriteBatch sb) {
-            CloneVfx.playerPreRender(__instance, sb);
+            DuplicationVfx.playerPreRender(__instance, sb);
         }
 
         public static class Locator extends SpireInsertLocator {
@@ -38,7 +38,7 @@ public class CloningVfxPatch {
     )
     public static class PlayerPostRenderPatch {
         public static void Postfix(AbstractPlayer __instance, SpriteBatch sb) {
-            CloneVfx.playerPostRender(__instance, sb);
+            DuplicationVfx.playerPostRender(__instance, sb);
         }
     }
 
@@ -51,7 +51,7 @@ public class CloningVfxPatch {
                 locator = Locator.class
         )
         public static void Insert(AbstractRelic __instance, SpriteBatch sb) {
-            CloneVfx.relicPreRender(__instance, sb);
+            DuplicationVfx.relicPreRender(__instance, sb);
         }
 
         public static class Locator extends SpireInsertLocator {
@@ -71,7 +71,7 @@ public class CloningVfxPatch {
                 locator = Locator.class
         )
         public static void Insert(AbstractRelic __instance, SpriteBatch sb) {
-            CloneVfx.relicPostRender(__instance, sb);
+            DuplicationVfx.relicPostRender(__instance, sb);
         }
 
         public static class Locator extends SpireInsertLocator {

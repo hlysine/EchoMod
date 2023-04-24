@@ -206,7 +206,7 @@ public class Duplicator {
 
         newPlayer.healthBarUpdatedEvent();
         newPlayer.showHealthBar();
-        CloneVfx.visibleRadius = 0;
+        DuplicationVfx.visibleRadius = 0;
 
         for (AbstractPower power : AbstractDungeon.player.powers) {
             if (power instanceof DuplicateSubscriber) {
@@ -275,7 +275,7 @@ public class Duplicator {
 
         originalPlayer.healthBarUpdatedEvent();
         originalPlayer.showHealthBar();
-        CloneVfx.visibleRadius = 0;
+        DuplicationVfx.visibleRadius = 0;
 
         for (AbstractPower power : AbstractDungeon.player.powers) {
             if (power instanceof DuplicateSubscriber) {
