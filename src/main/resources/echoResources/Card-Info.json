@@ -356,7 +356,7 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "generative_strike.png",
     "COST": 0,
-    "D": 4,
+    "D": 6,
     "+D": 3,
     "M/Ult Charge": 3
   },
