@@ -447,7 +447,7 @@
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "reevaluation.png",
-    "COST": 2,
+    "COST": 0,
     "M/Plated Armor power": 1
   },
   "echo:EchoedAggression": {
