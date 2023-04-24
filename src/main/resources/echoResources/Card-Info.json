@@ -308,7 +308,7 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "aerial_agility.png",
     "COST": 2,
-    "M/Block per Flight": 2,
+    "M/Block per Flight": 3,
     "+M": 1
   },
   "echo:InitiatingStick": {
