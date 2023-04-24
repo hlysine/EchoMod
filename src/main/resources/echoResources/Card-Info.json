@@ -463,7 +463,7 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "bfs.png",
     "COST": 1,
-    "M/Card draw": 5,
+    "M/Card draw": 4,
     "+M": 1
   },
   "echo:Reconfiguration": {
