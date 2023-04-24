@@ -258,7 +258,7 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "hit_and_run.png",
     "COST": 1,
-    "D": 5,
+    "D": 8,
     "+D": 3,
     "M/Flight power": 2
   },
