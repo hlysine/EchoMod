@@ -332,13 +332,13 @@
     "+M": 1
   },
   "echo:QuickAssassination": {
-    "RARITY": "UNCOMMON",
+    "RARITY": "RARE",
     "TYPE": "ATTACK",
     "COLOR": "ECHO_BLUE",
     "IMG": "quick_assassination.png",
-    "COST": 1,
-    "D": 7,
-    "+D": 3,
+    "COST": 2,
+    "D": 13,
+    "+D": 4,
     "M/Stun monster": 1
   },
   "echo:StickyFlare": {

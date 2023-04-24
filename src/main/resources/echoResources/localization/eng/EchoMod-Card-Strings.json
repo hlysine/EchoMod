@@ -204,7 +204,7 @@
   },
   "echo:QuickAssassination": {
     "NAME": "Quick Assassination",
-    "DESCRIPTION": "{@@}Deal !D! damage. NL echo:Focused: Stun the target for !M! turn{!M!|>1=s|@=}.",
+    "DESCRIPTION": "{@@}Retain. NL Deal !D! damage. NL echo:Focused: Stun the target for !M! turn{!M!|>1=s|@=}.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:StickyFlare": {

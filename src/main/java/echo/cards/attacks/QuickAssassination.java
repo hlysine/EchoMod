@@ -18,6 +18,8 @@ public class QuickAssassination extends FocusedCard {
 
     public QuickAssassination() {
         super(ID, TARGET, false);
+
+        this.selfRetain = true;
     }
 
     @Override
