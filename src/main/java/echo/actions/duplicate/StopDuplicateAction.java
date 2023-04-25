@@ -18,7 +18,7 @@ public class StopDuplicateAction extends AbstractGameAction {
             ));
             addToBot(new VFXAction(
                     AbstractDungeon.player,
-                    new DuplicateEffect(Duplicator::stopDuplication),
+                    new DuplicateEffect(() -> Duplicator.stopDuplication(true)),
                     DuplicateEffect.DURATION,
                     true
             ));

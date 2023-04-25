@@ -222,7 +222,7 @@ public class Duplicator {
         }
     }
 
-    public static void stopDuplication() {
+    public static void stopDuplication(boolean triggerSubscribers) {
         if (!isDuplicating()) {
             return;
         }
@@ -277,16 +277,18 @@ public class Duplicator {
         originalPlayer.showHealthBar();
         DuplicationVfx.visibleRadius = 0;
 
-        for (AbstractPower power : AbstractDungeon.player.powers) {
-            if (power instanceof DuplicateSubscriber) {
-                DuplicateSubscriber subscriber = (DuplicateSubscriber) power;
-                subscriber.afterDuplicateEnd();
+        if (triggerSubscribers) {
+            for (AbstractPower power : AbstractDungeon.player.powers) {
+                if (power instanceof DuplicateSubscriber) {
+                    DuplicateSubscriber subscriber = (DuplicateSubscriber) power;
+                    subscriber.afterDuplicateEnd();
+                }
             }
-        }
-        for (AbstractRelic relic : AbstractDungeon.player.relics) {
-            if (relic instanceof DuplicateSubscriber) {
-                DuplicateSubscriber subscriber = (DuplicateSubscriber) relic;
-                subscriber.afterDuplicateEnd();
+            for (AbstractRelic relic : AbstractDungeon.player.relics) {
+                if (relic instanceof DuplicateSubscriber) {
+                    DuplicateSubscriber subscriber = (DuplicateSubscriber) relic;
+                    subscriber.afterDuplicateEnd();
+                }
             }
         }
     }

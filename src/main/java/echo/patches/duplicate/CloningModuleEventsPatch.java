@@ -45,7 +45,7 @@ public class CloningModuleEventsPatch {
     public static class OnVictoryPatch {
         public static void Postfix() {
             if (Duplicator.isDuplicating()) {
-                Duplicator.stopDuplication();
+                Duplicator.stopDuplication(false);
                 AbstractDungeon.topLevelEffects.add(new DuplicateEffect(null));
             }
         }
@@ -57,7 +57,7 @@ public class CloningModuleEventsPatch {
     )
     public static class ClearPatch {
         public static void Postfix() {
-            Duplicator.stopDuplication();
+            Duplicator.stopDuplication(false);
         }
     }
 
@@ -67,7 +67,7 @@ public class CloningModuleEventsPatch {
     )
     public static class ResetPlayerPatch {
         public static void Prefix() {
-            Duplicator.stopDuplication();
+            Duplicator.stopDuplication(false);
         }
     }
 }
