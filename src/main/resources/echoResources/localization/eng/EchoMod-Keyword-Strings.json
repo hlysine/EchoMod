@@ -42,7 +42,7 @@
       "sticky_bomb",
       "sticky_bombs"
     ],
-    "DESCRIPTION": "At the start of turn, up to #b6 #ySticky #yBombs explode one by one dealing damage equal to the number of #ySticky #yBombs remaining."
+    "DESCRIPTION": "At the start of turn, up to #b5 #ySticky #yBombs explode one by one dealing damage equal to the number of #ySticky #yBombs remaining."
   },
   {
     "PROPER_NAME": "Ultimate Charge",
