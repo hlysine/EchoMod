@@ -24,5 +24,13 @@
     "LABEL": [
       "Duplicate"
     ]
+  },
+  "echo:SwapAction": {
+    "TEXT": [
+      "Swap"
+    ],
+    "LABEL": [
+      "Swap"
+    ]
   }
 }

@@ -282,7 +282,7 @@
   },
   "echo:BFS": {
     "NAME": "BFS",
-    "DESCRIPTION": "Draw !M! cards. NL Discard all cards drawn this way that do not contain \"Stick\".",
+    "DESCRIPTION": "{@@}Draw !M! card{!M!|>1=s|@=}. NL Discard all cards drawn this way that do not contain \"Stick\".",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:Reconfiguration": {
@@ -293,6 +293,11 @@
   "echo:Calibration": {
     "NAME": "Calibration",
     "DESCRIPTION": "*Tri-Shots deal !M! additional damage.",
+    "EXTENDED_DESCRIPTION": []
+  },
+  "echo:Preprocess": {
+    "NAME": "Preprocess",
+    "DESCRIPTION": "{@@}Deal !D! damage. NL echo:Swap !M! card{!M!|>1=s|@=}.",
     "EXTENDED_DESCRIPTION": []
   }
 }

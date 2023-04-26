@@ -31,6 +31,12 @@
   },
   {
     "NAMES": [
+      "swap"
+    ],
+    "DESCRIPTION": "Draw some cards, then choose the same number of cards to put on top of your draw pile."
+  },
+  {
+    "NAMES": [
       "Sticky Bomb",
       "Sticky Bombs",
       "sticky_bomb",

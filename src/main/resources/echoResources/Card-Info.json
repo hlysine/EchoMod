@@ -483,5 +483,15 @@
     "COST": 2,
     "M/Calibrated power": 1,
     "+M": 1
+  },
+  "echo:Preprocess": {
+    "RARITY": "RARE",
+    "TYPE": "ATTACK",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "preprocess.png",
+    "COST": 1,
+    "D": 8,
+    "+D": 5,
+    "M/Swap count": 3
   }
 }
