@@ -502,5 +502,14 @@
     "COST": 1,
     "+COST": 0,
     "M/Quick Ignition power": 2
+  },
+  "echo:BlindingBombs": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "blinding_bombs.png",
+    "COST": 0,
+    "M/Weak power": 2,
+    "+M": 1
   }
 }

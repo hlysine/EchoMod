@@ -304,5 +304,10 @@
     "NAME": "Quick Ignition",
     "DESCRIPTION": "{@@}Allow !M! additional echo:Sticky_Bomb{!M!|>1=s|@=} to explode each round.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:BlindingBombs": {
+    "NAME": "Blinding Bombs",
+    "DESCRIPTION": "Apply !M! Weak to ALL enemies with echo:Sticky_Bombs.",
+    "EXTENDED_DESCRIPTION": []
   }
 }
