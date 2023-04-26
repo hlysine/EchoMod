@@ -126,5 +126,13 @@
       "#yTri-shots deal #b",
       " additional damage."
     ]
+  },
+  "echo:QuickIgnitionPower": {
+    "NAME": "Quick Ignition",
+    "DESCRIPTIONS": [
+      "Allow #b",
+      " additional #ySticky #yBomb to explode each round.",
+      " additional #ySticky #yBombs to explode each round."
+    ]
   }
 }

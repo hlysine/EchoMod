@@ -299,5 +299,10 @@
     "NAME": "Preprocess",
     "DESCRIPTION": "{@@}Deal !D! damage. NL echo:Swap !M! card{!M!|>1=s|@=}.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:QuickIgnition": {
+    "NAME": "Quick Ignition",
+    "DESCRIPTION": "{@@}Allow !M! additional echo:Sticky_Bomb{!M!|>1=s|@=} to explode each round.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

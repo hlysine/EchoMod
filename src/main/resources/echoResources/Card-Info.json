@@ -493,5 +493,14 @@
     "D": 8,
     "+D": 5,
     "M/Swap count": 3
+  },
+  "echo:QuickIgnition": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "POWER",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "quick_ignition.png",
+    "COST": 1,
+    "+COST": 0,
+    "M/Quick Ignition power": 2
   }
 }
