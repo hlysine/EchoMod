@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import echo.EchoMod;
 import echo.actions.duplicate.DuplicateRandomPlayerAction;
 import echo.cards.ChargedCard;
-import echo.characters.Echo;
 import echo.mechanics.duplicate.ChargedChecker;
+import echo.mechanics.duplicate.Duplicator;
 import echo.powers.UltimateChargePower;
 import echo.subscribers.AfterCardUseSubscriber;
 
@@ -35,7 +35,7 @@ public class Copy extends ChargedCard implements AfterCardUseSubscriber {
     public void afterUse() {
         AbstractPlayer p = AbstractDungeon.player;
         if (charged) {
-            addToBot(new DuplicateRandomPlayerAction(new AbstractPlayer.PlayerClass[]{Echo.Enums.ECHO, p.chosenClass}));
+            addToBot(new DuplicateRandomPlayerAction(new AbstractPlayer.PlayerClass[]{Duplicator.getTrueClass(), p.chosenClass}));
         } else {
             addToBot(new ApplyPowerAction(p, p, new UltimateChargePower(p, magicNumber)));
         }

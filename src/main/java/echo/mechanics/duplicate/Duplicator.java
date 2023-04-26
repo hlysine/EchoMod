@@ -77,6 +77,14 @@ public class Duplicator {
             "corpseImg"
     );
 
+    public static AbstractPlayer.PlayerClass getTrueClass() {
+        if (isDuplicating()) {
+            return playerData.originalPlayer.chosenClass;
+        } else {
+            return AbstractDungeon.player.chosenClass;
+        }
+    }
+
 
     public static boolean isDuplicating() {
         return playerData != null;

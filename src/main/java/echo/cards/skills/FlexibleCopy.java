@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import echo.EchoMod;
 import echo.actions.duplicate.DuplicateRandomPlayerAction;
 import echo.cards.ChargedCard;
-import echo.characters.Echo;
 import echo.mechanics.duplicate.ChargedChecker;
+import echo.mechanics.duplicate.Duplicator;
 import echo.subscribers.AfterCardUseSubscriber;
 
 public class FlexibleCopy extends ChargedCard implements AfterCardUseSubscriber {
@@ -33,7 +33,7 @@ public class FlexibleCopy extends ChargedCard implements AfterCardUseSubscriber 
     @Override
     public void afterUse() {
         if (charged) {
-            addToBot(new DuplicateRandomPlayerAction(new AbstractPlayer.PlayerClass[]{Echo.Enums.ECHO, AbstractDungeon.player.chosenClass}));
+            addToBot(new DuplicateRandomPlayerAction(new AbstractPlayer.PlayerClass[]{Duplicator.getTrueClass(), AbstractDungeon.player.chosenClass}));
         } else {
             addToBot(new DrawCardAction(magicNumber));
         }

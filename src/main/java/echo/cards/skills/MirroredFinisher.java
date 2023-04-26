@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import echo.EchoMod;
 import echo.actions.duplicate.DuplicateRandomPlayerAction;
 import echo.cards.FocusedCard;
-import echo.characters.Echo;
+import echo.mechanics.duplicate.Duplicator;
 import echo.subscribers.AfterCardUseSubscriber;
 
 public class MirroredFinisher extends FocusedCard implements AfterCardUseSubscriber {
@@ -27,6 +27,6 @@ public class MirroredFinisher extends FocusedCard implements AfterCardUseSubscri
 
     @Override
     public void afterUse() {
-        addToBot(new DuplicateRandomPlayerAction(new AbstractPlayer.PlayerClass[]{Echo.Enums.ECHO, AbstractDungeon.player.chosenClass}));
+        addToBot(new DuplicateRandomPlayerAction(new AbstractPlayer.PlayerClass[]{Duplicator.getTrueClass(), AbstractDungeon.player.chosenClass}));
     }
 }
