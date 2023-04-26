@@ -499,9 +499,9 @@
     "TYPE": "POWER",
     "COLOR": "ECHO_BLUE",
     "IMG": "quick_ignition.png",
-    "COST": 1,
-    "+COST": 0,
-    "M/Quick Ignition power": 2
+    "COST": 0,
+    "M/Quick Ignition power": 1,
+    "+M": 1
   },
   "echo:BlindingBombs": {
     "RARITY": "UNCOMMON",
