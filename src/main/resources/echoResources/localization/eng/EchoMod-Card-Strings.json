@@ -309,5 +309,10 @@
     "NAME": "Blinding Bombs",
     "DESCRIPTION": "Apply !M! Weak to ALL enemies with echo:Sticky_Bombs.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:Disengage": {
+    "NAME": "Disengage",
+    "DESCRIPTION": "Gain !M! echo:Flight. NL Apply !echo:M2! Weak. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

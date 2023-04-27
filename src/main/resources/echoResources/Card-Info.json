@@ -511,5 +511,16 @@
     "COST": 0,
     "M/Weak power": 2,
     "+M": 1
+  },
+  "echo:Disengage": {
+    "RARITY": "COMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "disengage.png",
+    "COST": 1,
+    "M/Flight power": 2,
+    "+M": 1,
+    "echo:M2/Weak power": 3,
+    "+echo:M2": 1
   }
 }
