@@ -297,7 +297,7 @@
   },
   "echo:Preprocess": {
     "NAME": "Preprocess",
-    "DESCRIPTION": "{@@}Deal !D! damage. NL echo:Swap !M! card{!M!|>1=s|@=}.",
+    "DESCRIPTION": "{@@}Swap !M! card{!M!|>1=s|@=}. NL Next round, gain !B! Block.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:QuickIgnition": {

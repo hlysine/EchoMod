@@ -485,14 +485,14 @@
     "+M": 1
   },
   "echo:Preprocess": {
-    "RARITY": "RARE",
-    "TYPE": "ATTACK",
+    "RARITY": "UNCOMMON",
+    "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "preprocess.png",
     "COST": 1,
-    "D": 8,
-    "+D": 5,
-    "M/Swap count": 3
+    "M/Swap count": 2,
+    "B": 6,
+    "+B": 3
   },
   "echo:QuickIgnition": {
     "RARITY": "UNCOMMON",
