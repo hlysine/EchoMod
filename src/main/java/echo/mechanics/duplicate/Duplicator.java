@@ -170,7 +170,7 @@ public class Duplicator {
             cardDecks = cardTransformer.transform(DuplicatedDecks.extractFromPlayer(originalPlayer));
         }
         cardDecks.applyToPlayer(newPlayer);
-        newPlayer.drawPile.initializeDeck(newPlayer.masterDeck);
+//        newPlayer.drawPile.initializeDeck(newPlayer.masterDeck);
 
         if (newPlayer.hasRelic("SlaversCollar")) {
             ((SlaversCollar) newPlayer.getRelic("SlaversCollar")).beforeEnergyPrep();
