@@ -27,7 +27,8 @@
   },
   "echo:SwapAction": {
     "TEXT": [
-      "Swap"
+      "Swap",
+      "My hand is #rfull!"
     ],
     "LABEL": [
       "Swap"
