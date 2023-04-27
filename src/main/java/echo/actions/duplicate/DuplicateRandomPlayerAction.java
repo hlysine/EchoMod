@@ -123,11 +123,12 @@ public class DuplicateRandomPlayerAction extends AbstractGameAction {
             CardTransformer cardTransformer = new CardTransformer(rng, AbstractDungeon.player.chosenClass, chosenClass);
             DuplicatedDecks decks = cardTransformer.transform(DuplicatedDecks.extractFromPlayer(AbstractDungeon.player));
             AbstractCard.CardColor targetCardColor = BaseMod.findCharacter(chosenClass).getCardColor();
-            AbstractCard cardToPreview = decks.hand.stream()
+            List<AbstractCard> handCards = getHandCards(decks);
+
+            AbstractCard cardToPreview = handCards.stream()
                     .filter(card -> card.color == targetCardColor)
                     .max(Comparator.comparingInt(CharacterChoice::getImportance))
                     .orElse(null);
-
             if (cardToPreview != null) {
                 cardToPreview.beginGlowing();
             } else {
@@ -138,7 +139,7 @@ public class DuplicateRandomPlayerAction extends AbstractGameAction {
                 if (cardToPreview != null) {
                     cardToPreview.stopGlowing();
                 } else {
-                    cardToPreview = decks.hand.stream()
+                    cardToPreview = handCards.stream()
                             .max(Comparator.comparingInt(CharacterChoice::getImportance))
                             .map(AbstractCard::makeSameInstanceOf)
                             .orElse(null);
@@ -156,6 +157,15 @@ public class DuplicateRandomPlayerAction extends AbstractGameAction {
             CharacterChoice choice = new CharacterChoice(chosenClass, decks, cardToPreview);
             choice.button = new CustomModeCharacterButton(BaseMod.findCharacter(chosenClass), false);
             return choice;
+        }
+
+        private static List<AbstractCard> getHandCards(DuplicatedDecks decks) {
+            List<AbstractCard> hand = new ArrayList<>(decks.hand);
+            if (hand.size() >= 5) return hand;
+
+            int drawPileCount = Math.min(decks.drawPile.size(), 5 - hand.size());
+            hand.addAll(decks.drawPile.stream().skip(decks.drawPile.size() - drawPileCount).collect(Collectors.toList()));
+            return hand;
         }
 
         private static int getImportance(AbstractCard card) {
