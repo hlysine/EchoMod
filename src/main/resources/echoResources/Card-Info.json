@@ -531,5 +531,15 @@
     "COST": 1,
     "B": 7,
     "+B": 2
+  },
+  "echo:PowerBlock": {
+    "RARITY": "RARE",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "power_block.png",
+    "COST": 1,
+    "M/Card draw": 2,
+    "echo:M2/Block per cost": 4,
+    "+echo:M2": 2
   }
 }

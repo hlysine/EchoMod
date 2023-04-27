@@ -319,5 +319,10 @@
     "NAME": "Targeted Defense",
     "DESCRIPTION": "Gain !B! Block. NL echo:Focused: Gain !B! Block.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:PowerBlock": {
+    "NAME": "Power Block",
+    "DESCRIPTION": "{@@}Draw !M! card{!M!|>1=s|@=}. NL Gain Block equal to !echo:M2! times the cost of the drawn card{!M!|>1=s|@=}.",
+    "EXTENDED_DESCRIPTION": []
   }
 }
