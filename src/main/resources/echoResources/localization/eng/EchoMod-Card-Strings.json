@@ -329,5 +329,10 @@
     "NAME": "Rapid Assail",
     "DESCRIPTION": "Deal !D! damage. NL For every !echo:M2! HP lost by this enemy, apply !M! Weak. NL Exhaust.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:Initialization": {
+    "NAME": "Initialization",
+    "DESCRIPTION": "{@@}Innate. NL echo:Swap !M! card{!M!|>1=s|@=}. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

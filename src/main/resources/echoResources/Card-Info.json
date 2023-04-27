@@ -552,5 +552,14 @@
     "+D": 5,
     "M/Weak power": 1,
     "echo:M2/Damage per weak": 8
+  },
+  "echo:Initialization": {
+    "RARITY": "RARE",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "initialization.png",
+    "COST": 0,
+    "M/Swap cards": 3,
+    "+M": 1
   }
 }
