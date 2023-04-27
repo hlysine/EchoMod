@@ -73,7 +73,7 @@ public class FastGenerationPower extends AbstractPower implements NonStackablePo
         if (target != this.owner && damageAmount > 0 && Duplicator.isDuplicating()) {
             flashWithoutSound();
             damageDealt += damageAmount;
-            int powerAmount = Math.floorDiv(damageAmount, damagePerCharge) * amount;
+            int powerAmount = Math.floorDiv(damageDealt, damagePerCharge) * amount;
             damageDealt = Math.floorMod(damageDealt, damagePerCharge);
             if (powerAmount > 0) {
                 addToBot(new ApplyPowerAction(owner, owner, new UltimateChargePower(owner, powerAmount)));

@@ -541,5 +541,16 @@
     "M/Card draw": 2,
     "echo:M2/Block per cost": 5,
     "+echo:M2": 2
+  },
+  "echo:RapidAssail": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "ATTACK",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "rapid_assail.png",
+    "COST": 1,
+    "D": 8,
+    "+D": 5,
+    "M/Weak power": 1,
+    "echo:M2/Damage per weak": 8
   }
 }
