@@ -522,5 +522,14 @@
     "+M": 1,
     "echo:M2/Weak power": 3,
     "+echo:M2": 1
+  },
+  "echo:TargetedDefense": {
+    "RARITY": "COMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "targeted_defense.png",
+    "COST": 1,
+    "B": 7,
+    "+B": 2
   }
 }

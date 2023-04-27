@@ -314,5 +314,10 @@
     "NAME": "Disengage",
     "DESCRIPTION": "Gain !M! echo:Flight. NL Apply !echo:M2! Weak. NL Exhaust.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:TargetedDefense": {
+    "NAME": "Targeted Defense",
+    "DESCRIPTION": "Gain !B! Block. NL echo:Focused: Gain !B! Block.",
+    "EXTENDED_DESCRIPTION": []
   }
 }
