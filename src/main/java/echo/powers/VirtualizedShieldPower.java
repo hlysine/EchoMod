@@ -1,5 +1,6 @@
 package echo.powers;
 
+import basemod.BaseMod;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -13,7 +14,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import echo.EchoMod;
-import echo.characters.Echo;
+import echo.mechanics.duplicate.Duplicator;
 import echo.util.TextureLoader;
 
 public class VirtualizedShieldPower extends AbstractPower implements CloneablePowerInterface {
@@ -44,7 +45,7 @@ public class VirtualizedShieldPower extends AbstractPower implements CloneablePo
 
     @Override
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-        if (card.color != Echo.Enums.CARD_COLOR) {
+        if (card.color != BaseMod.findCharacter(Duplicator.getTrueClass()).getCardColor()) {
             addToBot(new GainBlockAction(AbstractDungeon.player, amount));
         }
     }

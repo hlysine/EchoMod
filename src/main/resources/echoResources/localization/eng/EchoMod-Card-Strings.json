@@ -253,7 +253,7 @@
   },
   "echo:VirtualizedShield": {
     "NAME": "Virtualized Shield",
-    "DESCRIPTION": "echo:Constant. NL Retain. NL This round, gain !M! Block whenever you play a non-Echo card.",
+    "DESCRIPTION": "echo:Constant. NL Retain. NL This round, gain !M! Block whenever you play a echo:foreign card.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:ChargeConversion": {

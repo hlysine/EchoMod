@@ -36,6 +36,13 @@
     "DESCRIPTION": "Draw some cards, then choose the same number of cards to put on top of your draw pile."
   },
   {
+    "PROPER_NAME": "Foreign Cards",
+    "NAMES": [
+      "foreign"
+    ],
+    "DESCRIPTION": "Cards that do not belong to the character you have chosen."
+  },
+  {
     "NAMES": [
       "Sticky Bomb",
       "Sticky Bombs",
