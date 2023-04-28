@@ -362,5 +362,10 @@
       "Choose a card",
       "The chosen card will be played immediately for free."
     ]
+  },
+  "echo:PowerTemplate": {
+    "NAME": "Power Template",
+    "DESCRIPTION": "Unplayable. NL Retain. NL When in hand, gain !B! Block per turn.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

@@ -599,5 +599,14 @@
     "COST": 1,
     "M/Card choices": 3,
     "+M": 1
+  },
+  "echo:PowerTemplate": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "POWER",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "power_template.png",
+    "COST": -2,
+    "B": 2,
+    "+B": 2
   }
 }
