@@ -354,5 +354,13 @@
     "EXTENDED_DESCRIPTION": [
       " NL (Deals !D! damage.)"
     ]
+  },
+  "echo:FlexAttack": {
+    "NAME": "Flex Attack",
+    "DESCRIPTION": "Choose 1 out of !M! random echo:foreign Attacks to play.",
+    "EXTENDED_DESCRIPTION": [
+      "Choose a card",
+      "The chosen card will be played immediately for free."
+    ]
   }
 }

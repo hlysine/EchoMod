@@ -590,5 +590,14 @@
     "COST": 1,
     "M/Damage multiplier": 2,
     "+M": 1
+  },
+  "echo:FlexAttack": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "ATTACK",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "flex_attack.png",
+    "COST": 1,
+    "+COST": 0,
+    "M/Card choices": 3
   }
 }
