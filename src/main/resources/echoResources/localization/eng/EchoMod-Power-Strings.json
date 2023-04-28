@@ -143,5 +143,13 @@
       " #yWeak. (Lose #b",
       " more HP for the next #yWeak. )"
     ]
+  },
+  "echo:UnpredictabilityPower": {
+    "NAME": "Unpredictability",
+    "DESCRIPTIONS": [
+      "At the start of your turn, #ySwap #b",
+      " card.",
+      " cards."
+    ]
   }
 }

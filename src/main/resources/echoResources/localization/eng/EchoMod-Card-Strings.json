@@ -367,5 +367,10 @@
     "NAME": "Power Template",
     "DESCRIPTION": "Unplayable. NL Retain. NL When in hand, gain !B! Block per turn.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:Unpredictability": {
+    "NAME": "Unpredictability",
+    "DESCRIPTION": "{@@}{!Upgrades!|0=|@=Innate. NL }At the start of your turn, echo:Swap !M! card{!M!|>1=s|@=}.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

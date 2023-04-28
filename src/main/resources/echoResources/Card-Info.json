@@ -608,5 +608,13 @@
     "COST": -2,
     "B": 2,
     "+B": 2
+  },
+  "echo:Unpredictability": {
+    "RARITY": "RARE",
+    "TYPE": "POWER",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "unpredictability.png",
+    "COST": 1,
+    "M/Swap count": 1
   }
 }
