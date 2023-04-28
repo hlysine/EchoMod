@@ -1,5 +1,6 @@
 package echo.cards.attacks;
 
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -9,22 +10,23 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import echo.EchoMod;
 import echo.cards.AbstractBaseCard;
+import echo.mechanics.duplicate.Duplicator;
 
-public class ComboBurst extends AbstractBaseCard {
+public class VirtualAmbush extends AbstractBaseCard {
 
-    public static final String ID = EchoMod.makeID(ComboBurst.class.getSimpleName());
+    public static final String ID = EchoMod.makeID(VirtualAmbush.class.getSimpleName());
 
     private static final CardTarget TARGET = CardTarget.ENEMY;
 
-    public ComboBurst() {
+    public VirtualAmbush() {
         super(ID, TARGET);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int triShotCount = countTriShots();
+        int foreignCount = countForeignCards();
 
-        this.baseDamage = triShotCount * this.magicNumber;
+        this.baseDamage = foreignCount * this.magicNumber;
         calculateCardDamage(null);
 
         addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
@@ -32,24 +34,25 @@ public class ComboBurst extends AbstractBaseCard {
 
     @Override
     public void applyPowers() {
-        int triShotCount = countTriShots();
+        int foreignCount = countForeignCards();
 
-        if (triShotCount > 0) {
-            this.baseDamage = triShotCount * this.magicNumber;
+        if (foreignCount > 0) {
+            this.baseDamage = foreignCount * this.magicNumber;
             super.applyPowers();
             this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
             initializeDescription();
         }
     }
 
-    private int countTriShots() {
-        int triShotCount = 0;
-        for (AbstractCard card : AbstractDungeon.player.exhaustPile.group) {
-            if (card instanceof TriShot) {
-                triShotCount++;
+    private int countForeignCards() {
+        int foreignCount = 0;
+        CardColor self = BaseMod.findCharacter(Duplicator.getTrueClass()).getCardColor();
+        for (AbstractCard card : AbstractDungeon.actionManager.cardsPlayedThisCombat) {
+            if (card.color != self) {
+                foreignCount++;
             }
         }
-        return triShotCount;
+        return foreignCount;
     }
 
     @Override

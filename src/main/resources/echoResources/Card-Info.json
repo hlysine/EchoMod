@@ -581,5 +581,14 @@
     "M/Card choices": 3,
     "echo:M2/Extra cost": 0,
     "+echo:M2": 1
+  },
+  "echo:VirtualAmbush": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "ATTACK",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "virtual_ambush.png",
+    "COST": 1,
+    "M/Damage multiplier": 2,
+    "+M": 1
   }
 }

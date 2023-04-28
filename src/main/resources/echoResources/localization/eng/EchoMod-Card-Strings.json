@@ -347,5 +347,12 @@
       "Choose a card",
       "The chosen card will be played immediately for free."
     ]
+  },
+  "echo:VirtualAmbush": {
+    "NAME": "Virtual Ambush",
+    "DESCRIPTION": "Deal damage equal to !M! times the number of echo:foreign cards played this combat.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (Deals !D! damage.)"
+    ]
   }
 }
