@@ -334,5 +334,10 @@
     "NAME": "Initialization",
     "DESCRIPTION": "{@@}Innate. NL echo:Swap !M! card{!M!|>1=s|@=}. NL Exhaust.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:StickySplash": {
+    "NAME": "Sticky Splash",
+    "DESCRIPTION": "{@@}Apply !M! echo:Sticky_Bomb{!M!|>1=s|@=} to the target and !echo:M2! echo:Sticky_Bomb{!echo:M2!|>1=s|@=} to yourself.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

@@ -10,7 +10,7 @@
   "echo:StickyBombPower": {
     "NAME": "Sticky Bomb",
     "DESCRIPTIONS": [
-      "At the start of turn, up to #b",
+      "At the end of your turn, up to #b",
       " #ySticky #yBomb explodes one by one dealing damage equal to the number of #ySticky #yBombs remaining. (Deals #b",
       " #ySticky #yBombs explode one by one dealing damage equal to the number of #ySticky #yBombs remaining. (Deals #b",
       " damage this turn.)"
@@ -20,8 +20,8 @@
     "NAME": "Flight",
     "DESCRIPTIONS": [
       "For #b",
-      " round, reduce all damage taken by #b30%. Reduce #yFlight by 1 whenever you take unblocked damage.",
-      " rounds, reduce all damage taken by #b30%. Reduce #yFlight by 1 whenever you take unblocked damage."
+      " round, reduce Attack damage taken by #b30%. Reduce #yFlight by 1 whenever you take unblocked damage.",
+      " rounds, reduce Attack damage taken by #b30%. Reduce #yFlight by 1 whenever you take unblocked damage."
     ]
   },
   "echo:GroundedPower": {

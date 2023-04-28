@@ -68,17 +68,9 @@ public class FlightPower extends AbstractPower implements CloneablePowerInterfac
     }
 
     @Override
-    public int onAttacked(DamageInfo info, int damageAmount) {
-        boolean willLive = calculateDamageTakenAmount(damageAmount, info.type) < this.owner.currentHealth;
-        if (info.owner != null && damageAmount > 0 && willLive) {
-            flash();
-        }
-        return damageAmount;
-    }
-
-    @Override
     public void wasHPLost(DamageInfo info, int damageAmount) {
         if (info.owner != null && damageAmount > 0) {
+            flash();
             consumeFlight();
         }
     }

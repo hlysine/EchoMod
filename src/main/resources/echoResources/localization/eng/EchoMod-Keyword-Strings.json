@@ -21,7 +21,7 @@
     "NAMES": [
       "flight"
     ],
-    "DESCRIPTION": "Receives #b30% less damage. Reduced by 1 when taken unblocked damage."
+    "DESCRIPTION": "Receives #b30% less damage from Attacks. Reduced by 1 when taken unblocked damage."
   },
   {
     "NAMES": [
@@ -49,7 +49,7 @@
       "sticky_bomb",
       "sticky_bombs"
     ],
-    "DESCRIPTION": "At the start of turn, up to #b5 #ySticky #yBombs explode one by one dealing damage equal to the number of #ySticky #yBombs remaining."
+    "DESCRIPTION": "At the end of your turn, up to #b5 #ySticky #yBombs explode one by one dealing damage equal to the number of #ySticky #yBombs remaining."
   },
   {
     "PROPER_NAME": "Ultimate Charge",

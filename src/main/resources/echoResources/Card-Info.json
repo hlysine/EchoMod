@@ -561,5 +561,15 @@
     "COST": 0,
     "M/Swap cards": 3,
     "+M": 1
+  },
+  "echo:StickySplash": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "sticky_splash.png",
+    "COST": 1,
+    "M/Sticky Bombs": 5,
+    "+M": 1,
+    "echo:M2/Sticky Bombs to self": 3
   }
 }
