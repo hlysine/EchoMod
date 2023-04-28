@@ -205,7 +205,6 @@ public class Duplicator {
 
         if (followUpAction != null)
             AbstractDungeon.actionManager.addToTurnStart(followUpAction);
-        AbstractDungeon.actionManager.addToTurnStart(new DrawCardAction(newPlayer, newPlayer.gameHandSize - newPlayer.hand.size()));
         AbstractDungeon.actionManager.addToTurnStart(new RunnableAction(() -> {
             newPlayer.applyStartOfTurnCards();
             newPlayer.applyStartOfTurnPowers();
@@ -213,6 +212,7 @@ public class Duplicator {
             newPlayer.applyStartOfTurnPostDrawRelics();
             newPlayer.applyStartOfTurnPostDrawPowers();
         }));
+        AbstractDungeon.actionManager.addToTurnStart(new DrawCardAction(newPlayer, newPlayer.gameHandSize - newPlayer.hand.size()));
 
         newPlayer.healthBarUpdatedEvent();
         newPlayer.showHealthBar();
