@@ -7,14 +7,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.TutorialStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.custom.CustomModeCharacterButton;
 import echo.EchoMod;
 import echo.actions.DiscoveryChooseCharacterAction;
 import echo.mechanics.duplicate.CardTransformer;
 import echo.mechanics.duplicate.DuplicatedDecks;
-import echo.mechanics.duplicate.EnemyMapping;
+import echo.mechanics.duplicate.PlayerClassManager;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -64,33 +63,9 @@ public class DuplicateRandomPlayerAction extends AbstractGameAction {
             this.isDone = true;
             return;
         }
+        Random finalRng = rng == null ? AbstractDungeon.cardRandomRng : rng;
 
-        List<AbstractPlayer.PlayerClass> classes = Arrays.stream(AbstractPlayer.PlayerClass.values())
-                .filter(c -> Arrays.stream(excludedClasses).noneMatch(e -> e == c))
-                .collect(Collectors.toList());
-        Random finalRng = rng == null ? new Random() : rng;
-
-        List<AbstractPlayer.PlayerClass> choices = new ArrayList<>(CHOICES);
-
-
-        List<AbstractPlayer.PlayerClass> enemies = new ArrayList<>();
-        for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-            AbstractPlayer.PlayerClass enemyClass = EnemyMapping.getEnemyClass(monster);
-            if (enemyClass != null) {
-                enemies.add(enemyClass);
-            }
-        }
-        enemies.removeIf(c -> Arrays.stream(excludedClasses).anyMatch(e -> e == c));
-        if (!enemies.isEmpty()) {
-            choices.add(enemies.get(finalRng.random(enemies.size() - 1)));
-        }
-
-        while (!classes.isEmpty() && choices.size() < CHOICES) {
-            AbstractPlayer.PlayerClass c = classes.remove(finalRng.random(classes.size() - 1));
-            if (!choices.contains(c)) {
-                choices.add(c);
-            }
-        }
+        List<AbstractPlayer.PlayerClass> choices = PlayerClassManager.getClassList(finalRng, excludedClasses, CHOICES, true);
 
         Map<AbstractCard, CharacterChoice> choiceMap = new HashMap<>();
         for (AbstractPlayer.PlayerClass choice : choices) {

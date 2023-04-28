@@ -339,5 +339,13 @@
     "NAME": "Sticky Splash",
     "DESCRIPTION": "{@@}Apply !M! echo:Sticky_Bomb{!M!|>1=s|@=} to the target and !echo:M2! echo:Sticky_Bomb{!echo:M2!|>1=s|@=} to yourself.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:AdaptiveCard": {
+    "NAME": "Adaptive Card",
+    "DESCRIPTION": "{@@}Choose 1 out of !M! echo:foreign {!echo:M2!|0=X|@=(X+!echo:M2!)}-cost card to play.",
+    "EXTENDED_DESCRIPTION": [
+      "Choose a card",
+      "The chosen card will be played immediately for free."
+    ]
   }
 }

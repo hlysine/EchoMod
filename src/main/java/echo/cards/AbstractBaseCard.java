@@ -2,7 +2,10 @@ package echo.cards;
 
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.relics.ChemicalX;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import echo.EchoMod;
 import hlysine.STSItemInfo.CardInfo;
 
@@ -75,5 +78,23 @@ public abstract class AbstractBaseCard extends CustomCard {
             upgradeValues();
             initializeDescription();
         }
+    }
+
+    public int doXCostEffect() {
+        int effect = EnergyPanel.totalCount;
+        if (this.energyOnUse != -1) {
+            effect = this.energyOnUse;
+        }
+
+        if (AbstractDungeon.player.hasRelic(ChemicalX.ID)) {
+            effect += 2;
+            AbstractDungeon.player.getRelic(ChemicalX.ID).flash();
+        }
+
+        if (effect > 0 && !this.freeToPlayOnce) {
+            AbstractDungeon.player.energy.use(EnergyPanel.totalCount);
+        }
+
+        return effect;
     }
 }

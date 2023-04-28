@@ -571,5 +571,15 @@
     "M/Sticky Bombs": 5,
     "+M": 1,
     "echo:M2/Sticky Bombs to self": 3
+  },
+  "echo:AdaptiveCard": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "adaptive_card.png",
+    "COST": -1,
+    "M/Card choices": 3,
+    "echo:M2/Extra cost": 0,
+    "+echo:M2": 1
   }
 }
