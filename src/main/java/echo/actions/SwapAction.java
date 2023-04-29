@@ -8,8 +8,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.TutorialStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import echo.EchoMod;
+import echo.subscribers.SwapSubscriber;
+
+import java.util.List;
 
 public class SwapAction extends AbstractGameAction {
     private static final TutorialStrings tutorialStrings = CardCrawlGame.languagePack.getTutorialString(EchoMod.makeID(SwapAction.class.getSimpleName()));
@@ -29,6 +34,7 @@ public class SwapAction extends AbstractGameAction {
         }
 
         addToTop(new HandSelectAction(Math.min(amount, maxSwap), c -> true, cards -> {
+            triggerOnSwap(DrawCardAction.drawnCards, cards);
             for (AbstractCard c : cards) {
                 p.hand.moveToDeck(c, false);
             }
@@ -36,5 +42,20 @@ public class SwapAction extends AbstractGameAction {
         }, TEXT[0], false, false, false, false));
         addToTop(new DrawCardAction(Math.min(amount, maxSwap)));
         this.isDone = true;
+    }
+
+    private void triggerOnSwap(List<AbstractCard> toHand, List<AbstractCard> toDrawPile) {
+        for (AbstractPower power : AbstractDungeon.player.powers) {
+            if (power instanceof SwapSubscriber) {
+                SwapSubscriber subscriber = (SwapSubscriber) power;
+                subscriber.onSwap(toHand, toDrawPile);
+            }
+        }
+        for (AbstractRelic relic : AbstractDungeon.player.relics) {
+            if (relic instanceof SwapSubscriber) {
+                SwapSubscriber subscriber = (SwapSubscriber) relic;
+                subscriber.onSwap(toHand, toDrawPile);
+            }
+        }
     }
 }

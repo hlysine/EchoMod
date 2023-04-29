@@ -645,5 +645,12 @@
     "COST": -2,
     "M/Energy gain": 1,
     "+M": 1
+  },
+  "echo:SelfLearningAI": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "POWER",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "self_learning_ai.png",
+    "COST": 1
   }
 }

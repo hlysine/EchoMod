@@ -387,5 +387,10 @@
     "NAME": "Portable Battery",
     "DESCRIPTION": "{@@}Unplayable. NL When drawn, NL gain {!M!|1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:SelfLearningAI": {
+    "NAME": "Self-Learning AI",
+    "DESCRIPTION": "{@@}{!Upgrades!|0=|@=Innate. NL }Whenever you echo:Swap, upgrade the cards that are put on top of your draw pile.",
+    "EXTENDED_DESCRIPTION": []
   }
 }
