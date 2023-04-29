@@ -495,7 +495,7 @@
     "+B": 3
   },
   "echo:QuickIgnition": {
-    "RARITY": "UNCOMMON",
+    "RARITY": "RARE",
     "TYPE": "POWER",
     "COLOR": "ECHO_BLUE",
     "IMG": "quick_ignition.png",
