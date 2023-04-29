@@ -626,5 +626,15 @@
     "D": 5,
     "+D": 4,
     "M/Swap count": 1
+  },
+  "echo:CarpetBomb": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "carpet_bomb.png",
+    "COST": -1,
+    "M/Sticky Bomb multiplier": 2,
+    "echo:M2/Sticky Bomb constant": 0,
+    "+echo:M2": 2
   }
 }

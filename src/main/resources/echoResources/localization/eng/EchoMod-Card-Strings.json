@@ -377,5 +377,10 @@
     "NAME": "Swift Switch",
     "DESCRIPTION": "{@@}Deal !D! damage. NL echo:Swap !M! card{!M!|>1=s|@=}.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:CarpetBomb": {
+    "NAME": "Carpet Bomb",
+    "DESCRIPTION": "{@@}Apply X*!M!{!echo:M2!|0=|@= + !echo:M2!} echo:Sticky_Bombs to ALL enemies.",
+    "EXTENDED_DESCRIPTION": []
   }
 }
