@@ -382,5 +382,10 @@
     "NAME": "Carpet Bomb",
     "DESCRIPTION": "{@@}Apply X*!M!{!echo:M2!|0=|@= + !echo:M2!} echo:Sticky_Bombs to ALL enemies.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:PortableBattery": {
+    "NAME": "Portable Battery",
+    "DESCRIPTION": "{@@}Unplayable. NL When drawn, NL gain {!M!|1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

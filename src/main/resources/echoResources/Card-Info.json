@@ -636,5 +636,14 @@
     "M/Sticky Bomb multiplier": 2,
     "echo:M2/Sticky Bomb constant": 0,
     "+echo:M2": 2
+  },
+  "echo:PortableBattery": {
+    "RARITY": "UNCOMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "portable_battery.png",
+    "COST": -2,
+    "M/Energy gain": 1,
+    "+M": 1
   }
 }
