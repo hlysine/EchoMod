@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import echo.EchoMod;
 import echo.cards.AbstractBaseCard;
-import echo.powers.SelfLearningAIPower;
+import echo.powers.SelfLearningPower;
 
 public class SelfLearningAI extends AbstractBaseCard {
 
@@ -19,7 +19,7 @@ public class SelfLearningAI extends AbstractBaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new SelfLearningAIPower(p)));
+        addToBot(new ApplyPowerAction(p, p, new SelfLearningPower(p)));
     }
 
     @Override

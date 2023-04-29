@@ -14,17 +14,17 @@ import echo.util.TextureLoader;
 
 import java.util.List;
 
-public class SelfLearningAIPower extends AbstractPower implements CloneablePowerInterface, SwapSubscriber {
+public class SelfLearningPower extends AbstractPower implements CloneablePowerInterface, SwapSubscriber {
 
-    public static final String POWER_ID = EchoMod.makeID(SelfLearningAIPower.class.getSimpleName());
+    public static final String POWER_ID = EchoMod.makeID(SelfLearningPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final Texture tex84 = TextureLoader.getTexture(EchoMod.makePowerPath("self_learning_ai84.png"));
-    private static final Texture tex32 = TextureLoader.getTexture(EchoMod.makePowerPath("self_learning_ai32.png"));
+    private static final Texture tex84 = TextureLoader.getTexture(EchoMod.makePowerPath("self_learning84.png"));
+    private static final Texture tex32 = TextureLoader.getTexture(EchoMod.makePowerPath("self_learning32.png"));
 
-    public SelfLearningAIPower(final AbstractCreature owner) {
+    public SelfLearningPower(final AbstractCreature owner) {
         name = NAME;
         ID = POWER_ID;
 
@@ -57,6 +57,6 @@ public class SelfLearningAIPower extends AbstractPower implements CloneablePower
 
     @Override
     public AbstractPower makeCopy() {
-        return new SelfLearningAIPower(owner);
+        return new SelfLearningPower(owner);
     }
 }

@@ -152,7 +152,7 @@
       " cards."
     ]
   },
-  "echo:SelfLearningAIPower": {
+  "echo:SelfLearningPower": {
     "NAME": "Self-Learning",
     "DESCRIPTIONS": [
       "Whenever you #ySwap, upgrade the cards that are put on top of your draw pile."
