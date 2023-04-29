@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import echo.EchoMod;
@@ -38,6 +39,11 @@ public class QuickIgnitionPower extends AbstractPower implements CloneablePowerI
     }
 
     @Override
+    public void onInitialApplication() {
+        updateDescription();
+    }
+
+    @Override
     public int modifyBombsPerTurn(int original) {
         return original + this.amount;
     }
@@ -45,6 +51,8 @@ public class QuickIgnitionPower extends AbstractPower implements CloneablePowerI
     @Override
     public void updateDescription() {
         description = DESCRIPTIONS[0] + describeNumber(this.amount, 1);
+        AbstractDungeon.player.powers.stream().filter(p -> p instanceof StickyBombPower).forEach(AbstractPower::updateDescription);
+        AbstractDungeon.getMonsters().monsters.forEach(m -> m.powers.stream().filter(p -> p instanceof StickyBombPower).forEach(AbstractPower::updateDescription));
     }
 
     private String describeNumber(int number, int singularIndex) {
