@@ -372,5 +372,10 @@
     "NAME": "Unpredictability",
     "DESCRIPTION": "{@@}{!Upgrades!|0=|@=Innate. NL }At the start of your turn, echo:Swap !M! card{!M!|>1=s|@=}.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:SwiftSwitch": {
+    "NAME": "Swift Switch",
+    "DESCRIPTION": "{@@}Deal !D! damage. NL echo:Swap !M! card{!M!|>1=s|@=}.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

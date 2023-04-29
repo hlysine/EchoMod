@@ -616,5 +616,15 @@
     "IMG": "unpredictability.png",
     "COST": 1,
     "M/Swap count": 1
+  },
+  "echo:SwiftSwitch": {
+    "RARITY": "COMMON",
+    "TYPE": "ATTACK",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "swift_switch.png",
+    "COST": 0,
+    "D": 5,
+    "+D": 4,
+    "M/Swap count": 1
   }
 }
