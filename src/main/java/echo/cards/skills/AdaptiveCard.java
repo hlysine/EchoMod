@@ -66,12 +66,18 @@ public class AdaptiveCard extends AbstractBaseCard {
                     playerClasses.remove(0);
             }
 
-            addToTop(new DiscoveryCardAction(finalChoices, cardStrings.EXTENDED_DESCRIPTION[0], cardStrings.EXTENDED_DESCRIPTION[1], card -> {
-                boolean isXCost = card.costForTurn == -1 && !card.freeToPlay();
-                addToTop(new NewQueueCardAction(card, m, true, !isXCost));
-                if (isXCost)
-                    addToTop(new GainEnergyAction(effect));
-            }));
+            addToTop(new DiscoveryCardAction(
+                    finalChoices.stream().map(AbstractCard::makeStatEquivalentCopy).collect(Collectors.toCollection(ArrayList::new)),
+                    cardStrings.EXTENDED_DESCRIPTION[0],
+                    cardStrings.EXTENDED_DESCRIPTION[1],
+                    card -> {
+                        card.purgeOnUse = true;
+                        boolean isXCost = card.costForTurn == -1 && !card.freeToPlay();
+                        addToTop(new NewQueueCardAction(card, m, true, !isXCost));
+                        if (isXCost)
+                            addToTop(new GainEnergyAction(effect));
+                    }
+            ));
         }));
     }
 }

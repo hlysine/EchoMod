@@ -59,9 +59,15 @@ public class FlexAttack extends AbstractBaseCard {
                     playerClasses.remove(0);
             }
 
-            addToTop(new DiscoveryCardAction(finalChoices, cardStrings.EXTENDED_DESCRIPTION[0], cardStrings.EXTENDED_DESCRIPTION[1], card -> {
-                addToTop(new NewQueueCardAction(card, m, true, true));
-            }));
+            addToTop(new DiscoveryCardAction(
+                    finalChoices.stream().map(AbstractCard::makeStatEquivalentCopy).collect(Collectors.toCollection(ArrayList::new)),
+                    cardStrings.EXTENDED_DESCRIPTION[0],
+                    cardStrings.EXTENDED_DESCRIPTION[1],
+                    card -> {
+                        card.purgeOnUse = true;
+                        addToTop(new NewQueueCardAction(card, m, true, true));
+                    }
+            ));
         }));
     }
 }
