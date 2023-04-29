@@ -49,7 +49,7 @@
       "sticky_bomb",
       "sticky_bombs"
     ],
-    "DESCRIPTION": "At the end of your turn, up to #b5 #ySticky #yBombs explode one by one dealing damage equal to the number of #ySticky #yBombs remaining."
+    "DESCRIPTION": "At the end of your turn, up to #b3 #ySticky #yBombs explode one by one dealing damage equal to the number of #ySticky #yBombs remaining."
   },
   {
     "PROPER_NAME": "Ultimate Charge",

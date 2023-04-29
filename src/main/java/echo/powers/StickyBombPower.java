@@ -48,7 +48,7 @@ public class StickyBombPower extends AbstractPower implements CloneablePowerInte
     }
 
     private int getBombsPerTurn() {
-        int bombs = 5;
+        int bombs = 3;
         if (!this.owner.isPlayer) {
             for (AbstractPower power : AbstractDungeon.player.powers) {
                 if (power instanceof StickyBombSubscriber) {
