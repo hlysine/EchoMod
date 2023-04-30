@@ -392,5 +392,10 @@
     "NAME": "Self-Learning AI",
     "DESCRIPTION": "{@@}{!Upgrades!|0=|@=Innate. NL }Whenever you echo:Swap, upgrade the cards that are put on top of your draw pile.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:Deepfake": {
+    "NAME": "Deepfake",
+    "DESCRIPTION": "{@@}echo:Duplicate $CHARACTER without needing echo:Ultimate_Charge. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

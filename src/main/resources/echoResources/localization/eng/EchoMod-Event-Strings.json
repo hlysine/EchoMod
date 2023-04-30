@@ -5,5 +5,23 @@
       "~[#2c90c9]LONELINESS.~ NL NL #b[MINA #bLIAO] You... are my life's work. NL ... NL #b[MINA #bLIAO] They've breached the labs! NL ... NL #b[UNIDENTIFIED] With the death of Dr. Liao, we cannot take any risks with new omnics. NL NL #g[STATUS] #yGENERAL #yINTELLIGENCE: #rRESTRICTED NL #r[ERROR] NL #r[ERROR]"
     ],
     "OPTIONS": []
+  },
+  "echo:PreciousDataEvent": {
+    "NAME": "Precious Data",
+    "DESCRIPTIONS": [
+      "As you explore the Spire, you come across a strange laboratory. Inside, you see a woman in a #ppurple #phoodie with a #bcybernetic #barm. You are surprised to see her here. NL NL She offers you a peek into her #ySpire #ydatabase and you begin to explore.",
+      "She cuts you off soon after. NL NL \"Impressive, isn't it? I have more to offer, but you have to #rreturn #rthe #rfavor.\" She waves her cybernetic arm and grins.",
+      "As she ~dances~ ~her~ ~fingers~ on a hologram, your system faces a dangerous #rattack, forcing several modules to shut down. NL NL You have received the #ySpire #ydatabase, but the system damage will be difficult to repair.",
+      "You have the most advanced learning algorithms. There is no need to risk her infiltrating your systems."
+    ],
+    "OPTIONS": [
+      "[Explore ",
+      "]",
+      "[Accept] #gAdd #b",
+      " #yDeepfakes #gto #gyour #gdeck. #rLose #r",
+      " #rHP.",
+      "[Ignore]",
+      "[Leave]"
+    ]
   }
 }

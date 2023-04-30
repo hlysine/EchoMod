@@ -5,6 +5,7 @@ import basemod.BaseMod;
 import basemod.ModLabeledToggleButton;
 import basemod.ModPanel;
 import basemod.abstracts.CustomRelic;
+import basemod.eventUtil.AddEventParams;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -25,6 +26,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import echo.cards.AbstractBaseCard;
 import echo.characters.Echo;
 import echo.effects.SfxStore;
+import echo.events.PreciousDataEvent;
 import echo.patches.metrics.DevCommandsMetricPatch;
 import echo.potions.ChargedBottle;
 import echo.powers.UltimateChargePower;
@@ -282,6 +284,10 @@ public class EchoMod implements
         BaseMod.registerModBadge(badgeTexture, MOD_NAME, AUTHOR, DESCRIPTION, settingsPanel);
 
         BaseMod.addSaveField(EchoMod.makeID(DevCommandsMetricPatch.DevCommandsMetricSavable.class.getSimpleName()), new DevCommandsMetricPatch.DevCommandsMetricSavable());
+
+        BaseMod.addEvent(new AddEventParams.Builder(PreciousDataEvent.ID, PreciousDataEvent.class)
+                .playerClass(Echo.Enums.ECHO)
+                .create());
 
         logger.info("Done loading badge image and mod options");
     }

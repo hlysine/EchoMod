@@ -652,5 +652,13 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "self_learning_ai.png",
     "COST": 1
+  },
+  "echo:Deepfake": {
+    "RARITY": "SPECIAL",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "deepfake.png",
+    "COST": 2,
+    "+COST": 1
   }
 }
