@@ -26,5 +26,19 @@
     "DESCRIPTIONS": [
       "Whenever you #yecho:duplicate, transform into #b3 random temporary relics."
     ]
+  },
+  "echo:MetalFork": {
+    "NAME": "Metal Fork",
+    "FLAVOR": "\"I wish I could eat...\"",
+    "DESCRIPTIONS": [
+      "Gain [E] whenever an enemy goes below #b50% HP."
+    ]
+  },
+  "echo:ConvexLens": {
+    "NAME": "Convex Lens",
+    "FLAVOR": "Simple geometry.",
+    "DESCRIPTIONS": [
+      "#yecho:Focused effects are now triggered when the enemy is below #b70% HP."
+    ]
   }
 }

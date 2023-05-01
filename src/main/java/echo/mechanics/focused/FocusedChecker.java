@@ -7,6 +7,15 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import echo.subscribers.FocusedSubscriber;
 
 public class FocusedChecker {
+
+    public static boolean baseFocused(AbstractMonster target, float percentage) {
+        return !target.isDeadOrEscaped() && target.currentHealth <= target.maxHealth * percentage;
+    }
+
+    public static boolean baseFocused(AbstractMonster target) {
+        return baseFocused(target, 0.5f);
+    }
+
     public static boolean isFocused(AbstractMonster target) {
         boolean isFocused = false;
         for (AbstractPower power : AbstractDungeon.player.powers) {
@@ -33,7 +42,7 @@ public class FocusedChecker {
                 }
             }
         }
-        return isFocused || (!target.isDeadOrEscaped() && target.currentHealth <= target.maxHealth / 2);
+        return isFocused || baseFocused(target);
     }
 
     public static boolean anyFocused() {

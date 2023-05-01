@@ -14,5 +14,13 @@
   "echo:MiniProjector": {
     "IMG": "mini_projector.png",
     "RARITY": "UNCOMMON"
+  },
+  "echo:MetalFork": {
+    "IMG": "mini_projector.png",
+    "RARITY": "UNCOMMON"
+  },
+  "echo:ConvexLens": {
+    "IMG": "mini_projector.png",
+    "RARITY": "RARE"
   }
 }
