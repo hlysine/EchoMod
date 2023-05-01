@@ -34,9 +34,9 @@
       "Gain [E] whenever an enemy goes below #b50% HP."
     ]
   },
-  "echo:ConvexLens": {
-    "NAME": "Convex Lens",
-    "FLAVOR": "Simple geometry.",
+  "echo:CrystalBall": {
+    "NAME": "Crystal Ball",
+    "FLAVOR": "A gleaming ball that focuses light onto a single point.",
     "DESCRIPTIONS": [
       "#yecho:Focused effects are now triggered when the enemy is below #b70% HP."
     ]

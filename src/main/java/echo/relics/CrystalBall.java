@@ -5,15 +5,15 @@ import echo.EchoMod;
 import echo.mechanics.focused.FocusedChecker;
 import echo.subscribers.FocusedSubscriber;
 
-public class ConvexLens extends AbstractBaseRelic implements FocusedSubscriber {
+public class CrystalBall extends AbstractBaseRelic implements FocusedSubscriber {
 
-    public static final String ID = EchoMod.makeID(ConvexLens.class.getSimpleName());
+    public static final String ID = EchoMod.makeID(CrystalBall.class.getSimpleName());
 
     public static final float FOCUSED_PERCENTAGE = 0.7f;
 
     private static final LandingSound LANDING_SOUND = LandingSound.SOLID;
 
-    public ConvexLens() {
+    public CrystalBall() {
         super(ID, LANDING_SOUND);
     }
 

@@ -16,11 +16,11 @@
     "RARITY": "UNCOMMON"
   },
   "echo:MetalFork": {
-    "IMG": "mini_projector.png",
+    "IMG": "metal_fork.png",
     "RARITY": "UNCOMMON"
   },
-  "echo:ConvexLens": {
-    "IMG": "mini_projector.png",
+  "echo:CrystalBall": {
+    "IMG": "crystal_ball.png",
     "RARITY": "RARE"
   }
 }
