@@ -82,7 +82,7 @@
   },
   "echo:RecursiveCopy": {
     "NAME": "Recursive Copy",
-    "DESCRIPTION": "{@@}echo:Charged: echo:duplicate a character and copy this card to your hand{!Upgrades!|0=|@=, which costs 0 until played}.",
+    "DESCRIPTION": "{@@}echo:Charged: echo:duplicate a character and copy this card to your hand.{!Upgrades!|0=|@= NL It costs 0 until played.}",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:GenjiCopy": {
