@@ -49,7 +49,9 @@ public class FlexAttack extends AbstractBaseCard {
                 } else {
                     cardPool = CardTransformer.getCardPool(CardColor.COLORLESS, false);
                 }
-                List<AbstractCard> normalChoices = cardPool.stream().filter(c -> c.type == CardType.ATTACK).collect(Collectors.toList());
+                List<AbstractCard> normalChoices = cardPool.stream()
+                        .filter(c -> !c.tags.contains(CardTags.HEALING) && c.type == CardType.ATTACK)
+                        .collect(Collectors.toList());
                 if (normalChoices.size() > 0) {
                     finalChoices.add(normalChoices.get(rng.random(normalChoices.size() - 1)));
                 } else if (playerClasses.size() == 0) {

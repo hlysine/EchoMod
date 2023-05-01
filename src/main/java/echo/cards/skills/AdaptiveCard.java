@@ -51,11 +51,15 @@ public class AdaptiveCard extends AbstractBaseCard {
                 } else {
                     cardPool = CardTransformer.getCardPool(CardColor.COLORLESS, false);
                 }
-                List<AbstractCard> normalChoices = cardPool.stream().filter(c -> c.costForTurn == effect).collect(Collectors.toList());
+                List<AbstractCard> normalChoices = cardPool.stream()
+                        .filter(c -> !c.tags.contains(CardTags.HEALING) && c.costForTurn == effect)
+                        .collect(Collectors.toList());
                 if (normalChoices.size() > 0) {
                     finalChoices.add(normalChoices.get(rng.random(normalChoices.size() - 1)));
                 } else {
-                    List<AbstractCard> xCostChoices = cardPool.stream().filter(c -> c.costForTurn == -1).collect(Collectors.toList());
+                    List<AbstractCard> xCostChoices = cardPool.stream()
+                            .filter(c -> !c.tags.contains(CardTags.HEALING) && c.costForTurn == -1)
+                            .collect(Collectors.toList());
                     if (xCostChoices.size() > 0) {
                         finalChoices.add(xCostChoices.get(rng.random(xCostChoices.size() - 1)));
                     } else if (playerClasses.size() == 0) {
