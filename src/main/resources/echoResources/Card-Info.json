@@ -597,7 +597,7 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "flex_attack.png",
     "COST": 1,
-    "M/Card choices": 3,
+    "M/Card choices": 2,
     "+M": 1
   },
   "echo:PowerTemplate": {
