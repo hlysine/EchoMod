@@ -20,6 +20,7 @@ import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import echo.EchoMod;
 import echo.cards.attacks.Strike;
+import echo.cards.attacks.SwiftSwitch;
 import echo.cards.skills.Copy;
 import echo.cards.skills.Defend;
 import echo.cards.skills.ShortFlight;
@@ -186,12 +187,12 @@ public class Echo extends CustomPlayer {
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
 
-        retVal.add(Copy.ID);
+        retVal.add(SwiftSwitch.ID);
         retVal.add(ShortFlight.ID);
 
         UnlockTracker.markCardAsSeen(Strike.ID);
         UnlockTracker.markCardAsSeen(Defend.ID);
-        UnlockTracker.markCardAsSeen(Copy.ID);
+        UnlockTracker.markCardAsSeen(SwiftSwitch.ID);
         UnlockTracker.markCardAsSeen(ShortFlight.ID);
 
         return retVal;

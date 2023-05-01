@@ -18,7 +18,7 @@
     "+B": 3
   },
   "echo:Copy": {
-    "RARITY": "BASIC",
+    "RARITY": "COMMON",
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "copy.png",
@@ -42,7 +42,8 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "short_flight.png",
     "COST": 1,
-    "M/Flight": 2,
+    "M/Flight": 1,
+    "+M": 1,
     "B": 4,
     "+B": 3
   },
@@ -618,13 +619,13 @@
     "M/Swap count": 1
   },
   "echo:SwiftSwitch": {
-    "RARITY": "COMMON",
+    "RARITY": "BASIC",
     "TYPE": "ATTACK",
     "COLOR": "ECHO_BLUE",
     "IMG": "swift_switch.png",
     "COST": 0,
     "D": 5,
-    "+D": 4,
+    "+D": 3,
     "M/Swap count": 1
   },
   "echo:CarpetBomb": {
