@@ -11,7 +11,7 @@ public class CrystalBall extends AbstractBaseRelic implements FocusedSubscriber 
 
     public static final float FOCUSED_PERCENTAGE = 0.7f;
 
-    private static final LandingSound LANDING_SOUND = LandingSound.SOLID;
+    private static final LandingSound LANDING_SOUND = LandingSound.MAGICAL;
 
     public CrystalBall() {
         super(ID, LANDING_SOUND);
