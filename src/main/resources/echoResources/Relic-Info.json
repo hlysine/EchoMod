@@ -1,10 +1,10 @@
 {
-  "echo:CloningModule": {
-    "IMG": "cloning_module.png",
+  "echo:FlightCore": {
+    "IMG": "flight_core.png",
     "RARITY": "STARTER"
   },
-  "echo:OverloadedModule": {
-    "IMG": "overloaded_module.png",
+  "echo:OverloadedCore": {
+    "IMG": "overloaded_core.png",
     "RARITY": "BOSS"
   },
   "echo:HolographicTop": {

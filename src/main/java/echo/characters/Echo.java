@@ -25,7 +25,7 @@ import echo.cards.skills.Copy;
 import echo.cards.skills.Defend;
 import echo.cards.skills.ShortFlight;
 import echo.effects.SfxStore;
-import echo.relics.CloningModule;
+import echo.relics.FlightCore;
 import echo.util.NoAnimation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -202,11 +202,11 @@ public class Echo extends CustomPlayer {
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
 
-        retVal.add(CloningModule.ID);
+        retVal.add(FlightCore.ID);
 
         // Mark relics as seen - makes it visible in the compendium immediately
         // If you don't have this it won't be visible in the compendium until you see them in game
-        UnlockTracker.markRelicAsSeen(CloningModule.ID);
+        UnlockTracker.markRelicAsSeen(FlightCore.ID);
 
         return retVal;
     }

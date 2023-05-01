@@ -1,16 +1,16 @@
 {
-  "echo:CloningModule": {
-    "NAME": "Cloning Module",
+  "echo:FlightCore": {
+    "NAME": "Flight Core",
     "FLAVOR": "Echo's trade secret.",
     "DESCRIPTIONS": [
-      "At the end of your turn, gain #b3 #yecho:Ultimate_Charge."
+      "The first time you lose HP each combat, gain #b2 #yecho:Flight."
     ]
   },
-  "echo:OverloadedModule": {
-    "NAME": "Overloaded Module",
-    "FLAVOR": "A new equilibrium between energy and charge.",
+  "echo:OverloadedCore": {
+    "NAME": "Overloaded Core",
+    "FLAVOR": "Mobility at the cost of an overheating processor.",
     "DESCRIPTIONS": [
-      "Replaces #yCloning #yModule. At the end of your turn, gain #b10 #yecho:Ultimate_Charge. Permanently lose 1 [E] ."
+      "Replaces #yFlight #yCore. At the start of your turn, gain #b1 #yecho:Flight. On pick up, lose #b8 max HP."
     ]
   },
   "echo:HolographicTop": {
