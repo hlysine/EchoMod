@@ -397,5 +397,10 @@
     "NAME": "Deepfake",
     "DESCRIPTION": "{@@}echo:Duplicate $CHARACTER without needing echo:Ultimate_Charge. NL Exhaust.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:SkillGap": {
+    "NAME": "Skill Gap",
+    "DESCRIPTION": "Apply !M! Vulnerable NL and !M! Weak.",
+    "EXTENDED_DESCRIPTION": []
   }
 }
