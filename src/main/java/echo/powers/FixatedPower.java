@@ -49,7 +49,7 @@ public class FixatedPower extends AbstractPower implements CloneablePowerInterfa
     }
 
     @Override
-    public boolean overrideFocusedCheck(AbstractMonster target) {
+    public boolean shouldAllowFocused(AbstractMonster target) {
         return true;
     }
 

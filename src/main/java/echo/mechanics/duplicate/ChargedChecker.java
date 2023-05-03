@@ -1,6 +1,7 @@
 package echo.mechanics.duplicate;
 
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -12,8 +13,19 @@ import echo.EchoMod;
 import echo.powers.UltimateChargePower;
 import echo.subscribers.ChargedSubscriber;
 
+import java.util.Optional;
+
 public class ChargedChecker {
     private static final TutorialStrings tutorialStrings = CardCrawlGame.languagePack.getTutorialString(EchoMod.makeID(ChargedChecker.class.getSimpleName()));
+
+    public static boolean baseCharged(int count) {
+        AbstractPower power = AbstractDungeon.player.getPower(UltimateChargePower.POWER_ID);
+        return power != null && power.amount >= count;
+    }
+
+    public static boolean baseCharged() {
+        return baseCharged(10);
+    }
 
     /**
      * Check whether the player is charged.
@@ -21,26 +33,46 @@ public class ChargedChecker {
      * @return whether the player is charged
      */
     public static boolean isCharged() {
-        boolean isCharged = false;
+        boolean allow = false;
+        boolean block = false;
+        for (AbstractCard card : AbstractDungeon.player.hand.group) {
+            if (card instanceof ChargedSubscriber) {
+                Optional<Boolean> override = ((ChargedSubscriber) card).overrideChargedCheck();
+                if (override.isPresent()) {
+                    if (override.get()) {
+                        allow = true;
+                    } else {
+                        block = true;
+                    }
+                }
+            }
+        }
         for (AbstractPower power : AbstractDungeon.player.powers) {
             if (power instanceof ChargedSubscriber) {
-                if (((ChargedSubscriber) power).overrideChargedCheck()) {
-                    isCharged = true;
-                    break;
+                Optional<Boolean> override = ((ChargedSubscriber) power).overrideChargedCheck();
+                if (override.isPresent()) {
+                    if (override.get()) {
+                        allow = true;
+                    } else {
+                        block = true;
+                    }
                 }
             }
         }
         for (AbstractRelic relic : AbstractDungeon.player.relics) {
             if (relic instanceof ChargedSubscriber) {
-                if (((ChargedSubscriber) relic).overrideChargedCheck()) {
-                    isCharged = true;
-                    break;
+                Optional<Boolean> override = ((ChargedSubscriber) relic).overrideChargedCheck();
+                if (override.isPresent()) {
+                    if (override.get()) {
+                        allow = true;
+                    } else {
+                        block = true;
+                    }
                 }
             }
         }
-        if (isCharged) return true;
-        AbstractPower power = AbstractDungeon.player.getPower(UltimateChargePower.POWER_ID);
-        return power != null && power.amount >= 10;
+        if (block) return false;
+        return allow || baseCharged();
     }
 
     /**

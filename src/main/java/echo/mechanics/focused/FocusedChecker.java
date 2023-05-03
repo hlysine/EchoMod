@@ -1,10 +1,13 @@
 package echo.mechanics.focused;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import echo.subscribers.FocusedSubscriber;
+
+import java.util.Optional;
 
 public class FocusedChecker {
 
@@ -17,32 +20,58 @@ public class FocusedChecker {
     }
 
     public static boolean isFocused(AbstractMonster target) {
-        boolean isFocused = false;
+        boolean allow = false;
+        boolean block = false;
+        for (AbstractCard card : AbstractDungeon.player.hand.group) {
+            if (card instanceof FocusedSubscriber) {
+                Optional<Boolean> override = ((FocusedSubscriber) card).overrideFocusedCheck(target);
+                if (override.isPresent()) {
+                    if (override.get()) {
+                        allow = true;
+                    } else {
+                        block = true;
+                    }
+                }
+            }
+        }
         for (AbstractPower power : AbstractDungeon.player.powers) {
             if (power instanceof FocusedSubscriber) {
-                if (((FocusedSubscriber) power).overrideFocusedCheck(target)) {
-                    isFocused = true;
-                    break;
+                Optional<Boolean> override = ((FocusedSubscriber) power).overrideFocusedCheck(target);
+                if (override.isPresent()) {
+                    if (override.get()) {
+                        allow = true;
+                    } else {
+                        block = true;
+                    }
                 }
             }
         }
         for (AbstractRelic relic : AbstractDungeon.player.relics) {
             if (relic instanceof FocusedSubscriber) {
-                if (((FocusedSubscriber) relic).overrideFocusedCheck(target)) {
-                    isFocused = true;
-                    break;
+                Optional<Boolean> override = ((FocusedSubscriber) relic).overrideFocusedCheck(target);
+                if (override.isPresent()) {
+                    if (override.get()) {
+                        allow = true;
+                    } else {
+                        block = true;
+                    }
                 }
             }
         }
         for (AbstractPower power : target.powers) {
             if (power instanceof FocusedSubscriber) {
-                if (((FocusedSubscriber) power).overrideFocusedCheck(target)) {
-                    isFocused = true;
-                    break;
+                Optional<Boolean> override = ((FocusedSubscriber) power).overrideFocusedCheck(target);
+                if (override.isPresent()) {
+                    if (override.get()) {
+                        allow = true;
+                    } else {
+                        block = true;
+                    }
                 }
             }
         }
-        return isFocused || baseFocused(target);
+        if (block) return false;
+        return allow || baseFocused(target);
     }
 
     public static boolean anyFocused() {

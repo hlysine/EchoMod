@@ -397,5 +397,10 @@
     "NAME": "Deepfake",
     "DESCRIPTION": "{@@}echo:Duplicate $CHARACTER without needing echo:Ultimate_Charge. NL Exhaust.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:Hacked": {
+    "NAME": "Hacked",
+    "DESCRIPTION": "Unplayable. NL Ethereal. NL When in hand, disable echo:Charged and echo:Focused effects.",
+    "EXTENDED_DESCRIPTION": []
   }
 }

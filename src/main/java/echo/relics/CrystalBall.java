@@ -18,7 +18,7 @@ public class CrystalBall extends AbstractBaseRelic implements FocusedSubscriber 
     }
 
     @Override
-    public boolean overrideFocusedCheck(AbstractMonster target) {
+    public boolean shouldAllowFocused(AbstractMonster target) {
         boolean originalFocused = FocusedChecker.baseFocused(target);
         boolean newFocused = FocusedChecker.baseFocused(target, FOCUSED_PERCENTAGE);
 

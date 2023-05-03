@@ -41,7 +41,7 @@ public class StickyFlarePower extends AbstractPower implements CloneablePowerInt
     }
 
     @Override
-    public boolean overrideFocusedCheck(AbstractMonster target) {
+    public boolean shouldAllowFocused(AbstractMonster target) {
         return target.powers.stream().anyMatch(pow -> pow instanceof StickyBombPower);
     }
 

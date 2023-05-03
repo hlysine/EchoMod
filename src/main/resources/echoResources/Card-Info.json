@@ -661,5 +661,12 @@
     "IMG": "deepfake.png",
     "COST": 2,
     "+COST": 1
+  },
+  "echo:Hacked": {
+    "RARITY": "SPECIAL",
+    "TYPE": "STATUS",
+    "COLOR": "COLORLESS",
+    "IMG": "hacked.png",
+    "COST": -2
   }
 }
