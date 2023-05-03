@@ -662,6 +662,15 @@
     "COST": 2,
     "+COST": 1
   },
+  "echo:SkillGap": {
+    "RARITY": "COMMON",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "skill_gap.png",
+    "COST": 1,
+    "+COST": 0,
+    "M/Weak and Vulnerable power": 2
+  },
   "echo:Hacked": {
     "RARITY": "SPECIAL",
     "TYPE": "STATUS",
