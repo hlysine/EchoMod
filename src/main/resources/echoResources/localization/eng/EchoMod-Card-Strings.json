@@ -410,7 +410,7 @@
   },
   "echo:PeakPower": {
     "NAME": "Peak Power",
-    "DESCRIPTION": "Exhume *Tri-shots until your hand is full. NL Add !M! *Hacked to your discard pile.",
+    "DESCRIPTION": "echo:Exhume *Tri-shots until your hand is full. NL Add !M! *Hacked to your discard pile.",
     "EXTENDED_DESCRIPTION": [
       "I have no #rTri-Shots in exhaust pile."
     ]

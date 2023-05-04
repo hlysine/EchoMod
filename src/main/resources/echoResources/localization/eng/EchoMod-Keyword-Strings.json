@@ -72,5 +72,11 @@
       "unceasing_top"
     ],
     "DESCRIPTION": "A relic that draws a card whenever you have no cards in hand during your turn."
+  },
+  {
+    "NAMES": [
+      "exhume"
+    ],
+    "DESCRIPTION": "Put cards from your exhaust pile into your hand."
   }
 ]
