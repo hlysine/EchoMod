@@ -677,5 +677,15 @@
     "COLOR": "COLORLESS",
     "IMG": "hacked.png",
     "COST": -2
+  },
+  "echo:PeakPower": {
+    "RARITY": "RARE",
+    "TYPE": "SKILL",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "peak_power.png",
+    "COST": 2,
+    "PREVIEW": "echo:Hacked",
+    "M/Hacked count": 2,
+    "+M": -1
   }
 }

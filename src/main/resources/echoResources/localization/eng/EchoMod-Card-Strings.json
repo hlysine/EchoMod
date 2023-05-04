@@ -407,5 +407,10 @@
     "NAME": "Hacked",
     "DESCRIPTION": "Unplayable. NL Ethereal. NL When in hand, disable echo:Charged and echo:Focused effects.",
     "EXTENDED_DESCRIPTION": []
+  },
+  "echo:PeakPower": {
+    "NAME": "PeakPower",
+    "DESCRIPTION": "Exhume *Tri-shots until your hand is full. NL Add !M! *Hacked to your discard pile.",
+    "EXTENDED_DESCRIPTION": []
   }
 }
