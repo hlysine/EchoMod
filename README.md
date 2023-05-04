@@ -11,8 +11,9 @@ powers.
 
 ## Content
 
-- 52 cards
-- 4 relics
+- 74 cards (67 normal cards and 7 special/status cards)
+- 6 relics
+- 1 event
 - 1 potion
 
 ## Data Collection
