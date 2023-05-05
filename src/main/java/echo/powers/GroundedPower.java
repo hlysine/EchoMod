@@ -4,7 +4,6 @@ import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -41,11 +40,7 @@ public class GroundedPower extends AbstractPower implements CloneablePowerInterf
 
     @Override
     public void atStartOfTurn() {
-        if (this.amount > 1) {
-            addToBot(new ReducePowerAction(this.owner, this.owner, ID, 1));
-        } else {
-            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, ID));
-        }
+        addToBot(new ReducePowerAction(this.owner, this.owner, ID, 1));
     }
 
     @Override

@@ -4,7 +4,6 @@ import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -47,11 +46,7 @@ public class StickyFlarePower extends AbstractPower implements CloneablePowerInt
 
     @Override
     public void atEndOfRound() {
-        if (this.amount > 1) {
-            addToBot(new ReducePowerAction(owner, owner, this, 1));
-        } else {
-            addToBot(new RemoveSpecificPowerAction(owner, owner, this));
-        }
+        addToBot(new ReducePowerAction(owner, owner, this, 1));
     }
 
     @Override

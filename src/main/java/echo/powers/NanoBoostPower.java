@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -78,11 +77,7 @@ public class NanoBoostPower extends AbstractPower implements CloneablePowerInter
 
     @Override
     public void atEndOfRound() {
-        if (this.amount > 1) {
-            addToBot(new ReducePowerAction(owner, owner, this, 1));
-        } else {
-            addToBot(new RemoveSpecificPowerAction(owner, owner, this));
-        }
+        addToBot(new ReducePowerAction(owner, owner, this, 1));
     }
 
     @Override
