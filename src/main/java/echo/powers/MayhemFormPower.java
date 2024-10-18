@@ -45,6 +45,7 @@ public class MayhemFormPower extends AbstractPower implements CloneablePowerInte
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         for (int i = 0; i < this.amount; i++) {
             AbstractMonster m = AbstractDungeon.getRandomMonster();
+            if (m == null) return;
             addToBot(new ApplyPowerAction(m, this.owner, new StickyBombPower(m, 1)));
         }
     }
