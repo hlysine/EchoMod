@@ -43,7 +43,7 @@ public class CloningModuleEventsPatch {
             method = "onVictory"
     )
     public static class OnVictoryPatch {
-        public static void Postfix() {
+        public static void Prefix() {
             if (Duplicator.isDuplicating()) {
                 Duplicator.stopDuplication(false);
                 AbstractDungeon.topLevelEffects.add(new DuplicateEffect(null));
@@ -56,7 +56,7 @@ public class CloningModuleEventsPatch {
             method = "clear"
     )
     public static class ClearPatch {
-        public static void Postfix() {
+        public static void Prefix() {
             Duplicator.stopDuplication(false);
         }
     }
