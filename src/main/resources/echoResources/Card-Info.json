@@ -136,7 +136,7 @@
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "genji_copy.png",
-    "COST": 2,
+    "COST": 1,
     "PREVIEW": "echo:EchoBlade",
     "+PREVIEW": "+echo:EchoBlade"
   },
