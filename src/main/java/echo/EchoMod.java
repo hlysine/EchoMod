@@ -69,7 +69,7 @@ public class EchoMod implements
     // Mod-settings settings. This is if you want an on/off savable button
     public static Properties defaultSettings = new Properties();
     public static final String REDUCED_FULLSCREEN_EFFECTS_SETTING = "reducedFullscreenEffects";
-    public static boolean reducedFullscreenEffects = false;
+    public static boolean reducedFullscreenEffects = true;
 
     // Character Color
     public static final Color ECHO_COLOR = CardHelper.getColor(106, 110, 247);
