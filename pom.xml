@@ -6,7 +6,7 @@
     <groupId>echomod</groupId>
     <artifactId>EchoMod</artifactId>
     <name>Echo</name>
-    <version>0.2.0</version>
+    <version>0.3.0</version>
     <description>A custom Slay the Spire character - Echo.</description>
 
     <properties>
