@@ -510,7 +510,7 @@
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "disengage.png",
-    "COST": 1,
+    "COST": 2,
     "M/Flight power": 2,
     "+M": 1,
     "echo:M2/Weak power": 3,
