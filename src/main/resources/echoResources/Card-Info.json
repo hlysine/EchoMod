@@ -362,7 +362,7 @@
     "M/Ult Charge": 3
   },
   "echo:NanoBoost": {
-    "RARITY": "UNCOMMON",
+    "RARITY": "RARE",
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "nano_boost.png",
