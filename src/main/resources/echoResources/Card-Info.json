@@ -239,8 +239,8 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "flash_beam.png",
     "COST": 0,
-    "D": 12,
-    "+D": 4,
+    "D": 9,
+    "+D": 3,
     "M/card draw": 1
   },
   "echo:ComboBurst": {
