@@ -266,13 +266,6 @@
     "DESCRIPTION": "{@@}{!Upgrades!|0=|@=Innate. }Retain. NL Gain {!M!|1=[E]|2=[E] [E]|3=[E] [E] [E]|@=!M! [E]}. NL When Retained, increase the gain by !echo:M2!. NL Exhaust.",
     "EXTENDED_DESCRIPTION": []
   },
-  "echo:Reevaluation": {
-    "NAME": "Reevaluation",
-    "DESCRIPTION": "{@@}Gain !M! Plated Armor for each card currently unplayable in your hand.{!Upgrades!|0= NL Exhaust.|@=}",
-    "EXTENDED_DESCRIPTION": [
-      "I have no #runplayable #rcards."
-    ]
-  },
   "echo:EchoedAggression": {
     "NAME": "Echoed Aggression",
     "DESCRIPTION": "{@@}echo:Constant. NL {!Upgrades!|0=|@=Retain. NL }If in echo:Duplicate, modify all Attacks to cost 0 until played.",
