@@ -106,7 +106,7 @@ public class CardTransformer {
             score += 500;
         }
 
-        if (card1.rarity != AbstractCard.CardRarity.CURSE && card2.rarity != AbstractCard.CardRarity.CURSE) {
+        if (card1.rarity != AbstractCard.CardRarity.CURSE && card2.rarity != AbstractCard.CardRarity.CURSE && card1.rarity != AbstractCard.CardRarity.SPECIAL && card2.rarity != AbstractCard.CardRarity.SPECIAL) {
             score += (6 - Math.abs(card1.rarity.ordinal() - card2.rarity.ordinal())) * 25;
         } else if (card1.rarity != card2.rarity) {
             score -= 100000;
