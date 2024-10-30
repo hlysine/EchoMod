@@ -11,15 +11,16 @@
     "DESCRIPTIONS": [
       "As you explore the Spire, you come across a strange laboratory. Inside, you see a woman in a #ppurple #phoodie with a #bcybernetic #barm. You are surprised to see her here. NL NL She offers you a peek into her #ySpire #ydatabase and you begin to explore.",
       "She cuts you off soon after. NL NL \"Impressive, isn't it? I have more to offer, but you have to #rreturn #rthe #rfavor.\" She waves her cybernetic arm and grins.",
+      "As you download the data, your firewall flags a #rsecurity #rthreat.",
+      "You continue to process the vast amount of data, but your system is #roverloaded.",
       "As she ~dances~ ~her~ ~fingers~ on a hologram, your system faces a dangerous #rattack, forcing several modules to shut down. NL NL You have received the #ySpire #ydatabase, but the system damage will be difficult to repair.",
       "You have the most advanced learning algorithms. There is no need to risk her infiltrating your systems."
     ],
     "OPTIONS": [
-      "[Explore ",
-      "]",
-      "[Accept] #gAdd #b",
-      " #yDeepfakes #gto #gyour #gdeck. #rLose #r",
-      " #rHP.",
+      "[Explore the database]",
+      "[ Download ",
+      " ] #gObtain #yDeepfake. #rLose #r",
+      " #rmax #rHP.",
       "[Ignore]",
       "[Leave]"
     ]
