@@ -563,7 +563,7 @@
     "COST": 1,
     "M/Sticky Bombs": 5,
     "+M": 1,
-    "echo:M2/Sticky Bombs to self": 3
+    "echo:M2/Sticky Bombs to self": 2
   },
   "echo:AdaptiveCard": {
     "RARITY": "UNCOMMON",
