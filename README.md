@@ -1,8 +1,8 @@
 # Echo
 
-Echo is a custom Slay The Spire character with many conditional cards and unique mechanics. Designing good decks that
-satisfy the card conditions will be challenging, but you can always duplicate another character to borrow some of their
-powers.
+Echo is a custom Slay The Spire character with many conditional cards and unique mechanics, inspired by the game
+Overwatch. Designing good decks that satisfy the card conditions will be challenging, but you can always duplicate
+another character to borrow some of their powers.
 
 | **[Download Mod](https://github.com/hlysine/EchoMod/releases/latest/)** |
 |-------------------------------------------------------------------------|
