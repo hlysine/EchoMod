@@ -16,6 +16,8 @@ public class CarpetBomb extends AbstractBaseCard {
 
     public CarpetBomb() {
         super(ID, TARGET);
+
+        this.exhaust = true;
     }
 
     @Override

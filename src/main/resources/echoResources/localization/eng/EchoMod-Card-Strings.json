@@ -373,7 +373,7 @@
   },
   "echo:CarpetBomb": {
     "NAME": "Carpet Bomb",
-    "DESCRIPTION": "{@@}Apply X*!M!{!echo:M2!|0=|@= + !echo:M2!} echo:Sticky_Bombs to ALL enemies.",
+    "DESCRIPTION": "{@@}Apply X*!M!{!echo:M2!|0=|@= + !echo:M2!} echo:Sticky_Bombs to ALL enemies. Exhaust.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:PortableBattery": {
