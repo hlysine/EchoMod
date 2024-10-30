@@ -175,7 +175,7 @@
     "IMG": "this_ends_now.png",
     "COST": 1,
     "+COST": 0,
-    "D": 130
+    "D": 200
   },
   "echo:CassidyCopy": {
     "RARITY": "UNCOMMON",
