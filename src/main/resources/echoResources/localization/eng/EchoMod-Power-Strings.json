@@ -139,9 +139,9 @@
     "NAME": "Rapid Assail",
     "DESCRIPTIONS": [
       "For every #b",
-      " HP lost by this creature, apply #b",
-      " #yWeak. (Lose #b",
-      " more HP for the next #yWeak. )"
+      " HP lost by this creature, gain #b",
+      " #yUltimate #yCharge. (Lose #b",
+      " more HP for the next #yUltimate #yCharge. )"
     ]
   },
   "echo:UnpredictabilityPower": {

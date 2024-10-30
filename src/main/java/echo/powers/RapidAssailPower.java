@@ -8,9 +8,9 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import echo.EchoMod;
 import echo.cards.attacks.RapidAssail;
 import echo.util.TextureLoader;
@@ -27,7 +27,7 @@ public class RapidAssailPower extends AbstractPower implements NonStackablePower
     private static final Texture tex32 = TextureLoader.getTexture(EchoMod.makePowerPath("rapid_assail32.png"));
 
     public int damageDealt;
-    public final int damagePerWeak;
+    public final int damagePerCharge;
 
     /**
      * @deprecated This is for auto-instantiation by DevConsole only.
@@ -38,14 +38,14 @@ public class RapidAssailPower extends AbstractPower implements NonStackablePower
         this(owner, amount, EchoMod.getCardInfo(RapidAssail.ID).getBaseValue(MagicNumber2Variable.ID));
     }
 
-    public RapidAssailPower(final AbstractCreature owner, final int amount, final int damagePerWeak) {
+    public RapidAssailPower(final AbstractCreature owner, final int amount, final int damagePerCharge) {
         name = NAME;
         ID = POWER_ID;
 
         this.owner = owner;
         this.amount = amount;
         this.damageDealt = 0;
-        this.damagePerWeak = damagePerWeak;
+        this.damagePerCharge = damagePerCharge;
 
         type = PowerType.DEBUFF;
         isTurnBased = false;
@@ -58,7 +58,7 @@ public class RapidAssailPower extends AbstractPower implements NonStackablePower
 
     @Override
     public boolean isStackable(AbstractPower power) {
-        return (power instanceof RapidAssailPower) && ((RapidAssailPower) power).damagePerWeak == this.damagePerWeak;
+        return (power instanceof RapidAssailPower) && ((RapidAssailPower) power).damagePerCharge == this.damagePerCharge;
     }
 
     @Override
@@ -66,10 +66,10 @@ public class RapidAssailPower extends AbstractPower implements NonStackablePower
         if (damageAmount > 0) {
             flashWithoutSound();
             damageDealt += damageAmount;
-            int powerAmount = Math.floorDiv(damageDealt, damagePerWeak) * amount;
-            damageDealt = Math.floorMod(damageDealt, damagePerWeak);
+            int powerAmount = Math.floorDiv(damageDealt, damagePerCharge) * amount;
+            damageDealt = Math.floorMod(damageDealt, damagePerCharge);
             if (powerAmount > 0) {
-                addToBot(new ApplyPowerAction(owner, owner, new WeakPower(owner, powerAmount, false)));
+                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new UltimateChargePower(AbstractDungeon.player, powerAmount)));
             }
             updateDescription();
         }
@@ -77,11 +77,11 @@ public class RapidAssailPower extends AbstractPower implements NonStackablePower
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + damagePerWeak + DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[2] + (damagePerWeak - damageDealt) + DESCRIPTIONS[3];
+        description = DESCRIPTIONS[0] + damagePerCharge + DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[2] + (damagePerCharge - damageDealt) + DESCRIPTIONS[3];
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new RapidAssailPower(owner, amount, damagePerWeak);
+        return new RapidAssailPower(owner, amount, damagePerCharge);
     }
 }

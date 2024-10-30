@@ -542,9 +542,9 @@
     "IMG": "rapid_assail.png",
     "COST": 1,
     "D": 8,
-    "+D": 5,
-    "M/Weak power": 1,
-    "echo:M2/Damage per weak": 8
+    "+D": 6,
+    "M/Ultimate Charge": 1,
+    "echo:M2/Damage per charge": 6
   },
   "echo:Initialization": {
     "RARITY": "RARE",
