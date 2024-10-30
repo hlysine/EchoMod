@@ -367,8 +367,8 @@
     "COLOR": "ECHO_BLUE",
     "IMG": "nano_boost.png",
     "COST": 1,
-    "M/Nano Boost power": 1,
-    "+M": 1
+    "+COST": 0,
+    "M/Nano Boost power": 1
   },
   "echo:MirroredFinisher": {
     "RARITY": "RARE",

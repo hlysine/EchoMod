@@ -219,7 +219,7 @@
   },
   "echo:NanoBoost": {
     "NAME": "Nano Boost",
-    "DESCRIPTION": "{@@}For !M! round{!M!|>1=s|@=}, NL deal 50% more damage and take 50% less damage. NL Exhaust.",
+    "DESCRIPTION": "{@@}Deal 50% more damage and take 50% less damage this round. NL Exhaust.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:MirroredFinisher": {
