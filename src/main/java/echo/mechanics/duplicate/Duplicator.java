@@ -173,7 +173,7 @@ public class Duplicator {
             cardDecks = cardTransformer.transform(DuplicatedDecks.extractFromPlayer(originalPlayer));
         }
         cardDecks.applyToPlayer(newPlayer);
-//        newPlayer.drawPile.initializeDeck(newPlayer.masterDeck);
+        newPlayer.drawPile.initializeDeck(newPlayer.masterDeck);
 
         if (newPlayer.hasRelic("SlaversCollar")) {
             ((SlaversCollar) newPlayer.getRelic("SlaversCollar")).beforeEnergyPrep();
@@ -202,7 +202,7 @@ public class Duplicator {
 
         newPlayer.energy.energyMaster = originalPlayer.energy.energyMaster;
         newPlayer.energy.energy = originalPlayer.energy.energy;
-        EnergyPanel.totalCount = Math.max(EnergyPanel.totalCount, newPlayer.energy.energy);
+        EnergyPanel.totalCount = EnergyPanel.totalCount + newPlayer.energy.energy;
 
         if (followUpAction != null)
             AbstractDungeon.actionManager.addToTurnStart(followUpAction);
@@ -213,7 +213,7 @@ public class Duplicator {
             newPlayer.applyStartOfTurnPostDrawRelics();
             newPlayer.applyStartOfTurnPostDrawPowers();
         }));
-        AbstractDungeon.actionManager.addToTurnStart(new DrawCardAction(newPlayer, newPlayer.gameHandSize - newPlayer.hand.size()));
+        AbstractDungeon.actionManager.addToTurnStart(new DrawCardAction(newPlayer, newPlayer.gameHandSize));
 
         newPlayer.healthBarUpdatedEvent();
         newPlayer.showHealthBar();
