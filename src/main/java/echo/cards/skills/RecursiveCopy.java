@@ -8,6 +8,7 @@ import echo.EchoMod;
 import echo.actions.duplicate.DuplicateRandomPlayerAction;
 import echo.cards.ChargedCard;
 import echo.mechanics.duplicate.Duplicator;
+import echo.patches.cards.CustomCardTags;
 import echo.subscribers.AfterCardUseSubscriber;
 import echo.util.RunnableAction;
 
@@ -19,6 +20,8 @@ public class RecursiveCopy extends ChargedCard implements AfterCardUseSubscriber
 
     public RecursiveCopy() {
         super(ID, TARGET, true);
+
+        this.tags.add(CustomCardTags.CONSTANT);
     }
 
     @Override
