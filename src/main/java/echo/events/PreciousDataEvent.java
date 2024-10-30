@@ -28,8 +28,8 @@ public class PreciousDataEvent extends PhasedEvent {
     private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     private static final String[] OPTIONS = eventStrings.OPTIONS;
     private static final String TITLE = eventStrings.NAME;
-    private static final int DAMAGE = 2;
-    private static final int DAMAGE_SCALE = 2;
+    private static final int DAMAGE = 3;
+    private static final int DAMAGE_SCALE = 3;
 
     private static final String ENCOUNTER_PHASE = "Encounter";
     private static final String ACCEPTED_PHASE = "Accepted";
