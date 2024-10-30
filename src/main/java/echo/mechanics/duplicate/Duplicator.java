@@ -152,7 +152,8 @@ public class Duplicator {
 
         newPlayer.orbs = originalPlayer.orbs;
         newPlayer.maxOrbs = originalPlayer.maxOrbs;
-        int newMaxOrbs = newPlayer.masterMaxOrbs + originalPlayer.maxOrbs - originalPlayer.masterMaxOrbs;
+//        int newMaxOrbs = newPlayer.masterMaxOrbs + originalPlayer.maxOrbs - originalPlayer.masterMaxOrbs;
+        int newMaxOrbs = newPlayer.masterMaxOrbs;
         newMaxOrbs = Math.max(0, Math.min(10, newMaxOrbs));
         if (newMaxOrbs == 0 && originalPlayer.maxOrbs > 0)
             newMaxOrbs = 1;
@@ -264,7 +265,8 @@ public class Duplicator {
 
         originalPlayer.orbs = newPlayer.orbs;
         originalPlayer.maxOrbs = newPlayer.maxOrbs;
-        int newMaxOrbs = originalPlayer.masterMaxOrbs + newPlayer.maxOrbs - newPlayer.masterMaxOrbs;
+//        int newMaxOrbs = originalPlayer.masterMaxOrbs + newPlayer.maxOrbs - newPlayer.masterMaxOrbs;
+        int newMaxOrbs = originalPlayer.masterMaxOrbs;
         newMaxOrbs = Math.max(0, Math.min(10, newMaxOrbs));
         if (newMaxOrbs == 0 && newPlayer.maxOrbs > 0)
             newMaxOrbs = 1;
