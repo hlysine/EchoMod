@@ -101,7 +101,7 @@
     "TYPE": "POWER",
     "COLOR": "ECHO_BLUE",
     "IMG": "virtualized_offense.png",
-    "COST": 2,
+    "COST": 1,
     "M/Virtualized Offense power": 2,
     "+M": 1,
     "echo:M2/VO power - 1": 1,
