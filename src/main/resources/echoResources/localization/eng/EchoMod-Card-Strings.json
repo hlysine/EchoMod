@@ -107,7 +107,7 @@
   },
   "echo:ThisEndsNow": {
     "NAME": "This Ends Now...",
-    "DESCRIPTION": "Ethereal. NL echo:Charged: deal !D! damage. NL Exhaust.",
+    "DESCRIPTION": "Ethereal. NL echo:Charged: deal !D! damage to ALL enemies. NL Exhaust.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:CassidyCopy": {
