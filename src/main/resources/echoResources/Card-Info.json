@@ -91,7 +91,7 @@
     "TYPE": "ATTACK",
     "COLOR": "ECHO_BLUE",
     "IMG": "focusing_beam.png",
-    "COST": 1,
+    "COST": 0,
     "D": 2,
     "M/Multi Hit": 7,
     "+M": 2
