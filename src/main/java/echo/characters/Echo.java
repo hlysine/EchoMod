@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -25,6 +26,7 @@ import echo.cards.skills.Copy;
 import echo.cards.skills.Defend;
 import echo.cards.skills.ShortFlight;
 import echo.effects.SfxStore;
+import echo.mechanics.duplicate.Duplicator;
 import echo.relics.FlightCore;
 import echo.util.NoAnimation;
 import org.apache.logging.log4j.LogManager;
@@ -209,6 +211,14 @@ public class Echo extends CustomPlayer {
         UnlockTracker.markRelicAsSeen(FlightCore.ID);
 
         return retVal;
+    }
+
+    @Override
+    public ArrayList<AbstractCard> getCardPool(ArrayList<AbstractCard> tmpPool) {
+        if (Duplicator.isDuplicating() && AbstractDungeon.player.chosenClass != Enums.ECHO) {
+            return CardCrawlGame.characterManager.getCharacter(AbstractDungeon.player.chosenClass).getCardPool(tmpPool);
+        }
+        return super.getCardPool(tmpPool);
     }
 
     // character Select screen effect

@@ -123,6 +123,9 @@ public class Duplicator {
         AbstractPlayer newPlayer = CardCrawlGame.characterManager.recreateCharacter(playerClass);
 
         copyPlayerFields(originalPlayer, newPlayer);
+
+        changePlayerReferences(originalPlayer, newPlayer);
+
         ReflectionHacks.privateMethod(AbstractCreature.class, "refreshHitboxLocation").invoke(newPlayer);
 
         newPlayer.powers = originalPlayer.powers;
@@ -162,8 +165,6 @@ public class Duplicator {
         }
 
         updateExternalFields(originalPlayer, newPlayer);
-
-        changePlayerReferences(originalPlayer, newPlayer);
 
         newPlayer.isBloodied = (newPlayer.currentHealth <= newPlayer.maxHealth / 2);
         newPlayer.gameHandSize = newPlayer.masterHandSize;
