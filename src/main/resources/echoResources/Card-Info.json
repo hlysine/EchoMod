@@ -640,7 +640,7 @@
     "+M": 1
   },
   "echo:SelfLearningAI": {
-    "RARITY": "RARE",
+    "RARITY": "UNCOMMON",
     "TYPE": "POWER",
     "COLOR": "ECHO_BLUE",
     "IMG": "self_learning_ai.png",
