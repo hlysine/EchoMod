@@ -651,8 +651,8 @@
     "TYPE": "SKILL",
     "COLOR": "ECHO_BLUE",
     "IMG": "deepfake.png",
-    "COST": 2,
-    "+COST": 1
+    "COST": 3,
+    "+COST": 2
   },
   "echo:SkillGap": {
     "RARITY": "COMMON",
