@@ -56,7 +56,7 @@ public class CardTransformer {
 
             List<AbstractCard> rawChoices = cardPool.stream()
                     .sorted(Comparator.comparingInt(c -> rateSimilarity(card, (AbstractCard) c)).reversed())
-                    .limit(3)
+                    .limit(5)
                     .collect(Collectors.toList());
             List<AbstractCard> choices = new ArrayList<>(5);
             choices.add(rawChoices.remove(0));
@@ -118,6 +118,10 @@ public class CardTransformer {
             score += 25;
         } else if (card1.cost >= 0 && card2.cost >= 0) {
             score += 10 - Math.abs(Math.min(card1.cost, 4) - Math.min(card2.cost, 4));
+        } else if (card1.cost < 0 && card2.cost >= 0) {
+            score += 5 - card2.cost;
+        } else if (card1.cost >= 0 && card2.cost < 0) {
+            score += 5 - card1.cost;
         }
 
         for (AbstractCard.CardTags tag : card1.tags) {

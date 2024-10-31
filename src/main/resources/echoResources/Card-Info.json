@@ -602,6 +602,15 @@
     "B": 1,
     "+B": 2
   },
+  "echo:AdvancedTemplate": {
+    "RARITY": "RARE",
+    "TYPE": "POWER",
+    "COLOR": "ECHO_BLUE",
+    "IMG": "advanced_template.png",
+    "COST": -2,
+    "M/Ultimate Charge gain": 1,
+    "+M": 1
+  },
   "echo:Unpredictability": {
     "RARITY": "RARE",
     "TYPE": "POWER",
