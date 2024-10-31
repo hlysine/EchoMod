@@ -320,7 +320,7 @@
   },
   "echo:RapidAssail": {
     "NAME": "Rapid Assail",
-    "DESCRIPTION": "Deal !D! damage. NL For every !echo:M2! HP lost by this enemy, gain !M! echo:Ultimate_Charge. NL Exhaust.",
+    "DESCRIPTION": "Deal !D! damage. NL For every !echo:M2! HP lost by this enemy, gain !M! echo:Ultimate_Charge.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:Initialization": {

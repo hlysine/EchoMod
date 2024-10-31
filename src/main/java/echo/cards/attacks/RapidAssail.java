@@ -18,8 +18,6 @@ public class RapidAssail extends AbstractBaseCard {
 
     public RapidAssail() {
         super(ID, TARGET);
-
-        this.exhaust = true;
     }
 
     @Override
