@@ -24,7 +24,7 @@
   },
   "echo:Copy": {
     "NAME": "Copy",
-    "DESCRIPTION": "echo:Charged: echo:duplicate a character. NL Otherwise, gain !M! echo:Ultimate_Charge.",
+    "DESCRIPTION": "Gain !M! echo:Ultimate_Charge. NL echo:Charged: echo:duplicate a character.",
     "EXTENDED_DESCRIPTION": []
   },
   "echo:SwayingBeam": {
