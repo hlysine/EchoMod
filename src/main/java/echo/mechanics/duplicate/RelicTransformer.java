@@ -5,6 +5,7 @@ import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.daily.mods.*;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.random.Random;
@@ -149,5 +150,31 @@ public class RelicTransformer {
             relicPool.removeIf(r -> UnlockTracker.isRelicLocked(r.relicId));
 
         return relicPool;
+    }
+
+    /**
+     * Properly unequip a relic for those that don't have {@link AbstractRelic#onUnequip()} implemented.
+     */
+    public static void unequipRelic(AbstractRelic relic) {
+        if (relic instanceof PotionBelt) {
+            AbstractDungeon.player.potionSlots -= 2;
+            while (AbstractDungeon.player.potions.size() > AbstractDungeon.player.potionSlots)
+                AbstractDungeon.player.potions.remove(AbstractDungeon.player.potions.size() - 1);
+        } else if (relic instanceof Strawberry) {
+            AbstractDungeon.player.decreaseMaxHealth(7);
+        } else if (relic instanceof Pear) {
+            AbstractDungeon.player.decreaseMaxHealth(10);
+        } else if (relic instanceof Mango) {
+            AbstractDungeon.player.decreaseMaxHealth(14);
+        } else if (relic instanceof OldCoin) {
+            AbstractDungeon.player.loseGold(300);
+        } else if (relic instanceof Waffle) {
+            AbstractDungeon.player.decreaseMaxHealth(7);
+        } else if (relic instanceof TinyHouse) {
+            AbstractDungeon.player.decreaseMaxHealth(5);
+            AbstractDungeon.player.loseGold(50);
+        } else {
+            relic.onUnequip();
+        }
     }
 }

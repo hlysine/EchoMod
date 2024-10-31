@@ -243,6 +243,15 @@ public class Duplicator {
 
         AbstractPlayer newPlayer = AbstractDungeon.player;
         AbstractPlayer originalPlayer = playerData.originalPlayer;
+
+        // only trigger start of combat events for the new relics from the duplicated player
+        Collection<AbstractRelic> transformedRelics = newPlayer.relics.stream()
+                .filter(r -> !relicTransformer.originalRelics.contains(r))
+                .collect(Collectors.toList());
+        for (AbstractRelic relic : transformedRelics) {
+            RelicTransformer.unequipRelic(relic);
+        }
+
         playerData.restoreData();
 
         copyPlayerFields(newPlayer, originalPlayer);
@@ -250,13 +259,6 @@ public class Duplicator {
         originalPlayer.powers = newPlayer.powers;
         originalPlayer.powers.removeIf(p -> p instanceof DuplicatePower);
 
-        // only trigger start of combat events for the new relics from the duplicated player
-        Collection<AbstractRelic> transformedRelics = newPlayer.relics.stream()
-                .filter(r -> !relicTransformer.originalRelics.contains(r))
-                .collect(Collectors.toList());
-        for (AbstractRelic relic : transformedRelics) {
-            relic.onUnequip();
-        }
         originalPlayer.relics = relicTransformer.originalRelics;
         originalPlayer.reorganizeRelics();
         originalPlayer.adjustPotionPositions();
