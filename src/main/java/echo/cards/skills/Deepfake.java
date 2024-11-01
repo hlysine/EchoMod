@@ -46,14 +46,23 @@ public class Deepfake extends AbstractBaseCard implements AfterCardUseSubscriber
     }
 
     @Override
+    public void applyPowers() {
+        super.applyPowers();
+        initializeDescription();
+    }
+
+    @Override
     public void initializeDescription() {
-        AbstractPlayer target = CardCrawlGame.characterManager != null ? BaseMod.findCharacter(targetClass) : new Echo("Echo", Echo.Enums.ECHO);
-        if (target != null)
-            rawDescription = rawDescription.replace("$CHARACTER",
-                    Arrays.stream(target.title.split(" "))
-                            .map(s -> "*" + s)
-                            .collect(Collectors.joining(" "))
-            );
+        String originalDescription = cardStrings != null ? cardStrings.DESCRIPTION : rawDescription;
+        if (targetClass != null) {
+            AbstractPlayer target = CardCrawlGame.characterManager != null ? BaseMod.findCharacter(targetClass) : null;
+            String name = Arrays.stream((target != null ? target.title : targetClass.name()).split(" "))
+                    .map(s -> "*" + s)
+                    .collect(Collectors.joining(" "));
+            rawDescription = originalDescription.replace("$CHARACTER", name);
+        } else {
+            rawDescription = originalDescription.replace("$CHARACTER", "a character");
+        }
         super.initializeDescription();
     }
 
