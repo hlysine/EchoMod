@@ -1,6 +1,7 @@
 package echo.mechanics.duplicate;
 
 import basemod.BaseMod;
+import basemod.ReflectionHacks;
 import basemod.interfaces.PreUpdateSubscriber;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import echo.EchoMod;
@@ -135,6 +137,39 @@ public class DuplicationVfx implements PreUpdateSubscriber {
 
     public static void relicPostRender(AbstractRelic relic, SpriteBatch sb) {
         if (Duplicator.relicTransformer != null && !Duplicator.relicTransformer.originalRelics.contains(relic)) {
+            sb.flush();
+            sb.setShader(prevShader);
+        }
+    }
+
+    public static void healthBarPreRender(AbstractCreature creature, SpriteBatch sb) {
+        if (creature instanceof AbstractPlayer && Duplicator.isDuplicating()) {
+            sb.flush();
+            gridShader.begin();
+            gridShader.setUniformf("res_x", (float) ReflectionHacks.getPrivate(creature, AbstractCreature.class, "targetHealthBarWidth"));
+            gridShader.setUniformf("res_y", 20.0F * Settings.scale);
+            gridShader.setUniformf("time", cloneVfxTimer);
+            gridShader.setUniformf("period", 5.0f);
+            gridShader.setUniformi("grayscale", 0);
+            gridShader.setUniformf("radius", 10000f);
+            gridShader.setUniformf("grid_radius", 1f / 3);
+            gridShader.setUniformf("grid_border", 3f / 3);
+            gridShader.setUniformf("grid_margin", 1f / 3);
+            gridShader.end();
+
+            prevShader = sb.getShader();
+            sb.setShader(gridShader);
+        }
+    }
+
+    public static void healthBarColor(AbstractCreature creature, SpriteBatch sb) {
+        if (creature instanceof AbstractPlayer && Duplicator.isDuplicating()) {
+            sb.setColor(0.44f, 0.33f, 0.86f, 1f);
+        }
+    }
+
+    public static void healthBarPostRender(AbstractCreature creature, SpriteBatch sb) {
+        if (creature instanceof AbstractPlayer && Duplicator.isDuplicating()) {
             sb.flush();
             sb.setShader(prevShader);
         }

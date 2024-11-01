@@ -4,10 +4,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import echo.mechanics.duplicate.DuplicationVfx;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
+import javassist.expr.ExprEditor;
+import javassist.expr.MethodCall;
 
 import java.util.ArrayList;
 
@@ -79,6 +82,45 @@ public class CloningVfxPatch {
                 Matcher finalMatcher = new Matcher.MethodCallMatcher(SpriteBatch.class, "draw");
                 return new int[]{LineFinder.findInOrder(ctMethodToPatch, new ArrayList<>(), finalMatcher)[0] + 1};
             }
+        }
+    }
+
+    @SpirePatch(
+            clz = AbstractCreature.class,
+            method = "renderRedHealthBar"
+    )
+    public static class HealthBarPreRenderPatch {
+        public static void Prefix(AbstractCreature __instance, SpriteBatch sb, float x, float y) {
+            DuplicationVfx.healthBarPreRender(__instance, sb);
+        }
+    }
+
+    @SpirePatch(
+            clz = AbstractCreature.class,
+            method = "renderRedHealthBar"
+    )
+    public static class HealthBarPostRenderPatch {
+        public static void Postfix(AbstractCreature __instance, SpriteBatch sb, float x, float y) {
+            DuplicationVfx.healthBarPostRender(__instance, sb);
+        }
+    }
+
+
+    @SpirePatch(
+            clz = AbstractCreature.class,
+            method = "renderRedHealthBar"
+    )
+    public static class HealthBarColorPatch {
+
+        public static ExprEditor Instrument() {
+            return new ExprEditor() {
+                @Override
+                public void edit(MethodCall m) throws CannotCompileException {
+                    if (m.getMethodName().equals("setColor")) {
+                        m.replace("{ $_ = $proceed($$); echo.mechanics.duplicate.DuplicationVfx.healthBarColor(this, $0); }");
+                    }
+                }
+            };
         }
     }
 }
