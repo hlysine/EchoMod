@@ -1,5 +1,53 @@
 # Changelog
 
+## [0.3.0] - Third Playtest - 2024-11-01
+
+### Mechanics
+
+- Fixed Flight Core effect being negated when there is 1 stack of Flight
+- Changed end of combat event orders such that Self Repair is triggered after ending Duplicate
+- Fixed card pools in Duplicate so that random card draw no longer return Echo cards
+- Buffed Duplicate to always give 3 energy and 5 card draws
+- Adaptive cards no longer draw cards with special rarity
+- Fixed orb slots not being reduced properly when returning from the Defect to Echo
+- Fixed basic cards being transformed into special cards
+- Reduced fullscreen effect is now enabled by default
+- Removed long-lasting effects from transformed relics
+- Added shader effect to health bar while in Duplicate
+
+### Cards
+
+- Fixed a typo in Peak Power
+- Added a keyword for Exhume
+- Updated the description of Short Flight
+- Fixed a crash when ending combat in Mayhem Form
+- Added a missing Exhaust keyword to Nano Boost
+- Removed Reevaluation
+- Buffed Focusing Beam: cost decreased from 1 to 0
+- Buffed Virtualized Offense: cost decreased from 2 to 1
+- Buffed Recursive Copy: added Constant
+- Buffed Genji Copy: cost decreased from 2 to 1
+- Buffed This Ends Now: now damages all enemies
+- Buffed Echo High Noon: damage decreased from 10 to 0, scaling increased from 10(12) to 25(30)
+- Nerfed Flash Beam: damage decreased from 12(16) to 9(12)
+- Reworked Nano Boost: rarity changed from uncommon to rare, duration decreased from 2(1) to 1 round, cost reduced from
+  1 to 1(0)
+- Nerfed Disengage: cost increased from 1 to 2
+- Buffed Self-Learning AI: rarity decreased from rare to uncommon
+- Nerfed Carpet Bomb: added exhaust
+- Nerfed Power Template: block decreased from 2(4) to 1(3)
+- Reworked Rapid Assail: damage increased from 8(13) to 8(14), bonus effect changed from gaining Weak to gaining
+  Ultimate Charge, removed Exhaust
+- Buffed Sticky Splash: Sticky Bomb to self decreased from 3 to 2
+- Nerf Deepfake: cost increased from 2(1) to 3(2)
+- Fixed character names on Deepfake
+- Buffed Copy: now always give Ultimate Charge before Duplicating
+- Added Advanced Template
+
+### Events
+
+- Reworked Precious Data event: now offers each card separately at the cost of max HP
+
 ## [0.2.0] - Second Playtest - 2023-05-04
 
 ### Mechanics
